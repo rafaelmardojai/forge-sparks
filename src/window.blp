@@ -1,0 +1,141 @@
+using Gtk 4.0;
+using Adw 1;
+
+menu menu {
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      action: "app.about";
+      label: _("About Forge Sparks");
+    }
+  }
+}
+
+template Gjs_Window : Adw.ApplicationWindow {
+  default-width: 600;
+  default-height: 400;
+  title: _("Notifications");
+
+  Stack mainStack {
+
+    StackPage {
+      name: "setup";
+
+      child: Box {
+        orientation: vertical;
+
+        Adw.HeaderBar {
+          title-widget: Adw.WindowTitle {
+            title: _("Forge Sparks");
+          };
+
+          [end]
+          MenuButton {
+            primary: true;
+            menu-model: menu;
+            icon-name: "open-menu-symbolic";
+          }
+        }
+
+        Adw.StatusPage {
+          title: _("No Accounts");
+          description: _("Plase add an account in the app preferences.");
+          vexpand: true;
+
+          Button {
+            label: _("Open Preferences");
+            action-name: "app.preferences";
+            halign: center;
+
+            styles [
+              "suggested-action",
+              "pill"
+            ]
+          }
+        }
+      };
+    }
+
+    StackPage {
+      name: "loading";
+
+      child: WindowHandle {
+
+        Box {
+          orientation: vertical;
+          margin-top: 12;
+          margin-bottom: 12;
+          margin-start: 12;
+          margin-end: 12;
+          halign: center;
+          valign: center;
+
+          Spinner spinner {
+            width-request: 32;
+            height-request: 32;
+          }
+        }
+      };
+    }
+
+    StackPage {
+      name: "notifications";
+
+      child: Box {
+        orientation: vertical;
+
+        Adw.HeaderBar {
+          [end]
+          MenuButton {
+            primary: true;
+            menu-model: menu;
+            icon-name: "open-menu-symbolic";
+          }
+        }
+
+        Stack notificationsStack {
+
+          StackPage {
+            name: "empty";
+            child: 
+            Adw.StatusPage {
+              title: _("No Notifications to Show");
+              description: _("");
+            };
+          }
+
+          StackPage {
+            name: "list";
+
+            child: ScrolledWindow {
+              hscrollbar-policy: never;
+              vexpand: true;
+
+              Adw.Clamp {
+
+                ListBox notificationsList {
+                  valign: start;
+                  selection-mode: none;
+
+                  styles [
+                    "margin-box",
+                    "content",
+                  ]
+                }
+              }
+            };
+          }
+        }
+      };
+    }
+  }
+}

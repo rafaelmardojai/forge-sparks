@@ -1,0 +1,116 @@
+// SPDX-License-Identifier: MIT
+
+import Adw from 'gi://Adw';
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk';
+import { gettext as _ } from 'gettext';
+
+import Window from './window.js';
+import PreferencesWindow from './preferences.js';
+
+import './style.css';
+import './gtk/help-overlay.blp' assert { type: 'builder' };
+
+class Application extends Adw.Application {
+
+    /**
+     * Crete a Application
+     */
+    constructor() {
+        super({ application_id: pkg.name });
+
+        this.add_main_option('version', 'v'.charCodeAt(0), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
+            'Print version information and exit', null);
+
+        this.connect('handle-local-options', (app, options) => {
+            if (options.contains('version')) {
+                print(pkg.version);
+                /* quit the invoked process after printing the version number
+                 * leaving the running instance unaffected
+                 */
+                return 0;
+            }
+            return -1;
+        });
+
+        this._initAppActions();
+    }
+
+    _initAppActions() {
+        let aboutAction = new Gio.SimpleAction({ name: 'about' });
+        aboutAction.connect('activate', this._showAbout.bind(this));
+        this.add_action(aboutAction);
+
+        let prefsAction = new Gio.SimpleAction({ name: 'preferences' });
+        prefsAction.connect('activate', this._showPrefs.bind(this));
+        this.add_action(prefsAction);
+
+        let quitAction = new Gio.SimpleAction({ name: 'quit' });
+        quitAction.connect('activate', () => {
+            this.get_active_window().close();
+        });
+        this.add_action(quitAction);
+
+        let notificationAction = new Gio.SimpleAction({
+            name: 'open-notification',
+            parameter_type: new GLib.VariantType('s')
+        });
+        notificationAction.connect('activate', this._openNotification.bind(this));
+        this.add_action(notificationAction);
+
+        let markReadAction = new Gio.SimpleAction({ name: 'mark-read' });
+        // markReadAction.connect('activate', this._markAsRead.bind(this));
+        this.add_action(markReadAction);
+
+        this.set_accels_for_action('app.quit', ['<Primary>q']);
+        this.set_accels_for_action('win.open-primary-menu', ['F10']);
+        this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
+    }
+
+    vfunc_startup() {
+        super.vfunc_startup();
+        log('Forge Sparks:', pkg.name);
+        log('Version:', pkg.version);
+    }
+
+    vfunc_activate() {
+        if (!this.window){
+            this.window = new Window({ application: this });
+        }
+        this.window.show();
+    }
+
+    _openNotification(url) {
+        print(url);
+        Gtk.show_uri(this.window, url.get_string(), Gdk.CURRENT_TIME);
+    }
+
+    _showPrefs() {
+        const window = new PreferencesWindow({ transient_for: this.window });
+        window.present();
+    }
+
+    _showAbout() {
+        const link = '<a href="https://unlicense.org/">The Unlicense</a>';
+        const about = new Adw.AboutWindow({
+            developers: ['Rafael Mardojai CM'],
+            /* Translators: Replace "translator-credits" with your names, one name per line */
+            translator_credits: _('translator-credits'),
+            application_name: GLib.get_application_name(),
+            comments: _('Get git forges notifications'),
+            application_icon: pkg.name,
+            version: pkg.version,
+            website: '',
+            copyright: 'The author disclaims copyright to this source code.',
+            modal: true,
+            transient_for: this.window,
+            license_type: Gtk.License.CUSTOM,
+            license: _(`This application comes with absolutely no warranty. See the ${link} for details.`)
+        });
+        about.present();
+    }
+};
+
+export default GObject.registerClass(Application);

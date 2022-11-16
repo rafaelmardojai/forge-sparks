@@ -1,0 +1,43 @@
+{
+  "app-id": "com.mardojai.ForgeSparksDevel",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "master",
+  "sdk": "org.gnome.Sdk",
+  "command": "forge-sparks",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--device=dri",
+    "--share=network",
+    "--talk-name=org.a11y.Bus"
+  ],
+  "modules": [
+    {
+      "name": "blueprint",
+      "buildsystem": "meson",
+      "sources": [
+          {
+              "type": "git",
+              "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+              "tag": "v0.4.0",
+              "commit": "75a6d95988736ec0471d22ceb07579c0cedac2ad"
+          }
+      ]
+    },
+    {
+      "name": "forge-sparks",
+      "buildsystem": "meson",
+      "builddir": true,
+      "config-opts": [
+        "-Dprofile=development"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "."
+        }
+      ]
+    }
+  ]
+}

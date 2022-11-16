@@ -1,0 +1,34 @@
+#!@GJS@ -m
+
+import { exit } from "system";
+import Gio from "gi://Gio";
+import GLib from "gi://GLib";
+import { setConsoleLogDomain } from "console";
+
+imports.package.init({
+    name: "@app_id@",
+    version: "@version@",
+    prefix: "@prefix@",
+    libdir: "@libdir@",
+    datadir: "@datadir@",
+});
+setConsoleLogDomain(pkg.name);
+
+const resource = Gio.resource_load(
+    "@datadir@/@app_id@/com.mardojai.ForgeSparks@profile@.src.gresource",
+);
+Gio.resources_register(resource);
+
+const loop = GLib.MainLoop.new(null, false);
+import("resource://com/mardojai/ForgeSparks@profile@/main.js")
+    .then((main) => {
+        // Temporary solution to https://gitlab.gnome.org/GNOME/gjs/-/issues/468
+        GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+        loop.quit();
+        const exit_code = imports.package.run(main);
+        exit(exit_code);
+        return GLib.SOURCE_REMOVE;
+        });
+    })
+    .catch(logError);
+loop.run();

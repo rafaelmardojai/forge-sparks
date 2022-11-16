@@ -1,0 +1,99 @@
+using Gtk 4.0;
+using Adw 1;
+
+template Gjs_PreferencesWindow : Adw.PreferencesWindow {
+  default-width: 600;
+  default-height: 400;
+  search-enabled: false;
+  can-navigate-back: true;
+
+  Adw.PreferencesPage {
+
+    Adw.PreferencesGroup {
+      title: _("General");
+
+      Adw.ActionRow {
+        title: _("Autostart in background");
+
+        Switch {
+          valign: center;
+        }
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Accounts");
+
+      [header-suffix]
+      Button {
+        clicked => _onOpenAddAccount();
+
+        styles ["flat"]
+
+        Adw.ButtonContent {
+          label: _("Add Account…");
+          icon-name: "list-add-symbolic";
+        }
+      }
+
+      ListBox accountsList {
+        styles ["content"]
+
+      }
+    }
+  }
+}
+
+Box accountForm {
+  orientation: vertical;
+
+  Adw.HeaderBar {
+    show-end-title-buttons: false;
+    show-start-title-buttons: false;
+
+    title-widget: Adw.WindowTitle {
+      title: _("Add Account");
+    };
+
+    Button {
+      icon-name: "go-previous-symbolic";
+
+      clicked => _onBackClick();
+    }
+  }
+
+  Adw.Clamp {
+
+    Adw.PreferencesGroup {
+
+      styles ["margin-box"]
+
+      Adw.ComboRow {
+        title: _("Forge");
+        model: Gtk.StringList {
+          strings ["GitHub"]
+        };
+      }
+
+      Adw.EntryRow accessToken {
+        title: _("Access Token");
+
+        notify::text => _onTokenChanged();
+      }
+
+      Button addAccountBtn {
+        label: _("Add");
+        halign: center;
+        margin-top: 24;
+        sensitive: false;
+
+        clicked => _onAddAccount();
+
+        styles [
+          "suggested-action",
+          "pill"
+        ]
+      }
+    }
+  }
+}

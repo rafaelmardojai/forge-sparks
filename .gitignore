@@ -1,0 +1,11 @@
+.flatpak
+.flatpak-builder
+_build
+build
+builddir
+flatpak
+node_modules/
+repo
+install
+*.flatpak
+src/com.mardojai.ForgeSparks.gresource

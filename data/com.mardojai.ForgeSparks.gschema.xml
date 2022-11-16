@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schemalist>
+  <enum id="@app_id@.Forge">
+    <value nick="github" value="0"/>
+  </enum>
+
+  <schema id="@app_id@" path="/com/mardojai/ForgeSparks/" gettext-domain="@app_id@">
+    <key name="window-size" type="ai">
+      <default>[780, 480]</default>
+      <summary>Window size</summary>
+      <description>Window size (width and height).</description>
+    </key>
+    <key type="as" name="accounts">
+      <default>[]</default>
+    </key>
+  </schema>
+
+  <!-- Account -->
+  <schema id="@app_id@.account">
+    <key name="forge" enum="@app_id@.Forge">
+      <default>'github'</default>
+    </key>
+    <key name="url" type="s">
+        <default>'github.com'</default>
+    </key>
+    <key name="username" type="s">
+      <default>''</default>
+    </key>
+  </schema>
+</schemalist>

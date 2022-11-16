@@ -1,0 +1,13 @@
+[Desktop Entry]
+# TRANSLATORS: Don't translate, only transliterate if needed
+Name=Forge Sparks
+Comment=Get git forges notifications
+Exec=forge-sparks
+Terminal=false
+Type=Application
+Categories=Network;GNOME;GTK;
+StartupNotify=true
+Icon=@app_id@
+Keywords=git;github;notifications;
+X-GNOME-UsesNotifications=true
+X-Purism-FormFactor=Workstation;

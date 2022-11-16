@@ -1,0 +1,29 @@
+using Gtk 4.0;
+
+ShortcutsWindow help_overlay {
+  modal: true;
+
+  ShortcutsSection {
+    section-name: "shortcuts";
+    max-height: 10;
+
+    ShortcutsGroup {
+      title: C_("shortcut window", "General");
+
+      ShortcutsShortcut {
+        accelerator: "F10";
+        title: C_("shortcut window", "Open menu");
+      }
+
+      ShortcutsShortcut {
+        accelerator: "<ctrl>question";
+        title: C_("shortcut window", "Keyboard shortcuts");
+      }
+
+      ShortcutsShortcut {
+        accelerator: "<ctrl>Q";
+        title: C_("shortcut window", "Quit");
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="128px" viewBox="0 0 128 128" width="128px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <clipPath id="a">
+        <rect height="128" width="128"/>
+    </clipPath>
+    <filter id="b" height="100%" width="100%" x="0%" y="0%">
+        <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+    </filter>
+    <mask id="c">
+        <g clip-path="url(#a)" filter="url(#b)"/>
+    </mask>
+    <mask id="d">
+        <g filter="url(#b)">
+            <rect fill-opacity="0.8" height="128" width="128"/>
+        </g>
+    </mask>
+    <linearGradient id="e" gradientTransform="matrix(0 0.37 -0.98462 0 295.38501 -30.360001)" gradientUnits="userSpaceOnUse" x1="300" x2="428" y1="235" y2="235">
+        <stop offset="0" stop-color="#f9f06b"/>
+        <stop offset="1" stop-color="#f5c211"/>
+    </linearGradient>
+    <clipPath id="f">
+        <rect height="128" width="128"/>
+    </clipPath>
+    <clipPath id="g">
+        <rect height="128" width="128"/>
+    </clipPath>
+    <g clip-path="url(#g)" mask="url(#c)">
+        <g clip-path="url(#f)" mask="url(#d)">
+            <path d="m 128 80.640625 v 47.359375 h -128 v -47.359375 z m 0 0" fill="url(#e)"/>
+            <path d="m 13.308594 80.640625 l 47.355468 47.359375 h 21.214844 l -47.359375 -47.359375 z m 42.421875 0 l 47.363281 47.359375 h 21.214844 l -47.363282 -47.359375 z m 42.429687 0 l 29.839844 29.839844 v -21.210938 l -8.628906 -8.628906 z m -98.160156 7.90625 v 21.214844 l 18.238281 18.238281 h 21.214844 z m 0 0"/>
+        </g>
+    </g>
+</svg>
