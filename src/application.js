@@ -93,7 +93,6 @@ class Application extends Adw.Application {
     }
 
     _showAbout() {
-        const link = '<a href="https://unlicense.org/">The Unlicense</a>';
         const about = new Adw.AboutWindow({
             developers: ['Rafael Mardojai CM'],
             /* Translators: Replace "translator-credits" with your names, one name per line */
@@ -103,11 +102,10 @@ class Application extends Adw.Application {
             application_icon: pkg.name,
             version: pkg.version,
             website: '',
-            copyright: 'The author disclaims copyright to this source code.',
+            copyright: 'Copyright 2022 Rafael Mardojai CM',
             modal: true,
             transient_for: this.window,
-            license_type: Gtk.License.CUSTOM,
-            license: _(`This application comes with absolutely no warranty. See the ${link} for details.`)
+            license_type: Gtk.License.MIT_X11,
         });
         about.present();
     }
