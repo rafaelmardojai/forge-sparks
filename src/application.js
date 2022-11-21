@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import Adw from 'gi://Adw';
+import Gdk from 'gi://Gdk';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
@@ -55,12 +56,15 @@ class Application extends Adw.Application {
 
         let notificationAction = new Gio.SimpleAction({
             name: 'open-notification',
-            parameter_type: new GLib.VariantType('s')
+            parameter_type: new GLib.VariantType('as')
         });
         notificationAction.connect('activate', this._openNotification.bind(this));
         this.add_action(notificationAction);
 
-        let markReadAction = new Gio.SimpleAction({ name: 'mark-read' });
+        let markReadAction = new Gio.SimpleAction({
+            name: 'mark-read',
+            parameter_type: new GLib.VariantType('s')
+        });
         // markReadAction.connect('activate', this._markAsRead.bind(this));
         this.add_action(markReadAction);
 
@@ -80,11 +84,6 @@ class Application extends Adw.Application {
             this.window = new Window({ application: this });
         }
         this.window.show();
-    }
-
-    _openNotification(url) {
-        print(url);
-        Gtk.show_uri(this.window, url.get_string(), Gdk.CURRENT_TIME);
     }
 
     _showPrefs() {
@@ -108,6 +107,19 @@ class Application extends Adw.Application {
             license_type: Gtk.License.MIT_X11,
         });
         about.present();
+    }
+
+    _openNotification(_action, params) {
+        const paramsArray = params.get_strv();
+        const id = paramsArray[0];
+        const url = paramsArray[1];
+
+        Gtk.show_uri_full(this.window, url, Gdk.CURRENT_TIME, null, (_obj, result) => {
+            const opened = Gtk.show_uri_full_finish(this.window, result);
+            if (opened) {
+                this.window.resolveNotification(id);
+            }
+        });
     }
 };
 

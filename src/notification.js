@@ -34,7 +34,10 @@ class Notification extends GObject.Object {
 
         notification.set_default_action_and_target(
             'app.open-notification',
-            GLib.Variant.new_string(this.url)
+            GLib.Variant.new_array(
+                new GLib.VariantType('s'),
+                [GLib.Variant.new_string(this.id), GLib.Variant.new_string(this.url)]
+            )
         );
         notification.add_button(_('Mark as Read'), 'app.mark-read');
 

@@ -1,14 +1,11 @@
 // SPDX-License-Identifier: MIT
 
 import Adw from 'gi://Adw';
-import Gdk from 'gi://Gdk';
-import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
-import Gtk from 'gi://Gtk';
 
 import Template from './window.blp' assert { type: 'uri' };
-import Notification from './notification.js';
+import NotificationsModel from './notificationsModel.js';
 import GitHub from './github.js';
 import AccountsManager from './accounts.js';
 
@@ -34,16 +31,9 @@ class Window extends Adw.ApplicationWindow {
         this._spinner.start();
 
         // Notifications model
-        this.model = new Gio.ListStore({item_type: Notification});
-        // Unread Notifications filter and model
-        let unreadExpression = new Gtk.PropertyExpression(Notification, null, 'unread');
-        let unreadFilter = new Gtk.BoolFilter({expression: unreadExpression});
-        let unreadModel = new Gtk.FilterListModel({
-            model: this.model,
-            filter: unreadFilter
-        });
-        unreadModel.connect('items-changed', (_pos, _rmv, _add) => {
-            if (unreadModel.get_n_items() > 0) {
+        this.model = new NotificationsModel();
+        this.model.connect('items-changed', (_pos, _rmv, _add) => {
+            if (this.model.get_n_items() > 0) {
                 this._notificationsStack.set_visible_child_name('list');
             } else {
                 this._notificationsStack.set_visible_child_name('empty');
@@ -51,7 +41,7 @@ class Window extends Adw.ApplicationWindow {
         });
 
         // Bind ListBox with model
-        this._notificationsList.bind_model(unreadModel, this._createNotificationRow.bind(this));
+        this._notificationsList.bind_model(this.model, this._createNotificationRow.bind(this));
 
         // Suscribe to notifs
         this.suscribe();
@@ -92,6 +82,7 @@ class Window extends Adw.ApplicationWindow {
             }
         }
 
+        newNotis.reverse();
         this.showNotifications(newNotis);
 
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
@@ -103,7 +94,6 @@ class Window extends Adw.ApplicationWindow {
     showNotifications(notifications) {
         const app = this.get_application();
 
-        // model.remove_all();
         for (const notification of notifications) {
             const found = false;
             const index = 0;
@@ -111,9 +101,9 @@ class Window extends Adw.ApplicationWindow {
             if (found) {
                 this.model.remove(index);
             }
-            this.model.append(notification);
-            if (notification.unread && !this.has_focus) {
-                app.send_notification(null, notification.notification);
+            this.model.prepend(notification);
+            if (notification.unread && !this.is_active) {
+                app.send_notification(`forge-sparks-${notification.id}`, notification.notification);
             }
         }
 
@@ -132,13 +122,14 @@ class Window extends Adw.ApplicationWindow {
         }*/
     }
 
-    removeNotification(id) {
-        for (const [notification, index] of this.model.entries()) {
-            if (notification.id == id) {
-                this.model.remove(index);
-                break;
-            }
-        }
+    resolveNotification(id) {
+        const app = this.get_application();
+
+        // TODO: Mark as read.
+
+        app.withdraw_notification(`forge-sparks-${id}`);
+        /* Remove it from window list */
+        this.model.remove_by_id(id);
     }
 
     _createNotificationRow(notification) {
@@ -151,17 +142,13 @@ class Window extends Adw.ApplicationWindow {
         });
 
         row.connect('activated', () => {
-            Gtk.show_uri_full(this, notification.url, Gdk.CURRENT_TIME, null, (_obj, result) => {
-                // TODO: Mark as read.
-                const opened = Gtk.show_uri_full_finish(this, result);
-                if (opened) {
-                    let position = null;
-                    this.model.find(notification, position);
-                    if (position =! null) {
-                        this.model.remove(position);
-                    }
-                }
-            });
+            const action = this.get_application().lookup_action('open-notification');
+            action.activate(
+                GLib.Variant.new_array(
+                    new GLib.VariantType('s'),
+                    [GLib.Variant.new_string(notification.id), GLib.Variant.new_string(notification.url)]
+                )
+            );
         });
 
         return row;
