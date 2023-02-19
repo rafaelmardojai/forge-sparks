@@ -5,6 +5,15 @@
   </enum>
 
   <schema id="@app_id@" path="/com/mardojai/ForgeSparks/" gettext-domain="@app_id@">
+    <key type="b" name="first-run">
+      <default>false</default>
+    </key>
+    <key type="b" name="hide-on-close">
+      <default>false</default>
+    </key>
+    <key type="b" name="autostart">
+      <default>false</default>
+    </key>
     <key name="window-size" type="ai">
       <default>[780, 480]</default>
       <summary>Window size</summary>

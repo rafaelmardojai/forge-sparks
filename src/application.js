@@ -10,6 +10,7 @@ import { gettext as _ } from 'gettext';
 
 import Window from './window.js';
 import PreferencesWindow from './preferences.js';
+import { settings } from './util.js';
 
 import './style.css';
 import './gtk/help-overlay.blp' assert { type: 'builder' };
@@ -50,7 +51,7 @@ class Application extends Adw.Application {
 
         let quitAction = new Gio.SimpleAction({ name: 'quit' });
         quitAction.connect('activate', () => {
-            this.get_active_window().close();
+            this.quit();
         });
         this.add_action(quitAction);
 
@@ -82,6 +83,7 @@ class Application extends Adw.Application {
     vfunc_activate() {
         if (!this.window){
             this.window = new Window({ application: this });
+            this.window.hide_on_close = settings.get_boolean('hide-on-close');
         }
         this.window.show();
     }

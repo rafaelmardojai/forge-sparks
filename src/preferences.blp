@@ -12,11 +12,21 @@ template Gjs_PreferencesWindow : Adw.PreferencesWindow {
     Adw.PreferencesGroup {
       title: _("General");
 
-      Adw.ActionRow {
-        title: _("Autostart in background");
+      Adw.ExpanderRow background {
+        title: _("Keep running on background");
+        show-enable-switch: true;
+        expanded: true;
 
-        Switch {
-          valign: center;
+        notify::enable-expansion => _onBackgroundChanged();
+
+        Adw.ActionRow {
+          title: _("Run on startup");
+
+          Switch startup {
+            valign: center;
+
+            notify::active => _onStartupChanged();
+          }
         }
       }
     }

@@ -7,6 +7,7 @@ import GObject from 'gi://GObject';
 import Template from './window.blp' assert { type: 'uri' };
 import NotificationsModel from './notificationsModel.js';
 import AccountsManager from './accounts.js';
+import { settings, requestBackground } from './util.js';
 import { FORGES } from './forges/index.js';
 
 const accounts = new AccountsManager();
@@ -39,11 +40,25 @@ class Window extends Adw.ApplicationWindow {
         // Bind ListBox with model
         this._notificationsList.bind_model(this.model, this._createNotificationRow.bind(this));
 
-        // Suscribe to notifs
-        this.suscribe();
+        /* First run, background request */
+        if (!settings.get_boolean('first-run')) {
+            this._firstRun();
+        } else {
+            /* Subscribe to notifications */
+            this.subscribe();
+        }
     }
 
-    async suscribe() {
+    async _firstRun() {
+        const result = await requestBackground(this, false);
+        settings.set_boolean('hide-on-close', result);
+        settings.set_boolean('first-run', true);
+
+        /* Continue, subscribe to notifications */
+        this.subscribe();
+    }
+
+    async subscribe() {
         const savedAccounts = accounts.getAccounts();
         let newNotis = [];
 
@@ -83,7 +98,7 @@ class Window extends Adw.ApplicationWindow {
         this.showNotifications(newNotis);
 
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
-            this.suscribe();
+            this.subscribe();
             return GLib.SOURCE_REMOVE;
         });
     }

@@ -10,7 +10,7 @@ import { gettext as _ } from 'gettext';
 
 import Template from './preferences.blp' assert { type: 'uri' };
 import AccountsManager from './accounts.js';
-import { settings } from './util.js';
+import { settings, requestBackground } from './util.js';
 import { FORGES } from './forges/index.js';
 
 const accounts = new AccountsManager();
@@ -27,12 +27,35 @@ class PreferencesWindow extends Adw.PreferencesWindow {
 
         this.forges = Object.values(FORGES);
 
+        /* Load saved settings */
+        this._background.enable_expansion = settings.get_boolean('hide-on-close')
+        this._startup.active = settings.get_boolean('autostart')
+
         /* Populate forges list (Create account view) */
         const forgesList = new Gtk.StringList();
         for (const forge of this.forges) {
             forgesList.append(forge.prettyName)
         }
         this._forge.model = forgesList
+    }
+
+    async _onBackgroundChanged() {
+        const success = await requestBackground(this, false);
+        settings.set_boolean('hide-on-close', (this._background.enable_expansion && success));
+
+        const app = Gtk.Application.get_default();
+        app.window.hide_on_close = this._background.enable_expansion;
+    }
+
+    async _onStartupChanged() {
+        const success = await requestBackground(this, this._startup.active);
+        const result = (this._startup.active && success)
+
+        settings.set_boolean('autostart', result);
+
+        this._startup.freeze_notify();
+        this._startup.active = result;
+        this._startup.thaw_notify();
     }
 
     _onOpenAddAccount() {
@@ -122,7 +145,8 @@ export default GObject.registerClass(
     {
         Template,
         InternalChildren: [
-            'accountsList', 'accountForm', 'forge', 'instance', 'accessToken', 'addAccountBtn'
+            'background', 'startup', 'accountsList', 'accountForm', 'forge',
+            'instance', 'accessToken', 'addAccountBtn'
         ],
     },
     PreferencesWindow

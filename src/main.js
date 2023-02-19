@@ -9,6 +9,7 @@ import Gio from 'gi://Gio?version=2.0';
 import GLib from 'gi://GLib?version=2.0'
 import Secret from 'gi://Secret?version=1';
 import Soup from 'gi://Soup?version=3.0';
+import Xdp from 'gi://Xdp?version=1.0';
 
 import Application from "./application.js";
 
@@ -19,6 +20,7 @@ GLib.set_application_name('Forge Sparks');
 Gio._promisify(Soup.Session.prototype, 'send_and_read_async', 'send_and_read_finish');
 Gio._promisify(Secret, 'password_store', 'password_store_finish');
 Gio._promisify(Secret, 'password_lookup', 'password_lookup_finish');
+// Gio._promisify(Xdp.Portal.prototype, 'request_background', 'request_background_finish');
 
 export function main(argv) {
     const application = new Application();
