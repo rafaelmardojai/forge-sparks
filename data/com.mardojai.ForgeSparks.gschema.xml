@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schemalist>
-  <enum id="@app_id@.Forge">
-    <value nick="github" value="0"/>
-  </enum>
 
   <schema id="@app_id@" path="/com/mardojai/ForgeSparks/" gettext-domain="@app_id@">
     <key type="b" name="first-run">
@@ -26,7 +23,7 @@
 
   <!-- Account -->
   <schema id="@app_id@.account">
-    <key name="forge" enum="@app_id@.Forge">
+    <key name="forge" type="s">
       <default>'github'</default>
     </key>
     <key name="url" type="s">
