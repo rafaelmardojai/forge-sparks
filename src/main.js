@@ -20,6 +20,7 @@ GLib.set_application_name('Forge Sparks');
 Gio._promisify(Soup.Session.prototype, 'send_and_read_async', 'send_and_read_finish');
 Gio._promisify(Secret, 'password_store', 'password_store_finish');
 Gio._promisify(Secret, 'password_lookup', 'password_lookup_finish');
+Gio._promisify(Secret, 'password_clear', 'password_clear_finish');
 // Gio._promisify(Xdp.Portal.prototype, 'request_background', 'request_background_finish');
 
 export function main(argv) {

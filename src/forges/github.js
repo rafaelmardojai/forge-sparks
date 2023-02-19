@@ -27,14 +27,15 @@ export default class GitHub extends Forge {
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
 
-            log('Response resulted in ' + message.get_status());
-
-            if (!('login' in contents) || message.get_status() == '404') {
+            if (!('login' in contents)) {
+                if (message.get_status() == '401') {
                 throw 'FailedForgeAuth';
+                } else {
+                    throw 'Unexpected'
+                }
             }
 
             return contents.login;
-
         } catch (error) {
             throw error;
         }

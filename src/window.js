@@ -36,6 +36,13 @@ export default class Window extends Adw.ApplicationWindow {
         this._mainStack.set_visible_child_name('loading');
         this._spinner.start();
 
+        /* Check accounts removal */
+        accounts.connect('items-changed', () => {
+            if (accounts.get_n_items() == 0) {
+                this._mainStack.set_visible_child_name('setup');
+            }
+        });
+
         // Notifications model
         this.model = new NotificationsModel();
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
@@ -74,7 +81,7 @@ export default class Window extends Adw.ApplicationWindow {
         if (!savedAccounts.length) {
             this._mainStack.set_visible_child_name('setup');
             this._retryHandler = accounts.connect('items-changed', () => {
-                this.suscribe();
+                this.subscribe();
             });
             return;
         }

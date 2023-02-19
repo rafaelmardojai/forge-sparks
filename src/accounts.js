@@ -123,6 +123,75 @@ export default class AccountsManager extends GObject.Object {
     }
 
     /**
+     * Update account in the secrets service and app settings
+     * @param  {String} id Account id
+     * @param  {String} url Acount forge url
+     * @param  {String} username Acount username
+     * @param  {String} token Acount access token
+     * @return {Boolean} If the account was successfully updated
+     */
+    async updateAccount(id, url, username, token) {
+        try {
+            const label = 'Access token for ' + url;
+            /* Remove previous secret */
+            const successRemove = await Secret.password_clear(SECRETS_SCHEMA, { 'id': id }, null);
+
+            /* Store new secret */
+            const successAdd = await Secret.password_store(
+                SECRETS_SCHEMA,
+                { 'id': id },
+                Secret.COLLECTION_DEFAULT,
+                label,
+                token,
+                null
+            );
+
+            /* Update settings */
+            if (successRemove && successAdd) {
+                const account_settings = this._getAccountSettings(id);
+                account_settings.set_string('url', url);
+                account_settings.set_string('username', username);
+
+                return true;
+            }
+
+            return false
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
+     * Remove account from everywhere
+     * @param  {String} id Account id
+     * @return {Boolean} If the account was successfully removed
+     */
+    async removeAccount(id) {
+        try {
+            /* Remove secret */
+            const success = await Secret.password_clear(SECRETS_SCHEMA, { 'id': id }, null);
+
+            /* Remove from app settings */
+            if (success) {
+                const accounts = settings.get_strv('accounts');
+                const index = accounts.indexOf(id);
+                if (index > -1) {
+                    accounts.splice(index, 1);
+                    settings.set_strv('accounts', accounts);
+
+                    /* Update list model */
+                    this._accounts.splice(index, 1);
+                    this.items_changed(index, 1, 0);
+                }
+            }
+
+            return success;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    /**
      * Gets the an account setting value
      * @param {String} id Account id
      * @param {PString} setting Setting name
@@ -142,8 +211,8 @@ export default class AccountsManager extends GObject.Object {
         try {
             const token = await Secret.password_lookup(SECRETS_SCHEMA, { 'id': id }, null);
             return token;
-        } catch (e) {
-            throw e;
+        } catch (error) {
+            throw error;
         }
     }
 

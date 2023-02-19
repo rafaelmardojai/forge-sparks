@@ -1,9 +1,6 @@
 // SPDX-License-Identifier: MIT
 
 import Adw from 'gi://Adw';
-import Gdk from 'gi://Gdk';
-import Gio from 'gi://Gio';
-import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
@@ -21,8 +18,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         GObject.registerClass({
             Template,
             InternalChildren: [
-                'background', 'startup', 'accountsList', 'accountForm', 'forge',
-                'instance', 'accessToken', 'addAccountBtn'
+                'background', 'startup','accountsList',
+                'accountNew', 'forge', 'instance', 'accessToken', 'addAccountBtn',
+                'accountEdit', 'accountEditTitle', 'instanceEdit', 'accessTokenEdit', 'saveAccountBtn', 'removeAccount',
             ],
         }, this);
     }
@@ -33,9 +31,11 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     constructor(constructProperties = {}) {
         super(constructProperties);
 
-        this._accountsList.bind_model(accounts, this._createAccountRow.bind(this));
-
         this.forges = Object.values(FORGES);
+        this._editing = null; // Account begin edited
+
+        /* Bind accounts list */
+        this._accountsList.bind_model(accounts, this._createAccountRow.bind(this));
 
         /* Load saved settings */
         this._background.enable_expansion = settings.get_boolean('hide-on-close')
@@ -69,11 +69,40 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     }
 
     _onOpenAddAccount() {
-        this.present_subpage(this._accountForm);
+        this.present_subpage(this._accountNew);
     }
 
-    _onBackClick() {
+    async _onEditAccount(account) {
+        this._accountEditTitle.subtitle = account.displayName;
+
+        /* Load saved instance URL */
+        if (FORGES[account.forge].allowInstances) {
+            this._instanceEdit.visible = true;
+            this._instanceEdit.text = account.url
+        }
+
+        /* Load saved token */
+        const token = await accounts.getAccountToken(account.id);
+        this._accessTokenEdit.text = token;
+
+        this._editing = account // Set account begin edited
+        this._editing.token = token;
+        this.present_subpage(this._accountEdit);
+    }
+
+    _onBack() {
         this.close_subpage();
+
+        /* Reset some widgets */
+        this._saveAccountBtn.sensitive = false;
+        this._addAccountBtn.sensitive = false;
+        this._instance.text = '';
+        this._accessToken.text = '';
+        this._instanceEdit.visible = false;
+        this._instanceEdit.text = '';
+        this._accessTokenEdit.text = '';
+
+        this._editing = null; // Reset any account begin edited
     }
 
     _getSeletedForge() {
@@ -105,9 +134,35 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         );
     }
 
+    _onEditEntryChanged() {
+        /* Enable or disable Save account button */
+        if (this._editing != null) {
+            const instances = FORGES[this._editing.forge].allowInstances;
+            const urlChanged = this._editing.url != this._instanceEdit.text
+            const tokenChanged = this._editing.token != this._accessTokenEdit.text;
+            const urlNotEmpty = this._instanceEdit.text != ''
+            const tokenNotEmpty = this._accessTokenEdit.text != ''
+
+            this._saveAccountBtn.sensitive = (
+                !instances && tokenNotEmpty && tokenChanged ||
+                instances && urlNotEmpty && tokenNotEmpty && urlChanged ||
+                instances && urlNotEmpty && tokenNotEmpty && tokenChanged
+            );
+        }
+    }
+
+    _errorText(error) {
+        switch (error) {
+            case 'FailedForgeAuth':
+                return _("Couldn't authenticate the account");
+            default:
+                return _("Unexpected error when creating the account");
+        }
+    }
+
     async _onAddAccount() {
         try {
-            this._accountForm.sensitive = false;
+            this._accountNew.sensitive = false;
 
             const token = this._accessToken.text;
             const url = this._getInstanceURL();
@@ -122,28 +177,78 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
                 token
             );
 
-            this._accessToken.text = '';
-            this.close_subpage();
+            const toast = new Adw.Toast({ title: _("New account added successfully!") });
+            this.add_toast(toast);
+            this._onBack();
         } catch (error) {
             console.log(error);
-            const errorText = function() {
-                switch (error) {
-                    case 'FailedForgeAuth':
-                        return _("Couldn't authenticate the account");
-                    default:
-                        return _("Unexpected error when creating the account");
-                }
-            }
-            const errorToast = new Adw.Toast({ title: errorText() });
+            const errorToast = new Adw.Toast({ title: this._errorText(error) });
             this.add_toast(errorToast);
         } finally {
-            this._accountForm.sensitive = true;
+            this._accountNew.sensitive = true;
         }
+    }
+
+    async _onUpdateAccount() {
+        this._accountEdit.sensitive = false;
+
+        const forgeClass = FORGES[this._editing.forge];
+        let newToken = this._accessTokenEdit.text;
+        let newUrl = this._instanceEdit.text;
+        if (!forgeClass.allowInstances) {
+            newUrl = forgeClass.defaultURL;
+        }
+
+        if (newToken != this._editing.token || newUrl != this._editing.url) {
+            try {
+                const forge = new forgeClass(newUrl, newToken);
+                const username = await forge.getUser();
+
+                await accounts.updateAccount(
+                    this._editing.id,
+                    newUrl,
+                    username,
+                    newToken
+                );
+
+                const toast = new Adw.Toast({ title: _("Account edited successfully!") });
+                this.add_toast(toast);
+                this._onBack();
+            } catch (error) {
+                console.log(error);
+                const errorToast = new Adw.Toast({ title: this._errorText(error) });
+                this.add_toast(errorToast);
+            }
+        }
+        this._accountEdit.sensitive = true;
+    }
+
+    async _onRemoveAccount() {
+        const errorToast = new Adw.Toast({ title: _("Unexpected error removing the account") });
+        try {
+            const success = await accounts.removeAccount(this._editing.id);
+            if (!success) {
+                this.add_toast(errorToast);
+            }
+        } catch (error) {
+            this.add_toast(errorToast);
+        }
+
+        this._onBack();
     }
 
     _createAccountRow(account) {
         const row = new Adw.ActionRow({
             title: account.displayName,
+            activatable: true
+        });
+
+        row.add_suffix(new Gtk.Image({
+            icon_name: 'go-next-symbolic'
+        }));
+
+        row.connect('activated', () => {
+            this._onEditAccount(account);
         });
 
         return row;
