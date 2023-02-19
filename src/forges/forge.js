@@ -7,10 +7,32 @@ import Soup from 'gi://Soup';
 export default class Forge {
 
     /**
+     * Name (identifier) of the forge
+     */
+    static name = 'github';
+
+    /**
+     * Name for display of the forge
+     */
+    static prettyName = 'Github';
+
+    /**
+     * If the forge allow setting an instance url
+     */
+    static allowInstances = false;
+
+    /**
+     * Default URL (instance) for provider
+     */
+    static defaultURL = 'example.com';
+
+    /**
      * Crete a Forge
+     * @param {String} url The url of the forge
      * @param {String} token The access token
      */
-    constructor(token) {
+    constructor(url, token) {
+        this.url = url
         this.token = token
         this.modifiedSince = '';
         this.encoder = new TextEncoder()
@@ -69,7 +91,7 @@ export default class Forge {
     readContents(bytes) {
         const contents = this.decoder.decode(bytes.get_data());
         let data = [];
-        console.log(contents);
+        //console.log(contents);
         if (contents) {
             data = JSON.parse(contents);
         }

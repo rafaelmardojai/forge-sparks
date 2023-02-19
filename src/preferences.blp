@@ -60,6 +60,16 @@ Box accountForm {
 
       clicked => _onBackClick();
     }
+
+    [end]
+    Button addAccountBtn {
+        label: _("Add");
+        sensitive: false;
+
+        clicked => _onAddAccount();
+
+        styles ["suggested-action"]
+      }
   }
 
   Adw.Clamp {
@@ -68,31 +78,23 @@ Box accountForm {
 
       styles ["margin-box"]
 
-      Adw.ComboRow {
+      Adw.ComboRow forge {
         title: _("Forge");
-        model: Gtk.StringList {
-          strings ["GitHub"]
-        };
+
+        notify::selected => _onForgeChanged();
+      }
+
+      Adw.EntryRow instance {
+        title: _("Instance URL");
+        sensitive: false;
+
+        notify::text => _onEntryChanged();
       }
 
       Adw.EntryRow accessToken {
         title: _("Access Token");
 
-        notify::text => _onTokenChanged();
-      }
-
-      Button addAccountBtn {
-        label: _("Add");
-        halign: center;
-        margin-top: 24;
-        sensitive: false;
-
-        clicked => _onAddAccount();
-
-        styles [
-          "suggested-action",
-          "pill"
-        ]
+        notify::text => _onEntryChanged();
       }
     }
   }

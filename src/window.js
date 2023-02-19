@@ -6,12 +6,8 @@ import GObject from 'gi://GObject';
 
 import Template from './window.blp' assert { type: 'uri' };
 import NotificationsModel from './notificationsModel.js';
-import GitHub from './github.js';
 import AccountsManager from './accounts.js';
-
-const FORGES = {
-  'github': GitHub
-}
+import { FORGES } from './forges/index.js';
 
 const accounts = new AccountsManager();
 
@@ -67,8 +63,9 @@ class Window extends Adw.ApplicationWindow {
             if (!(id in this.forges) || this.forges[id] == undefined) {
                 try {
                     const forgeName = accounts.getAccountSetting(id, 'forge');
+                    const url = accounts.getAccountSetting(id, 'url');
                     const token = await accounts.getAccountToken(id);
-                    this.forges[id] = new FORGES[forgeName](token);
+                    this.forges[id] = new FORGES[forgeName](url, token);
                 } catch (error) {
                     logError(error);
                 }

@@ -9,9 +9,9 @@ import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
 import Template from './preferences.blp' assert { type: 'uri' };
-import GitHub from './github.js';
 import AccountsManager from './accounts.js';
 import { settings } from './util.js';
+import { FORGES } from './forges/index.js';
 
 const accounts = new AccountsManager();
 
@@ -24,6 +24,15 @@ class PreferencesWindow extends Adw.PreferencesWindow {
         super(constructProperties);
 
         this._accountsList.bind_model(accounts, this._createAccountRow.bind(this));
+
+        this.forges = Object.values(FORGES);
+
+        /* Populate forges list (Create account view) */
+        const forgesList = new Gtk.StringList();
+        for (const forge of this.forges) {
+            forgesList.append(forge.prettyName)
+        }
+        this._forge.model = forgesList
     }
 
     _onOpenAddAccount() {
@@ -34,8 +43,33 @@ class PreferencesWindow extends Adw.PreferencesWindow {
         this.close_subpage();
     }
 
-    _onTokenChanged() {
-        this._addAccountBtn.sensitive = (this._accessToken.text != '');
+    _getSeletedForge() {
+        return this.forges[this._forge.selected].name
+    }
+
+    _allowInstances() {
+        return this.forges[this._forge.selected].allowInstances;
+    }
+
+    _getInstanceURL() {
+        if (!this._allowInstances()) {
+            return this.forges[this._forge.selected].defaultURL;
+        }
+
+        return this._instance.text;
+    }
+
+    _onForgeChanged() {
+        /* Enable or disable instance URL entry */
+        this._instance.sensitive = this._allowInstances();
+    }
+
+    _onEntryChanged() {
+        /* Enable or disable Add account button */
+        this._addAccountBtn.sensitive = (
+            this._accessToken.text != '' && !this._allowInstances()
+            || this._accessToken.text != '' && this._instance.text != '' && this._allowInstances()
+        );
     }
 
     async _onAddAccount() {
@@ -43,12 +77,14 @@ class PreferencesWindow extends Adw.PreferencesWindow {
             this._accountForm.sensitive = false;
 
             const token = this._accessToken.text;
-            const forge = new GitHub(token);
+            const url = this._getInstanceURL();
+            const forgeName = this._getSeletedForge();
+            const forge = new FORGES[forgeName](url, token);
             const username = await forge.getUser();
 
             await accounts.saveAccount(
-                'github',
-                'github.com',
+                forgeName,
+                url,
                 username,
                 token
             );
@@ -60,7 +96,7 @@ class PreferencesWindow extends Adw.PreferencesWindow {
             const errorText = function() {
                 switch (error) {
                     case 'FailedForgeAuth':
-                        return _("Couldn't auth the account");
+                        return _("Couldn't authenticate the account");
                     default:
                         return _("Unexpected error when creating the account");
                 }
@@ -86,7 +122,7 @@ export default GObject.registerClass(
     {
         Template,
         InternalChildren: [
-            'accountsList', 'accountForm', 'accessToken', 'addAccountBtn'
+            'accountsList', 'accountForm', 'forge', 'instance', 'accessToken', 'addAccountBtn'
         ],
     },
     PreferencesWindow

@@ -1,14 +1,23 @@
 // SPDX-License-Identifier: MIT
 
 import GLib from 'gi://GLib';
+import { gettext as _ } from 'gettext';
 
 import Forge from './forge.js';
-import Notification from './notification.js';
-import { session } from './util.js';
+import Notification from './../notification.js';
+import { session } from './../util.js';
 
 const GITHUB_API = 'https://api.github.com/';
 
 export default class GitHub extends Forge {
+
+    static name = 'github';
+
+    static prettyName = 'Github';
+
+    static allowInstances = false;
+
+    static defaultURL = 'github.com';
 
     async getUser() {
         try {
