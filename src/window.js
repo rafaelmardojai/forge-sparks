@@ -113,6 +113,7 @@ class Window extends Adw.ApplicationWindow {
             if (found) {
                 this.model.remove(index);
             }
+            this.model.remove_by_id(notification.id); // Remove if already present
             this.model.prepend(notification);
             if (notification.unread && !this.is_active) {
                 app.send_notification(`forge-sparks-${notification.id}`, notification.notification);

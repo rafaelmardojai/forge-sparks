@@ -23,10 +23,7 @@ class Notification extends GObject.Object {
      */
     get notification() {
         const notification = new Gio.Notification();
-        /*const path = 'resource:/com/mardojai/ForgeSparks/icons/scalable/actions/'
-        const file = Gio.File.new_for_path(path + this.iconName + '.svg');
-        const icon = new Gio.FileIcon(file);*/
-        const icon = new Gio.ThemedIcon({name: this.iconName});
+        const icon = new Gio.ThemedIcon({name: 'info-symbolic'});
 
         notification.set_title(this.title);
         notification.set_body(this.repository);
