@@ -15,7 +15,17 @@ import { FORGES } from './forges/index.js';
 
 const accounts = new AccountsManager();
 
-class PreferencesWindow extends Adw.PreferencesWindow {
+export default class PreferencesWindow extends Adw.PreferencesWindow {
+
+    static {
+        GObject.registerClass({
+            Template,
+            InternalChildren: [
+                'background', 'startup', 'accountsList', 'accountForm', 'forge',
+                'instance', 'accessToken', 'addAccountBtn'
+            ],
+        }, this);
+    }
 
     /**
      * Crete a PreferencesWindow
@@ -140,14 +150,3 @@ class PreferencesWindow extends Adw.PreferencesWindow {
     }
 
 };
-
-export default GObject.registerClass(
-    {
-        Template,
-        InternalChildren: [
-            'background', 'startup', 'accountsList', 'accountForm', 'forge',
-            'instance', 'accessToken', 'addAccountBtn'
-        ],
-    },
-    PreferencesWindow
-);

@@ -5,7 +5,14 @@ import GObject from 'gi://GObject';
 
 import Notification from './notification.js';
 
-class NotificationsModel extends GObject.Object {
+export default class NotificationsModel extends GObject.Object {
+
+    static {
+        GObject.registerClass({
+            GTypeName: 'NotificationsModel',
+            Implements: [Gio.ListModel],
+        }, this);
+    }
 
     /**
      * Crete a NotificationsModel
@@ -13,7 +20,7 @@ class NotificationsModel extends GObject.Object {
     constructor() {
         super();
 
-        /* Store notifications by id */
+        /* Store notifications */
         this._notifications = [];
     }
 
@@ -83,11 +90,3 @@ class NotificationsModel extends GObject.Object {
         }
     }
 };
-
-export default GObject.registerClass(
-    {
-        GTypeName: 'NotificationsModel',
-        Implements: [Gio.ListModel],
-    },
-    NotificationsModel
-);

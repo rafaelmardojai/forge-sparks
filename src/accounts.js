@@ -16,7 +16,14 @@ const SECRETS_SCHEMA = new Secret.Schema(
 );
 
 /* Class for managing accounts. */
-class AccountsManager extends GObject.Object {
+export default class AccountsManager extends GObject.Object {
+
+    static {
+        GObject.registerClass({
+            GTypeName: 'AccountsManager',
+            Implements: [Gio.ListModel],
+        }, this);
+    }
 
     /* Create an AccountsManager */
     constructor() {
@@ -162,39 +169,44 @@ class AccountsManager extends GObject.Object {
     }
 }
 
-const AccountObject = GObject.registerClass({
-    GTypeName: 'AccountObject',
-    Properties: {
-        'id': GObject.ParamSpec.string(
-            'id',
-            'id',
-            'The account id',
-            GObject.ParamFlags.READWRITE,
-            null
-        ),
-        'forge': GObject.ParamSpec.string(
-            'forge',
-            'forge',
-            'The account forge',
-            GObject.ParamFlags.READWRITE,
-            null
-        ),
-        'url': GObject.ParamSpec.string(
-            'url',
-            'url',
-            'The forge url',
-            GObject.ParamFlags.READWRITE,
-            null
-        ),
-        'username': GObject.ParamSpec.string(
-            'username',
-            'username',
-            'The account username',
-            GObject.ParamFlags.READWRITE,
-            null
-        ),
-    },
-}, class AccountObject extends GObject.Object {
+export class AccountObject extends GObject.Object {
+
+    static {
+        GObject.registerClass({
+            GTypeName: 'AccountObject',
+            Properties: {
+                'id': GObject.ParamSpec.string(
+                    'id',
+                    'id',
+                    'The account id',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'forge': GObject.ParamSpec.string(
+                    'forge',
+                    'forge',
+                    'The account forge',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'url': GObject.ParamSpec.string(
+                    'url',
+                    'url',
+                    'The forge url',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'username': GObject.ParamSpec.string(
+                    'username',
+                    'username',
+                    'The account username',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+            },
+        }, this);
+    }
+
     constructor(constructProperties = {}) {
         super(constructProperties);
     }
@@ -262,11 +274,4 @@ const AccountObject = GObject.registerClass({
         this._username = value;
         this.notify('username');
     }
-});
-
-export default GObject.registerClass(
-    {
-        Implements: [Gio.ListModel],
-    },
-    AccountsManager
-);
+};

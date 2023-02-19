@@ -8,7 +8,64 @@ import { gettext as _ } from 'gettext';
 import issueIcon from './icons/issue-symbolic.svg' assert { type: 'icon' };
 import mergeIcon from './icons/merge-symbolic.svg' assert { type: 'icon' };
 
-class Notification extends GObject.Object {
+export default class Notification extends GObject.Object {
+
+    static {
+        GObject.registerClass({
+            GTypeName: 'Notification',
+            Properties: {
+                'id': GObject.ParamSpec.string(
+                    'id',
+                    'Id',
+                    'Notification identifier.',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'type': GObject.ParamSpec.string(
+                    'type',
+                    'Type',
+                    'The type of the notification.',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'unread': GObject.ParamSpec.boolean(
+                    'unread',
+                    'Unread',
+                    'If the notifications is unread.',
+                    GObject.ParamFlags.READWRITE,
+                    false
+                ),
+                'state': GObject.ParamSpec.string(
+                    'state',
+                    'State',
+                    'The state of the notification subject.',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'title': GObject.ParamSpec.string(
+                    'title',
+                    'Title',
+                    'The title of the notification.',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'repository': GObject.ParamSpec.string(
+                    'repository',
+                    'Repository',
+                    'The repository the notification belongs to.',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'url': GObject.ParamSpec.string(
+                    'url',
+                    'URL',
+                    'The URL the notification should open.',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                )
+            },
+        }, this);
+    }
 
     /**
      * Crete a Notification
@@ -152,61 +209,3 @@ class Notification extends GObject.Object {
         this.notify('url');
     }
 };
-
-export default GObject.registerClass(
-    {
-        GTypeName: 'Notification',
-        Properties: {
-            'id': GObject.ParamSpec.string(
-                'id',
-                'Id',
-                'Notification identifier.',
-                GObject.ParamFlags.READWRITE,
-                null
-            ),
-            'type': GObject.ParamSpec.string(
-                'type',
-                'Type',
-                'The type of the notification.',
-                GObject.ParamFlags.READWRITE,
-                null
-            ),
-            'unread': GObject.ParamSpec.boolean(
-                'unread',
-                'Unread',
-                'If the notifications is unread.',
-                GObject.ParamFlags.READWRITE,
-                false
-            ),
-            'state': GObject.ParamSpec.string(
-                'state',
-                'State',
-                'The state of the notification subject.',
-                GObject.ParamFlags.READWRITE,
-                null
-            ),
-            'title': GObject.ParamSpec.string(
-                'title',
-                'Title',
-                'The title of the notification.',
-                GObject.ParamFlags.READWRITE,
-                null
-            ),
-            'repository': GObject.ParamSpec.string(
-                'repository',
-                'Repository',
-                'The repository the notification belongs to.',
-                GObject.ParamFlags.READWRITE,
-                null
-            ),
-            'url': GObject.ParamSpec.string(
-                'url',
-                'URL',
-                'The URL the notification should open.',
-                GObject.ParamFlags.READWRITE,
-                null
-            )
-        },
-    },
-    Notification
-);

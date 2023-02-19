@@ -12,7 +12,16 @@ import { FORGES } from './forges/index.js';
 
 const accounts = new AccountsManager();
 
-class Window extends Adw.ApplicationWindow {
+export default class Window extends Adw.ApplicationWindow {
+
+    static {
+        GObject.registerClass({
+            Template,
+            InternalChildren: [
+                'mainStack', 'spinner', 'notificationsStack', 'notificationsList'
+            ],
+        }, this);
+    }
 
     /**
      * Crete a Window
@@ -124,15 +133,6 @@ class Window extends Adw.ApplicationWindow {
         if (this._spinner.spinning) {
             this._spinner.stop();
         }
-
-        /*switch (response.status) {
-            case 200:
-                break;
-            case 304:
-                break;
-            default:
-                break;
-        }*/
     }
 
     resolveNotification(id) {
@@ -167,13 +167,3 @@ class Window extends Adw.ApplicationWindow {
         return row;
     }
 };
-
-export default GObject.registerClass(
-    {
-        Template,
-        InternalChildren: [
-            'mainStack', 'spinner', 'notificationsStack', 'notificationsList'
-        ],
-    },
-    Window
-);

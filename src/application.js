@@ -15,7 +15,11 @@ import { settings } from './util.js';
 import './style.css';
 import './gtk/help-overlay.blp' assert { type: 'builder' };
 
-class Application extends Adw.Application {
+export default class Application extends Adw.Application {
+
+    static {
+        GObject.registerClass(this);
+    }
 
     /**
      * Crete a Application
@@ -124,5 +128,3 @@ class Application extends Adw.Application {
         });
     }
 };
-
-export default GObject.registerClass(Application);
