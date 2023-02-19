@@ -7,7 +7,7 @@ import Forge from './forge.js';
 import Notification from './../notification.js';
 import { session } from './../util.js';
 
-const GITHUB_API = 'https://api.github.com/';
+const GITHUB_API = 'api.github.com';
 
 export default class GitHub extends Forge {
 

@@ -100,18 +100,33 @@ export default class Forge {
 
     /**
      * Build a request URI from multiple parts
-     * @param {String} uri The base URI (scheme + netloc)
+     * @param {String} host The URI host
      * @param {String} path The URI path
      * @param {Object} query The URI query
      * @returns {String} The resulting URI
      */
-    buildURI(uri, path, query={}) {
-        let queryString = Object.keys(query).map(key => key + '=' + query[key]).join('&').replace(' ', '+');
+    buildURI(host, path, query={}) {
 
-        if (queryString) {
-            queryString = '?' + queryString;
+        if (!path.startsWith('/')) {
+            path = '/' + path;
         }
 
-        return uri + path + queryString
+        var queryString = Object.keys(query).map(key => key + '=' + query[key]).join('&').replace(' ', '+');
+        if (!queryString) {
+            queryString = null
+        }
+
+        const uri = GLib.Uri.build(
+            GLib.UriFlags.PARSE_RELAXED,
+            'https',
+            null,
+            host,
+            -1,
+            path,
+            queryString,
+            null
+        );
+
+        return uri.to_string();
     }
 }

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import Adw from 'gi://Adw';
+import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
@@ -118,7 +119,22 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
             return this.forges[this._forge.selected].defaultURL;
         }
 
-        return this._instance.text;
+        const url = this._validateUrl(this._instance.text);
+        const host = this._getUriHost(url);
+        return host;
+    }
+
+    /**
+     * Get host from GLib.Uri with the www removed
+     * @param {GLib.Uri} uri URL to get the host
+     * @returns {String} The URI host
+     */
+    _getUriHost(uri) {
+        let host = uri.get_host();
+        if (host.startsWith('www.')) {
+            host = host.slice(4);
+        }
+        return host;
     }
 
     _onForgeChanged() {
@@ -126,28 +142,69 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         this._instance.sensitive = this._allowInstances();
     }
 
+    /**
+     * Validate and get GLib.Uri
+     * @param {String} url URL to validate
+     * @returns {GLib.Uri} Parser URI
+     */
+    _validateUrl(url) {
+        /* Force https */
+        if (!/^https?:\/\//i.test(url)) {
+            url = 'https://' + url;
+        }
+
+        try {
+            const parse = GLib.Uri.parse(url, GLib.UriFlags.RELAXED);
+            return parse;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     _onEntryChanged() {
-        /* Enable or disable Add account button */
-        this._addAccountBtn.sensitive = (
-            this._accessToken.text != '' && !this._allowInstances()
-            || this._accessToken.text != '' && this._instance.text != '' && this._allowInstances()
-        );
+        let valid = false;
+
+        if (this._allowInstances()) {
+            try {
+                this._validateUrl(this._instance.text);
+                this._instance.remove_css_class('error');
+                valid = this._accessToken.text != '' && this._instance.text != '';
+            } catch (error) {
+                this._instance.add_css_class('error');
+            }
+        } else {
+            valid = this._accessToken.text != '';
+        }
+
+        this._addAccountBtn.sensitive = valid;
     }
 
     _onEditEntryChanged() {
         /* Enable or disable Save account button */
         if (this._editing != null) {
+            let valid = false;
             const instances = FORGES[this._editing.forge].allowInstances;
             const urlChanged = this._editing.url != this._instanceEdit.text
             const tokenChanged = this._editing.token != this._accessTokenEdit.text;
             const urlNotEmpty = this._instanceEdit.text != ''
             const tokenNotEmpty = this._accessTokenEdit.text != ''
 
-            this._saveAccountBtn.sensitive = (
-                !instances && tokenNotEmpty && tokenChanged ||
-                instances && urlNotEmpty && tokenNotEmpty && urlChanged ||
-                instances && urlNotEmpty && tokenNotEmpty && tokenChanged
-            );
+            if (instances) {
+                try {
+                    this._validateUrl(this._instanceEdit.text);
+                    this._instanceEdit.remove_css_class('error');
+                    valid = (
+                        urlNotEmpty && tokenNotEmpty && urlChanged ||
+                        urlNotEmpty && tokenNotEmpty && tokenChanged
+                    );
+                } catch (error) {
+                    this._instanceEdit.add_css_class('error');
+                }
+            } else {
+                valid = tokenNotEmpty && tokenChanged;
+            }
+
+            this._saveAccountBtn.sensitive = valid;
         }
     }
 
@@ -197,6 +254,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         let newUrl = this._instanceEdit.text;
         if (!forgeClass.allowInstances) {
             newUrl = forgeClass.defaultURL;
+        } else {
+            newUrl = this._validateUrl(newUrl);
+            newUrl = this._getUriHost(newUrl);
         }
 
         if (newToken != this._editing.token || newUrl != this._editing.url) {
