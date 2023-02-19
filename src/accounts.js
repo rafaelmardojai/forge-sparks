@@ -75,7 +75,7 @@ export default class AccountsManager extends GObject.Object {
      * Save a new account in the secrets service and app settings
      * @param  {String} forge Account forge name
      * @param  {String} url Acount forge url
-     * @param  {String} user Acount username
+     * @param  {String} username Acount username
      * @param  {String} token Acount access token
      * @return {String} The id of the new account
      */
