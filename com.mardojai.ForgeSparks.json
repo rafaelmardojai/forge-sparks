@@ -1,7 +1,7 @@
 {
   "app-id": "com.mardojai.ForgeSparksDevel",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "master",
+  "runtime-version": "43",
   "sdk": "org.gnome.Sdk",
   "command": "forge-sparks",
   "finish-args": [
