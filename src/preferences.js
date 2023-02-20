@@ -39,8 +39,8 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         this._accountsList.bind_model(accounts, this._createAccountRow.bind(this));
 
         /* Load saved settings */
-        this._background.enable_expansion = settings.get_boolean('hide-on-close')
-        this._startup.active = settings.get_boolean('autostart')
+        this._background.enable_expansion = settings.get_boolean('hide-on-close');
+        this._startup.active = settings.get_boolean('autostart');
 
         /* Populate forges list (Create account view) */
         const forgesList = new Gtk.StringList();
@@ -51,7 +51,11 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     }
 
     async _onBackgroundChanged() {
-        const success = await requestBackground(this, false);
+        if (this._background.enable_expansion == settings.get_boolean('hide-on-close'))
+            return;
+
+        const autostart = (settings.get_boolean('autostart') && this._background.enable_expansion);
+        const success = await requestBackground(this, autostart);
         settings.set_boolean('hide-on-close', (this._background.enable_expansion && success));
 
         const app = Gtk.Application.get_default();
@@ -59,6 +63,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     }
 
     async _onStartupChanged() {
+        if (this._startup.active == settings.get_boolean('autostart'))
+            return;
+
         const success = await requestBackground(this, this._startup.active);
         const result = (this._startup.active && success)
 
