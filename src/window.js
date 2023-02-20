@@ -8,7 +8,7 @@ import Gtk from 'gi://Gtk';
 import Template from './window.blp' assert { type: 'uri' };
 import NotificationsModel from './notificationsModel.js';
 import AccountsManager from './accounts.js';
-import { settings, requestBackground } from './util.js';
+import { settings, requestBackground, setBackgroundStatus } from './util.js';
 import { FORGES } from './forges/index.js';
 
 const accounts = new AccountsManager();
@@ -74,6 +74,12 @@ export default class Window extends Adw.ApplicationWindow {
         } else {
             /* Subscribe to notifications */
             this.subscribe();
+        }
+    }
+
+    _onWindowHide() {
+        if (!this.visible) {
+            setBackgroundStatus();
         }
     }
 

@@ -46,3 +46,11 @@ export function requestBackground(window, autostart=false) {
         )
     });
 }
+
+export function setBackgroundStatus(message=_('Looking for new notifications.')) {
+    if (typeof portal.set_background_status === 'function') {
+        portal.set_background_status(message, null, (_portal, result) => {
+            portal.set_background_status_finish(result);
+        });
+    }
+}

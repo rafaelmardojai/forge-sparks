@@ -32,6 +32,8 @@ template Gjs_Window : Adw.ApplicationWindow {
   default-height: 400;
   title: _("Notifications");
 
+  notify::visible => _onWindowHide();
+
   Stack mainStack {
 
     StackPage {
