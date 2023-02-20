@@ -16,3 +16,4 @@ src/notificationsModel.js
 src/forges/forge.js
 src/forges/github.js
 src/forges/index.js
+src/forges/gitea.js
