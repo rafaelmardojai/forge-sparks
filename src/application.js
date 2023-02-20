@@ -59,6 +59,12 @@ export default class Application extends Adw.Application {
         });
         this.add_action(quitAction);
 
+        let closeAction = new Gio.SimpleAction({ name: 'close' });
+        closeAction.connect('activate', () => {
+            this.get_active_window().close();
+        });
+        this.add_action(closeAction);
+
         let notificationAction = new Gio.SimpleAction({
             name: 'open-notification',
             parameter_type: new GLib.VariantType('as')
@@ -74,6 +80,8 @@ export default class Application extends Adw.Application {
         this.add_action(markReadAction);
 
         this.set_accels_for_action('app.quit', ['<Primary>q']);
+        this.set_accels_for_action('app.close', ['<Primary>w']);
+        this.set_accels_for_action('app.preferences', ['<Primary>comma']);
         this.set_accels_for_action('win.open-primary-menu', ['F10']);
         this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
     }
