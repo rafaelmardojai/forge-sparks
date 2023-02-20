@@ -3,6 +3,7 @@
 import Adw from 'gi://Adw';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk';
 
 import Template from './window.blp' assert { type: 'uri' };
 import NotificationsModel from './notificationsModel.js';
@@ -45,6 +46,7 @@ export default class Window extends Adw.ApplicationWindow {
 
         // Notifications model
         this.model = new NotificationsModel();
+        this.notified = {};
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
             if (this.model.get_n_items() > 0) {
                 this._notificationsStack.set_visible_child_name('list');
@@ -53,8 +55,18 @@ export default class Window extends Adw.ApplicationWindow {
             }
         });
 
-        // Bind ListBox with model
-        this._notificationsList.bind_model(this.model, this._createNotificationRow.bind(this));
+        /* Sort the model by timestamp */
+        const expression = new Gtk.PropertyExpression(this.model.get_item_type(), null, 'timestamp');
+        const model = new Gtk.SortListModel({
+            model: this.model,
+            sorter: new Gtk.NumericSorter({
+                expression: expression,
+                sort_order: Gtk.SortType.DESCENDING
+            }),
+        });
+
+        /* Bind sorted model to list box */
+        this._notificationsList.bind_model(model, this._createNotificationRow.bind(this));
 
         /* First run, background request */
         if (!settings.get_boolean('first-run')) {
@@ -76,7 +88,7 @@ export default class Window extends Adw.ApplicationWindow {
 
     async subscribe() {
         const savedAccounts = accounts.getAccounts();
-        let newNotis = [];
+        let newNotifications = [];
 
         if (!savedAccounts.length) {
             this._mainStack.set_visible_child_name('setup');
@@ -96,7 +108,7 @@ export default class Window extends Adw.ApplicationWindow {
                     const forgeName = accounts.getAccountSetting(id, 'forge');
                     const url = accounts.getAccountSetting(id, 'url');
                     const token = await accounts.getAccountToken(id);
-                    this.forges[id] = new FORGES[forgeName](url, token);
+                    this.forges[id] = new FORGES[forgeName](url, token, id);
                 } catch (error) {
                     logError(error);
                 }
@@ -104,14 +116,14 @@ export default class Window extends Adw.ApplicationWindow {
 
             try {
                 let notifications = await this.forges[id].getNotifications(this);
-                newNotis.push(...notifications);
-            } catch (e) {
-                logError(e);
+                newNotifications.push(...notifications);
+            } catch (error) {
+                logError(error);
             }
         }
 
-        newNotis.reverse();
-        this.showNotifications(newNotis);
+        newNotifications.reverse();
+        this.showNotifications(newNotifications);
 
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
             this.subscribe();
@@ -122,17 +134,16 @@ export default class Window extends Adw.ApplicationWindow {
     showNotifications(notifications) {
         const app = this.get_application();
 
-        for (const notification of notifications) {
-            const found = false;
-            const index = 0;
+        this.model.clear(); // Clear list
 
-            if (found) {
-                this.model.remove(index);
-            }
-            this.model.remove_by_id(notification.id); // Remove if already present
+        for (const notification of notifications) {
             this.model.prepend(notification);
-            if (notification.unread && !this.is_active) {
-                app.send_notification(`forge-sparks-${notification.id}`, notification.notification);
+
+            if (!notification.id in this.notified || this.notified[notification.id] != notification.updated_at) {
+                if (!this.is_active) {
+                    app.send_notification(`fs-${notification.id}`, notification.notification);
+                }
+                this.notified[notification.id] = notification.updated_at;
             }
         }
 
@@ -147,7 +158,7 @@ export default class Window extends Adw.ApplicationWindow {
 
         // TODO: Mark as read.
 
-        app.withdraw_notification(`forge-sparks-${id}`);
+        app.withdraw_notification(`fs-${id}`);
         /* Remove it from window list */
         this.model.remove_by_id(id);
     }

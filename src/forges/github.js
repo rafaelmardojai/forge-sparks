@@ -45,19 +45,20 @@ export default class GitHub extends Forge {
         try {
             const url = this.buildURI('notifications');
             const message = super.createMessage('GET', url);
-            message.request_headers.append('If-Modified-Since', this.modifiedSince);
+            // message.request_headers.append('If-Modified-Since', this.modifiedSince);
 
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            const headers = message.response_headers;
+            // const headers = message.response_headers;
             const contents = super.readContents(bytes);
             let notifications = [];
 
             for (const item of contents) {
                 const info = await this.getSubjectInfo(item);
                 const notification = new Notification({
-                    id: item.id,
+                    id: super.formatID(item.id),
                     type: item.subject.type,
                     unread: item.unread,
+                    updated_at: ('updated_at' in info) ? info.updated_at : item.updated_at,
                     title: item.subject.title,
                     repository: item.repository.full_name,
                     url: info.url,
@@ -68,10 +69,8 @@ export default class GitHub extends Forge {
                 notifications.push(notification);
             }
 
-            //this.interval = headers.get_one('X-Poll-Interval') ?? this.interval;
-            this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince;
+            // this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince;
             log('Response resulted in ' + message.get_status());
-            log(this.modifiedSince);
 
             return notifications;
         } catch (e) {
@@ -112,6 +111,7 @@ export default class GitHub extends Forge {
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
             info.state = contents.state
+            info.updated_at = contents.updated_at
             info.url = contents.html_url
 
             if (!notification.reason == 'subscribed') {
@@ -142,6 +142,6 @@ export default class GitHub extends Forge {
     }
 
     buildURI(path, query={}) {
-        return super.buildURI(GITHUB_API, path, query);
+        return Forge.buildURI(GITHUB_API, path, query);
     }
 };

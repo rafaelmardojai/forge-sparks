@@ -49,6 +49,15 @@ export default class NotificationsModel extends GObject.Object {
     }
 
     /**
+     * Clear the model
+     */
+    clear() {
+        const removed = this._notifications.length;
+        this._notifications.length = 0;
+        this.items_changed(0, removed, 0);
+    }
+
+    /**
      * Prepend a new notification to the model
      * @param {Notification} notification The notification to append
      */

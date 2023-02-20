@@ -35,6 +35,20 @@ export default class Notification extends GObject.Object {
                     GObject.ParamFlags.READWRITE,
                     false
                 ),
+                'updated_at': GObject.ParamSpec.string(
+                    'updated_at',
+                    'Updated at',
+                    'Date of notification updated time.',
+                    GObject.ParamFlags.READWRITE,
+                    null
+                ),
+                'timestamp': GObject.ParamSpec.int64(
+                    'timestamp',
+                    'Timestamp',
+                    'Date of notification updated time.',
+                    GObject.ParamFlags.READABLE,
+                    null
+                ),
                 'state': GObject.ParamSpec.string(
                     'state',
                     'State',
@@ -132,6 +146,25 @@ export default class Notification extends GObject.Object {
     set unread(value) {
         this._unread = value;
         this.notify('unread');
+    }
+
+    get updated_at() {
+        if (this._updated_at === undefined)
+            this._updated_at = null;
+
+        return this._updated_at;
+    }
+
+    set updated_at(value) {
+        if (this._updated_at === value)
+            return;
+
+        this._updated_at = value;
+        this.notify('updated_at');
+    }
+
+    get timestamp() {
+        return Date.parse(this._updated_at);
     }
 
     get type() {

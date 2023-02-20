@@ -30,10 +30,12 @@ export default class Forge {
      * Crete a Forge
      * @param {String} url The url of the forge
      * @param {String} token The access token
+     * @param {String} account Account ID associated to the instance
      */
-    constructor(url, token) {
+    constructor(url, token, account=null) {
         this.url = url
         this.token = token
+        this.account = account
         this.modifiedSince = '';
         this.encoder = new TextEncoder()
         this.decoder = new TextDecoder('utf-8');
@@ -99,13 +101,22 @@ export default class Forge {
     }
 
     /**
+     * Create a more unique ID using the forge account ID
+     * @param {String|Number} id Id to make unique
+     * @returns {String}
+     */
+    formatID(id) {
+        return `${this.account}-${id}`;
+    }
+
+    /**
      * Build a request URI from multiple parts
      * @param {String} host The URI host
      * @param {String} path The URI path
      * @param {Object} query The URI query
      * @returns {String} The resulting URI
      */
-    buildURI(host, path, query={}) {
+    static buildURI(host, path, query={}) {
 
         if (!path.startsWith('/')) {
             path = '/' + path;
