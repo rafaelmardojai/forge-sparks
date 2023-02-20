@@ -16,6 +16,10 @@
 
 ## Install
 
+### Nightly
+
+Download the latest [Flatpak x86_64 artifact](https://nightly.link/rafaelmardojai/forge-sparks/workflows/CI/main/forge-sparks-devel-x86_64.zip).
+
 ### Build from source
 
 You can clone and run from GNOME Builder.
