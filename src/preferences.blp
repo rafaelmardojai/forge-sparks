@@ -46,9 +46,32 @@ template Gjs_PreferencesWindow : Adw.PreferencesWindow {
         }
       }
 
-      ListBox accountsList {
-        styles ["content"]
+      Stack accountsStack {
 
+        StackPage {
+          name: "empty";
+          child: Box {
+            valign: center;
+
+            styles ["card", "empty-card"]
+
+            Label {
+              label: _("No Accounts");
+              wrap: true;
+              hexpand: true;
+              justify: center;
+
+              styles ["title-2"]
+            }
+          };
+        }
+
+        StackPage {
+          name: "accounts";
+          child: ListBox accountsList {
+            styles ["content"]
+          };
+        }
       }
     }
   }

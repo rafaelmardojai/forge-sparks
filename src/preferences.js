@@ -19,7 +19,7 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         GObject.registerClass({
             Template,
             InternalChildren: [
-                'background', 'startup','accountsList',
+                'background', 'startup','accountsList', 'accountsStack',
                 'accountNew', 'forge', 'instance', 'accessToken', 'addAccountBtn',
                 'accountEdit', 'accountEditTitle', 'instanceEdit', 'accessTokenEdit', 'saveAccountBtn', 'removeAccount',
             ],
@@ -37,6 +37,18 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
 
         /* Bind accounts list */
         this._accountsList.bind_model(accounts, this._createAccountRow.bind(this));
+
+        /* Check accounts items */
+        if (accounts.get_n_items() > 0) {
+            this._accountsStack.set_visible_child_name('accounts');
+        }
+        accounts.connect('items-changed', () => {
+            if (accounts.get_n_items() > 0) {
+                this._accountsStack.set_visible_child_name('accounts');
+            } else {
+                this._accountsStack.set_visible_child_name('empty');
+            }
+        });
 
         /* Load saved settings */
         this._background.enable_expansion = settings.get_boolean('hide-on-close');
