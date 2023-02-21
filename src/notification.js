@@ -14,76 +14,16 @@ export default class Notification extends GObject.Object {
         GObject.registerClass({
             GTypeName: 'Notification',
             Properties: {
-                'id': GObject.ParamSpec.string(
-                    'id',
-                    'Id',
-                    'Notification identifier.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'type': GObject.ParamSpec.string(
-                    'type',
-                    'Type',
-                    'The type of the notification.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'unread': GObject.ParamSpec.boolean(
-                    'unread',
-                    'Unread',
-                    'If the notifications is unread.',
-                    GObject.ParamFlags.READWRITE,
-                    false
-                ),
-                'updated_at': GObject.ParamSpec.string(
-                    'updated_at',
-                    'Updated at',
-                    'Date of notification updated time.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'timestamp': GObject.ParamSpec.int64(
-                    'timestamp',
-                    'Timestamp',
-                    'Date of notification updated time.',
-                    GObject.ParamFlags.READABLE,
-                    null
-                ),
-                'state': GObject.ParamSpec.string(
-                    'state',
-                    'State',
-                    'The state of the notification subject.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'title': GObject.ParamSpec.string(
-                    'title',
-                    'Title',
-                    'The title of the notification.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'repository': GObject.ParamSpec.string(
-                    'repository',
-                    'Repository',
-                    'The repository the notification belongs to.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'url': GObject.ParamSpec.string(
-                    'url',
-                    'URL',
-                    'The URL the notification should open.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'account_name': GObject.ParamSpec.string(
-                    'account_name',
-                    'Account Name',
-                    'The notification account name.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                )
+                'id': GObject.ParamSpec.string('id', null, null, GObject.ParamFlags.READWRITE, null),
+                'type': GObject.ParamSpec.string('type', null, null, GObject.ParamFlags.READWRITE, null),
+                'unread': GObject.ParamSpec.boolean('unread', null, null, GObject.ParamFlags.READWRITE, false),
+                'updated_at': GObject.ParamSpec.string('updated_at', null, null, GObject.ParamFlags.READWRITE, null),
+                'timestamp': GObject.ParamSpec.int64('timestamp', null, null, GObject.ParamFlags.READABLE, null),
+                'state': GObject.ParamSpec.string('state', null, null, GObject.ParamFlags.READWRITE, null),
+                'title': GObject.ParamSpec.string('title', null, null, GObject.ParamFlags.READWRITE, null),
+                'repository': GObject.ParamSpec.string('repository', null, null, GObject.ParamFlags.READWRITE, null),
+                'url': GObject.ParamSpec.string('url', null, null, GObject.ParamFlags.READWRITE, null),
+                'account_name': GObject.ParamSpec.string('account_name', null, null, GObject.ParamFlags.READWRITE, null)
             },
         }, this);
     }

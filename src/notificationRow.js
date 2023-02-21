@@ -17,41 +17,11 @@ export default class NotificationRow extends Gtk.ListBoxRow {
                 'activated': {},
             },
             Properties: {
-                'title': GObject.ParamSpec.string(
-                    'title',
-                    'Title',
-                    'Notification identifier.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'icon-name': GObject.ParamSpec.string(
-                    'icon-name',
-                    'Icon Name',
-                    'Notification identifier.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'repo': GObject.ParamSpec.string(
-                    'repo',
-                    'Repo',
-                    'Notification identifier.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'account': GObject.ParamSpec.string(
-                    'account',
-                    'Account',
-                    'Notification identifier.',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'progress': GObject.ParamSpec.boolean(
-                    'progress',
-                    'Progress',
-                    'Notification identifier.',
-                    GObject.ParamFlags.READWRITE,
-                    false
-                )
+                'title': GObject.ParamSpec.string('title', null, null, GObject.ParamFlags.READWRITE, null),
+                'icon-name': GObject.ParamSpec.string('icon-name', null, null, GObject.ParamFlags.READWRITE, null),
+                'repo': GObject.ParamSpec.string('repo', null, null, GObject.ParamFlags.READWRITE, null),
+                'account': GObject.ParamSpec.string('account', null, null, GObject.ParamFlags.READWRITE, null),
+                'progress': GObject.ParamSpec.boolean('progress', null, null, GObject.ParamFlags.READWRITE, null)
             }
         }, this);
     }

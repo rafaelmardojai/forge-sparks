@@ -252,34 +252,10 @@ export class AccountObject extends GObject.Object {
         GObject.registerClass({
             GTypeName: 'AccountObject',
             Properties: {
-                'id': GObject.ParamSpec.string(
-                    'id',
-                    'id',
-                    'The account id',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'forge': GObject.ParamSpec.string(
-                    'forge',
-                    'forge',
-                    'The account forge',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'url': GObject.ParamSpec.string(
-                    'url',
-                    'url',
-                    'The forge url',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
-                'username': GObject.ParamSpec.string(
-                    'username',
-                    'username',
-                    'The account username',
-                    GObject.ParamFlags.READWRITE,
-                    null
-                ),
+                'id': GObject.ParamSpec.string('id', null, null, GObject.ParamFlags.READWRITE, null),
+                'forge': GObject.ParamSpec.string('forge', null, null, GObject.ParamFlags.READWRITE, null),
+                'url': GObject.ParamSpec.string('url', null, null, GObject.ParamFlags.READWRITE, null),
+                'username': GObject.ParamSpec.string('username', null, null, GObject.ParamFlags.READWRITE, null)
             },
         }, this);
     }
