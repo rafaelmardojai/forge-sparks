@@ -20,14 +20,14 @@
 
   <content_rating type="oars-1.1" />
 
-  <!--<screenshots>
+  <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/rafaelmardojai/forge-sparks/master/data/screenshots/1.png</image>
+      <image>https://raw.githubusercontent.com/rafaelmardojai/forge-sparks/main/data/screenshots/1.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/rafaelmardojai/forge-sparks/master/data/screenshots/2.png</image>
+      <image>https://raw.githubusercontent.com/rafaelmardojai/forge-sparks/main/data/screenshots/2.png</image>
     </screenshot>
-  </screenshots>-->
+  </screenshots>
 
   <releases translatable="no">
     <release version="0.1.0" date="2022-12-01">
