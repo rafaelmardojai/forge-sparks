@@ -12,8 +12,21 @@ template Gjs_NotificationRow : ListBoxRow {
 
         styles ["header"]
 
-        Image {
-            icon-name: bind Gjs_NotificationRow.icon-name;
+        Stack iconStack {
+            StackPage {
+                name: "icon";
+                child: Image {
+                    icon-name: bind Gjs_NotificationRow.icon-name;
+                };
+            }
+
+            StackPage {
+                name: "spinner";
+                child: Spinner spinner {
+                    width-request: 16;
+                    height-request: 16;
+                };
+            }
         }
 
         Box {

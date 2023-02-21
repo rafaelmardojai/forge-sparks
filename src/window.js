@@ -22,7 +22,8 @@ export default class Window extends Adw.ApplicationWindow {
             Template,
             InternalChildren: [
                 'mainStack', 'spinner', 'headerbar', 'scrolled', 'emptyPicture',
-                'notificationsStack', 'notificationsList', 'markAsRead'
+                'notificationsStack', 'notificationsList',
+                'markAsRead', 'markAsReadIcon', 'markAsReadSpinner',
             ],
         }, this);
     }
@@ -188,7 +189,12 @@ export default class Window extends Adw.ApplicationWindow {
     }
 
     async markAsReadAll() {
-        /* Mark as read all notifs on all accounts */
+        this._markAsRead.sensitive = false;
+        this._notificationsList.sensitive = false;
+        this._markAsReadIcon.set_visible_child_name('spinner');
+        this._markAsReadSpinner.start();
+
+        /* Mark as read all notifications on all accounts */
         for (const id in this.forges) {
             try {
                 await this.forges[id].markAsRead();
@@ -196,7 +202,13 @@ export default class Window extends Adw.ApplicationWindow {
                 logError(error);
             }
         }
+
         this.model.clear();
+
+        this._markAsRead.sensitive = true;
+        this._notificationsList.sensitive = true;
+        this._markAsReadIcon.set_visible_child_name('icon');
+        this._markAsReadSpinner.stop();
     }
 
     _createNotificationRow(notification) {
@@ -212,6 +224,9 @@ export default class Window extends Adw.ApplicationWindow {
         }
 
         row.connect('activated', () => {
+            row.progress = true;
+            row.sensitive = false;
+
             const action = this.get_application().lookup_action('open-notification');
             action.activate(
                 GLib.Variant.new_array(

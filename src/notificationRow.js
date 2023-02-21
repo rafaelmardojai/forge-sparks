@@ -12,6 +12,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     static {
         GObject.registerClass({
             Template,
+            InternalChildren: ['iconStack', 'spinner'],
             Signals: {
                 'activated': {},
             },
@@ -43,6 +44,13 @@ export default class NotificationRow extends Gtk.ListBoxRow {
                     'Notification identifier.',
                     GObject.ParamFlags.READWRITE,
                     null
+                ),
+                'progress': GObject.ParamSpec.boolean(
+                    'progress',
+                    'Progress',
+                    'Notification identifier.',
+                    GObject.ParamFlags.READWRITE,
+                    false
                 )
             }
         }, this);
@@ -123,5 +131,22 @@ export default class NotificationRow extends Gtk.ListBoxRow {
 
         this._account = value;
         this.notify('account');
+    }
+
+    get progress() {
+        return this._progress;
+    }
+
+    set progress(value) {
+        this._progress = value;
+        this.notify('progress');
+
+        if (this._progress) {
+            this._iconStack.set_visible_child_name('spinner');
+            this._spinner.start();
+        } else {
+            this._iconStack.set_visible_child_name('icon');
+            this._spinner.stop();
+        }
     }
 };
