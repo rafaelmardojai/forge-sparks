@@ -170,8 +170,15 @@ export default class Notification extends GObject.Object {
         this.notify('updated_at');
     }
 
+    get datetime() {
+        return GLib.DateTime.new_from_iso8601(
+            this._updated_at,
+            GLib.TimeZone.new_utc()
+        );
+    }
+
     get timestamp() {
-        return Date.parse(this._updated_at);
+        return this.datetime.to_unix();
     }
 
     get type() {
