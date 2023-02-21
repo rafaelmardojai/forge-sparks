@@ -76,6 +76,13 @@ export default class Notification extends GObject.Object {
                     'The URL the notification should open.',
                     GObject.ParamFlags.READWRITE,
                     null
+                ),
+                'account_name': GObject.ParamSpec.string(
+                    'account_name',
+                    'Account Name',
+                    'The notification account name.',
+                    GObject.ParamFlags.READWRITE,
+                    null
                 )
             },
         }, this);
@@ -240,5 +247,20 @@ export default class Notification extends GObject.Object {
 
         this._url = value;
         this.notify('url');
+    }
+
+    get account_name() {
+        if (this._account_name === undefined)
+            this._account_name = null;
+
+        return this._account_name;
+    }
+
+    set account_name(value) {
+        if (this._account_name === value)
+            return;
+
+        this._account_name = value;
+        this.notify('account_name');
     }
 };

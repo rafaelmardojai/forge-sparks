@@ -1,0 +1,56 @@
+using Gtk 4.0;
+using Adw 1;
+
+template Gjs_NotificationRow : ListBoxRow {
+    tooltip-text: bind Gjs_NotificationRow.title;
+    notify::parent => _onParent();
+
+    Box {
+        orientation: horizontal;
+        spacing: 12;
+        valign: center;
+
+        styles ["header"]
+
+        Image {
+            icon-name: bind Gjs_NotificationRow.icon-name;
+        }
+
+        Box {
+            orientation: vertical;
+            spacing: 6;
+            valign: center;
+
+            Label {
+                label: bind Gjs_NotificationRow.title;
+                xalign: 0;
+                ellipsize: end;
+            }
+
+            CenterBox {
+                orientation: horizontal;
+                hexpand: true;
+
+                [start]
+                Label {
+                    label: bind Gjs_NotificationRow.repo;
+                    xalign: 0;
+                    ellipsize: end;
+
+                    styles ["caption", "dim-label"]
+                }
+
+                [end]
+                Label {
+                    label: bind Gjs_NotificationRow.account;
+                    xalign: 0;
+                    ellipsize: start;
+                    halign: end;
+
+                    styles ["caption", "dim-label"]
+                }
+            }
+        }
+    }
+
+}

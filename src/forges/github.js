@@ -62,6 +62,7 @@ export default class GitHub extends Forge {
                     title: item.subject.title,
                     repository: item.repository.full_name,
                     url: info.url,
+                    account_name: this.accountName
                 });
                 if (info.state) {
                     notification.state = info.state;

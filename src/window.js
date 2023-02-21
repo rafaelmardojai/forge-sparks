@@ -6,7 +6,9 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
 import Template from './window.blp' assert { type: 'uri' };
+import AllDone from './assets/alldone.svg';
 import NotificationsModel from './notificationsModel.js';
+import NotificationRow from './notificationRow.js';
 import AccountsManager from './accounts.js';
 import { settings, requestBackground, setBackgroundStatus } from './util.js';
 import { FORGES, extractID } from './forges/index.js';
@@ -19,8 +21,8 @@ export default class Window extends Adw.ApplicationWindow {
         GObject.registerClass({
             Template,
             InternalChildren: [
-                'mainStack', 'spinner', 'notificationsStack', 'notificationsList',
-                'markAsRead'
+                'mainStack', 'spinner', 'headerbar', 'scrolled', 'emptyPicture',
+                'notificationsStack', 'notificationsList', 'markAsRead'
             ],
         }, this);
     }
@@ -34,9 +36,11 @@ export default class Window extends Adw.ApplicationWindow {
         this.forges = {}; // Store accounts forge instances
         this.interval = 60; // Interval of the notifications requests
 
-        // Set app initial state
+        /* Set app initial state */
         this._mainStack.set_visible_child_name('loading');
         this._spinner.start();
+        this._emptyPicture.set_resource(AllDone);
+        this._scrolled.vadjustment.connect('value-changed', this._onScrollChanged.bind(this));
 
         /* Check accounts removal */
         accounts.connect('items-changed', () => {
@@ -45,7 +49,7 @@ export default class Window extends Adw.ApplicationWindow {
             }
         });
 
-        // Notifications model
+        /* Notifications model */
         this.model = new NotificationsModel();
         this.notified = {};
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
@@ -85,6 +89,14 @@ export default class Window extends Adw.ApplicationWindow {
         }
     }
 
+    _onScrollChanged(adjustment) {
+        if (adjustment.value > 0) {
+            this._headerbar.remove_css_class('flat');
+        } else {
+            this._headerbar.add_css_class('flat');
+        }
+    }
+
     async _firstRun() {
         const result = await requestBackground(this, false);
         settings.set_boolean('hide-on-close', result);
@@ -95,10 +107,7 @@ export default class Window extends Adw.ApplicationWindow {
     }
 
     async subscribe() {
-        const savedAccounts = accounts.getAccounts();
-        let newNotifications = [];
-
-        if (!savedAccounts.length) {
+        if (!accounts.get_n_items()) {
             this._mainStack.set_visible_child_name('setup');
             this._retryHandler = accounts.connect('items-changed', () => {
                 this.subscribe();
@@ -110,20 +119,23 @@ export default class Window extends Adw.ApplicationWindow {
             accounts.disconnect(this._retryHandler);
         }
 
-        for (const id of savedAccounts) {
-            if (!(id in this.forges) || this.forges[id] == undefined) {
+        let newNotifications = [];
+        for (var i = 0; i < accounts.get_n_items(); i++) {
+            const account = accounts.get_item(i);
+
+            if (!(account.id in this.forges) || this.forges[account.id] == undefined) {
                 try {
-                    const forgeName = accounts.getAccountSetting(id, 'forge');
-                    const url = accounts.getAccountSetting(id, 'url');
-                    const token = await accounts.getAccountToken(id);
-                    this.forges[id] = new FORGES[forgeName](url, token, id);
+                    const token = await accounts.getAccountToken(account.id);
+                    this.forges[account.id] = new FORGES[account.forge](
+                        account.url, token, account.id, account.displayName
+                    );
                 } catch (error) {
                     logError(error);
                 }
             }
 
             try {
-                let notifications = await this.forges[id].getNotifications(this);
+                let notifications = await this.forges[account.id].getNotifications(this);
                 newNotifications.push(...notifications);
             } catch (error) {
                 logError(error);
@@ -188,13 +200,16 @@ export default class Window extends Adw.ApplicationWindow {
     }
 
     _createNotificationRow(notification) {
-        const row = new Adw.ActionRow({
+        const row = new NotificationRow({
             title: notification.title,
-            subtitle: notification.repository,
+            repo: notification.repository,
             icon_name: notification.iconName,
-            title_lines: 1,
             activatable: true,
         });
+
+        if (accounts.isMultiple()) {
+            row.account = notification.account_name;
+        }
 
         row.connect('activated', () => {
             const action = this.get_application().lookup_action('open-notification');

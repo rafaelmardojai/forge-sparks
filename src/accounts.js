@@ -72,6 +72,14 @@ export default class AccountsManager extends GObject.Object {
     }
 
     /**
+     * If the user has more than one account
+     * @return {Boolean} If true
+     */
+    isMultiple() {
+        return this._accounts.length > 1;
+    }
+
+    /**
      * Save a new account in the secrets service and app settings
      * @param  {String} forge Account forge name
      * @param  {String} url Acount forge url
@@ -192,9 +200,9 @@ export default class AccountsManager extends GObject.Object {
     }
 
     /**
-     * Gets the an account setting value
+     * Gets an account setting value
      * @param {String} id Account id
-     * @param {PString} setting Setting name
+     * @param {String} setting Setting name
      * @return {*} The setting value
      */
     getAccountSetting(id, setting) {
@@ -281,7 +289,7 @@ export class AccountObject extends GObject.Object {
     }
 
     get displayName() {
-        return [this._username, this._url].join('@');
+        return `${this._username}@${this._url}`;
     }
 
     get id() {

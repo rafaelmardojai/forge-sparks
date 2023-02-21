@@ -28,13 +28,15 @@ menu menu {
 }
 
 template Gjs_Window : Adw.ApplicationWindow {
-  default-width: 600;
-  default-height: 400;
-  title: _("Notifications");
+  default-width: 500;
+  default-height: 500;
+  title: _("Forge Sparks");
 
   notify::visible => _onWindowHide();
 
   Stack mainStack {
+
+    styles ["main-view"]
 
     StackPage {
       name: "setup";
@@ -43,10 +45,6 @@ template Gjs_Window : Adw.ApplicationWindow {
         orientation: vertical;
 
         Adw.HeaderBar {
-          title-widget: Adw.WindowTitle {
-            title: _("Forge Sparks");
-          };
-
           [end]
           MenuButton {
             primary: true;
@@ -78,7 +76,6 @@ template Gjs_Window : Adw.ApplicationWindow {
       name: "loading";
 
       child: WindowHandle {
-
         Box {
           orientation: vertical;
           margin-top: 12;
@@ -99,58 +96,82 @@ template Gjs_Window : Adw.ApplicationWindow {
     StackPage {
       name: "notifications";
 
-      child: Box {
-        orientation: vertical;
+      child: WindowHandle {
+        Box {
+          orientation: vertical;
 
-        Adw.HeaderBar {
-          Button markAsRead {
+          Adw.HeaderBar headerbar {
+            title-widget: Adw.WindowTitle {};
+
+            styles ["flat"]
+
+            Button markAsRead {
               clicked => markAsReadAll();
 
-            Adw.ButtonContent {
-              label: _("Mark all as Read");
-              icon-name: "object-select-symbolic";
+              Adw.ButtonContent {
+                label: _("Mark all as Read");
+                icon-name: "object-select-symbolic";
+              }
+            }
+
+            [end]
+            MenuButton {
+              primary: true;
+              menu-model: menu;
+              icon-name: "open-menu-symbolic";
             }
           }
 
-          [end]
-          MenuButton {
-            primary: true;
-            menu-model: menu;
-            icon-name: "open-menu-symbolic";
-          }
-        }
+          Stack notificationsStack {
 
-        Stack notificationsStack {
+            StackPage {
+              name: "empty";
+              child: Adw.Clamp {
+                maximum-size: 400;
 
-          StackPage {
-            name: "empty";
-            child: 
-            Adw.StatusPage {
-              title: _("No Notifications to Show");
-              description: _("");
-            };
-          }
+                Box {
+                  orientation: vertical;
+                  valign: center;
+                  spacing: 24;
+                  margin-end: 12;
+                  margin-start: 12;
+                  margin-bottom: 36;
 
-          StackPage {
-            name: "list";
+                  Label {
+                    label: _("No Notifications to Show");
+                    wrap: true;
+                    styles ["title-1"]
+                  }
 
-            child: ScrolledWindow {
-              hscrollbar-policy: never;
-              vexpand: true;
+                  Picture emptyPicture {
+                    can-shrink: true;
+                  }
 
-              Adw.Clamp {
-
-                ListBox notificationsList {
-                  valign: start;
-                  selection-mode: none;
-
-                  styles [
-                    "margin-box",
-                    "content",
-                  ]
                 }
-              }
-            };
+              };
+            }
+
+            StackPage {
+              name: "list";
+
+              child: ScrolledWindow scrolled {
+                hscrollbar-policy: never;
+                vexpand: true;
+
+                Adw.Clamp {
+                  ListBox notificationsList {
+                    valign: start;
+                    selection-mode: none;
+
+                    styles [
+                      "content",
+                      "margin-box"
+                    ]
+
+                  }
+                }
+              };
+            }
           }
         }
       };

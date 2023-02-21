@@ -31,15 +31,16 @@ export default class Forge {
      * @param {String} url The url of the forge
      * @param {String} token The access token
      * @param {String} account Account ID associated to the instance
+     * @param {String} accountName Account name associated to the instance
      */
-    constructor(url, token, account=null) {
-        this.url = url
-        this.token = token
-        this.account = account
+    constructor(url, token, account=null, accountName='') {
+        this.url = url;
+        this.token = token;
+        this.account = account;
+        this.accountName = accountName;
         this.modifiedSince = '';
-        this.encoder = new TextEncoder()
+        this.encoder = new TextEncoder();
         this.decoder = new TextDecoder('utf-8');
-        // this.interval = 60;
     }
 
     /**
