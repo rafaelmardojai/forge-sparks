@@ -29,7 +29,7 @@ export default class GitHub extends Forge {
 
             if (!('login' in contents)) {
                 if (message.get_status() == '401') {
-                throw 'FailedForgeAuth';
+                    throw 'FailedForgeAuth';
                 } else {
                     throw 'Unexpected'
                 }
@@ -53,7 +53,7 @@ export default class GitHub extends Forge {
             let notifications = [];
 
             for (const item of contents) {
-                const info = await this.getSubjectInfo(item);
+                const info = await this._getSubjectInfo(item);
                 const notification = new Notification({
                     id: super.formatID(item.id),
                     type: item.subject.type,
@@ -78,7 +78,7 @@ export default class GitHub extends Forge {
         }
     }
 
-    async getSubjectInfo(notification) {
+    async _getSubjectInfo(notification) {
         const info = {};
         if (
             notification.subject.type === 'RepositoryInvitation' ||
@@ -116,7 +116,7 @@ export default class GitHub extends Forge {
 
             if (!notification.reason == 'subscribed') {
                 if (notification.subject.type === "Issue" || notification.subject.type === "PullRequest") {
-                    const url = this.getCommentURL(notification.subject.latest_comment_url);
+                    const url = this._getCommentURL(notification.subject.latest_comment_url);
                     if (url) {
                         info.url = url
                     }
@@ -129,13 +129,39 @@ export default class GitHub extends Forge {
         }
     }
 
-    async getCommentURL(url) {
+    async _getCommentURL(url) {
         try {
             const message = super.createMessage('GET', url);
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
 
             return contents.html_url;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    async markAsRead(id=null) {
+        try {
+            if (id != null) {
+                const url = this.buildURI(`/notifications/threads/${id}`);
+                const message = super.createMessage('PATCH', url);
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+
+                /* If Reset-Content */
+                return message.get_status() == '205';
+            } else {
+                const now = GLib.DateTime.new_now_utc();
+                const url = this.buildURI('notifications');
+                const message = super.createMessage('PUT', url, {
+                    'last_read_at': now.format_iso8601(),
+                    'read': true
+                });
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+
+                /* If Accepted or Reset-Content */
+                return message.get_status() == '202' || message.get_status() == '205';
+            }
         } catch (e) {
             throw e;
         }

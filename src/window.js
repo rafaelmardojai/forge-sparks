@@ -9,7 +9,7 @@ import Template from './window.blp' assert { type: 'uri' };
 import NotificationsModel from './notificationsModel.js';
 import AccountsManager from './accounts.js';
 import { settings, requestBackground, setBackgroundStatus } from './util.js';
-import { FORGES } from './forges/index.js';
+import { FORGES, extractID } from './forges/index.js';
 
 const accounts = new AccountsManager();
 
@@ -19,7 +19,8 @@ export default class Window extends Adw.ApplicationWindow {
         GObject.registerClass({
             Template,
             InternalChildren: [
-                'mainStack', 'spinner', 'notificationsStack', 'notificationsList'
+                'mainStack', 'spinner', 'notificationsStack', 'notificationsList',
+                'markAsRead'
             ],
         }, this);
     }
@@ -53,6 +54,7 @@ export default class Window extends Adw.ApplicationWindow {
             } else {
                 this._notificationsStack.set_visible_child_name('empty');
             }
+            this._markAsRead.visible = this.model.get_n_items() > 0;
         });
 
         /* Sort the model by timestamp */
@@ -159,14 +161,30 @@ export default class Window extends Adw.ApplicationWindow {
         }
     }
 
-    resolveNotification(id) {
+    async resolveNotification(id) {
         const app = this.get_application();
-
-        // TODO: Mark as read.
-
+        /* Withdraw desktop notification */
         app.withdraw_notification(`fs-${id}`);
-        /* Remove it from window list */
-        this.model.remove_by_id(id);
+
+        /* Mark as read */
+        const [account, notification] = extractID(id);
+        const success = await this.forges[account].markAsRead(notification);
+        if (success) {
+            /* Remove it from window list */
+            this.model.remove_by_id(id);
+        }
+    }
+
+    async markAsReadAll() {
+        /* Mark as read all notifs on all accounts */
+        for (const id in this.forges) {
+            try {
+                await this.forges[id].markAsRead();
+            } catch (error) {
+                logError(error);
+            }
+        }
+        this.model.clear();
     }
 
     _createNotificationRow(notification) {

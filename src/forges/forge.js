@@ -59,6 +59,16 @@ export default class Forge {
     }
 
     /**
+     * Mark notifications as read
+     * @param {String|Number|null} id ID of the notification to mark as read
+     * or null if all should be marked.
+     * @returns {Boolean} If the operation was successful
+     */
+    async markAsRead(id=null) {
+
+    }
+
+    /**
      * Helper for creating Soup.Message
      * @param {String} method HTTP method for the message
      * @param {String} url URL for the message
@@ -102,7 +112,7 @@ export default class Forge {
 
     /**
      * Create a more unique ID using the forge account ID
-     * @param {String|Number} id Id to make unique
+     * @param {String|Number} id ID to make unique
      * @returns {String}
      */
     formatID(id) {

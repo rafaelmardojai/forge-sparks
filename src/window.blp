@@ -103,6 +103,15 @@ template Gjs_Window : Adw.ApplicationWindow {
         orientation: vertical;
 
         Adw.HeaderBar {
+          Button markAsRead {
+              clicked => markAsReadAll();
+
+            Adw.ButtonContent {
+              label: _("Mark all as Read");
+              icon-name: "object-select-symbolic";
+            }
+          }
+
           [end]
           MenuButton {
             primary: true;
