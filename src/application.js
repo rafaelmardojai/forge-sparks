@@ -45,6 +45,12 @@ export default class Application extends Adw.Application {
     }
 
     _initAppActions() {
+        let activateAction = new Gio.SimpleAction({ name: 'activate' });
+        activateAction.connect('activate', () => {
+            this.activate();
+        });
+        this.add_action(activateAction);
+
         let aboutAction = new Gio.SimpleAction({ name: 'about' });
         aboutAction.connect('activate', this._showAbout.bind(this));
         this.add_action(aboutAction);
@@ -76,7 +82,7 @@ export default class Application extends Adw.Application {
             name: 'mark-read',
             parameter_type: new GLib.VariantType('s')
         });
-        // markReadAction.connect('activate', this._markAsRead.bind(this));
+        markReadAction.connect('activate', this._markAsRead.bind(this));
         this.add_action(markReadAction);
 
         this.set_accels_for_action('app.quit', ['<Primary>q']);
@@ -134,5 +140,10 @@ export default class Application extends Adw.Application {
                 this.window.resolveNotification(id);
             }
         });
+    }
+
+    _markAsRead(_action, param) {
+        const [id, _length] = param.get_string();
+        this.window.resolveNotification(id);
     }
 };

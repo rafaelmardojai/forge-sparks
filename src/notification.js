@@ -3,6 +3,7 @@
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
 import issueIcon from './icons/issue-symbolic.svg' assert { type: 'icon' };
@@ -54,7 +55,17 @@ export default class Notification extends GObject.Object {
                 [GLib.Variant.new_string(this.id), GLib.Variant.new_string(this.url)]
             )
         );
-        notification.add_button(_('Mark as Read'), 'app.mark-read');
+
+        const hidden = !Gtk.Application.get_default().get_active_window().visible
+        if (hidden) {
+            notification.add_button(_('Show Forge Sparks'), 'app.activate');
+        }
+
+        notification.add_button_with_target(
+            _('Mark as Read'),
+            'app.mark-read',
+            GLib.Variant.new_string(this.id)
+        );
 
         return notification;
     }
