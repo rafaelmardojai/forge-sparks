@@ -13,11 +13,25 @@ export default class GitHub extends Forge {
 
     static name = 'github';
 
-    static prettyName = 'Github';
+    static prettyName = 'GitHub';
 
     static allowInstances = false;
 
     static defaultURL = 'github.com';
+
+    static get tokenText() {
+        const tokenURL = 'https://github.com/settings/tokens';
+        const tokenHelpURL = 'https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token';
+
+        /* GitHub access token help */
+        let tokenText = _('You can generate a new personal access token going to <a href=\"%s\">GitHub developer settings</a>. For more information, see "<a href=\"%s\">Creating a personal access token</a>".')
+        .format(tokenURL, tokenHelpURL);
+        tokenText += '\n\n';
+        /* GitHub access token help */
+        tokenText += _('Forge Sparks requirers a <b>classic</b> access token (for general use) with the <i>notifications</i> and <i>read:user</i> scopes granted.');
+
+        return tokenText;
+    }
 
     async getUser() {
         try {

@@ -22,6 +22,11 @@ export default class Gitea extends GitHub {
 
     static defaultURL = 'codeberg.org';
 
+    static get tokenText() {
+        /* Gitea/Forgejo access token help */
+        return _('To generate a new access token from your Gitea/Forgejo instance go to Settings → Applications and generate a new token.');
+    }
+
     async markAsRead(id=null) {
         try {
             if (id != null) {

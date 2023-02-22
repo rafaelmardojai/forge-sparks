@@ -106,6 +106,7 @@ Box accountNew {
   }
 
   Adw.PreferencesPage {
+    vexpand: true;
 
     Adw.PreferencesGroup {
 
@@ -126,6 +127,12 @@ Box accountNew {
         title: _("Access Token");
 
         notify::text => _onEntryChanged();
+      }
+
+      Label accessTokenHelp {
+        use-markup: true;
+        wrap: true;
+        margin-top: 24;
       }
     }
   }
@@ -160,6 +167,7 @@ Box accountEdit {
   }
 
   Adw.PreferencesPage {
+    vexpand: true;
 
     Adw.PreferencesGroup {
 
@@ -174,6 +182,12 @@ Box accountEdit {
         title: _("Access Token");
 
         notify::text => _onEditEntryChanged();
+      }
+
+      Label accessTokenEditHelp {
+        use-markup: true;
+        wrap: true;
+        margin-top: 24;
       }
     }
 

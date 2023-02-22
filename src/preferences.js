@@ -20,8 +20,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
             Template,
             InternalChildren: [
                 'background', 'startup','accountsList', 'accountsStack',
-                'accountNew', 'forge', 'instance', 'accessToken', 'addAccountBtn',
-                'accountEdit', 'accountEditTitle', 'instanceEdit', 'accessTokenEdit', 'saveAccountBtn', 'removeAccount',
+                'accountNew', 'forge', 'instance', 'accessToken', 'accessTokenHelp', 'addAccountBtn',
+                'accountEdit', 'accountEditTitle', 'instanceEdit', 'accessTokenEdit', 'accessTokenEditHelp',
+                'saveAccountBtn', 'removeAccount',
             ],
         }, this);
     }
@@ -105,6 +106,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         const token = await accounts.getAccountToken(account.id);
         this._accessTokenEdit.text = token;
 
+        /* Token help text */
+        this._accessTokenEditHelp.label = FORGES[account.forge].tokenText
+
         this._editing = account // Set account begin edited
         this._editing.token = token;
         this.present_subpage(this._accountEdit);
@@ -159,6 +163,8 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     _onForgeChanged() {
         /* Enable or disable instance URL entry */
         this._instance.sensitive = this._allowInstances();
+        /* Token help text */
+        this._accessTokenHelp.label = this.forges[this._forge.selected].tokenText
     }
 
     /**

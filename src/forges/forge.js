@@ -27,6 +27,11 @@ export default class Forge {
     static defaultURL = 'example.com';
 
     /**
+     * Help text on how to get an access token for this forge
+     */
+    static tokenText;
+
+    /**
      * Crete a Forge
      * @param {String} url The url of the forge
      * @param {String} token The access token
