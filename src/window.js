@@ -7,6 +7,7 @@ import Gtk from 'gi://Gtk';
 
 import Template from './window.blp' assert { type: 'uri' };
 import AllDone from './assets/alldone.svg';
+import PreferencesWindow from './preferences.js';
 import NotificationsModel from './notificationsModel.js';
 import NotificationRow from './notificationRow.js';
 import AccountsManager from './accounts.js';
@@ -81,20 +82,6 @@ export default class Window extends Adw.ApplicationWindow {
         } else {
             /* Subscribe to notifications */
             this.subscribe();
-        }
-    }
-
-    _onWindowHide() {
-        if (!this.visible) {
-            setBackgroundStatus();
-        }
-    }
-
-    _onScrollChanged(adjustment) {
-        if (adjustment.value > 0) {
-            this._headerbar.remove_css_class('flat');
-        } else {
-            this._headerbar.add_css_class('flat');
         }
     }
 
@@ -238,5 +225,29 @@ export default class Window extends Adw.ApplicationWindow {
         });
 
         return row;
+    }
+
+    _onWindowHide() {
+        if (!this.visible) {
+            setBackgroundStatus();
+        }
+    }
+
+    _onScrollChanged(adjustment) {
+        if (adjustment.value > 0) {
+            this._headerbar.remove_css_class('flat');
+        } else {
+            this._headerbar.add_css_class('flat');
+        }
+    }
+
+    _onNewAccount() {
+        const window = new PreferencesWindow({transient_for: this });
+        window.present();
+
+        GLib.timeout_add(GLib.PRIORITY_DEFAULT, 400, () => {
+            window._onOpenAddAccount();
+            return GLib.SOURCE_REMOVE;
+        });
     }
 };

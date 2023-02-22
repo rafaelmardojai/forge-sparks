@@ -60,8 +60,9 @@ template Gjs_Window : Adw.ApplicationWindow {
 
           Button {
             label: _("Open Preferences");
-            action-name: "app.preferences";
             halign: center;
+
+            clicked => _onNewAccount();
 
             styles [
               "suggested-action",
