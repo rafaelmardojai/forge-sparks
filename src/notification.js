@@ -121,15 +121,26 @@ export default class Notification extends GObject.Object {
         this.notify('updated_at');
     }
 
-    get datetime() {
-        return GLib.DateTime.new_from_iso8601(
+    /**
+     * Notification datetime
+     * @type {GLib.DateTime}
+     */
+    get dateTime() {
+        if (this._dateTime === undefined)
+            this._dateTime = GLib.DateTime.new_from_iso8601(
             this._updated_at,
             GLib.TimeZone.new_utc()
         );
+
+        return this._dateTime;
     }
 
+    /**
+     * Notification timestamp
+     * @type {Number}
+     */
     get timestamp() {
-        return this.datetime.to_unix();
+        return this.dateTime.to_unix();
     }
 
     get type() {

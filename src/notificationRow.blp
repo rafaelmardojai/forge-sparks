@@ -34,10 +34,26 @@ template Gjs_NotificationRow : ListBoxRow {
             spacing: 3;
             valign: center;
 
-            Label {
-                label: bind Gjs_NotificationRow.title;
-                xalign: 0;
-                ellipsize: end;
+            CenterBox {
+                orientation: horizontal;
+                hexpand: true;
+
+                [start]
+                Label {
+                    label: bind Gjs_NotificationRow.title;
+                    xalign: 0;
+                    hexpand: true;
+                    ellipsize: end;
+                }
+
+                [end]
+                Label {
+                    label: bind Gjs_NotificationRow.date;
+                    xalign: 0;
+                    margin-start: 6;
+
+                    styles ["caption", "dim-label"]
+                }
             }
 
             CenterBox {

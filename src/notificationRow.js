@@ -18,9 +18,10 @@ export default class NotificationRow extends Gtk.ListBoxRow {
             },
             Properties: {
                 'title': GObject.ParamSpec.string('title', null, null, GObject.ParamFlags.READWRITE, null),
-                'icon-name': GObject.ParamSpec.string('icon-name', null, null, GObject.ParamFlags.READWRITE, null),
+                'date': GObject.ParamSpec.string('date', null, null, GObject.ParamFlags.READWRITE, null),
                 'repo': GObject.ParamSpec.string('repo', null, null, GObject.ParamFlags.READWRITE, null),
                 'account': GObject.ParamSpec.string('account', null, null, GObject.ParamFlags.READWRITE, null),
+                'icon-name': GObject.ParamSpec.string('icon-name', null, null, GObject.ParamFlags.READWRITE, null),
                 'progress': GObject.ParamSpec.boolean('progress', null, null, GObject.ParamFlags.READWRITE, null)
             }
         }, this);
@@ -56,6 +57,21 @@ export default class NotificationRow extends Gtk.ListBoxRow {
 
         this._title = value;
         this.notify('title');
+    }
+
+    get date() {
+        if (this._date === undefined)
+            this._date = null;
+
+        return this._date;
+    }
+
+    set date(value) {
+        if (this._date === value)
+            return;
+
+        this._date = value;
+        this.notify('date');
     }
 
     get iconName() {

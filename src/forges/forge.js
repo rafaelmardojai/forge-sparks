@@ -93,6 +93,7 @@ export default class Forge {
         });
         // Append auth header
         message.request_headers.append('Authorization', 'token ' + this.token);
+        message.request_headers.append('Time-Zone', 'UTC');
 
         return message;
     }

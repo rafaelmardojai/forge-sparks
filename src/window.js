@@ -10,7 +10,7 @@ import AllDone from './assets/alldone.svg';
 import NotificationsModel from './notificationsModel.js';
 import NotificationRow from './notificationRow.js';
 import AccountsManager from './accounts.js';
-import { settings, requestBackground, setBackgroundStatus } from './util.js';
+import { settings, requestBackground, setBackgroundStatus, relativeDate } from './util.js';
 import { FORGES, extractID } from './forges/index.js';
 
 const accounts = new AccountsManager();
@@ -215,6 +215,7 @@ export default class Window extends Adw.ApplicationWindow {
         const row = new NotificationRow({
             title: notification.title,
             repo: notification.repository,
+            date: relativeDate(notification.dateTime),
             icon_name: notification.iconName,
             activatable: true,
         });
