@@ -21,7 +21,7 @@ export function requestBackground(window, autostart=false) {
     /* Try getting parent */
     let parent = null;
     try {
-        parent = XdpGtk4.parent_new_gtk(window);
+        //parent = XdpGtk4.parent_new_gtk(window);
     } catch (error) {
         logError(error);
     }
