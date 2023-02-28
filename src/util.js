@@ -7,6 +7,8 @@ import Xdp from 'gi://Xdp';
 import XdpGtk4 from 'gi://XdpGtk4';
 import { gettext as _, ngettext } from 'gettext';
 
+const Format = imports.format;
+
 export const settings = new Gio.Settings({
     schema_id: pkg.name,
     path: '/com/mardojai/ForgeSparks/',
@@ -73,27 +75,35 @@ export function relativeDate(date) {
             return _('now');
         }
         else if (minutes < 60) {
-            return ngettext(`${minutes} minute ago`, `${minutes} minutes ago`, minutes);
+            return Format.vprintf(
+                ngettext('%d minute ago', '%d minutes ago', minutes), [minutes]
+            );
         }
         else if (minutes < 1440) {
             const hours = Math.round(minutes / 60);
-            return ngettext(`${hours} hour ago`, `${hours} hours ago`, hours);
+            return Format.vprintf(
+                ngettext('%d hour ago', '%d hours ago', hours), [hours]
+            );
         }
         else if (minutes < 10080) {
             const days = Math.round(minutes / 1440);
-            return ngettext(`yesterday`, `${days} days ago`, days);
+            return Format.vprintf(
+                ngettext('yesterday', '%d days ago', days), [days]
+            );
         }
         else if (minutes < 40320) {
             const weeks = Math.round(minutes / 10080);
-            return ngettext(`${weeks} week ago`, `${weeks} weeks ago`, weeks);
+            return Format.vprintf(
+                ngettext('%d week ago', '%d weeks ago', weeks), [weeks]
+            );
         }
         else if (now.get_year() === date.get_year()) {
-            const formattedDate = date.format('%d %b')
-            return _(`on ${formattedDate}`)
+            const formattedDate = date.format('%d %b');
+            return Format.vprintf(_('on %s'), [formattedDate]);
         }
         else {
-            const formattedDate = date.format('%d %b, %Y')
-            return _(`on ${formattedDate}`)
+            const formattedDate = date.format('%d %b, %Y');
+            return Format.vprintf(_('on %s'), [formattedDate]);
         }
     }
 
