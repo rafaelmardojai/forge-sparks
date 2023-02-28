@@ -12,7 +12,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     static {
         GObject.registerClass({
             Template,
-            InternalChildren: ['iconStack', 'spinner'],
+            InternalChildren: ['iconStack', 'icon', 'spinner'],
             Signals: {
                 'activated': {},
             },
@@ -21,6 +21,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
                 'date': GObject.ParamSpec.string('date', null, null, GObject.ParamFlags.READWRITE, null),
                 'repo': GObject.ParamSpec.string('repo', null, null, GObject.ParamFlags.READWRITE, null),
                 'account': GObject.ParamSpec.string('account', null, null, GObject.ParamFlags.READWRITE, null),
+                'state': GObject.ParamSpec.string('state', null, null, GObject.ParamFlags.READWRITE, null),
                 'icon-name': GObject.ParamSpec.string('icon-name', null, null, GObject.ParamFlags.READWRITE, null),
                 'progress': GObject.ParamSpec.boolean('progress', null, null, GObject.ParamFlags.READWRITE, null)
             }
@@ -32,6 +33,21 @@ export default class NotificationRow extends Gtk.ListBoxRow {
      */
     constructor(constructProperties = {}) {
         super(constructProperties);
+
+        switch (this.state) {
+            case 'open':
+                this._icon.add_css_class('accent');
+                break;
+            case 'closed':
+                this._icon.add_css_class('closed');
+                break;
+            case 'draft':
+                this._icon.add_css_class('dim-label');
+                break;
+            case 'denied':
+                this._icon.add_css_class('error');
+                break;
+        }
     }
 
     _onParent() {
@@ -72,6 +88,21 @@ export default class NotificationRow extends Gtk.ListBoxRow {
 
         this._date = value;
         this.notify('date');
+    }
+
+    get state() {
+        if (this._state === undefined)
+            this._state = null;
+
+        return this._state;
+    }
+
+    set state(value) {
+        if (this._state === value)
+            return;
+
+        this._state = value;
+        this.notify('state');
     }
 
     get iconName() {

@@ -15,7 +15,7 @@ template Gjs_NotificationRow : ListBoxRow {
         Stack iconStack {
             StackPage {
                 name: "icon";
-                child: Image {
+                child: Image icon {
                     icon-name: bind Gjs_NotificationRow.icon-name;
                 };
             }

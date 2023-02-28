@@ -126,8 +126,17 @@ export default class GitHub extends Forge {
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
             info.state = contents.state
-            info.updated_at = contents.updated_at
+            //info.updated_at = contents.updated_at
             info.url = contents.html_url
+
+            if (notification.subject.type === 'PullRequest') {
+                if (contents.draft) {
+                    info.state = 'draft';
+                }
+                if (contents.state == 'closed' && contents.merged_at == null) {
+                    info.state = 'denied';
+                }
+            }
 
             if (notification.reason != 'subscribed') {
                 if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {

@@ -205,6 +205,7 @@ export default class Window extends Adw.ApplicationWindow {
             date: relativeDate(notification.dateTime),
             icon_name: notification.iconName,
             activatable: true,
+            state: notification.state,
         });
 
         if (accounts.isMultiple()) {

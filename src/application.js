@@ -13,6 +13,7 @@ import PreferencesWindow from './preferences.js';
 import { settings } from './util.js';
 
 import './style.css';
+import './style-dark.css';
 import './gtk/help-overlay.blp' assert { type: 'builder' };
 
 export default class Application extends Adw.Application {
