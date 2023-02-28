@@ -129,9 +129,9 @@ export default class GitHub extends Forge {
             info.updated_at = contents.updated_at
             info.url = contents.html_url
 
-            if (!notification.reason == 'subscribed') {
-                if (notification.subject.type === "Issue" || notification.subject.type === "PullRequest") {
-                    const url = this._getCommentURL(notification.subject.latest_comment_url);
+            if (notification.reason != 'subscribed') {
+                if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {
+                    const url = await this._getCommentURL(notification.subject.latest_comment_url);
                     if (url) {
                         info.url = url
                     }
