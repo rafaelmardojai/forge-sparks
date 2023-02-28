@@ -7,6 +7,8 @@ import Forge from './forge.js';
 import Notification from './../notification.js';
 import { session } from './../util.js';
 
+const Format = imports.format;
+
 const GITHUB_API = 'api.github.com';
 
 export default class GitHub extends Forge {
@@ -24,8 +26,10 @@ export default class GitHub extends Forge {
         const tokenHelpURL = 'https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token';
 
         /* GitHub access token help */
-        let tokenText = _('You can generate a new personal access token going to <a href=\"%s\">GitHub developer settings</a>. For more information, see "<a href=\"%s\">Creating a personal access token</a>".')
-        .format(tokenURL, tokenHelpURL);
+        let tokenText = Format.vprintf(
+            _('You can generate a new personal access token going to <a href=\"%s\">GitHub developer settings</a>. For more information, see "<a href=\"%s\">Creating a personal access token</a>".'),
+            [tokenURL, tokenHelpURL]
+        );
         tokenText += '\n\n';
         /* GitHub access token help */
         tokenText += _('Forge Sparks requirers a <b>classic</b> access token (for general use) with the <i>notifications</i> and <i>read:user</i> scopes granted.');

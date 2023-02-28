@@ -13,9 +13,6 @@ import Xdp from 'gi://Xdp?version=1.0';
 
 import Application from "./application.js";
 
-const Format = imports.format;
-String.prototype.format = Format.format;
-
 pkg.initGettext();
 
 GLib.set_application_name('Forge Sparks');
