@@ -130,7 +130,7 @@ export default class Forge {
      * Build a request URI from multiple parts
      * @param {String} host The URI host
      * @param {String} path The URI path
-     * @param {Object} query The URI query
+     * @param {Object.<string, string>} query The URI query
      * @returns {String} The resulting URI
      */
     static buildURI(host, path, query={}) {

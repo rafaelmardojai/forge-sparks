@@ -9,25 +9,30 @@ import { session } from './../util.js';
 
 
 /**
+ * Gitea implementation
+ * 
  * Gitea has a GitHub compatible API, so we can basically just derive from our
- * GitHub class and tweak the buildURI method.
+ * GitHub class and tweak some mothods.
  */
 export default class Gitea extends GitHub {
 
     static name = 'gitea';
 
-    static prettyName = 'Gitea / Forgejo';
+    static prettyName = 'Gitea';
 
     static allowInstances = true;
 
     static defaultURL = 'codeberg.org';
 
     static get tokenText() {
-        /* Gitea/Forgejo access token help */
-        return _('To generate a new access token from your Gitea/Forgejo instance go to Settings → Applications and generate a new token.');
+        /* Gitea access token help */
+        return _('To generate a new access token from your Gitea instance go to Settings → Applications and generate a new token.');
     }
 
     async markAsRead(id=null) {
+        /**
+         * Gitea differs from GitHub's markAsRead, params are url queries
+         */
         try {
             if (id != null) {
                 const url = this.buildURI(`/notifications/threads/${id}`);
@@ -53,6 +58,16 @@ export default class Gitea extends GitHub {
         }
     }
 
+    /**
+     * Build a request URI from multiple parts
+     * 
+     * This is a simplified version of Forge.buildURI with passed instance url
+     * set as host and api v1 prepended to path
+     * 
+     * @param {String} path The URI path
+     * @param {Object.<string, string>} query The URI query
+     * @returns {String} The resulting URI
+     */
     buildURI(path, query={}) {
         return Forge.buildURI(this.url, '/api/v1/' + path, query);
     }

@@ -195,6 +195,15 @@ export default class GitHub extends Forge {
         }
     }
 
+    /**
+     * Build a request URI from multiple parts
+     * 
+     * This is a simplified version of Forge.buildURI with Github API url set as host
+     * 
+     * @param {String} path The URI path
+     * @param {Object.<string, string>} query The URI query
+     * @returns {String} The resulting URI
+     */
     buildURI(path, query={}) {
         return Forge.buildURI(GITHUB_API, path, query);
     }

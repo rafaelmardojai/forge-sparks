@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 
+import Forgejo from './forgejo.js';
 import Gitea from './gitea.js';
 import GitHub from './github.js';
 
 export const FORGES = {
+    'forgejo': Forgejo,
     'gitea': Gitea,
     'github': GitHub,
 }

@@ -19,3 +19,4 @@ src/forges/index.js
 src/forges/gitea.js
 src/notificationRow.blp
 src/notificationRow.js
+src/forges/forgejo.js
