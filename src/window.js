@@ -23,7 +23,7 @@ export default class Window extends Adw.ApplicationWindow {
             Template,
             InternalChildren: [
                 'mainStack', 'spinner', 'headerbar', 'scrolled', 'emptyPicture',
-                'notificationsStack', 'notificationsList',
+                'setupPage', 'notificationsStack', 'notificationsList',
                 'markAsRead', 'markAsReadIcon', 'markAsReadSpinner',
             ],
         }, this);
@@ -41,6 +41,7 @@ export default class Window extends Adw.ApplicationWindow {
         /* Set app initial state */
         this._mainStack.set_visible_child_name('loading');
         this._spinner.start();
+        this._setupPage.icon_name = pkg.name;
         this._emptyPicture.set_resource(AllDone);
         this._scrolled.vadjustment.connect('value-changed', this._onScrollChanged.bind(this));
 
