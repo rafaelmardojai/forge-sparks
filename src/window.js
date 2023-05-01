@@ -149,7 +149,7 @@ export default class Window extends Adw.ApplicationWindow {
             this.model.prepend(notification);
 
             if (!notification.id in this.notified || this.notified[notification.id] != notification.updated_at) {
-                if (!this.is_active) {
+                if (!this.visible || !this.is_active) {
                     app.send_notification(`fs-${notification.id}`, notification.notification);
                 }
                 this.notified[notification.id] = notification.updated_at;
