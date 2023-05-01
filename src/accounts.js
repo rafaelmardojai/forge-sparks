@@ -7,6 +7,9 @@ import Secret from 'gi://Secret';
 
 import { settings } from './util.js';
 
+/*
+ * Secrets schema for saving accounts access tokens
+ */
 const SECRETS_SCHEMA = new Secret.Schema(
     pkg.name,
     Secret.SchemaFlags.NONE,
@@ -29,13 +32,15 @@ export default class AccountsManager extends GObject.Object {
     constructor() {
         super();
 
+        /* This class is a singleton, return instance if already exists */
         if (typeof AccountsManager.instance === 'object') {
             return AccountsManager.instance;
         }
 
-        this._accountsSettings = {};
-        this._accounts = [];
+        this._accountsSettings = {}; /* Store accessed account settings instances */
+        this._accounts = []; /* Private list storing the items of the list model */
 
+        /* Populate model with saved accounts */
         for (const id of this.getAccounts()) {
             this._accounts.push(new AccountObject(
                 {
@@ -47,24 +52,43 @@ export default class AccountsManager extends GObject.Object {
             ));
         }
 
+        /* Save new instance reference and return it */
         AccountsManager.instance = this;
         return this;
     }
 
+    /**
+     * Get list model stored item type
+     * 
+     * @returns {GType} The list model object type
+     */
     vfunc_get_item_type() {
         return AccountObject.$gtype;
     }
 
+    /**
+     * Get item from list model
+     * 
+     * @param {Number} position Position of the item to get
+     * @returns {AccountObject|null} The account object or null if not objects
+     * in the position
+     */
     vfunc_get_item(position) {
         return this._accounts[position] || null;
     }
 
+    /**
+     * Get number of items in list model
+     * 
+     * @returns {Number} The length of the list model
+     */
     vfunc_get_n_items() {
         return this._accounts.length;
     }
 
     /**
      * Gets the saved accounts
+     * 
      * @return {Array<String>} Accounts ids
      */
     getAccounts() {
@@ -73,6 +97,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * If the user has more than one account
+     * 
      * @return {Boolean} If true
      */
     isMultiple() {
@@ -81,20 +106,25 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Save a new account in the secrets service and app settings
+     * 
      * @param  {String} forge Account forge name
      * @param  {String} url Acount forge url
      * @param  {String} username Acount username
      * @param  {String} token Acount access token
+     * @throws Throws an error if failed adding the account to secrets
      * @return {String} The id of the new account
      */
     async saveAccount(forge, url, username, token) {
+        /* Account id for further identification */
         const id = GLib.uuid_string_random();
+        /* Attributes for the secret */
         const attributes = {
             'id': id,
         };
         const label = 'Access token for ' + url;
 
         try {
+            /* Try storing token on secrets service */
             const success = await Secret.password_store(
                 SECRETS_SCHEMA,
                 attributes,
@@ -105,19 +135,19 @@ export default class AccountsManager extends GObject.Object {
             );
 
             if (success) {
-                // Save account id in app settings
+                /* Save account id in app settings */
                 let accounts = settings.get_strv('accounts');
                 accounts.push(id);
                 settings.set_strv('accounts', accounts);
 
-                // Get account settings
-                const account_settings = this._getAccountSettings(id);
-                // Save initial values
-                account_settings.set_string('forge', forge);
-                account_settings.set_string('url', url);
-                account_settings.set_string('username', username);
+                /* Get account settings */
+                const accountSettings = this._getAccountSettings(id);
+                /* Save initial values */
+                accountSettings.set_string('forge', forge);
+                accountSettings.set_string('url', url);
+                accountSettings.set_string('username', username);
 
-                // Update ListModel
+                /* Update list model */
                 this._accounts.push(new AccountObject({ id, forge, url, username }));
                 this.items_changed(this._accounts.length - 1, 0, 1);
 
@@ -132,10 +162,12 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Update account in the secrets service and app settings
+     * 
      * @param  {String} id Account id
      * @param  {String} url Acount forge url
      * @param  {String} username Acount username
      * @param  {String} token Acount access token
+     * @throws Throws an error if failed updating the account from secrets
      * @return {Boolean} If the account was successfully updated
      */
     async updateAccount(id, url, username, token) {
@@ -156,14 +188,14 @@ export default class AccountsManager extends GObject.Object {
 
             /* Update settings */
             if (successRemove && successAdd) {
-                const account_settings = this._getAccountSettings(id);
-                account_settings.set_string('url', url);
-                account_settings.set_string('username', username);
+                const accountSettings = this._getAccountSettings(id);
+                accountSettings.set_string('url', url);
+                accountSettings.set_string('username', username);
 
                 return true;
             }
 
-            return false
+            return false;
         } catch (error) {
             throw error;
         }
@@ -171,7 +203,9 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Remove account from everywhere
+     * 
      * @param  {String} id Account id
+     * @throws Throws an error if failed removing the account from secrets
      * @return {Boolean} If the account was successfully removed
      */
     async removeAccount(id) {
@@ -201,18 +235,21 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Gets an account setting value
+     * 
      * @param {String} id Account id
      * @param {String} setting Setting name
      * @return {*} The setting value
      */
     getAccountSetting(id, setting) {
-        const account_settings = this._getAccountSettings(id);
-        return account_settings.get_string(setting);
+        const accountSettings = this._getAccountSettings(id);
+        return accountSettings.get_string(setting);
     }
 
     /**
      * Gets the account access token saved in the secrets service
+     * 
      * @param  {String} id Account id
+     * @throws Throws an error if failed getting the token from secrets
      * @return {String} The token
      */
     async getAccountToken(id) {
@@ -226,6 +263,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Gets the Gio.Settings instance for the account
+     * 
      * @param  {String} id Account id
      * @return {Gio.Settings} The instance of the account settings
      */
@@ -246,6 +284,7 @@ export default class AccountsManager extends GObject.Object {
     }
 }
 
+/* Object representing an account */
 export class AccountObject extends GObject.Object {
 
     static {
@@ -260,14 +299,27 @@ export class AccountObject extends GObject.Object {
         }, this);
     }
 
+    /* Create an AccountObject */
     constructor(constructProperties = {}) {
         super(constructProperties);
     }
 
+    /**
+     * Account display name
+     * 
+     * (username@instance.tld)
+     * 
+     * @type {String}
+     */
     get displayName() {
         return `${this._username}@${this._url}`;
     }
 
+    /**
+     * Account ID from app settings
+     *
+     * @type {String}
+     */
     get id() {
         if (this._id === undefined)
             this._id = null;
@@ -283,6 +335,11 @@ export class AccountObject extends GObject.Object {
         this.notify('id');
     }
 
+    /**
+     * Account forge name
+     *
+     * @type {String}
+     */
     get forge() {
         if (this._forge === undefined)
             this._forge = null;
@@ -298,6 +355,11 @@ export class AccountObject extends GObject.Object {
         this.notify('forge');
     }
 
+    /**
+     * Account server URL
+     *
+     * @type {String}
+     */
     get url() {
         if (this._url === undefined)
             this._url = null;
@@ -313,6 +375,11 @@ export class AccountObject extends GObject.Object {
         this.notify('url');
     }
 
+    /**
+     * Account username
+     *
+     * @type {String}
+     */
     get username() {
         if (this._username === undefined)
             this._username = null;
