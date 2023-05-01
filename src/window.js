@@ -6,7 +6,7 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
 import Template from './window.blp' assert { type: 'uri' };
-import AllDone from './assets/alldone.svg';
+import AllDoneIllustration from './assets/alldone.svg';
 import PreferencesWindow from './preferences.js';
 import NotificationsModel from './notificationsModel.js';
 import NotificationRow from './notificationRow.js';
@@ -14,8 +14,10 @@ import AccountsManager from './accounts.js';
 import { settings, requestBackground, setBackgroundStatus, relativeDate } from './util.js';
 import { FORGES, extractID } from './forges/index.js';
 
+/* Get the accounts manager singleton instance */
 const accounts = new AccountsManager();
 
+/* Main application window */
 export default class Window extends Adw.ApplicationWindow {
 
     static {
@@ -35,26 +37,29 @@ export default class Window extends Adw.ApplicationWindow {
     constructor(constructProperties = {}) {
         super(constructProperties);
 
-        this.forges = {}; // Store accounts forge instances
-        this.interval = 60; // Interval of the notifications requests
+        /* Store accounts forge instances */
+        this.forges = {};
+        /* Interval of the notifications requests, in seconds */
+        this.interval = 60;
 
         /* Set app initial state */
         this._mainStack.set_visible_child_name('loading');
         this._spinner.start();
         this._setupPage.icon_name = pkg.name;
-        this._emptyPicture.set_resource(AllDone);
+        this._emptyPicture.set_resource(AllDoneIllustration);
         this._scrolled.vadjustment.connect('value-changed', this._onScrollChanged.bind(this));
 
-        /* Check accounts removal */
+        /* Listen to accounts model changes */
         accounts.connect('items-changed', () => {
+            /* Show setup view if not accounts configured */
             if (accounts.get_n_items() == 0) {
                 this._mainStack.set_visible_child_name('setup');
             }
         });
 
-        /* Notifications model */
+        /* Setup notifications model */
         this.model = new NotificationsModel();
-        this.notified = {};
+        this.notified = {}; /* Store notifications {id: timestamp} that have been notified */
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
             if (this.model.get_n_items() > 0) {
                 this._notificationsStack.set_visible_child_name('list');
@@ -74,7 +79,7 @@ export default class Window extends Adw.ApplicationWindow {
             }),
         });
 
-        /* Bind sorted model to list box */
+        /* Bind sorted model to notifications list box */
         this._notificationsList.bind_model(model, this._createNotificationRow.bind(this));
 
         /* First run, background request */
@@ -86,18 +91,32 @@ export default class Window extends Adw.ApplicationWindow {
         }
     }
 
+    /**
+     * Make first app run setup
+     */
     async _firstRun() {
+        /* Ask for background permission to the portal */
         const result = await requestBackground(this, false);
+        /* Save result as the hide-on-close setting value.
+           We want this setting to be true by default if the portal request success */
         settings.set_boolean('hide-on-close', result);
+        /* Set first-run setting to true so we don't tun this code again */
         settings.set_boolean('first-run', true);
 
         /* Continue, subscribe to notifications */
         this.subscribe();
     }
 
+    /**
+     * Run notifications getter task.
+     * 
+     * This is a recursive function with a timeout set by $this.interval.
+     */
     async subscribe() {
+        /* If not accounts found, show setup view and return */
         if (!accounts.get_n_items()) {
             this._mainStack.set_visible_child_name('setup');
+            /* Re-call this function if the account model changes in the future */
             this._retryHandler = accounts.connect('items-changed', () => {
                 this.subscribe();
             });
@@ -108,10 +127,12 @@ export default class Window extends Adw.ApplicationWindow {
             accounts.disconnect(this._retryHandler);
         }
 
-        let newNotifications = [];
+        let newNotifications = []; /* List to store new notifications */
+        /* Loop accounts model */
         for (var i = 0; i < accounts.get_n_items(); i++) {
             const account = accounts.get_item(i);
 
+            /* Init a corresponding forge instance for the account if isn't yet */
             if (!(account.id in this.forges) || this.forges[account.id] == undefined) {
                 try {
                     const token = await accounts.getAccountToken(account.id);
@@ -119,49 +140,74 @@ export default class Window extends Adw.ApplicationWindow {
                         account.url, token, account.id, account.displayName
                     );
                 } catch (error) {
+                    /* TODO: Notify the user that this failed */
                     logError(error);
                 }
             }
 
+            /* Get notifications from forge */
             try {
                 let notifications = await this.forges[account.id].getNotifications(this);
                 newNotifications.push(...notifications);
             } catch (error) {
+                /* TODO: Notify the user that this failed */
                 logError(error);
             }
         }
 
+        /* Show new notifications */
         newNotifications.reverse();
         this.showNotifications(newNotifications);
 
+        /* Add timeout to run this function again */
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
             this.subscribe();
             return GLib.SOURCE_REMOVE;
         });
     }
 
+    /**
+     * Show notifications to the user
+     * 
+     * Updates notification model and sends desktop notifications
+     * 
+     * @param {Array<Notification>} notifications New notifications
+     */
     showNotifications(notifications) {
         const app = this.get_application();
 
-        this.model.clear(); // Clear list
+        this.model.clear(); /* Clear list */
 
+        /* Loop new notifications */
         for (const notification of notifications) {
-            this.model.prepend(notification);
+            this.model.prepend(notification); /* Add to model */
 
+            /* If notification hasn't been notified before or has changed since
+               last time, send desktop notification */
             if (!notification.id in this.notified || this.notified[notification.id] != notification.updated_at) {
+                /* Only send notifications id the window is hidden or not focused */
                 if (!this.visible || !this.is_active) {
                     app.send_notification(`fs-${notification.id}`, notification.notification);
                 }
+                /* Add notification id and timestamp to notified dict */
                 this.notified[notification.id] = notification.updated_at;
             }
         }
 
+        /* Stop loading view, and show notifications view */
         this._mainStack.set_visible_child_name('notifications');
         if (this._spinner.spinning) {
             this._spinner.stop();
         }
     }
 
+    /**
+     * Resolve a notification
+     * 
+     * Mark it as read and withdraw it from desktop inbox
+     * 
+     * @param {String} id  Notification ID
+     */
     async resolveNotification(id) {
         const app = this.get_application();
         /* Withdraw desktop notification */
@@ -171,12 +217,16 @@ export default class Window extends Adw.ApplicationWindow {
         const [account, notification] = extractID(id);
         const success = await this.forges[account].markAsRead(notification);
         if (success) {
-            /* Remove it from window list */
+            /* Remove it from list model */
             this.model.remove_by_id(id);
         }
     }
 
+    /**
+     * Mark all notifications as read
+     */
     async markAsReadAll() {
+        /* Set ongoing progress status */
         this._markAsRead.sensitive = false;
         this._notificationsList.sensitive = false;
         this._markAsReadIcon.set_visible_child_name('spinner');
@@ -187,19 +237,28 @@ export default class Window extends Adw.ApplicationWindow {
             try {
                 await this.forges[id].markAsRead();
             } catch (error) {
+                /* TODO: Notify the user that this failed */
                 logError(error);
             }
         }
 
-        this.model.clear();
+        this.model.clear(); /* Clear list model */
 
+        /* Revert ongoing progress status */
         this._markAsRead.sensitive = true;
         this._notificationsList.sensitive = true;
         this._markAsReadIcon.set_visible_child_name('icon');
         this._markAsReadSpinner.stop();
     }
 
+    /**
+     * Create a widget from a notification object
+     * 
+     * @param {Notification} notification The notification object
+     * @returns {Gtk.WIdget} The widget representing a notification 
+     */
     _createNotificationRow(notification) {
+        /* Create widget from notification values */
         const row = new NotificationRow({
             title: notification.title,
             repo: notification.repository,
@@ -209,11 +268,14 @@ export default class Window extends Adw.ApplicationWindow {
             state: notification.state,
         });
 
+        /* Show account name on widget */
         if (accounts.isMultiple()) {
             row.account = notification.account_name;
         }
 
+        /* Open link and mark as read when widget is activated */
         row.connect('activated', () => {
+            /* Set progress state on widget */
             row.progress = true;
             row.sensitive = false;
 
@@ -229,12 +291,23 @@ export default class Window extends Adw.ApplicationWindow {
         return row;
     }
 
+    /**
+     * Callback for when the windows is hidden
+     */
     _onWindowHide() {
         if (!this.visible) {
+            /* Set app background status */
             setBackgroundStatus();
         }
     }
 
+    /**
+     * Callback for when the windows scroll position changes
+     * 
+     * Toggles headerbar flat style
+     * 
+     * @param {Gtk.Adjustment} adjustment
+     */
     _onScrollChanged(adjustment) {
         if (adjustment.value > 0) {
             this._headerbar.remove_css_class('flat');
@@ -243,12 +316,17 @@ export default class Window extends Adw.ApplicationWindow {
         }
     }
 
+    /**
+     * Open preference window with new account view opened
+     * 
+     * Uses a timeout to show the view, so the user knows from where is coming
+     */
     _onNewAccount() {
-        const window = new PreferencesWindow({transient_for: this });
-        window.present();
+        const preferences = new PreferencesWindow({transient_for: this });
+        preferences.present();
 
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, 400, () => {
-            window._onOpenAddAccount();
+            preferences._onOpenAddAccount();
             return GLib.SOURCE_REMOVE;
         });
     }
