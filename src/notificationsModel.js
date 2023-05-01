@@ -5,6 +5,7 @@ import GObject from 'gi://GObject';
 
 import Notification from './notification.js';
 
+/* List model to store notifications */
 export default class NotificationsModel extends GObject.Object {
 
     static {
@@ -20,29 +21,34 @@ export default class NotificationsModel extends GObject.Object {
     constructor() {
         super();
 
-        /* Store notifications */
+        /* Private list to store notifications */
         this._notifications = [];
     }
 
     /**
-     * Get notifications GType
+     * Get list model stored item type
+     * 
+     * @returns {GType} The list model object type
      */
     vfunc_get_item_type() {
         return Notification.$gtype;
     }
 
     /**
-     * Get notification by given position
-     * @param {Number} position The position of the notification to get
-     * @returns {Notification}
+     * Get item from list model
+     * 
+     * @param {Number} position Position of the item to get
+     * @returns {Number|null} The notification object or null if not objects
+     * in the position
      */
     vfunc_get_item(position) {
         return this._notifications[position] || null;
     }
 
     /**
-     * Get the number of notifications in the model
-     * @returns {Number}
+     * Get number of items in list model
+     * 
+     * @returns {Number} The length of the list model
      */
     vfunc_get_n_items() {
         return this._notifications.length;
@@ -59,7 +65,8 @@ export default class NotificationsModel extends GObject.Object {
 
     /**
      * Prepend a new notification to the model
-     * @param {Notification} notification The notification to append
+     * 
+     * @param {Notification} notification The notification to prepend
      */
     prepend(notification) {
         this._notifications.unshift(notification);
@@ -68,6 +75,7 @@ export default class NotificationsModel extends GObject.Object {
 
     /**
      * Get a notifications by its ID
+     * 
      * @param {String} id The id of the notification to get
      * @returns {Notification}
      */
@@ -82,6 +90,7 @@ export default class NotificationsModel extends GObject.Object {
 
     /**
      * Remove a notifications by its ID
+     * 
      * @param {String} id The id of the notification to remove
      */
     remove_by_id(id) {

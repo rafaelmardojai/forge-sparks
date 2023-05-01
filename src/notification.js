@@ -14,6 +14,7 @@ import deniedIcon from './icons/merge-denied-symbolic.svg' assert { type: 'icon'
 import mergedIcon from './icons/merge-merged-symbolic.svg' assert { type: 'icon' };
 import discussionIcon from './icons/discussion-symbolic.svg' assert { type: 'icon' };
 
+/* Notification object class */
 export default class Notification extends GObject.Object {
 
     static {
@@ -23,13 +24,13 @@ export default class Notification extends GObject.Object {
                 'id': GObject.ParamSpec.string('id', null, null, GObject.ParamFlags.READWRITE, null),
                 'type': GObject.ParamSpec.string('type', null, null, GObject.ParamFlags.READWRITE, null),
                 'unread': GObject.ParamSpec.boolean('unread', null, null, GObject.ParamFlags.READWRITE, false),
-                'updated_at': GObject.ParamSpec.string('updated_at', null, null, GObject.ParamFlags.READWRITE, null),
+                'updated-at': GObject.ParamSpec.string('updated_at', null, null, GObject.ParamFlags.READWRITE, null),
                 'timestamp': GObject.ParamSpec.int64('timestamp', null, null, GObject.ParamFlags.READABLE, null),
                 'state': GObject.ParamSpec.string('state', null, null, GObject.ParamFlags.READWRITE, null),
                 'title': GObject.ParamSpec.string('title', null, null, GObject.ParamFlags.READWRITE, null),
                 'repository': GObject.ParamSpec.string('repository', null, null, GObject.ParamFlags.READWRITE, null),
                 'url': GObject.ParamSpec.string('url', null, null, GObject.ParamFlags.READWRITE, null),
-                'account_name': GObject.ParamSpec.string('account_name', null, null, GObject.ParamFlags.READWRITE, null)
+                'account-name': GObject.ParamSpec.string('account_name', null, null, GObject.ParamFlags.READWRITE, null)
             },
         }, this);
     }
@@ -43,7 +44,8 @@ export default class Notification extends GObject.Object {
 
     /**
      * Gio.Notification for the Notification
-     * @type {Gio.Notification} The notification
+     * 
+     * @type {Gio.Notification}
      */
     get notification() {
         const notification = new Gio.Notification();
@@ -77,7 +79,8 @@ export default class Notification extends GObject.Object {
 
     /**
      * Icon name for the Notification
-     * @type {String} The icon name
+     * 
+     * @type {String}
      */
     get iconName() {
         switch (this.type) {
@@ -105,6 +108,11 @@ export default class Notification extends GObject.Object {
         }
     }
 
+    /**
+     * Notification ID
+     * 
+     * @type {String}
+     */
     get id() {
         if (this._id === undefined)
             this._id = null;
@@ -120,52 +128,11 @@ export default class Notification extends GObject.Object {
         this.notify('id');
     }
 
-    get unread() {
-        return this._unread;
-    }
-
-    set unread(value) {
-        this._unread = value;
-        this.notify('unread');
-    }
-
-    get updated_at() {
-        if (this._updated_at === undefined)
-            this._updated_at = null;
-
-        return this._updated_at;
-    }
-
-    set updated_at(value) {
-        if (this._updated_at === value)
-            return;
-
-        this._updated_at = value;
-        this.notify('updated_at');
-    }
-
     /**
-     * Notification datetime
-     * @type {GLib.DateTime}
+     * Notification type
+     * 
+     * @type {String}
      */
-    get dateTime() {
-        if (this._dateTime === undefined)
-            this._dateTime = GLib.DateTime.new_from_iso8601(
-            this._updated_at,
-            GLib.TimeZone.new_utc()
-        );
-
-        return this._dateTime;
-    }
-
-    /**
-     * Notification timestamp
-     * @type {Number}
-     */
-    get timestamp() {
-        return this.dateTime.to_unix();
-    }
-
     get type() {
         if (this._type === undefined)
             this._type = null;
@@ -181,6 +148,69 @@ export default class Notification extends GObject.Object {
         this.notify('type');
     }
 
+    /**
+     * Notification unread state
+     * 
+     * @type {Boolean}
+     */
+    get unread() {
+        return this._unread;
+    }
+
+    set unread(value) {
+        this._unread = value;
+        this.notify('unread');
+    }
+
+    /**
+     * Notification updated at date in ISO 8601 format
+     * 
+     * @type {String}
+     */
+    get updatedAt() {
+        if (this._updatedAt === undefined)
+            this._updatedAt = null;
+
+        return this._updatedAt;
+    }
+
+    set updatedAt(value) {
+        if (this._updatedAt === value)
+            return;
+
+        this._updatedAt = value;
+        this.notify('updated-at');
+    }
+
+    /**
+     * Notification datetime
+     * 
+     * @type {GLib.DateTime}
+     */
+    get dateTime() {
+        if (this._dateTime === undefined)
+            this._dateTime = GLib.DateTime.new_from_iso8601(
+                this._updatedAt,
+                GLib.TimeZone.new_utc()
+            );
+
+        return this._dateTime;
+    }
+
+    /**
+     * Notification timestamp
+     * 
+     * @type {Number}
+     */
+    get timestamp() {
+        return this.dateTime.to_unix();
+    }
+
+    /**
+     * Notification state
+     * 
+     * @type {String}
+     */
     get state() {
         if (this._state === undefined)
             this._state = null;
@@ -196,6 +226,11 @@ export default class Notification extends GObject.Object {
         this.notify('state');
     }
 
+    /**
+     * Notification title
+     * 
+     * @type {String}
+     */
     get title() {
         if (this._title === undefined)
             this._title = null;
@@ -211,6 +246,11 @@ export default class Notification extends GObject.Object {
         this.notify('title');
     }
 
+    /**
+     * Notification repository name
+     * 
+     * @type {String}
+     */
     get repository() {
         if (this._repository === undefined)
             this._repository = null;
@@ -226,6 +266,11 @@ export default class Notification extends GObject.Object {
         this.notify('repository');
     }
 
+    /**
+     * Notification url
+     * 
+     * @type {String}
+     */
     get url() {
         if (this._url === undefined)
             this._url = null;
@@ -241,18 +286,23 @@ export default class Notification extends GObject.Object {
         this.notify('url');
     }
 
-    get account_name() {
-        if (this._account_name === undefined)
-            this._account_name = null;
+    /**
+     * Notification account name
+     * 
+     * @type {String}
+     */
+    get accountName() {
+        if (this._accountName === undefined)
+            this._accountName = null;
 
-        return this._account_name;
+        return this._accountName;
     }
 
-    set account_name(value) {
-        if (this._account_name === value)
+    set accountName(value) {
+        if (this._accountName === value)
             return;
 
-        this._account_name = value;
-        this.notify('account_name');
+        this._accountName = value;
+        this.notify('account-name');
     }
 };

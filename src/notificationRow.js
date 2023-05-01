@@ -7,6 +7,7 @@ import Gtk from 'gi://Gtk';
 
 import Template from './notificationRow.blp' assert { type: 'uri' };
 
+/* Widget representing a notification */
 export default class NotificationRow extends Gtk.ListBoxRow {
 
     static {
@@ -29,11 +30,12 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     }
 
     /**
-     * Crete a Window
+     * Crete a NotificationRow
      */
     constructor(constructProperties = {}) {
         super(constructProperties);
 
+        /* Add a css class to the icon depending on the notification state */
         switch (this.state) {
             case 'open':
                 this._icon.add_css_class('accent');
@@ -50,6 +52,12 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         }
     }
 
+    /**
+     * Callback for when the widget is set a parent
+     * 
+     * Make our row behave like a Adw.ActionRow, we can't derive from it because
+     * we need more control over the row layout.
+     */
     _onParent() {
         if (this.parent != null) {
             this.parent.connect('row-activated', (_list, row) => {
@@ -60,6 +68,11 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         }
     }
 
+    /**
+     * Notification title
+     * 
+     * @type {String}
+     */
     get title() {
         if (this._title === undefined)
             this._title = null;
@@ -75,6 +88,11 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         this.notify('title');
     }
 
+    /**
+     * Notification date
+     * 
+     * @type {String}
+     */
     get date() {
         if (this._date === undefined)
             this._date = null;
@@ -90,36 +108,11 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         this.notify('date');
     }
 
-    get state() {
-        if (this._state === undefined)
-            this._state = null;
-
-        return this._state;
-    }
-
-    set state(value) {
-        if (this._state === value)
-            return;
-
-        this._state = value;
-        this.notify('state');
-    }
-
-    get iconName() {
-        if (this._iconName === undefined)
-            this._iconName = null;
-
-        return this._iconName;
-    }
-
-    set iconName(value) {
-        if (this._iconName === value)
-            return;
-
-        this._iconName = value;
-        this.notify('icon-name');
-    }
-
+    /**
+     * Notification repository name
+     * 
+     * @type {String}
+     */
     get repo() {
         if (this._repo === undefined)
             this._repo = null;
@@ -135,6 +128,11 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         this.notify('repo');
     }
 
+    /**
+     * Notification account name
+     * 
+     * @type {String}
+     */
     get account() {
         if (this._account === undefined)
             this._account = null;
@@ -150,6 +148,51 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         this.notify('account');
     }
 
+    /**
+     * Notification state
+     * 
+     * @type {String}
+     */
+    get state() {
+        if (this._state === undefined)
+            this._state = null;
+
+        return this._state;
+    }
+
+    set state(value) {
+        if (this._state === value)
+            return;
+
+        this._state = value;
+        this.notify('state');
+    }
+
+    /**
+     * Notification icon name
+     * 
+     * @type {String}
+     */
+    get iconName() {
+        if (this._iconName === undefined)
+            this._iconName = null;
+
+        return this._iconName;
+    }
+
+    set iconName(value) {
+        if (this._iconName === value)
+            return;
+
+        this._iconName = value;
+        this.notify('icon-name');
+    }
+
+    /**
+     * Notification progress state
+     * 
+     * @type {Boolean}
+     */
     get progress() {
         return this._progress;
     }
@@ -158,6 +201,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         this._progress = value;
         this.notify('progress');
 
+        /* When is set to true, show spinner; when false, show icon */
         if (this._progress) {
             this._iconStack.set_visible_child_name('spinner');
             this._spinner.start();

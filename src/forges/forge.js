@@ -115,7 +115,8 @@ export default class Forge {
      * 
      * @param {String} method HTTP method for the message
      * @param {String} url URL for the message
-     * @param {Object} headers HTTP headers for the message
+     * @param {Object} data Request body data
+     * @param {Object.<string, string>} headers HTTP headers for the message
      * @returns {Soup.Message}
      */
     createMessage(method, url, data={}, headers={}) {

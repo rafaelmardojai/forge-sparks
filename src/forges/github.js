@@ -76,7 +76,7 @@ export default class GitHub extends Forge {
                     id: super.formatID(item.id),
                     type: item.subject.type,
                     unread: item.unread,
-                    updated_at: ('updated_at' in info) ? info.updated_at : item.updated_at,
+                    updatedAt: ('updated_at' in info) ? info.updated_at : item.updated_at,
                     title: item.subject.title,
                     repository: item.repository.full_name,
                     url: info.url,

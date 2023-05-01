@@ -184,13 +184,13 @@ export default class Window extends Adw.ApplicationWindow {
 
             /* If notification hasn't been notified before or has changed since
                last time, send desktop notification */
-            if (!notification.id in this.notified || this.notified[notification.id] != notification.updated_at) {
+            if (!notification.id in this.notified || this.notified[notification.id] != notification.updatedAt) {
                 /* Only send notifications id the window is hidden or not focused */
                 if (!this.visible || !this.is_active) {
                     app.send_notification(`fs-${notification.id}`, notification.notification);
                 }
                 /* Add notification id and timestamp to notified dict */
-                this.notified[notification.id] = notification.updated_at;
+                this.notified[notification.id] = notification.updatedAt;
             }
         }
 
@@ -270,7 +270,7 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Show account name on widget */
         if (accounts.isMultiple()) {
-            row.account = notification.account_name;
+            row.account = notification.accountName;
         }
 
         /* Open link and mark as read when widget is activated */
