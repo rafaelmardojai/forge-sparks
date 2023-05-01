@@ -9,18 +9,33 @@ import { gettext as _, ngettext } from 'gettext';
 
 const Format = imports.format;
 
+/*
+ * App Settings instance
+ */
 export const settings = new Gio.Settings({
     schema_id: pkg.name,
     path: '/com/mardojai/ForgeSparks/',
 });
 
+/*
+ * Soup Session instance for all app requests
+ */
 export const session = new Soup.Session();
 session.set_user_agent(`Forge Sparks v${pkg.version}`);
 
+/*
+ * Desktop Portal instance
+ */
 export const portal = new Xdp.Portal();
 
+/**
+ * Request background portal
+ * @param {Gtk.window} window The window making the request
+ * @param {Boolean} autostart If autostart should be requested as well
+ * @returns {Boolean} If request was successful
+ */
 export function requestBackground(window, autostart=false) {
-    /* Try getting parent */
+    /* Try getting parent from window */
     let parent = null;
     try {
         //parent = XdpGtk4.parent_new_gtk(window);
@@ -50,6 +65,10 @@ export function requestBackground(window, autostart=false) {
     });
 }
 
+/**
+ * Set background status message
+ * @param {String} message
+ */
 export function setBackgroundStatus(message=_('Looking for new notifications.')) {
     if (typeof portal.set_background_status === 'function') {
         portal.set_background_status(message, null, (_portal, result) => {
