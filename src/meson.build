@@ -35,3 +35,5 @@ configure_file(
   install: true,
   install_dir: pkgdatadir
 )
+
+subdir('icons')

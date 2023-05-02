@@ -49,7 +49,7 @@ export default class Notification extends GObject.Object {
      */
     get notification() {
         const notification = new Gio.Notification();
-        const icon = new Gio.ThemedIcon({name: 'info-symbolic'});
+        const icon = new Gio.ThemedIcon({name: `${pkg.name}-${this.iconName}`});
 
         notification.set_title(this.title);
         notification.set_body(this.repository);
