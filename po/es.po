@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-01 23:37-0500\n"
-"PO-Revision-Date: 2023-05-02 04:35+0000\n"
+"PO-Revision-Date: 2023-05-03 04:48+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/es/>\n"
@@ -72,7 +72,6 @@ msgid "No Accounts"
 msgstr "Sin cuentas"
 
 #: src/window.blp:58
-#, fuzzy
 msgid "Please add an account in the app preferences."
 msgstr "Por favor, añade una cuenta en las preferencias de la aplicación."
 
@@ -277,7 +276,6 @@ msgstr ""
 
 #. GitHub access token help
 #: src/forges/github.js:35
-#, fuzzy
 msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
