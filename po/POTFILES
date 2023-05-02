@@ -8,7 +8,6 @@ src/window.js
 src/application.js
 src/main.js
 src/gtk/help-overlay.blp
-src/preferences.js.blp
 src/accounts.js
 src/preferences.js
 src/preferences.blp

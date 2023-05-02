@@ -96,29 +96,34 @@ export function relativeDate(date) {
         }
         else if (minutes < 60) {
             return Format.vprintf(
+                /* Translators: relative date */
                 ngettext('%d minute ago', '%d minutes ago', minutes), [minutes]
             );
         }
         else if (minutes < 1440) {
             const hours = Math.round(minutes / 60);
             return Format.vprintf(
+                /* Translators: relative date */
                 ngettext('%d hour ago', '%d hours ago', hours), [hours]
             );
         }
         else if (minutes < 10080) {
             const days = Math.round(minutes / 1440);
             return Format.vprintf(
+                /* Translators: relative date */
                 ngettext('yesterday', '%d days ago', days), [days]
             );
         }
         else if (minutes < 40320) {
             const weeks = Math.round(minutes / 10080);
             return Format.vprintf(
+                /* Translators: relative date */
                 ngettext('%d week ago', '%d weeks ago', weeks), [weeks]
             );
         }
         else if (now.get_year() === date.get_year()) {
-            const formattedDate = date.format('%d %b');
+            const formattedDate = date.format('%b %d');
+            /* Translators: relative date, %s is date formatted as "May 01, 2022" */
             return Format.vprintf(_('on %s'), [formattedDate]);
         }
         else {
