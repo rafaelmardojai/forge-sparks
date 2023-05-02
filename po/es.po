@@ -8,97 +8,100 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-01 22:50-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-05-02 04:35+0000\n"
+"Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml:7 src/window.blp:33
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml:8 src/application.js:121
 msgid "Get git forges notifications"
-msgstr ""
+msgstr "Recibe notificaciones de forjas git"
 
 #: data/com.mardojai.ForgeSparks.desktop:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notificaciones;"
 
 #: data/com.mardojai.ForgeSparks.gschema.xml:16
 msgid "Window size"
-msgstr ""
+msgstr "Tamaño de la ventana"
 
 #: data/com.mardojai.ForgeSparks.gschema.xml:17
 msgid "Window size (width and height)."
-msgstr ""
+msgstr "Tamaño de la ventana (anchura y altura)."
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml:14
 msgid "Rafael Mardojai CM"
-msgstr ""
+msgstr "Rafael Mardojai CM"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr ""
+"Sencilla aplicación notificadora compatible con Github, Gitea y Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Preferencias"
 
 #: src/window.blp:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "Atajos del _teclado"
 
 #: src/window.blp:18
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Acerca de Forge Sparks"
 
 #: src/window.blp:25
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: src/window.blp:57 src/preferences.blp:60
 msgid "No Accounts"
-msgstr ""
+msgstr "Sin cuentas"
 
 #: src/window.blp:58
 msgid "Plase add an account in the app preferences."
-msgstr ""
+msgstr "Por favor, añade una cuenta en las preferencias de la aplicación."
 
 #: src/window.blp:62
 msgid "Open Preferences"
-msgstr ""
+msgstr "Abrir Preferencias"
 
 #: src/window.blp:135
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Marcar como leído"
 
 #: src/window.blp:164
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "No hay notificaciones que mostrar"
 
 #: src/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Marcar como leído"
 
 #: src/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Mostrar Forge Sparks"
 
 #: src/util.js:50
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Permitir ejecutar Forge Sparks en segundo plano."
 
 #: src/util.js:50
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Permitir la ejecución de Forge Sparks al inicio."
 
 #. *
 #. * Set background status message
@@ -106,158 +109,158 @@ msgstr ""
 #.
 #: src/util.js:73
 msgid "Looking for new notifications."
-msgstr ""
+msgstr "Buscando nuevas notificaciones."
 
 #: src/util.js:95 src/util.js:136
 msgid "now"
-msgstr ""
+msgstr "ahora"
 
 #. Translators: relative date
 #: src/util.js:100
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "hace %d minuto"
+msgstr[1] "hace %d minutos"
 
 #. Translators: relative date
 #: src/util.js:107
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "hace %d hora"
+msgstr[1] "hace %d horas"
 
 #. Translators: relative date
 #: src/util.js:114
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ayer"
+msgstr[1] "hace %d días"
 
 #. Translators: relative date
 #: src/util.js:121
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "hace %d semana"
+msgstr[1] "hace %d semanas"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:127 src/util.js:131
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "en %s"
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:119
 msgid "translator-credits"
-msgstr ""
+msgstr "Rafael Mardojai CM"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Abrir menú"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Atajos del teclado"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: src/preferences.js:95
 msgid "The request failed."
-msgstr ""
+msgstr "La solicitud ha fallado."
 
 #: src/preferences.js:124
 msgid "The autostart request failed."
-msgstr ""
+msgstr "La solicitud de autoarranque falló."
 
 #: src/preferences.js:278 src/preferences.js:315
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Url de instancia no válida."
 
 #: src/preferences.js:334
 msgid "Couldn't authenticate the account"
-msgstr ""
+msgstr "No se ha podido autenticar la cuenta"
 
 #: src/preferences.js:336
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Error inesperado al crear la cuenta"
 
 #: src/preferences.js:367
 msgid "New account added successfully!"
-msgstr ""
+msgstr "¡Nueva cuenta añadida con éxito!"
 
 #: src/preferences.js:413
 msgid "Account edited successfully!"
-msgstr ""
+msgstr "¡Cuenta editada con éxito!"
 
 #: src/preferences.js:431
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Error inesperado al eliminar la cuenta"
 
 #: src/preferences.blp:13
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/preferences.blp:16
 msgid "Keep running on background"
-msgstr ""
+msgstr "Seguir funcionando en segundo plano"
 
 #: src/preferences.blp:23
 msgid "Run on startup"
-msgstr ""
+msgstr "Ejecutar al inicio"
 
 #: src/preferences.blp:35
 msgid "Accounts"
-msgstr ""
+msgstr "Cuentas"
 
 #: src/preferences.blp:44
 msgid "Add Account…"
-msgstr ""
+msgstr "Agregar cuenta…"
 
 #: src/preferences.blp:89
 msgid "Add Account"
-msgstr ""
+msgstr "Agregar cuenta"
 
 #: src/preferences.blp:100
 msgid "Add"
-msgstr ""
+msgstr "Agregar"
 
 #: src/preferences.blp:115
 msgid "Forge"
-msgstr ""
+msgstr "Forja"
 
 #: src/preferences.blp:121 src/preferences.blp:177
 msgid "Instance URL"
-msgstr ""
+msgstr "URL de la instancia"
 
 #: src/preferences.blp:128 src/preferences.blp:184
 msgid "Access Token"
-msgstr ""
+msgstr "Token de acceso"
 
 #: src/preferences.blp:151
 msgid "Edit Account"
-msgstr ""
+msgstr "Editar cuenta"
 
 #: src/preferences.blp:162
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: src/preferences.blp:199
 msgid "Remove Account"
-msgstr ""
+msgstr "Eliminar cuenta"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -266,6 +269,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Puedes generar un nuevo token de acceso personal yendo a la <a href=\"%s\""
+">configuración de desarrollador de GitHub</a>. Para más información, "
+"consulta \"<a href=\"%s\">Crear un token de acceso personal</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -273,6 +279,8 @@ msgid ""
 "Forge Sparks requirers a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks requiere un token de acceso <b>classic</b> (para uso general) "
+"con los ámbitos de <i>notifications</i> y <i>read:user</i> concedidos."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -280,6 +288,8 @@ msgid ""
 "To generate a new access token from your Gitea instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Para generar un nuevo token de acceso desde tu instancia de Gitea ve a "
+"Configuración → Aplicaciones y genera un nuevo token."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
@@ -287,3 +297,5 @@ msgid ""
 "To generate a new access token from your Forgejo instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Para generar un nuevo token de acceso desde su instancia de Forgejo vaya a "
+"Configuración → Aplicaciones y genere un nuevo token."
