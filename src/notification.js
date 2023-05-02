@@ -63,16 +63,16 @@ export default class Notification extends GObject.Object {
             )
         );
 
-        const hidden = !Gtk.Application.get_default().get_active_window().visible
-        if (hidden) {
-            notification.add_button(_('Show Forge Sparks'), 'app.activate');
-        }
-
         notification.add_button_with_target(
             _('Mark as Read'),
             'app.mark-read',
             GLib.Variant.new_string(this.id)
         );
+
+        const hidden = !Gtk.Application.get_default().get_active_window().visible
+        if (hidden) {
+            notification.add_button(_('Show Forge Sparks'), 'app.activate');
+        }
 
         return notification;
     }
