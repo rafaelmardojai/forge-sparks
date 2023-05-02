@@ -46,6 +46,13 @@ meson builddir --prefix=/usr/local
 sudo ninja -C builddir install
 ```
 
+## Translations
+Forge Sparks is translated into several languages. If your language is missing or incomplete, please help to [translate Forge Sparks in Weblate](https://hosted.weblate.org/engage/forge-sparks/).
+
+<a href="https://hosted.weblate.org/engage/forge-sparks/">
+<img src="https://hosted.weblate.org/widgets/forge-sparks/-/forge-sparks/horizontal-auto.svg" alt="Translation status" />
+</a>
+
 ## Credits
 Developed by **[Rafael Mardojai CM](https://mardojai.com)** and [contributors](https://github.com/rafaelmardojai/forge-sparks/graphs/contributors).
 
