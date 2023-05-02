@@ -38,7 +38,8 @@ export function requestBackground(window, autostart=false) {
     /* Try getting parent from window */
     let parent = null;
     try {
-        //parent = XdpGtk4.parent_new_gtk(window);
+        /* parent = XdpGtk4.parent_new_gtk(window); */
+        /* gdk_wayland_toplevel_export_handle: assertion 'GDK_IS_WAYLAND_TOPLEVEL (toplevel)' failed */
     } catch (error) {
         logError(error);
     }
