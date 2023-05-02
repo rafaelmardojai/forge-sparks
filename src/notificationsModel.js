@@ -64,13 +64,13 @@ export default class NotificationsModel extends GObject.Object {
     }
 
     /**
-     * Prepend a new notification to the model
+     * Append a new notification to the model
      * 
-     * @param {Notification} notification The notification to prepend
+     * @param {Notification} notification The notification to append
      */
-    prepend(notification) {
-        this._notifications.unshift(notification);
-        this.items_changed(0, 0, 1);
+    append(notification) {
+        this._notifications.push(notification);
+        this.items_changed(this._notifications.length - 1, 0, 1);
     }
 
     /**

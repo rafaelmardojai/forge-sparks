@@ -71,7 +71,7 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Sort the model by timestamp */
         const expression = new Gtk.PropertyExpression(this.model.get_item_type(), null, 'timestamp');
-        const model = new Gtk.SortListModel({
+        this.sortedModel = new Gtk.SortListModel({
             model: this.model,
             sorter: new Gtk.NumericSorter({
                 expression: expression,
@@ -80,7 +80,7 @@ export default class Window extends Adw.ApplicationWindow {
         });
 
         /* Bind sorted model to notifications list box */
-        this._notificationsList.bind_model(model, this._createNotificationRow.bind(this));
+        this._notificationsList.bind_model(this.sortedModel, this._createNotificationRow.bind(this));
 
         /* First run, background request */
         if (!settings.get_boolean('first-run')) {
@@ -156,7 +156,6 @@ export default class Window extends Adw.ApplicationWindow {
         }
 
         /* Show new notifications */
-        newNotifications.reverse();
         this.showNotifications(newNotifications);
 
         /* Add timeout to run this function again */
@@ -178,20 +177,26 @@ export default class Window extends Adw.ApplicationWindow {
 
         this.model.clear(); /* Clear list */
 
-        /* Loop new notifications */
+        /* Loop new notifications and populate the model */
         for (const notification of notifications) {
-            this.model.prepend(notification); /* Add to model */
+            this.model.append(notification);
+        }
 
-            /* If notification hasn't been notified before or has changed since
-               last time, send desktop notification */
-            if (!notification.id in this.notified || this.notified[notification.id] != notification.updatedAt) {
-                /* Only send notifications id the window is hidden or not focused */
-                if (!this.visible || !this.is_active) {
+        /* Loop sorted notifications model, so we can show them on order */
+        for (var i = 0; i < this.sortedModel.get_n_items(); i++) {
+            const notification = this.sortedModel.get_item(i);
+
+            /* Only send notifications if the window is hidden or not focused */
+            if (!this.visible || !this.is_active) {
+                /* If notification hasn't been notified before or has changed
+                   since last time, send desktop notification */
+                if (!notification.id in this.notified || this.notified[notification.id] != notification.updatedAt) {
                     app.send_notification(`fs-${notification.id}`, notification.notification);
                 }
-                /* Add notification id and timestamp to notified dict */
-                this.notified[notification.id] = notification.updatedAt;
             }
+
+            /* Add notification id and timestamp to notified dict */
+            this.notified[notification.id] = notification.updatedAt;
         }
 
         /* Stop loading view, and show notifications view */
