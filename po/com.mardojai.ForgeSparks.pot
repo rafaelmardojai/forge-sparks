@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 22:50-0500\n"
+"POT-Creation-Date: 2023-05-01 23:37-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgid "No Accounts"
 msgstr ""
 
 #: src/window.blp:58
-msgid "Plase add an account in the app preferences."
+msgid "Please add an account in the app preferences."
 msgstr ""
 
 #: src/window.blp:62
@@ -271,7 +271,7 @@ msgstr ""
 #. GitHub access token help
 #: src/forges/github.js:35
 msgid ""
-"Forge Sparks requirers a <b>classic</b> access token (for general use) with "
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
 

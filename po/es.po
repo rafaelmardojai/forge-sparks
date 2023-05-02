@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 22:50-0500\n"
+"POT-Creation-Date: 2023-05-01 23:37-0500\n"
 "PO-Revision-Date: 2023-05-02 04:35+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
@@ -72,7 +72,8 @@ msgid "No Accounts"
 msgstr "Sin cuentas"
 
 #: src/window.blp:58
-msgid "Plase add an account in the app preferences."
+#, fuzzy
+msgid "Please add an account in the app preferences."
 msgstr "Por favor, añade una cuenta en las preferencias de la aplicación."
 
 #: src/window.blp:62
@@ -269,14 +270,16 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
-"Puedes generar un nuevo token de acceso personal yendo a la <a href=\"%s\""
-">configuración de desarrollador de GitHub</a>. Para más información, "
-"consulta \"<a href=\"%s\">Crear un token de acceso personal</a>\"."
+"Puedes generar un nuevo token de acceso personal yendo a la <a "
+"href=\"%s\">configuración de desarrollador de GitHub</a>. Para más "
+"información, consulta \"<a href=\"%s\">Crear un token de acceso personal</"
+"a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
+#, fuzzy
 msgid ""
-"Forge Sparks requirers a <b>classic</b> access token (for general use) with "
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
 "Forge Sparks requiere un token de acceso <b>classic</b> (para uso general) "

@@ -32,7 +32,7 @@ export default class GitHub extends Forge {
         );
         tokenText += '\n\n';
         /* GitHub access token help */
-        tokenText += _('Forge Sparks requirers a <b>classic</b> access token (for general use) with the <i>notifications</i> and <i>read:user</i> scopes granted.');
+        tokenText += _('Forge Sparks requires a <b>classic</b> access token (for general use) with the <i>notifications</i> and <i>read:user</i> scopes granted.');
 
         return tokenText;
     }
