@@ -8,98 +8,100 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-01 23:37-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-05-04 12:50+0000\n"
+"Last-Translator: Dan <denqwerta@gmail.com>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml:7 src/window.blp:33
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml:8 src/application.js:121
 msgid "Get git forges notifications"
-msgstr ""
+msgstr "Отримувати сповіщення git forges"
 
 #: data/com.mardojai.ForgeSparks.desktop:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;сповіщення;"
 
 #: data/com.mardojai.ForgeSparks.gschema.xml:16
 msgid "Window size"
-msgstr ""
+msgstr "Розмір вікна"
 
 #: data/com.mardojai.ForgeSparks.gschema.xml:17
 msgid "Window size (width and height)."
-msgstr ""
+msgstr "Розмір вікна (ширина та висота)."
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml:14
 msgid "Rafael Mardojai CM"
-msgstr ""
+msgstr "Rafael Mardojai CM"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
-msgstr ""
+msgstr "Простий застосунок-сповіщувач з підтримкою Github, Gitea та Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Налаштування"
 
 #: src/window.blp:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Комбінації клавіш"
 
 #: src/window.blp:18
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Про Forge Sparks"
 
 #: src/window.blp:25
 msgid "Quit"
-msgstr ""
+msgstr "Вийти"
 
 #: src/window.blp:57 src/preferences.blp:60
 msgid "No Accounts"
-msgstr ""
+msgstr "Немає облікових записів"
 
 #: src/window.blp:58
 msgid "Please add an account in the app preferences."
-msgstr ""
+msgstr "Будь ласка, додайте обліковий запис у параметрах застосунку."
 
 #: src/window.blp:62
 msgid "Open Preferences"
-msgstr ""
+msgstr "Відкрити Налаштування"
 
 #: src/window.blp:135
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Позначити все як прочитане"
 
 #: src/window.blp:164
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Немає сповіщень для показу"
 
 #: src/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Відзначити як прочитане"
 
 #: src/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Показати Forge Sparks"
 
 #: src/util.js:50
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Дозволити запуск Forge Sparks у фоновому режимі."
 
 #: src/util.js:50
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Дозволити запуск Forge Sparks під час запуску."
 
 #. *
 #. * Set background status message
@@ -107,158 +109,162 @@ msgstr ""
 #.
 #: src/util.js:73
 msgid "Looking for new notifications."
-msgstr ""
+msgstr "Шукаю нові сповіщення."
 
 #: src/util.js:95 src/util.js:136
 msgid "now"
-msgstr ""
+msgstr "зараз"
 
 #. Translators: relative date
 #: src/util.js:100
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d хвилину тому"
+msgstr[1] "%d хвилини тому"
+msgstr[2] "%d хвилин тому"
 
 #. Translators: relative date
 #: src/util.js:107
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d годину тому"
+msgstr[1] "%d години тому"
+msgstr[2] "%d годин тому"
 
 #. Translators: relative date
 #: src/util.js:114
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Вчора"
+msgstr[1] "%d дні тому"
+msgstr[2] "%d днів тому"
 
 #. Translators: relative date
 #: src/util.js:121
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d тиждень тому"
+msgstr[1] "%d тижні тому"
+msgstr[2] "%d тижнів тому"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:127 src/util.js:131
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "на %s"
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:119
 msgid "translator-credits"
-msgstr ""
+msgstr "kefir2105"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Відкрити меню"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Комбінації клавіш"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Вийти"
 
 #: src/preferences.js:95
 msgid "The request failed."
-msgstr ""
+msgstr "Запит не виконано."
 
 #: src/preferences.js:124
 msgid "The autostart request failed."
-msgstr ""
+msgstr "Запит на автозапуск не вдалося виконати."
 
 #: src/preferences.js:278 src/preferences.js:315
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Недійсна URL-адреса екземпляра."
 
 #: src/preferences.js:334
 msgid "Couldn't authenticate the account"
-msgstr ""
+msgstr "Не вдалося автентифікувати обліковий запис"
 
 #: src/preferences.js:336
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Неочікувана помилка при створенні облікового запису"
 
 #: src/preferences.js:367
 msgid "New account added successfully!"
-msgstr ""
+msgstr "Новий обліковий запис успішно додано!"
 
 #: src/preferences.js:413
 msgid "Account edited successfully!"
-msgstr ""
+msgstr "Обліковий запис успішно відредаговано!"
 
 #: src/preferences.js:431
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Несподівана помилка видалення облікового запису"
 
 #: src/preferences.blp:13
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 #: src/preferences.blp:16
 msgid "Keep running on background"
-msgstr ""
+msgstr "Продовжити працювати у фоновому режимі"
 
 #: src/preferences.blp:23
 msgid "Run on startup"
-msgstr ""
+msgstr "Запустити під час запуску"
 
 #: src/preferences.blp:35
 msgid "Accounts"
-msgstr ""
+msgstr "Облікові записи"
 
 #: src/preferences.blp:44
 msgid "Add Account…"
-msgstr ""
+msgstr "Додати обліковий запис…"
 
 #: src/preferences.blp:89
 msgid "Add Account"
-msgstr ""
+msgstr "Додати обліковий запис"
 
 #: src/preferences.blp:100
 msgid "Add"
-msgstr ""
+msgstr "Додати"
 
 #: src/preferences.blp:115
 msgid "Forge"
-msgstr ""
+msgstr "Forge"
 
 #: src/preferences.blp:121 src/preferences.blp:177
 msgid "Instance URL"
-msgstr ""
+msgstr "URL-адреса екземпляра"
 
 #: src/preferences.blp:128 src/preferences.blp:184
 msgid "Access Token"
-msgstr ""
+msgstr "Токен доступу"
 
 #: src/preferences.blp:151
 msgid "Edit Account"
-msgstr ""
+msgstr "Редагувати обліковий запис"
 
 #: src/preferences.blp:162
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 #: src/preferences.blp:199
 msgid "Remove Account"
-msgstr ""
+msgstr "Видалити обліковий запис"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -267,6 +273,10 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Ви можете згенерувати новий персональний токен доступу, перейшовши за "
+"посиланням <a href=\"%s\">Налаштування розробника GitHub</a>. Для отримання "
+"додаткової інформації див. \"<a href=\"%s\">Створення персонального токена "
+"доступу</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -274,6 +284,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks потребує <b>класичного токену доступу</b> (для загального "
+"використання) з дозволеними <i>сповіщеннями</i> та <i>read:user</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -281,6 +293,8 @@ msgid ""
 "To generate a new access token from your Gitea instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Щоб згенерувати новий токен доступу для вашого екземпляра Gitea, перейдіть "
+"до Налаштування → Застосунки та згенеруйте новий токен."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
@@ -288,3 +302,5 @@ msgid ""
 "To generate a new access token from your Forgejo instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Щоб згенерувати новий токен доступу для вашого екземпляра Forgejo, перейдіть "
+"до Налаштування → Застосунки та згенеруйте новий токен."
