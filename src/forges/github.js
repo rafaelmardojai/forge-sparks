@@ -63,10 +63,10 @@ export default class GitHub extends Forge {
         try {
             const url = this.buildURI('notifications');
             const message = super.createMessage('GET', url);
-            // message.request_headers.append('If-Modified-Since', this.modifiedSince);
+            /* headers={'If-Modified-Since': this.modifiedSince} */
 
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            // const headers = message.response_headers;
+            /* const headers = message.response_headers; */
             const contents = super.readContents(bytes);
             let notifications = [];
 
@@ -88,82 +88,10 @@ export default class GitHub extends Forge {
                 notifications.push(notification);
             }
 
-            // this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince;
-            log('Response resulted in ' + message.get_status());
+            /* this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince; */
+            log('Notifications response resulted in ' + message.get_status());
 
             return notifications;
-        } catch (e) {
-            throw e;
-        }
-    }
-
-    async _getSubjectInfo(notification) {
-        const info = {};
-        if (
-            notification.subject.type === 'RepositoryInvitation' ||
-            notification.subject.type === 'RepositoryVulnerabilityAlert' ||
-            !notification.subject.url
-        ) {
-            switch (notification.subject.type) {
-                case 'RepositoryInvitation':
-                    info.url = `${notification.repository.html_url}/invitations`;
-                    break;
-                case 'RepositoryVulnerabilityAlert':
-                    info.url = `${notification.repository.html_url}/network/dependencies`;
-                    break;
-                case 'RepositoryDependabotAlertsThread':
-                    info.url = `${notification.repository.html_url}/security/dependabot`;
-                    break;
-                case 'CheckSuite':
-                    info.url = `${notification.repository.html_url}/actions`;
-                    break;
-                case 'Discussion':
-                    info.url = `${notification.repository.html_url}/discussions`;
-                    break;
-                default:
-            }
-            return info;
-        }
-
-        try {
-            const message = super.createMessage('GET', notification.subject.url);
-            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            const contents = super.readContents(bytes);
-            info.state = contents.state
-            //info.updated_at = contents.updated_at
-            info.url = contents.html_url
-
-            if (notification.subject.type === 'PullRequest') {
-                if (contents.draft) {
-                    info.state = 'draft';
-                }
-                if (contents.state == 'closed' && contents.merged_at == null) {
-                    info.state = 'denied';
-                }
-            }
-
-            if (notification.reason != 'subscribed') {
-                if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {
-                    const url = await this._getCommentURL(notification.subject.latest_comment_url);
-                    if (url) {
-                        info.url = url
-                    }
-                }
-            }
-
-            return info;
-        } catch (e) {
-            throw e;
-        }
-    }
-
-    async _getCommentURL(url) {
-        try {
-            const message = super.createMessage('GET', url);
-            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            const contents = super.readContents(bytes);
-
-            return contents.html_url;
         } catch (e) {
             throw e;
         }
@@ -190,6 +118,102 @@ export default class GitHub extends Forge {
                 /* If Accepted or Reset-Content */
                 return message.get_status() == '202' || message.get_status() == '205';
             }
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Get extra info from the notification subject
+     * 
+     * @param {Object} notification The notification object from the response JSON
+     * @throws Throws an error if failed making the request or reading the data 
+     * @returns {Object.<string, string>} The object with the info
+     */
+    async _getSubjectInfo(notification) {
+        const info = {}; /* Here we'll store the info */
+
+        /* Early return for subjects that doesn't have the data that we want */
+        if (
+            notification.subject.type === 'RepositoryInvitation' ||
+            notification.subject.type === 'RepositoryVulnerabilityAlert' ||
+            !notification.subject.url
+        ) {
+            switch (notification.subject.type) {
+                case 'RepositoryInvitation':
+                    info.url = `${notification.repository.html_url}/invitations`;
+                    break;
+                case 'RepositoryVulnerabilityAlert':
+                    info.url = `${notification.repository.html_url}/network/dependencies`;
+                    break;
+                case 'RepositoryDependabotAlertsThread':
+                    info.url = `${notification.repository.html_url}/security/dependabot`;
+                    break;
+                case 'CheckSuite':
+                    info.url = `${notification.repository.html_url}/actions`;
+                    break;
+                case 'Discussion':
+                    /* https://github.com/orgs/community/discussions/15252 */
+                    info.url = `${notification.repository.html_url}/discussions`;
+                    break;
+                default:
+            }
+            return info;
+        }
+
+        /* Request the notification subject info from API  */
+        try {
+            const message = super.createMessage('GET', notification.subject.url);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents(bytes);
+            info.state = contents.state
+            /* info.updated_at = contents.updated_at */
+            info.url = contents.html_url
+
+            /* Get pull request state */
+            if (notification.subject.type === 'PullRequest') {
+                if (contents.draft) {
+                    info.state = 'draft';
+                }
+                if (contents.state == 'closed' && contents.merged_at == null) {
+                    info.state = 'denied';
+                }
+            }
+
+            /* Get comment url */
+            if (notification.reason != 'subscribed') {
+                if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {
+                    const url = await this._getCommentURL(notification.subject.latest_comment_url);
+                    if (url)
+                        info.url = url;
+                }
+            }
+
+            return info;
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Get latest comment url from Issue
+     * 
+     * @param {String} url The url of the API to request the comments url
+     * e.g https://api.github.com/repos/user/repo/issues/comments/1529954726
+     * @throws Throws an error if failed making the request or reading the data 
+     * @returns {String | void} The HTML comment url.
+     * e.g. https://github.com/user/repo/issues/1#issuecomment-1529954726
+     */
+    async _getCommentURL(url) {
+        if (url === null)
+            return;
+
+        try {
+            const message = super.createMessage('GET', url);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents(bytes);
+
+            return contents.html_url;
         } catch (e) {
             throw e;
         }

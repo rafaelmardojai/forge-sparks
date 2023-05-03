@@ -152,7 +152,6 @@ export default class Forge {
     readContents(bytes) {
         const contents = this.decoder.decode(bytes.get_data());
         let data = [];
-        //console.log(contents);
         if (contents) {
             data = JSON.parse(contents);
         }
