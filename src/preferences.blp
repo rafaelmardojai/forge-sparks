@@ -70,6 +70,8 @@ template Gjs_PreferencesWindow : Adw.PreferencesWindow {
         StackPage {
           name: "accounts";
           child: ListBox accountsList {
+            selection-mode: none;
+            
             styles ["content"]
           };
         }
