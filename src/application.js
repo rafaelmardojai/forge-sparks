@@ -8,9 +8,9 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
+import { settings } from './util.js';
 import Window from './window.js';
 import PreferencesWindow from './preferences.js';
-import { settings } from './util.js';
 
 import './style.css';
 import './style-dark.css';

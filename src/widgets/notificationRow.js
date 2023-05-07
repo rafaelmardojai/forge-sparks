@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: MIT
 
-import Adw from 'gi://Adw';
-import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 

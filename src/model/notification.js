@@ -6,13 +6,13 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
-import issueIcon from './icons/issue-symbolic.svg' assert { type: 'icon' };
-import doneIcon from './icons/issue-done-symbolic.svg' assert { type: 'icon' };
-import mergeIcon from './icons/merge-symbolic.svg' assert { type: 'icon' };
-import draftIcon from './icons/merge-draft-symbolic.svg' assert { type: 'icon' };
-import deniedIcon from './icons/merge-denied-symbolic.svg' assert { type: 'icon' };
-import mergedIcon from './icons/merge-merged-symbolic.svg' assert { type: 'icon' };
-import discussionIcon from './icons/discussion-symbolic.svg' assert { type: 'icon' };
+import issueIcon from '../icons/issue-symbolic.svg' assert { type: 'icon' };
+import doneIcon from '../icons/issue-done-symbolic.svg' assert { type: 'icon' };
+import mergeIcon from '../icons/merge-symbolic.svg' assert { type: 'icon' };
+import draftIcon from '../icons/merge-draft-symbolic.svg' assert { type: 'icon' };
+import deniedIcon from '../icons/merge-denied-symbolic.svg' assert { type: 'icon' };
+import mergedIcon from '../icons/merge-merged-symbolic.svg' assert { type: 'icon' };
+import discussionIcon from '../icons/discussion-symbolic.svg' assert { type: 'icon' };
 
 /* Notification object class */
 export default class Notification extends GObject.Object {

@@ -5,14 +5,17 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
-import Template from './window.blp' assert { type: 'uri' };
-import AllDoneIllustration from './assets/alldone.svg';
-import PreferencesWindow from './preferences.js';
-import NotificationsModel from './notificationsModel.js';
-import NotificationRow from './notificationRow.js';
-import AccountsManager from './accounts.js';
 import { settings, requestBackground, setBackgroundStatus, relativeDate } from './util.js';
 import { FORGES, extractID } from './forges/index.js';
+import PreferencesWindow from './preferences.js';
+
+import AccountsManager from './model/accountsManager.js';
+import NotificationsList from './model/notificationsList.js';
+
+import NotificationRow from './widgets/notificationRow.js';
+
+import AllDoneIllustration from './assets/alldone.svg';
+import Template from './window.blp' assert { type: 'uri' };
 
 /* Get the accounts manager singleton instance */
 const accounts = new AccountsManager();
@@ -58,7 +61,7 @@ export default class Window extends Adw.ApplicationWindow {
         });
 
         /* Setup notifications model */
-        this.model = new NotificationsModel();
+        this.model = new NotificationsList();
         this.notified = {}; /* Store notifications {id: timestamp} that have been notified */
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
             if (this.model.get_n_items() > 0) {

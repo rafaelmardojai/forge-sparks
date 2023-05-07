@@ -5,7 +5,9 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Secret from 'gi://Secret';
 
-import { settings } from './util.js';
+import { settings } from '../util.js';
+
+import Account from './account.js';
 
 /*
  * Secrets schema for saving accounts access tokens
@@ -42,7 +44,7 @@ export default class AccountsManager extends GObject.Object {
 
         /* Populate model with saved accounts */
         for (const id of this.getAccounts()) {
-            this._accounts.push(new AccountObject(
+            this._accounts.push(new Account(
                 {
                     id: id,
                     forge: this.getAccountSetting(id, 'forge'),
@@ -63,14 +65,14 @@ export default class AccountsManager extends GObject.Object {
      * @returns {GType} The list model object type
      */
     vfunc_get_item_type() {
-        return AccountObject.$gtype;
+        return Account.$gtype;
     }
 
     /**
      * Get item from list model
      * 
      * @param {Number} position Position of the item to get
-     * @returns {AccountObject|null} The account object or null if not objects
+     * @returns {Account|null} The account object or null if not objects
      * in the position
      */
     vfunc_get_item(position) {
@@ -148,7 +150,7 @@ export default class AccountsManager extends GObject.Object {
                 accountSettings.set_string('username', username);
 
                 /* Update list model */
-                this._accounts.push(new AccountObject({ id, forge, url, username }));
+                this._accounts.push(new Account({ id, forge, url, username }));
                 this.items_changed(this._accounts.length - 1, 0, 1);
 
                 return id;
@@ -283,115 +285,3 @@ export default class AccountsManager extends GObject.Object {
         return this._accountsSettings[id];
     }
 }
-
-/* Object representing an account */
-export class AccountObject extends GObject.Object {
-
-    static {
-        GObject.registerClass({
-            GTypeName: 'AccountObject',
-            Properties: {
-                'id': GObject.ParamSpec.string('id', null, null, GObject.ParamFlags.READWRITE, null),
-                'forge': GObject.ParamSpec.string('forge', null, null, GObject.ParamFlags.READWRITE, null),
-                'url': GObject.ParamSpec.string('url', null, null, GObject.ParamFlags.READWRITE, null),
-                'username': GObject.ParamSpec.string('username', null, null, GObject.ParamFlags.READWRITE, null)
-            },
-        }, this);
-    }
-
-    /* Create an AccountObject */
-    constructor(constructProperties = {}) {
-        super(constructProperties);
-    }
-
-    /**
-     * Account display name
-     * 
-     * (username@instance.tld)
-     * 
-     * @type {String}
-     */
-    get displayName() {
-        return `${this._username}@${this._url}`;
-    }
-
-    /**
-     * Account ID from app settings
-     *
-     * @type {String}
-     */
-    get id() {
-        if (this._id === undefined)
-            this._id = null;
-
-        return this._id;
-    }
-
-    set id(value) {
-        if (this._id === value)
-            return;
-
-        this._id = value;
-        this.notify('id');
-    }
-
-    /**
-     * Account forge name
-     *
-     * @type {String}
-     */
-    get forge() {
-        if (this._forge === undefined)
-            this._forge = null;
-
-        return this._forge;
-    }
-
-    set forge(value) {
-        if (this._forge === value)
-            return;
-
-        this._forge = value;
-        this.notify('forge');
-    }
-
-    /**
-     * Account server URL
-     *
-     * @type {String}
-     */
-    get url() {
-        if (this._url === undefined)
-            this._url = null;
-
-        return this._url;
-    }
-
-    set url(value) {
-        if (this._url === value)
-            return;
-
-        this._url = value;
-        this.notify('url');
-    }
-
-    /**
-     * Account username
-     *
-     * @type {String}
-     */
-    get username() {
-        if (this._username === undefined)
-            this._username = null;
-
-        return this._username;
-    }
-
-    set username(value) {
-        if (this._username === value)
-            return;
-
-        this._username = value;
-        this.notify('username');
-    }
-};

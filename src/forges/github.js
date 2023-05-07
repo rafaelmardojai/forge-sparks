@@ -4,7 +4,7 @@ import GLib from 'gi://GLib';
 import { gettext as _ } from 'gettext';
 
 import Forge from './forge.js';
-import Notification from './../notification.js';
+import Notification from '../model/notification.js';
 import { session } from './../util.js';
 
 const Format = imports.format;

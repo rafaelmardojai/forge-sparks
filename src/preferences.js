@@ -6,10 +6,12 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
-import Template from './preferences.blp' assert { type: 'uri' };
-import AccountsManager from './accounts.js';
 import { settings, requestBackground } from './util.js';
 import { FORGES } from './forges/index.js';
+
+import AccountsManager from './model/accountsManager.js';
+
+import Template from './preferences.blp' assert { type: 'uri' };
 
 const accounts = new AccountsManager();
 
@@ -34,7 +36,7 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         super(constructProperties);
 
         this.forges = Object.values(FORGES);
-        this._editing = null; // AccountObject begin edited
+        this._editing = null; // Account begin edited
 
         /* Bind accounts list */
         this._accountsList.bind_model(accounts, this._createAccountRow.bind(this));
@@ -135,7 +137,7 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     /**
      * Present the edit account view
      * 
-     * @param {AccountObject} account The account to edit
+     * @param {Account} account The account to edit
      */
     async _onEditAccount(account) {
         this._accountEditTitle.subtitle = account.displayName;
@@ -444,7 +446,7 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     /**
      * Create a widget for each saved account
      * 
-     * @param {AccountObject} account The account object
+     * @param {Account} account The account object
      * @returns {Gtk.Widget} The widget representing the account
      */
     _createAccountRow(account) {
