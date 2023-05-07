@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 23:37-0500\n"
+"POT-Creation-Date: 2023-05-07 12:16-0500\n"
 "PO-Revision-Date: 2023-05-03 04:48+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
@@ -33,14 +33,6 @@ msgstr "Recibe notificaciones de forjas git"
 #: data/com.mardojai.ForgeSparks.desktop:12
 msgid "git;github;notifications;"
 msgstr "git;github;notificaciones;"
-
-#: data/com.mardojai.ForgeSparks.gschema.xml:16
-msgid "Window size"
-msgstr "Tamaño de la ventana"
-
-#: data/com.mardojai.ForgeSparks.gschema.xml:17
-msgid "Window size (width and height)."
-msgstr "Tamaño de la ventana (anchura y altura)."
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml:14
 msgid "Rafael Mardojai CM"
@@ -86,14 +78,6 @@ msgstr "Marcar como leído"
 #: src/window.blp:164
 msgid "No Notifications to Show"
 msgstr "No hay notificaciones que mostrar"
-
-#: src/notification.js:67
-msgid "Mark as Read"
-msgstr "Marcar como leído"
-
-#: src/notification.js:74
-msgid "Show Forge Sparks"
-msgstr "Mostrar Forge Sparks"
 
 #: src/util.js:50
 msgid "Allow running Forge Sparks on background."
@@ -178,35 +162,35 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Salir"
 
-#: src/preferences.js:95
+#: src/preferences.js:97
 msgid "The request failed."
 msgstr "La solicitud ha fallado."
 
-#: src/preferences.js:124
+#: src/preferences.js:126
 msgid "The autostart request failed."
 msgstr "La solicitud de autoarranque falló."
 
-#: src/preferences.js:278 src/preferences.js:315
+#: src/preferences.js:280 src/preferences.js:317
 msgid "Invalid instance url."
 msgstr "Url de instancia no válida."
 
-#: src/preferences.js:334
+#: src/preferences.js:336
 msgid "Couldn't authenticate the account"
 msgstr "No se ha podido autenticar la cuenta"
 
-#: src/preferences.js:336
+#: src/preferences.js:338
 msgid "Unexpected error when creating the account"
 msgstr "Error inesperado al crear la cuenta"
 
-#: src/preferences.js:367
+#: src/preferences.js:369
 msgid "New account added successfully!"
 msgstr "¡Nueva cuenta añadida con éxito!"
 
-#: src/preferences.js:413
+#: src/preferences.js:415
 msgid "Account edited successfully!"
 msgstr "¡Cuenta editada con éxito!"
 
-#: src/preferences.js:431
+#: src/preferences.js:433
 msgid "Unexpected error removing the account"
 msgstr "Error inesperado al eliminar la cuenta"
 
@@ -230,35 +214,35 @@ msgstr "Cuentas"
 msgid "Add Account…"
 msgstr "Agregar cuenta…"
 
-#: src/preferences.blp:89
+#: src/preferences.blp:91
 msgid "Add Account"
 msgstr "Agregar cuenta"
 
-#: src/preferences.blp:100
+#: src/preferences.blp:102
 msgid "Add"
 msgstr "Agregar"
 
-#: src/preferences.blp:115
+#: src/preferences.blp:117
 msgid "Forge"
 msgstr "Forja"
 
-#: src/preferences.blp:121 src/preferences.blp:177
+#: src/preferences.blp:123 src/preferences.blp:179
 msgid "Instance URL"
 msgstr "URL de la instancia"
 
-#: src/preferences.blp:128 src/preferences.blp:184
+#: src/preferences.blp:130 src/preferences.blp:186
 msgid "Access Token"
 msgstr "Token de acceso"
 
-#: src/preferences.blp:151
+#: src/preferences.blp:153
 msgid "Edit Account"
 msgstr "Editar cuenta"
 
-#: src/preferences.blp:162
+#: src/preferences.blp:164
 msgid "Save"
 msgstr "Guardar"
 
-#: src/preferences.blp:199
+#: src/preferences.blp:201
 msgid "Remove Account"
 msgstr "Eliminar cuenta"
 
@@ -300,3 +284,17 @@ msgid ""
 msgstr ""
 "Para generar un nuevo token de acceso desde su instancia de Forgejo vaya a "
 "Configuración → Aplicaciones y genere un nuevo token."
+
+#: src/model/notification.js:67
+msgid "Mark as Read"
+msgstr "Marcar como leído"
+
+#: src/model/notification.js:74
+msgid "Show Forge Sparks"
+msgstr "Mostrar Forge Sparks"
+
+#~ msgid "Window size"
+#~ msgstr "Tamaño de la ventana"
+
+#~ msgid "Window size (width and height)."
+#~ msgstr "Tamaño de la ventana (anchura y altura)."

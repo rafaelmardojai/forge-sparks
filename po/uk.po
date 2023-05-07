@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 23:37-0500\n"
+"POT-Creation-Date: 2023-05-07 12:16-0500\n"
 "PO-Revision-Date: 2023-05-04 12:50+0000\n"
 "Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -34,14 +34,6 @@ msgstr "Отримувати сповіщення git forges"
 #: data/com.mardojai.ForgeSparks.desktop:12
 msgid "git;github;notifications;"
 msgstr "git;github;сповіщення;"
-
-#: data/com.mardojai.ForgeSparks.gschema.xml:16
-msgid "Window size"
-msgstr "Розмір вікна"
-
-#: data/com.mardojai.ForgeSparks.gschema.xml:17
-msgid "Window size (width and height)."
-msgstr "Розмір вікна (ширина та висота)."
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml:14
 msgid "Rafael Mardojai CM"
@@ -86,14 +78,6 @@ msgstr "Позначити все як прочитане"
 #: src/window.blp:164
 msgid "No Notifications to Show"
 msgstr "Немає сповіщень для показу"
-
-#: src/notification.js:67
-msgid "Mark as Read"
-msgstr "Відзначити як прочитане"
-
-#: src/notification.js:74
-msgid "Show Forge Sparks"
-msgstr "Показати Forge Sparks"
 
 #: src/util.js:50
 msgid "Allow running Forge Sparks on background."
@@ -182,35 +166,35 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Вийти"
 
-#: src/preferences.js:95
+#: src/preferences.js:97
 msgid "The request failed."
 msgstr "Запит не виконано."
 
-#: src/preferences.js:124
+#: src/preferences.js:126
 msgid "The autostart request failed."
 msgstr "Запит на автозапуск не вдалося виконати."
 
-#: src/preferences.js:278 src/preferences.js:315
+#: src/preferences.js:280 src/preferences.js:317
 msgid "Invalid instance url."
 msgstr "Недійсна URL-адреса екземпляра."
 
-#: src/preferences.js:334
+#: src/preferences.js:336
 msgid "Couldn't authenticate the account"
 msgstr "Не вдалося автентифікувати обліковий запис"
 
-#: src/preferences.js:336
+#: src/preferences.js:338
 msgid "Unexpected error when creating the account"
 msgstr "Неочікувана помилка при створенні облікового запису"
 
-#: src/preferences.js:367
+#: src/preferences.js:369
 msgid "New account added successfully!"
 msgstr "Новий обліковий запис успішно додано!"
 
-#: src/preferences.js:413
+#: src/preferences.js:415
 msgid "Account edited successfully!"
 msgstr "Обліковий запис успішно відредаговано!"
 
-#: src/preferences.js:431
+#: src/preferences.js:433
 msgid "Unexpected error removing the account"
 msgstr "Несподівана помилка видалення облікового запису"
 
@@ -234,35 +218,35 @@ msgstr "Облікові записи"
 msgid "Add Account…"
 msgstr "Додати обліковий запис…"
 
-#: src/preferences.blp:89
+#: src/preferences.blp:91
 msgid "Add Account"
 msgstr "Додати обліковий запис"
 
-#: src/preferences.blp:100
+#: src/preferences.blp:102
 msgid "Add"
 msgstr "Додати"
 
-#: src/preferences.blp:115
+#: src/preferences.blp:117
 msgid "Forge"
 msgstr "Forge"
 
-#: src/preferences.blp:121 src/preferences.blp:177
+#: src/preferences.blp:123 src/preferences.blp:179
 msgid "Instance URL"
 msgstr "URL-адреса екземпляра"
 
-#: src/preferences.blp:128 src/preferences.blp:184
+#: src/preferences.blp:130 src/preferences.blp:186
 msgid "Access Token"
 msgstr "Токен доступу"
 
-#: src/preferences.blp:151
+#: src/preferences.blp:153
 msgid "Edit Account"
 msgstr "Редагувати обліковий запис"
 
-#: src/preferences.blp:162
+#: src/preferences.blp:164
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/preferences.blp:199
+#: src/preferences.blp:201
 msgid "Remove Account"
 msgstr "Видалити обліковий запис"
 
@@ -304,3 +288,17 @@ msgid ""
 msgstr ""
 "Щоб згенерувати новий токен доступу для вашого екземпляра Forgejo, перейдіть "
 "до Налаштування → Застосунки та згенеруйте новий токен."
+
+#: src/model/notification.js:67
+msgid "Mark as Read"
+msgstr "Відзначити як прочитане"
+
+#: src/model/notification.js:74
+msgid "Show Forge Sparks"
+msgstr "Показати Forge Sparks"
+
+#~ msgid "Window size"
+#~ msgstr "Розмір вікна"
+
+#~ msgid "Window size (width and height)."
+#~ msgstr "Розмір вікна (ширина та висота)."

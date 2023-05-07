@@ -13,8 +13,6 @@
     </key>
     <key name="window-size" type="ai">
       <default>[780, 480]</default>
-      <summary>Window size</summary>
-      <description>Window size (width and height).</description>
     </key>
     <key type="as" name="accounts">
       <default>[]</default>

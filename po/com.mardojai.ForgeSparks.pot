@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 23:37-0500\n"
+"POT-Creation-Date: 2023-05-07 12:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,14 +31,6 @@ msgstr ""
 
 #: data/com.mardojai.ForgeSparks.desktop:12
 msgid "git;github;notifications;"
-msgstr ""
-
-#: data/com.mardojai.ForgeSparks.gschema.xml:16
-msgid "Window size"
-msgstr ""
-
-#: data/com.mardojai.ForgeSparks.gschema.xml:17
-msgid "Window size (width and height)."
 msgstr ""
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml:14
@@ -83,14 +75,6 @@ msgstr ""
 
 #: src/window.blp:164
 msgid "No Notifications to Show"
-msgstr ""
-
-#: src/notification.js:67
-msgid "Mark as Read"
-msgstr ""
-
-#: src/notification.js:74
-msgid "Show Forge Sparks"
 msgstr ""
 
 #: src/util.js:50
@@ -176,35 +160,35 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr ""
 
-#: src/preferences.js:95
+#: src/preferences.js:97
 msgid "The request failed."
 msgstr ""
 
-#: src/preferences.js:124
+#: src/preferences.js:126
 msgid "The autostart request failed."
 msgstr ""
 
-#: src/preferences.js:278 src/preferences.js:315
+#: src/preferences.js:280 src/preferences.js:317
 msgid "Invalid instance url."
 msgstr ""
 
-#: src/preferences.js:334
+#: src/preferences.js:336
 msgid "Couldn't authenticate the account"
 msgstr ""
 
-#: src/preferences.js:336
+#: src/preferences.js:338
 msgid "Unexpected error when creating the account"
 msgstr ""
 
-#: src/preferences.js:367
+#: src/preferences.js:369
 msgid "New account added successfully!"
 msgstr ""
 
-#: src/preferences.js:413
+#: src/preferences.js:415
 msgid "Account edited successfully!"
 msgstr ""
 
-#: src/preferences.js:431
+#: src/preferences.js:433
 msgid "Unexpected error removing the account"
 msgstr ""
 
@@ -228,35 +212,35 @@ msgstr ""
 msgid "Add Account…"
 msgstr ""
 
-#: src/preferences.blp:89
+#: src/preferences.blp:91
 msgid "Add Account"
 msgstr ""
 
-#: src/preferences.blp:100
+#: src/preferences.blp:102
 msgid "Add"
 msgstr ""
 
-#: src/preferences.blp:115
+#: src/preferences.blp:117
 msgid "Forge"
 msgstr ""
 
-#: src/preferences.blp:121 src/preferences.blp:177
+#: src/preferences.blp:123 src/preferences.blp:179
 msgid "Instance URL"
 msgstr ""
 
-#: src/preferences.blp:128 src/preferences.blp:184
+#: src/preferences.blp:130 src/preferences.blp:186
 msgid "Access Token"
 msgstr ""
 
-#: src/preferences.blp:151
+#: src/preferences.blp:153
 msgid "Edit Account"
 msgstr ""
 
-#: src/preferences.blp:162
+#: src/preferences.blp:164
 msgid "Save"
 msgstr ""
 
-#: src/preferences.blp:199
+#: src/preferences.blp:201
 msgid "Remove Account"
 msgstr ""
 
@@ -287,4 +271,12 @@ msgstr ""
 msgid ""
 "To generate a new access token from your Forgejo instance go to Settings → "
 "Applications and generate a new token."
+msgstr ""
+
+#: src/model/notification.js:67
+msgid "Mark as Read"
+msgstr ""
+
+#: src/model/notification.js:74
+msgid "Show Forge Sparks"
 msgstr ""
