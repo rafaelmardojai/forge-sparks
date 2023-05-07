@@ -134,10 +134,16 @@ export default class Application extends Adw.Application {
         const paramsArray = params.get_strv();
         const id = paramsArray[0];
         const url = paramsArray[1];
+        const launcher = new Gtk.UriLauncher({uri: url});
 
-        Gtk.show_uri_full(this.window, url, Gdk.CURRENT_TIME, null, (_obj, result) => {
-            const opened = Gtk.show_uri_full_finish(this.window, result);
-            if (opened) {
+        let window = this.window;
+        if (this.window.hide_on_close)
+            window = null;
+
+        launcher.launch(window, null, (_obj, result) => {
+            const success = launcher.launch_finish(result);
+
+            if (success) {
                 this.window.resolveNotification(id);
             }
         });
