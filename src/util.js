@@ -9,7 +9,7 @@ import { gettext as _, ngettext } from 'gettext';
 
 const Format = imports.format;
 
-/*
+/**
  * App Settings instance
  */
 export const settings = new Gio.Settings({
@@ -17,19 +17,20 @@ export const settings = new Gio.Settings({
     path: '/com/mardojai/ForgeSparks/',
 });
 
-/*
+/**
  * Soup Session instance for all app requests
  */
 export const session = new Soup.Session();
 session.set_user_agent(`Forge Sparks v${pkg.version}`);
 
-/*
+/**
  * Desktop Portal instance
  */
 export const portal = new Xdp.Portal();
 
 /**
  * Request background portal
+ * 
  * @param {Gtk.window} window The window making the request
  * @param {Boolean} autostart If autostart should be requested as well
  * @returns {Boolean} If request was successful
@@ -39,7 +40,7 @@ export function requestBackground(window, autostart=false) {
     let parent = null;
     try {
         /* parent = XdpGtk4.parent_new_gtk(window); */
-        /* gdk_wayland_toplevel_export_handle: assertion 'GDK_IS_WAYLAND_TOPLEVEL (toplevel)' failed */
+        /* FIXME: gdk_wayland_toplevel_export_handle: assertion 'GDK_IS_WAYLAND_TOPLEVEL (toplevel)' failed */
     } catch (error) {
         logError(error);
     }
@@ -68,18 +69,48 @@ export function requestBackground(window, autostart=false) {
 
 /**
  * Set background status message
+ * 
  * @param {String} message
  */
-export function setBackgroundStatus(message=_('Looking for new notifications.')) {
+export function setBackgroundStatus(message=_('Monitoring new notifications')) {
     if (typeof portal.set_background_status === 'function') {
-        portal.set_background_status(message, null, (_portal, result) => {
+        portal.set_background_status(message, null, (portal, result) => {
             portal.set_background_status_finish(result);
         });
+    } else {
+        /* Call the portal using DBus */
+        const connection = Gio.DBus.session;
+        const messageVariant = new GLib.Variant('(a{sv})', [{
+            'message': new GLib.Variant('s', message)
+        }]);
+
+        connection.call(
+            'org.freedesktop.portal.Desktop',
+            '/org/freedesktop/portal/desktop',
+            'org.freedesktop.portal.Background',
+            'SetStatus',
+            messageVariant,
+            null,
+            Gio.DBusCallFlags.NONE,
+            -1,
+            null,
+            (connection, res) => {
+                try {
+                    connection.call_finish(res);
+                } catch (e) {
+                    if (e instanceof Gio.DBusError)
+                        Gio.DBusError.strip_remote_error(e);
+                    
+                    logError(e);
+                }
+            }
+        );
     }
 }
 
 /**
  * Get relative date string from GLib.DateTime
+ * 
  * @param {GLib.DateTime} date
  * @returns {String}
  */
