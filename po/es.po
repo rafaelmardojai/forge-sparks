@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-07 22:56-0500\n"
-"PO-Revision-Date: 2023-05-03 04:48+0000\n"
+"PO-Revision-Date: 2023-05-09 04:50+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/es/>\n"
@@ -93,9 +93,8 @@ msgstr "Permitir la ejecución de Forge Sparks al inicio."
 #. * @param {String} message
 #.
 #: src/util.js:75
-#, fuzzy
 msgid "Monitoring new notifications"
-msgstr "Buscando nuevas notificaciones."
+msgstr "Esperando nuevas notificaciones"
 
 #: src/util.js:126 src/util.js:167
 msgid "now"
