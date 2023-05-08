@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 12:16-0500\n"
+"POT-Creation-Date: 2023-05-07 22:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,28 +77,29 @@ msgstr ""
 msgid "No Notifications to Show"
 msgstr ""
 
-#: src/util.js:50
+#: src/util.js:51
 msgid "Allow running Forge Sparks on background."
 msgstr ""
 
-#: src/util.js:50
+#: src/util.js:51
 msgid "Allow running Forge Sparks on startup."
 msgstr ""
 
 #. *
 #. * Set background status message
+#. *
 #. * @param {String} message
 #.
-#: src/util.js:73
-msgid "Looking for new notifications."
+#: src/util.js:75
+msgid "Monitoring new notifications"
 msgstr ""
 
-#: src/util.js:95 src/util.js:136
+#: src/util.js:126 src/util.js:167
 msgid "now"
 msgstr ""
 
 #. Translators: relative date
-#: src/util.js:100
+#: src/util.js:131
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -106,7 +107,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:107
+#: src/util.js:138
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -114,7 +115,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:114
+#: src/util.js:145
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -122,7 +123,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:121
+#: src/util.js:152
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -130,7 +131,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:127 src/util.js:131
+#: src/util.js:158 src/util.js:162
 #, javascript-format
 msgid "on %s"
 msgstr ""

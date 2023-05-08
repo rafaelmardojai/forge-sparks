@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 12:16-0500\n"
+"POT-Creation-Date: 2023-05-07 22:56-0500\n"
 "PO-Revision-Date: 2023-05-04 12:50+0000\n"
 "Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -79,28 +79,30 @@ msgstr "Позначити все як прочитане"
 msgid "No Notifications to Show"
 msgstr "Немає сповіщень для показу"
 
-#: src/util.js:50
+#: src/util.js:51
 msgid "Allow running Forge Sparks on background."
 msgstr "Дозволити запуск Forge Sparks у фоновому режимі."
 
-#: src/util.js:50
+#: src/util.js:51
 msgid "Allow running Forge Sparks on startup."
 msgstr "Дозволити запуск Forge Sparks під час запуску."
 
 #. *
 #. * Set background status message
+#. *
 #. * @param {String} message
 #.
-#: src/util.js:73
-msgid "Looking for new notifications."
+#: src/util.js:75
+#, fuzzy
+msgid "Monitoring new notifications"
 msgstr "Шукаю нові сповіщення."
 
-#: src/util.js:95 src/util.js:136
+#: src/util.js:126 src/util.js:167
 msgid "now"
 msgstr "зараз"
 
 #. Translators: relative date
-#: src/util.js:100
+#: src/util.js:131
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -109,7 +111,7 @@ msgstr[1] "%d хвилини тому"
 msgstr[2] "%d хвилин тому"
 
 #. Translators: relative date
-#: src/util.js:107
+#: src/util.js:138
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -118,7 +120,7 @@ msgstr[1] "%d години тому"
 msgstr[2] "%d годин тому"
 
 #. Translators: relative date
-#: src/util.js:114
+#: src/util.js:145
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -127,7 +129,7 @@ msgstr[1] "%d дні тому"
 msgstr[2] "%d днів тому"
 
 #. Translators: relative date
-#: src/util.js:121
+#: src/util.js:152
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -136,7 +138,7 @@ msgstr[1] "%d тижні тому"
 msgstr[2] "%d тижнів тому"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:127 src/util.js:131
+#: src/util.js:158 src/util.js:162
 #, javascript-format
 msgid "on %s"
 msgstr "на %s"
