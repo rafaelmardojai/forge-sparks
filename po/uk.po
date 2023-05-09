@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-07 22:56-0500\n"
-"PO-Revision-Date: 2023-05-04 12:50+0000\n"
+"PO-Revision-Date: 2023-05-10 09:50+0000\n"
 "Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/uk/>\n"
@@ -93,9 +93,8 @@ msgstr "Дозволити запуск Forge Sparks під час запуск�
 #. * @param {String} message
 #.
 #: src/util.js:75
-#, fuzzy
 msgid "Monitoring new notifications"
-msgstr "Шукаю нові сповіщення."
+msgstr "Шукаю нові сповіщення"
 
 #: src/util.js:126 src/util.js:167
 msgid "now"
