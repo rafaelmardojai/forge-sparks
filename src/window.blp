@@ -196,6 +196,11 @@ template Gjs_Window : Adw.ApplicationWindow {
               };
             }
           }
+
+          Adw.Banner accountBanner {
+            button-label: _("Open Preferences");
+            action-name: "app.preferences";
+          }
         }
       };
     }

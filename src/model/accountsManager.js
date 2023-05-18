@@ -44,14 +44,14 @@ export default class AccountsManager extends GObject.Object {
 
         /* Populate model with saved accounts */
         for (const id of this.getAccounts()) {
-            this._accounts.push(new Account(
-                {
-                    id: id,
-                    forge: this.getAccountSetting(id, 'forge'),
-                    url: this.getAccountSetting(id, 'url'),
-                    username: this.getAccountSetting(id, 'username')
-                }
-            ));
+            const settings = this._getAccountSettings(id);
+            const account = new Account({ id: id });
+
+            settings.bind('forge', account, 'forge', Gio.SettingsBindFlags.DEFAULT)
+            settings.bind('url', account, 'url', Gio.SettingsBindFlags.DEFAULT)
+            settings.bind('username', account, 'username', Gio.SettingsBindFlags.DEFAULT)
+
+            this._accounts.push(account);
         }
 
         /* Save new instance reference and return it */
@@ -86,6 +86,21 @@ export default class AccountsManager extends GObject.Object {
      */
     vfunc_get_n_items() {
         return this._accounts.length;
+    }
+
+    /**
+     * Get ann account from the list model by its ID
+     * 
+     * @param {String} id The account ID
+     * @returns {Account|null}
+     */
+    getAccountByID(id) {
+        for (const account of this._accounts) {
+            if (account.id == id) {
+                return account;
+            }
+        }
+        return null;
     }
 
     /**
@@ -149,8 +164,12 @@ export default class AccountsManager extends GObject.Object {
                 accountSettings.set_string('url', url);
                 accountSettings.set_string('username', username);
 
-                /* Update list model */
-                this._accounts.push(new Account({ id, forge, url, username }));
+                /* Add to list model */
+                const account = new Account({ id: id });
+                accountSettings.bind('forge', account, 'forge', Gio.SettingsBindFlags.DEFAULT)
+                accountSettings.bind('url', account, 'url', Gio.SettingsBindFlags.DEFAULT)
+                accountSettings.bind('username', account, 'username', Gio.SettingsBindFlags.DEFAULT)
+                this._accounts.push(account);
                 this.items_changed(this._accounts.length - 1, 0, 1);
 
                 return id;
@@ -193,6 +212,9 @@ export default class AccountsManager extends GObject.Object {
                 const accountSettings = this._getAccountSettings(id);
                 accountSettings.set_string('url', url);
                 accountSettings.set_string('username', username);
+
+                const account = this.getAccountByID(id);
+                account.authFailed = false;
 
                 return true;
             }
@@ -272,7 +294,7 @@ export default class AccountsManager extends GObject.Object {
     _getAccountSettings(id) {
         if (!(id in this._accountsSettings)) {
             let path = settings.path;
-            if (! path.endsWith('/')) {
+            if (!path.endsWith('/')) {
                 path += '/';
             }
             path += id + '/';

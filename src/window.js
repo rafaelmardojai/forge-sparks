@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import Adw from 'gi://Adw';
+import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
@@ -17,6 +18,8 @@ import NotificationRow from './widgets/notificationRow.js';
 import AllDoneIllustration from './assets/alldone.svg';
 import Template from './window.blp' assert { type: 'uri' };
 
+const Format = imports.format;
+
 /* Get the accounts manager singleton instance */
 const accounts = new AccountsManager();
 
@@ -28,7 +31,7 @@ export default class Window extends Adw.ApplicationWindow {
             Template,
             InternalChildren: [
                 'mainStack', 'spinner', 'headerbar', 'scrolled', 'emptyPicture',
-                'setupPage', 'notificationsStack', 'notificationsList',
+                'accountBanner', 'setupPage', 'notificationsStack', 'notificationsList',
                 'markAsRead', 'markAsReadIcon', 'markAsReadSpinner',
             ],
         }, this);
@@ -44,6 +47,9 @@ export default class Window extends Adw.ApplicationWindow {
         this.forges = {};
         /* Interval of the notifications requests, in seconds */
         this.interval = 60;
+        /* Store app fail states */
+        this.authFailed = null;
+        this.authErrorNotified = false;
 
         /* Set app initial state */
         this._mainStack.set_visible_child_name('loading');
@@ -116,6 +122,8 @@ export default class Window extends Adw.ApplicationWindow {
      * This is a recursive function with a timeout set by $this.interval.
      */
     async subscribe() {
+        const app = this.get_application();
+
         /* If not accounts found, show setup view and return */
         if (!accounts.get_n_items()) {
             this._mainStack.set_visible_child_name('setup');
@@ -144,7 +152,7 @@ export default class Window extends Adw.ApplicationWindow {
                     );
                 } catch (error) {
                     /* TODO: Notify the user that this failed */
-                    logError(error);
+                    log(error);
                 }
             }
 
@@ -152,9 +160,48 @@ export default class Window extends Adw.ApplicationWindow {
             try {
                 let notifications = await this.forges[account.id].getNotifications(this);
                 newNotifications.push(...notifications);
+
+                /* Reset failed state */
+                if (this.authFailed == account.id) {
+                    account.authFailed = account.id;
+                    this.authFailed = false;
+                    this.authErrorNotified = false;
+                    app.withdraw_notification('forge-sparks-error-auth');
+                    this._accountBanner.revealed = false;
+                }
+
             } catch (error) {
-                /* TODO: Notify the user that this failed */
-                logError(error);
+                if (error === 'FailedForgeAuth') {
+                    /* Update state */
+                    this.authFailed = account.id;
+                    account.authFailed = true;
+
+                    /* Remove account from instances list */
+                    delete this.forges[account.id];
+
+                    /* Display error */
+                    const title = Format.vprintf(
+                        _('Account %s authentication failed!'), [account.displayName]
+                    );
+                    const description = _('The token may have been revoked or expired.');
+
+                    /* Show error banner */
+                    this._accountBanner.title = title + '\n' + description;
+                    this._accountBanner.revealed = true;
+
+                    /* Send notification */
+                    if (!this.is_active && !this.authErrorNotified) {
+                        const notification = new Gio.Notification();
+                        notification.set_title(title);
+                        notification.set_body(description);
+                        notification.set_default_action('app.activate');
+                        notification.add_button(_('Open Preferences'), 'app.preferences');
+                        app.send_notification('forge-sparks-error-auth', notification);
+                        this.authErrorNotified = true;
+                    }
+                } else {
+                    log(error);
+                }
             }
         }
 
@@ -330,7 +377,7 @@ export default class Window extends Adw.ApplicationWindow {
      * Uses a timeout to show the view, so the user knows from where is coming
      */
     _onNewAccount() {
-        const preferences = new PreferencesWindow({transient_for: this });
+        const preferences = new PreferencesWindow({ transient_for: this });
         preferences.present();
 
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, 400, () => {

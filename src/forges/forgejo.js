@@ -27,6 +27,10 @@ export default class Forgejo extends Gitea {
 
     static get tokenText() {
         /* Forgejo access token help */
-        return _('To generate a new access token from your Forgejo instance go to Settings → Applications and generate a new token.');
+        let tokenText = _('To generate a new access token from your Forgejo instance go to Settings → Applications and generate a new token.');
+        tokenText += '\n\n';
+        tokenText += _('Forge Sparks requires the <i>notifications</i> scope granted.');
+
+        return tokenText;
     }
 };

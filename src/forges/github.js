@@ -41,16 +41,24 @@ export default class GitHub extends Forge {
         try {
             const url = this.buildURI('user');
             const message = super.createMessage('GET', url);
-
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
 
-            if (!('login' in contents)) {
-                if (message.get_status() == '401') {
-                    throw 'FailedForgeAuth';
-                } else {
+            if (message.get_status() == '401') {
+                throw 'FailedForgeAuth';
+            } else if (message.get_status() == '200') {
+                if (!('login' in contents)) {
                     throw 'Unexpected'
                 }
+            }
+
+            /* Test notifications capabilities */
+            const urlNotify = this.buildURI('notifications');
+            const messageNotify = super.createMessage('GET', urlNotify);
+            await session.send_and_read_async(messageNotify, GLib.PRIORITY_DEFAULT, null);
+            if (messageNotify.get_status() == '403') {
+                /* Unauthorized, token scopes */
+                throw 'FailedTokenScopes';
             }
 
             return contents.login;
@@ -66,38 +74,49 @@ export default class GitHub extends Forge {
             /* headers={'If-Modified-Since': this.modifiedSince} */
 
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            /* const headers = message.response_headers; */
             const contents = super.readContents(bytes);
-            let notifications = [];
 
-            for (const item of contents) {
-                const info = await this._getSubjectInfo(item);
-                const notification = new Notification({
-                    id: super.formatID(item.id),
-                    type: item.subject.type,
-                    unread: item.unread,
-                    updatedAt: ('updated_at' in info) ? info.updated_at : item.updated_at,
-                    title: item.subject.title,
-                    repository: item.repository.full_name,
-                    url: info.url,
-                    account_name: this.accountName
-                });
-                if (info.state) {
-                    notification.state = info.state;
-                }
-                notifications.push(notification);
-            }
-
+            log(`${url} response resulted in ${message.get_status()}`);
             /* this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince; */
-            log('Notifications response resulted in ' + message.get_status());
 
-            return notifications;
+            if (message.get_status() == '200') {
+                /* Show notifications */
+                let notifications = [];
+
+                for (const item of contents) {
+                    const info = await this._getSubjectInfo(item);
+                    const notification = new Notification({
+                        id: super.formatID(item.id),
+                        type: item.subject.type,
+                        unread: item.unread,
+                        updatedAt: ('updated_at' in info) ? info.updated_at : item.updated_at,
+                        title: item.subject.title,
+                        repository: item.repository.full_name,
+                        url: info.url,
+                        account_name: this.accountName
+                    });
+                    if (info.state) {
+                        notification.state = info.state;
+                    }
+                    notifications.push(notification);
+                }
+
+                return notifications;
+            } else if (message.get_status() == '401') {
+                /* Auth failed, revoked or expired token */
+                throw 'FailedForgeAuth';
+            } else if (message.get_status() == '403') {
+                /* Unauthorized, token scopes */
+                throw 'FailedTokenScopes';
+            } else {
+                throw 'Unexpected'
+            }
         } catch (e) {
             throw e;
         }
     }
 
-    async markAsRead(id=null) {
+    async markAsRead(id = null) {
         try {
             if (id != null) {
                 const url = this.buildURI(`/notifications/threads/${id}`);
@@ -228,7 +247,7 @@ export default class GitHub extends Forge {
      * @param {Object.<string, string>} query The URI query
      * @returns {String} The resulting URI
      */
-    buildURI(path, query={}) {
+    buildURI(path, query = {}) {
         return Forge.buildURI(GITHUB_API, path, query);
     }
 };

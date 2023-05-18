@@ -9,10 +9,12 @@ export default class Account extends GObject.Object {
         GObject.registerClass({
             GTypeName: 'Account',
             Properties: {
+                'display-name': GObject.ParamSpec.string('display-name', null, null, GObject.ParamFlags.READWRITE, null),
                 'id': GObject.ParamSpec.string('id', null, null, GObject.ParamFlags.READWRITE, null),
                 'forge': GObject.ParamSpec.string('forge', null, null, GObject.ParamFlags.READWRITE, null),
                 'url': GObject.ParamSpec.string('url', null, null, GObject.ParamFlags.READWRITE, null),
-                'username': GObject.ParamSpec.string('username', null, null, GObject.ParamFlags.READWRITE, null)
+                'username': GObject.ParamSpec.string('username', null, null, GObject.ParamFlags.READWRITE, null),
+                'auth-failed': GObject.ParamSpec.boolean('auth-failed', null, null, GObject.ParamFlags.READWRITE, false),
             },
         }, this);
     }
@@ -20,6 +22,9 @@ export default class Account extends GObject.Object {
     /* Create an Account */
     constructor(constructProperties = {}) {
         super(constructProperties);
+
+        this.connect('notify::url', this._updateDisplayName.bind(this));
+        this.connect('notify::username', this._updateDisplayName.bind(this));
     }
 
     /**
@@ -31,6 +36,13 @@ export default class Account extends GObject.Object {
      */
     get displayName() {
         return `${this._username}@${this._url}`;
+    }
+
+    /**
+     * Notify displayName changed
+     */
+    _updateDisplayName(_obj, _pspec) {
+        this.notify('display-name');
     }
 
     /**
@@ -111,5 +123,22 @@ export default class Account extends GObject.Object {
 
         this._username = value;
         this.notify('username');
+    }
+
+    /**
+    * If the account auth failed
+    * 
+    * @type {Boolean}
+    */
+    get authFailed() {
+        if (this._authFailed === undefined)
+            this._authFailed = false;
+
+        return this._authFailed;
+    }
+
+    set authFailed(value) {
+        this._authFailed = value;
+        this.notify('auth-failed');
     }
 };

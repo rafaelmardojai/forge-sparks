@@ -39,7 +39,7 @@ export default class Forge {
      * @param {String} account Account ID associated to the instance
      * @param {String} accountName Account name associated to the instance
      */
-    constructor(url, token, account=null, accountName='') {
+    constructor(url, token, account = null, accountName = '') {
         /**
          * URL passed when the class was instantiated, the same as
          * this.defaultURL if this.allowInstances is false
@@ -61,7 +61,7 @@ export default class Forge {
          * Account name (username@instance.tld)
          */
         this.accountName = accountName;
-        
+
         this.modifiedSince = '';
         this.encoder = new TextEncoder();
         this.decoder = new TextDecoder('utf-8');
@@ -73,6 +73,8 @@ export default class Forge {
      * Get username from the logged in user.
      * Used for validating an access token when adding a new account.
      * 
+     * @throws {FailedTokenScopes} If the access token doesn't have the
+     * notifications scope
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws {Unexpected} Got a response but could not find the username
      * @throws Any other error when making the request or reading the response
@@ -87,6 +89,7 @@ export default class Forge {
      * 
      * Get all unread notifications for the logged in user
      * 
+     * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws Will throw an error if some part of the process fails
      * @returns {Array<Notification>} The notifications
      */
@@ -102,7 +105,7 @@ export default class Forge {
      * @throws Will throw an error if some part of the process fails
      * @returns {Boolean} If the operation was successful
      */
-    async markAsRead(id=null) {
+    async markAsRead(id = null) {
 
     }
 
@@ -119,7 +122,7 @@ export default class Forge {
      * @param {Object.<string, string>} headers HTTP headers for the message
      * @returns {Soup.Message}
      */
-    createMessage(method, url, data={}, headers={}) {
+    createMessage(method, url, data = {}, headers = {}) {
         const message = Soup.Message.new(method, url);
 
         // Add data
@@ -176,7 +179,7 @@ export default class Forge {
      * @param {Object.<string, string>} query The URI query
      * @returns {String} The resulting URI
      */
-    static buildURI(host, path, query={}) {
+    static buildURI(host, path, query = {}) {
 
         /* Prepend slash to the path if not present */
         if (!path.startsWith('/')) {

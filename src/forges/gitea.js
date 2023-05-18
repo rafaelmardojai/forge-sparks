@@ -26,10 +26,16 @@ export default class Gitea extends GitHub {
 
     static get tokenText() {
         /* Gitea access token help */
-        return _('To generate a new access token from your Gitea instance go to Settings → Applications and generate a new token.');
+        let tokenText = _('To generate a new access token from your Gitea instance go to Settings → Applications and generate a new token.');
+        tokenText += '\n\n';
+        /* Gitea access token help */
+        tokenText += _('Forge Sparks requires the <i>notifications</i> scope granted.');
+
+        return tokenText;
+
     }
 
-    async markAsRead(id=null) {
+    async markAsRead(id = null) {
         /**
          * Gitea differs from GitHub's markAsRead, params are url queries
          */
@@ -68,7 +74,7 @@ export default class Gitea extends GitHub {
      * @param {Object.<string, string>} query The URI query
      * @returns {String} The resulting URI
      */
-    buildURI(path, query={}) {
+    buildURI(path, query = {}) {
         return Forge.buildURI(this.url, '/api/v1/' + path, query);
     }
 };

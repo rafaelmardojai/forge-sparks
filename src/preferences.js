@@ -21,7 +21,7 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
         GObject.registerClass({
             Template,
             InternalChildren: [
-                'background', 'startup','accountsList', 'accountsStack',
+                'background', 'startup', 'accountsList', 'accountsStack',
                 'accountNew', 'forge', 'instance', 'accessToken', 'accessTokenHelp', 'addAccountBtn',
                 'accountEdit', 'accountEditTitle', 'instanceEdit', 'accessTokenEdit', 'accessTokenEditHelp',
                 'saveAccountBtn', 'removeAccount',
@@ -333,7 +333,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
     _errorText(error) {
         switch (error) {
             case 'FailedForgeAuth':
-                return _("Couldn't authenticate the account");
+                return _("Couldn’t authenticate the account");
+            case 'FailedTokenScopes':
+                return _("The access token doesn’t have the needed scopes");
             default:
                 return _("Unexpected error when creating the account");
         }
@@ -455,9 +457,21 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
             activatable: true
         });
 
+        const authError = new Gtk.Image({
+            icon_name: 'dialog-error-symbolic'
+        });
+
+        authError.tooltip_text = _('Account authentication failed!');
+        authError.add_css_class('error');
+
+        row.add_suffix(authError);
+
         row.add_suffix(new Gtk.Image({
             icon_name: 'go-next-symbolic'
         }));
+
+        account.bind_property('display-name', row, 'title', GObject.BindingFlags.SYNC_CREATE)
+        account.bind_property('auth-failed', authError, 'visible', GObject.BindingFlags.SYNC_CREATE)
 
         row.connect('activated', () => {
             this._onEditAccount(account);
