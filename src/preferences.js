@@ -371,6 +371,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
                 title: _("New account added successfully!")
             }));
             this._onBack();
+
+            /* Reload notifications */
+            Adw.Application.get_default().lookup_action('reload').activate(null);
         } catch (error) {
             console.log(error);
             this.add_toast(new Adw.Toast({
@@ -417,6 +420,9 @@ export default class PreferencesWindow extends Adw.PreferencesWindow {
                     title: _("Account edited successfully!")
                 }));
                 this._onBack();
+
+                /* Reload notifications */
+                Adw.Application.get_default().lookup_action('reload').activate(null);
             } catch (error) {
                 console.log(error);
                 this.add_toast(new Adw.Toast({

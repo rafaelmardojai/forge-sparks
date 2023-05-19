@@ -120,6 +120,7 @@ export default class Window extends Adw.ApplicationWindow {
      * Run notifications getter task.
      * 
      * This is a recursive function with a timeout set by $this.interval.
+     * The timeout event source ID is stored in $this.subscribe_source.
      */
     async subscribe() {
         const app = this.get_application();
@@ -163,11 +164,13 @@ export default class Window extends Adw.ApplicationWindow {
 
                 /* Reset failed state */
                 if (this.authFailed == account.id) {
-                    account.authFailed = account.id;
-                    this.authFailed = false;
+                    this.authFailed = null;
                     this.authErrorNotified = false;
-                    app.withdraw_notification('forge-sparks-error-auth');
+
+                    account.authFailed = false;
+
                     this._accountBanner.revealed = false;
+                    app.withdraw_notification('forge-sparks-error-auth');
                 }
 
             } catch (error) {
@@ -209,10 +212,21 @@ export default class Window extends Adw.ApplicationWindow {
         this.showNotifications(newNotifications);
 
         /* Add timeout to run this function again */
-        GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
+        this.subscribe_source = GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
             this.subscribe();
             return GLib.SOURCE_REMOVE;
         });
+    }
+
+    /**
+     * Force notification retrieve
+     */
+    reload() {
+        /* Remove current timeout */
+        if (this.subscribe_source != undefined)
+            GLib.Source.remove(this.subscribe_source);
+        
+        this.subscribe();
     }
 
     /**
@@ -273,7 +287,7 @@ export default class Window extends Adw.ApplicationWindow {
         const success = await this.forges[account].markAsRead(notification);
         if (success) {
             /* Remove it from list model */
-            this.model.remove_by_id(id);
+            this.model.removeByID(id);
         }
     }
 

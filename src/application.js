@@ -86,9 +86,16 @@ export default class Application extends Adw.Application {
         markReadAction.connect('activate', this._markAsRead.bind(this));
         this.add_action(markReadAction);
 
+        let reloadAction = new Gio.SimpleAction({ name: 'reload' });
+        reloadAction.connect('activate', () => {
+            this.get_active_window().reload();
+        });
+        this.add_action(reloadAction);
+
         this.set_accels_for_action('app.quit', ['<Primary>q']);
         this.set_accels_for_action('app.close', ['<Primary>w']);
         this.set_accels_for_action('app.preferences', ['<Primary>comma']);
+        this.set_accels_for_action('app.reload', ['<Primary>r']);
         this.set_accels_for_action('win.open-primary-menu', ['F10']);
         this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
     }

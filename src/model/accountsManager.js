@@ -213,9 +213,6 @@ export default class AccountsManager extends GObject.Object {
                 accountSettings.set_string('url', url);
                 accountSettings.set_string('username', username);
 
-                const account = this.getAccountByID(id);
-                account.authFailed = false;
-
                 return true;
             }
 

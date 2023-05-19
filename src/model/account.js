@@ -9,12 +9,12 @@ export default class Account extends GObject.Object {
         GObject.registerClass({
             GTypeName: 'Account',
             Properties: {
-                'display-name': GObject.ParamSpec.string('display-name', null, null, GObject.ParamFlags.READWRITE, null),
+                'display-name': GObject.ParamSpec.string('display_name', null, null, GObject.ParamFlags.READWRITE, null),
                 'id': GObject.ParamSpec.string('id', null, null, GObject.ParamFlags.READWRITE, null),
                 'forge': GObject.ParamSpec.string('forge', null, null, GObject.ParamFlags.READWRITE, null),
                 'url': GObject.ParamSpec.string('url', null, null, GObject.ParamFlags.READWRITE, null),
                 'username': GObject.ParamSpec.string('username', null, null, GObject.ParamFlags.READWRITE, null),
-                'auth-failed': GObject.ParamSpec.boolean('auth-failed', null, null, GObject.ParamFlags.READWRITE, false),
+                'auth-failed': GObject.ParamSpec.boolean('auth_failed', null, null, GObject.ParamFlags.READWRITE, false),
             },
         }, this);
     }
@@ -131,10 +131,7 @@ export default class Account extends GObject.Object {
     * @type {Boolean}
     */
     get authFailed() {
-        if (this._authFailed === undefined)
-            this._authFailed = false;
-
-        return this._authFailed;
+        return this._authFailed || false;
     }
 
     set authFailed(value) {
