@@ -28,20 +28,17 @@ export default class Application extends Adw.Application {
     constructor() {
         super({ application_id: pkg.name });
 
+        /* If the window should start hidden */
+        this.hidden = false;
+
+        /* Command line options */
         this.add_main_option('version', 'v'.charCodeAt(0), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
             'Print version information and exit', null);
 
-        this.connect('handle-local-options', (app, options) => {
-            if (options.contains('version')) {
-                print(pkg.version);
-                /* quit the invoked process after printing the version number
-                 * leaving the running instance unaffected
-                 */
-                return 0;
-            }
-            return -1;
-        });
+        this.add_main_option('hidden', 'h'.charCodeAt(0), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
+            'Start hidden', null);
 
+        /* Setup application actions */
         this._initAppActions();
     }
 
@@ -92,12 +89,27 @@ export default class Application extends Adw.Application {
         });
         this.add_action(reloadAction);
 
+        /* Set keyboard shortcuts for actions */
         this.set_accels_for_action('app.quit', ['<Primary>q']);
         this.set_accels_for_action('app.close', ['<Primary>w']);
         this.set_accels_for_action('app.preferences', ['<Primary>comma']);
         this.set_accels_for_action('app.reload', ['<Primary>r']);
         this.set_accels_for_action('win.open-primary-menu', ['F10']);
         this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
+    }
+
+    vfunc_handle_local_options(options) {
+        if (options.contains('version')) {
+            print(pkg.version);
+            return 0;
+        }
+
+        /* Hidden window on start */
+        if (options.contains('hidden') && this.window === undefined) {
+            this.hidden = true;
+        }
+
+        return -1;  /* Continue execution */
     }
 
     vfunc_startup() {
@@ -107,11 +119,19 @@ export default class Application extends Adw.Application {
     }
 
     vfunc_activate() {
-        if (!this.window){
+        if (!this.window) {
             this.window = new Window({ application: this });
             this.window.hide_on_close = settings.get_boolean('hide-on-close');
         }
-        this.window.show();
+
+        /* Start window hidden or not */
+        if (this.hidden) {
+            this.window.visible = false;
+            this.window._onWindowHide();
+            this.hidden = false;
+        } else {
+            this.window.show();
+        }
     }
 
     _showPrefs() {
@@ -141,7 +161,7 @@ export default class Application extends Adw.Application {
         const paramsArray = params.get_strv();
         const id = paramsArray[0];
         const url = paramsArray[1];
-        const launcher = new Gtk.UriLauncher({uri: url});
+        const launcher = new Gtk.UriLauncher({ uri: url });
 
         let window = this.window;
         if (this.window.hide_on_close)

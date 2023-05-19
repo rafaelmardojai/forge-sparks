@@ -21,11 +21,24 @@ template Gjs_PreferencesWindow : Adw.PreferencesWindow {
 
         Adw.ActionRow {
           title: _("Run on startup");
+          activatable-widget: startup;
 
           Switch startup {
             valign: center;
 
             notify::active => _onStartupChanged();
+          }
+        }
+
+        Adw.ActionRow {
+          title: _("Start hidden");
+          activatable-widget: hidden;
+          sensitive: bind-property startup.active;
+
+          Switch hidden {
+            valign: center;
+
+            notify::active => _onStartupHiddenChanged();
           }
         }
       }

@@ -33,9 +33,11 @@ export const portal = new Xdp.Portal();
  * 
  * @param {Gtk.window} window The window making the request
  * @param {Boolean} autostart If autostart should be requested as well
+ * @param {Boolean} hidden If autostart should de done hidden. Depends on
+ * autostart being true. Adds the --hidden flag to the app command.
  * @returns {Boolean} If request was successful
  */
-export function requestBackground(window, autostart=false) {
+export function requestBackground(window, autostart=false, hidden=false) {
     /* Try getting parent from window */
     let parent = null;
     try {
@@ -46,10 +48,15 @@ export function requestBackground(window, autostart=false) {
     }
 
     return new Promise((resolve) => {
+
+        let command = ['forge-sparks'];
+        if (autostart && hidden)
+            command.push('--hidden');
+
         portal.request_background(
             parent,
             (autostart) ? _('Allow running Forge Sparks on background.') : _('Allow running Forge Sparks on startup.'),
-            ['forge-sparks'],
+            command,
             (autostart) ? Xdp.BackgroundFlags.AUTOSTART : Xdp.BackgroundFlags.NONE,
             null,
             (_portal, result) => {
