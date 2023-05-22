@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 22:56-0500\n"
+"POT-Creation-Date: 2023-05-22 18:57-0500\n"
 "PO-Revision-Date: 2023-05-09 04:50+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
@@ -26,7 +26,7 @@ msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml:8 src/application.js:121
+#: data/com.mardojai.ForgeSparks.metainfo.xml:8 src/application.js:148
 msgid "Get git forges notifications"
 msgstr "Recibe notificaciones de forjas git"
 
@@ -59,7 +59,7 @@ msgstr "Acerca de Forge Sparks"
 msgid "Quit"
 msgstr "Salir"
 
-#: src/window.blp:57 src/preferences.blp:60
+#: src/window.blp:57 src/preferences.blp:73
 msgid "No Accounts"
 msgstr "Sin cuentas"
 
@@ -67,7 +67,7 @@ msgstr "Sin cuentas"
 msgid "Please add an account in the app preferences."
 msgstr "Por favor, añade una cuenta en las preferencias de la aplicación."
 
-#: src/window.blp:62
+#: src/window.blp:62 src/window.blp:201 src/window.js:201
 msgid "Open Preferences"
 msgstr "Abrir Preferencias"
 
@@ -79,11 +79,11 @@ msgstr "Marcar como leído"
 msgid "No Notifications to Show"
 msgstr "No hay notificaciones que mostrar"
 
-#: src/util.js:51
+#: src/util.js:58
 msgid "Allow running Forge Sparks on background."
 msgstr "Permitir ejecutar Forge Sparks en segundo plano."
 
-#: src/util.js:51
+#: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
 msgstr "Permitir la ejecución de Forge Sparks al inicio."
 
@@ -92,16 +92,16 @@ msgstr "Permitir la ejecución de Forge Sparks al inicio."
 #. *
 #. * @param {String} message
 #.
-#: src/util.js:75
+#: src/util.js:82
 msgid "Monitoring new notifications"
 msgstr "Esperando nuevas notificaciones"
 
-#: src/util.js:126 src/util.js:167
+#: src/util.js:133 src/util.js:174
 msgid "now"
 msgstr "ahora"
 
 #. Translators: relative date
-#: src/util.js:131
+#: src/util.js:138
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -109,7 +109,7 @@ msgstr[0] "hace %d minuto"
 msgstr[1] "hace %d minutos"
 
 #. Translators: relative date
-#: src/util.js:138
+#: src/util.js:145
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -117,7 +117,7 @@ msgstr[0] "hace %d hora"
 msgstr[1] "hace %d horas"
 
 #. Translators: relative date
-#: src/util.js:145
+#: src/util.js:152
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -125,7 +125,7 @@ msgstr[0] "ayer"
 msgstr[1] "hace %d días"
 
 #. Translators: relative date
-#: src/util.js:152
+#: src/util.js:159
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -133,13 +133,22 @@ msgstr[0] "hace %d semana"
 msgstr[1] "hace %d semanas"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:158 src/util.js:162
+#: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
 msgstr "en %s"
 
+#: src/window.js:187
+#, javascript-format
+msgid "Account %s authentication failed!"
+msgstr ""
+
+#: src/window.js:189
+msgid "The token may have been revoked or expired."
+msgstr ""
+
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:119
+#: src/application.js:146
 msgid "translator-credits"
 msgstr "Rafael Mardojai CM"
 
@@ -163,37 +172,46 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Salir"
 
-#: src/preferences.js:97
+#: src/preferences.js:100
 msgid "The request failed."
 msgstr "La solicitud ha fallado."
 
-#: src/preferences.js:126
+#: src/preferences.js:131 src/preferences.js:162
 msgid "The autostart request failed."
 msgstr "La solicitud de autoarranque falló."
 
-#: src/preferences.js:280 src/preferences.js:317
+#: src/preferences.js:316 src/preferences.js:353
 msgid "Invalid instance url."
 msgstr "Url de instancia no válida."
 
-#: src/preferences.js:336
-msgid "Couldn't authenticate the account"
+#: src/preferences.js:372
+#, fuzzy
+msgid "Couldn’t authenticate the account"
 msgstr "No se ha podido autenticar la cuenta"
 
-#: src/preferences.js:338
+#: src/preferences.js:374
+msgid "The access token doesn’t have the needed scopes"
+msgstr ""
+
+#: src/preferences.js:376
 msgid "Unexpected error when creating the account"
 msgstr "Error inesperado al crear la cuenta"
 
-#: src/preferences.js:369
+#: src/preferences.js:407
 msgid "New account added successfully!"
 msgstr "¡Nueva cuenta añadida con éxito!"
 
-#: src/preferences.js:415
+#: src/preferences.js:456
 msgid "Account edited successfully!"
 msgstr "¡Cuenta editada con éxito!"
 
-#: src/preferences.js:433
+#: src/preferences.js:477
 msgid "Unexpected error removing the account"
 msgstr "Error inesperado al eliminar la cuenta"
+
+#: src/preferences.js:506
+msgid "Account authentication failed!"
+msgstr ""
 
 #: src/preferences.blp:13
 msgid "General"
@@ -207,43 +225,47 @@ msgstr "Seguir funcionando en segundo plano"
 msgid "Run on startup"
 msgstr "Ejecutar al inicio"
 
-#: src/preferences.blp:35
+#: src/preferences.blp:34
+msgid "Start hidden"
+msgstr ""
+
+#: src/preferences.blp:48
 msgid "Accounts"
 msgstr "Cuentas"
 
-#: src/preferences.blp:44
+#: src/preferences.blp:57
 msgid "Add Account…"
 msgstr "Agregar cuenta…"
 
-#: src/preferences.blp:91
+#: src/preferences.blp:104
 msgid "Add Account"
 msgstr "Agregar cuenta"
 
-#: src/preferences.blp:102
+#: src/preferences.blp:115
 msgid "Add"
 msgstr "Agregar"
 
-#: src/preferences.blp:117
+#: src/preferences.blp:130
 msgid "Forge"
 msgstr "Forja"
 
-#: src/preferences.blp:123 src/preferences.blp:179
+#: src/preferences.blp:136 src/preferences.blp:192
 msgid "Instance URL"
 msgstr "URL de la instancia"
 
-#: src/preferences.blp:130 src/preferences.blp:186
+#: src/preferences.blp:143 src/preferences.blp:199
 msgid "Access Token"
 msgstr "Token de acceso"
 
-#: src/preferences.blp:153
+#: src/preferences.blp:166
 msgid "Edit Account"
 msgstr "Editar cuenta"
 
-#: src/preferences.blp:164
+#: src/preferences.blp:177
 msgid "Save"
 msgstr "Guardar"
 
-#: src/preferences.blp:201
+#: src/preferences.blp:214
 msgid "Remove Account"
 msgstr "Eliminar cuenta"
 
@@ -276,6 +298,14 @@ msgid ""
 msgstr ""
 "Para generar un nuevo token de acceso desde tu instancia de Gitea ve a "
 "Configuración → Aplicaciones y genera un nuevo token."
+
+#. Gitea access token help
+#: src/forges/gitea.js:32 src/forges/forgejo.js:32
+#, fuzzy
+msgid "Forge Sparks requires the <i>notifications</i> scope granted."
+msgstr ""
+"Forge Sparks requiere un token de acceso <b>classic</b> (para uso general) "
+"con los ámbitos de <i>notifications</i> y <i>read:user</i> concedidos."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
