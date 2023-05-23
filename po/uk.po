@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-22 18:57-0500\n"
-"PO-Revision-Date: 2023-05-10 09:50+0000\n"
+"PO-Revision-Date: 2023-05-24 13:35+0000\n"
 "Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/uk/>\n"
@@ -145,11 +145,11 @@ msgstr "на %s"
 #: src/window.js:187
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Не вдалося виконати автентифікацію облікового запису %s!"
 
 #: src/window.js:189
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Можливо, токен було анульовано або термін його дії закінчився."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:146
@@ -189,13 +189,12 @@ msgid "Invalid instance url."
 msgstr "Недійсна URL-адреса екземпляра."
 
 #: src/preferences.js:372
-#, fuzzy
 msgid "Couldn’t authenticate the account"
 msgstr "Не вдалося автентифікувати обліковий запис"
 
 #: src/preferences.js:374
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Токен доступу не має необхідних діапазонів"
 
 #: src/preferences.js:376
 msgid "Unexpected error when creating the account"
@@ -215,7 +214,7 @@ msgstr "Несподівана помилка видалення обліков�
 
 #: src/preferences.js:506
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Помилка автентифікації облікового запису!"
 
 #: src/preferences.blp:13
 msgid "General"
@@ -231,7 +230,7 @@ msgstr "Запустити під час запуску"
 
 #: src/preferences.blp:34
 msgid "Start hidden"
-msgstr ""
+msgstr "Початок приховано"
 
 #: src/preferences.blp:48
 msgid "Accounts"
@@ -305,11 +304,8 @@ msgstr ""
 
 #. Gitea access token help
 #: src/forges/gitea.js:32 src/forges/forgejo.js:32
-#, fuzzy
 msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr ""
-"Forge Sparks потребує <b>класичного токену доступу</b> (для загального "
-"використання) з дозволеними <i>сповіщеннями</i> та <i>read:user</i>."
+msgstr "Forge Sparks вимагає <i>сповіщення</i> про наданий дозвіл."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
