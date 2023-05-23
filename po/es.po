@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-22 18:57-0500\n"
-"PO-Revision-Date: 2023-05-09 04:50+0000\n"
+"PO-Revision-Date: 2023-05-24 13:35+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/es/>\n"
@@ -141,11 +141,11 @@ msgstr "en %s"
 #: src/window.js:187
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Fallo en la autenticación de la cuenta %s!"
 
 #: src/window.js:189
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "El token puede haber sido revocado o haber caducado."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:146
@@ -185,13 +185,12 @@ msgid "Invalid instance url."
 msgstr "Url de instancia no válida."
 
 #: src/preferences.js:372
-#, fuzzy
 msgid "Couldn’t authenticate the account"
 msgstr "No se ha podido autenticar la cuenta"
 
 #: src/preferences.js:374
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "El token de acceso no tiene los permisos necesarios"
 
 #: src/preferences.js:376
 msgid "Unexpected error when creating the account"
@@ -211,7 +210,7 @@ msgstr "Error inesperado al eliminar la cuenta"
 
 #: src/preferences.js:506
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Ha fallado la autenticación de la cuenta!"
 
 #: src/preferences.blp:13
 msgid "General"
@@ -227,7 +226,7 @@ msgstr "Ejecutar al inicio"
 
 #: src/preferences.blp:34
 msgid "Start hidden"
-msgstr ""
+msgstr "Iniciar oculto"
 
 #: src/preferences.blp:48
 msgid "Accounts"
@@ -301,11 +300,8 @@ msgstr ""
 
 #. Gitea access token help
 #: src/forges/gitea.js:32 src/forges/forgejo.js:32
-#, fuzzy
 msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr ""
-"Forge Sparks requiere un token de acceso <b>classic</b> (para uso general) "
-"con los ámbitos de <i>notifications</i> y <i>read:user</i> concedidos."
+msgstr "Forge Sparks requiere el permiso <i>notifications</i> concedido."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
