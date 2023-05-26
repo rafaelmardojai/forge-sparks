@@ -30,10 +30,12 @@
   </screenshots>
 
   <releases translatable="no">
-    <release version="0.1.0" date="2022-12-01">
+    <release version="0.1.0" date="2023-05-26">
       <description>
         <p>Initial release.</p>
         <ul>
+          <li>Support for Forgejo</li>
+          <li>Support for Gitea</li>
           <li>Support for GitHub</li>
         </ul>
       </description>
