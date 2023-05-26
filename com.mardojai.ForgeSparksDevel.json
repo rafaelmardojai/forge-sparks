@@ -1,7 +1,7 @@
 {
-  "app-id": "com.mardojai.ForgeSparks",
+  "app-id": "com.mardojai.ForgeSparksDevel",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "44",
+  "runtime-version": "master",
   "sdk": "org.gnome.Sdk",
   "command": "forge-sparks",
   "finish-args": [
@@ -46,6 +46,9 @@
       "name": "forge-sparks",
       "buildsystem": "meson",
       "builddir": true,
+      "config-opts": [
+        "-Dprofile=development"
+      ],
       "sources": [
         {
           "type": "dir",

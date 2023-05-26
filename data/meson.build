@@ -3,8 +3,8 @@ desktop_conf = configuration_data()
 desktop_conf.set('app_id', application_id)
 desktop_file = i18n.merge_file(
   input: configure_file(
-  	input: 'com.mardojai.ForgeSparks.desktop',
-  	output: 'com.mardojai.ForgeSparks.desktop',
+  	input: 'com.mardojai.ForgeSparks.desktop.in.in',
+  	output: 'com.mardojai.ForgeSparks.desktop.in',
   	configuration: desktop_conf
   ),
   output: '@0@.desktop'.format(application_id),
@@ -25,8 +25,8 @@ appstream_conf = configuration_data()
 appstream_conf.set('app_id', application_id)
 appstream_file = i18n.merge_file(
   input: configure_file(
-    input: 'com.mardojai.ForgeSparks.metainfo.xml',
-    output: 'com.mardojai.ForgeSparks.metainfo.xml',
+    input: 'com.mardojai.ForgeSparks.metainfo.xml.in.in',
+    output: 'com.mardojai.ForgeSparks.metainfo.xml.in',
     configuration: appstream_conf
   ),
   output: '@0@.metainfo.xml'.format(application_id),
