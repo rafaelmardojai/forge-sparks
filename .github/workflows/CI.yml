@@ -22,6 +22,6 @@ jobs:
     - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v5
       with:
         bundle: "forge-sparks-devel.flatpak"
-        manifest-path: "com.mardojai.ForgeSparks.json"
+        manifest-path: "com.mardojai.ForgeSparksDevel.json"
         run-tests: "true"
         cache-key: flatpak-builder-${{ github.sha }}
