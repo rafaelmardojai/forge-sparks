@@ -50,6 +50,7 @@ template Gjs_Window : Adw.ApplicationWindow {
             primary: true;
             menu-model: menu;
             icon-name: "open-menu-symbolic";
+            tooltip-text: _("Main Menu");
           }
         }
 
@@ -111,6 +112,10 @@ template Gjs_Window : Adw.ApplicationWindow {
 
               styles ["flat"]
 
+              accessibility {
+                labelled-by: markAsReadLabel;
+              }
+
               Box {
                 spacing: 6;
 
@@ -131,7 +136,7 @@ template Gjs_Window : Adw.ApplicationWindow {
                   }
                 }
 
-                Label {
+                Label markAsReadLabel {
                   label: _("Mark all as Read");
                 }
               }
@@ -142,6 +147,7 @@ template Gjs_Window : Adw.ApplicationWindow {
               primary: true;
               menu-model: menu;
               icon-name: "open-menu-symbolic";
+              tooltip-text: _("Main Menu");
             }
           }
 
