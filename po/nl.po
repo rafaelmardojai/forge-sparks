@@ -1,0 +1,312 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.mardojai.ForgeSparks\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-29 07:30-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. TRANSLATORS: Don't translate, only transliterate if needed
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:7 src/window.blp:33
+msgid "Forge Sparks"
+msgstr ""
+
+#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:148
+msgid "Get git forges notifications"
+msgstr ""
+
+#: data/com.mardojai.ForgeSparks.desktop.in.in:12
+msgid "git;github;notifications;"
+msgstr ""
+
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
+msgid "Rafael Mardojai CM"
+msgstr ""
+
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
+msgid "Simple notifier app with support for Github, Gitea and Forgejo."
+msgstr ""
+
+#: src/window.blp:7
+msgid "_Preferences"
+msgstr ""
+
+#: src/window.blp:12
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: src/window.blp:18
+msgid "About Forge Sparks"
+msgstr ""
+
+#: src/window.blp:25
+msgid "Quit"
+msgstr ""
+
+#: src/window.blp:53 src/window.blp:150
+msgid "Main Menu"
+msgstr ""
+
+#: src/window.blp:58 src/preferences.blp:73
+msgid "No Accounts"
+msgstr ""
+
+#: src/window.blp:59
+msgid "Please add an account in the app preferences."
+msgstr ""
+
+#: src/window.blp:63 src/window.blp:207 src/window.js:201
+msgid "Open Preferences"
+msgstr ""
+
+#: src/window.blp:140
+msgid "Mark all as Read"
+msgstr ""
+
+#: src/window.blp:170
+msgid "No Notifications to Show"
+msgstr ""
+
+#: src/util.js:58
+msgid "Allow running Forge Sparks on background."
+msgstr ""
+
+#: src/util.js:58
+msgid "Allow running Forge Sparks on startup."
+msgstr ""
+
+#. *
+#. * Set background status message
+#. *
+#. * @param {String} message
+#.
+#: src/util.js:82
+msgid "Monitoring new notifications"
+msgstr ""
+
+#: src/util.js:133 src/util.js:174
+msgid "now"
+msgstr ""
+
+#. Translators: relative date
+#: src/util.js:138
+#, javascript-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date
+#: src/util.js:145
+#, javascript-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date
+#: src/util.js:152
+#, javascript-format
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date
+#: src/util.js:159
+#, javascript-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date, %s is date formatted as "May 01, 2022"
+#: src/util.js:165 src/util.js:169
+#, javascript-format
+msgid "on %s"
+msgstr ""
+
+#: src/window.js:187
+#, javascript-format
+msgid "Account %s authentication failed!"
+msgstr ""
+
+#: src/window.js:189
+msgid "The token may have been revoked or expired."
+msgstr ""
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/application.js:146
+msgid "translator-credits"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:15
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:20
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:25
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: src/preferences.js:100
+msgid "The request failed."
+msgstr ""
+
+#: src/preferences.js:131 src/preferences.js:162
+msgid "The autostart request failed."
+msgstr ""
+
+#: src/preferences.js:316 src/preferences.js:353
+msgid "Invalid instance url."
+msgstr ""
+
+#: src/preferences.js:372
+msgid "Couldn’t authenticate the account"
+msgstr ""
+
+#: src/preferences.js:374
+msgid "The access token doesn’t have the needed scopes"
+msgstr ""
+
+#: src/preferences.js:376
+msgid "Unexpected error when creating the account"
+msgstr ""
+
+#: src/preferences.js:407
+msgid "New account added successfully!"
+msgstr ""
+
+#: src/preferences.js:456
+msgid "Account edited successfully!"
+msgstr ""
+
+#: src/preferences.js:477
+msgid "Unexpected error removing the account"
+msgstr ""
+
+#: src/preferences.js:506
+msgid "Account authentication failed!"
+msgstr ""
+
+#: src/preferences.blp:13
+msgid "General"
+msgstr ""
+
+#: src/preferences.blp:16
+msgid "Keep running on background"
+msgstr ""
+
+#: src/preferences.blp:23
+msgid "Run on startup"
+msgstr ""
+
+#: src/preferences.blp:34
+msgid "Start hidden"
+msgstr ""
+
+#: src/preferences.blp:48
+msgid "Accounts"
+msgstr ""
+
+#: src/preferences.blp:57
+msgid "Add Account…"
+msgstr ""
+
+#: src/preferences.blp:104
+msgid "Add Account"
+msgstr ""
+
+#: src/preferences.blp:115
+msgid "Add"
+msgstr ""
+
+#: src/preferences.blp:130
+msgid "Forge"
+msgstr ""
+
+#: src/preferences.blp:136 src/preferences.blp:192
+msgid "Instance URL"
+msgstr ""
+
+#: src/preferences.blp:143 src/preferences.blp:199
+msgid "Access Token"
+msgstr ""
+
+#: src/preferences.blp:166
+msgid "Edit Account"
+msgstr ""
+
+#: src/preferences.blp:177
+msgid "Save"
+msgstr ""
+
+#: src/preferences.blp:214
+msgid "Remove Account"
+msgstr ""
+
+#: src/forges/github.js:30
+#, javascript-format
+msgid ""
+"You can generate a new personal access token going to <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+
+#. GitHub access token help
+#: src/forges/github.js:35
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+
+#. Gitea access token help
+#: src/forges/gitea.js:29
+msgid ""
+"To generate a new access token from your Gitea instance go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+
+#. Gitea access token help
+#: src/forges/gitea.js:32 src/forges/forgejo.js:32
+msgid "Forge Sparks requires the <i>notifications</i> scope granted."
+msgstr ""
+
+#. Forgejo access token help
+#: src/forges/forgejo.js:30
+msgid ""
+"To generate a new access token from your Forgejo instance go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+
+#: src/model/notification.js:67
+msgid "Mark as Read"
+msgstr ""
+
+#: src/model/notification.js:74
+msgid "Show Forge Sparks"
+msgstr ""
