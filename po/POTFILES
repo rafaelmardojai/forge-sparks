@@ -1,6 +1,5 @@
-data/com.mardojai.ForgeSparks.desktop
-data/com.mardojai.ForgeSparks.gschema.xml
-data/com.mardojai.ForgeSparks.metainfo.xml
+data/com.mardojai.ForgeSparks.desktop.in.in
+data/com.mardojai.ForgeSparks.metainfo.xml.in.in
 src/window.blp
 src/util.js
 src/window.js

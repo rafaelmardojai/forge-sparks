@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-22 18:57-0500\n"
+"POT-Creation-Date: 2023-05-29 07:30-0500\n"
 "PO-Revision-Date: 2023-05-24 13:35+0000\n"
 "Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -21,25 +21,25 @@ msgstr ""
 "X-Generator: Weblate 4.18-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop:4
-#: data/com.mardojai.ForgeSparks.metainfo.xml:7 src/window.blp:33
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:7 src/window.blp:33
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: data/com.mardojai.ForgeSparks.desktop:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml:8 src/application.js:148
+#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:148
 msgid "Get git forges notifications"
 msgstr "Отримувати сповіщення git forges"
 
-#: data/com.mardojai.ForgeSparks.desktop:12
+#: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
 msgstr "git;github;сповіщення;"
 
-#: data/com.mardojai.ForgeSparks.metainfo.xml:14
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
 msgid "Rafael Mardojai CM"
 msgstr "Rafael Mardojai CM"
 
-#: data/com.mardojai.ForgeSparks.metainfo.xml:18
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr "Простий застосунок-сповіщувач з підтримкою Github, Gitea та Forgejo."
 
@@ -59,23 +59,27 @@ msgstr "Про Forge Sparks"
 msgid "Quit"
 msgstr "Вийти"
 
-#: src/window.blp:57 src/preferences.blp:73
+#: src/window.blp:53 src/window.blp:150
+msgid "Main Menu"
+msgstr ""
+
+#: src/window.blp:58 src/preferences.blp:73
 msgid "No Accounts"
 msgstr "Немає облікових записів"
 
-#: src/window.blp:58
+#: src/window.blp:59
 msgid "Please add an account in the app preferences."
 msgstr "Будь ласка, додайте обліковий запис у параметрах застосунку."
 
-#: src/window.blp:62 src/window.blp:201 src/window.js:201
+#: src/window.blp:63 src/window.blp:207 src/window.js:201
 msgid "Open Preferences"
 msgstr "Відкрити Налаштування"
 
-#: src/window.blp:135
+#: src/window.blp:140
 msgid "Mark all as Read"
 msgstr "Позначити все як прочитане"
 
-#: src/window.blp:164
+#: src/window.blp:170
 msgid "No Notifications to Show"
 msgstr "Немає сповіщень для показу"
 
