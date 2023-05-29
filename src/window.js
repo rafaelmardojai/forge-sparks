@@ -91,6 +91,10 @@ export default class Window extends Adw.ApplicationWindow {
         /* Bind sorted model to notifications list box */
         this._notificationsList.bind_model(this.sortedModel, this._createNotificationRow.bind(this));
 
+        /* Add devel class */
+        if (pkg.name.endsWith('Devel'))
+            this.add_css_class('devel');
+
         /* First run, background request */
         if (!settings.get_boolean('first-run')) {
             this._firstRun();
