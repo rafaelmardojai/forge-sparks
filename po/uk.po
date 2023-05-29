@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
 "PO-Revision-Date: 2023-05-31 19:51+0000\n"
-"Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
+"Last-Translator: volkov <d2oo1dle2x@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/uk/>\n"
 "Language: uk\n"
@@ -33,7 +33,7 @@ msgstr "Отримувати сповіщення git forges"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr "git;github;сповіщення;"
+msgstr "git;github;notifications;сповіщення;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
 msgid "Rafael Mardojai CM"
@@ -41,7 +41,7 @@ msgstr "Rafael Mardojai CM"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
-msgstr "Простий застосунок-сповіщувач з підтримкою Github, Gitea та Forgejo."
+msgstr "Простий додаток-сповіщувач з підтримкою Github, Gitea та Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
@@ -49,7 +49,7 @@ msgstr "_Налаштування"
 
 #: src/window.blp:12
 msgid "_Keyboard Shortcuts"
-msgstr "_Комбінації клавіш"
+msgstr "_Клавіатурні скорочення"
 
 #: src/window.blp:18
 msgid "About Forge Sparks"
@@ -69,11 +69,11 @@ msgstr "Немає облікових записів"
 
 #: src/window.blp:59
 msgid "Please add an account in the app preferences."
-msgstr "Будь ласка, додайте обліковий запис у параметрах застосунку."
+msgstr "Будь ласка, додайте обліковий запис у налаштуваннях додатку."
 
 #: src/window.blp:63 src/window.blp:207 src/window.js:201
 msgid "Open Preferences"
-msgstr "Відкрити Налаштування"
+msgstr "Відкрити налаштування"
 
 #: src/window.blp:140
 msgid "Mark all as Read"
@@ -89,7 +89,7 @@ msgstr "Дозволити запуск Forge Sparks у фоновому реж�
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr "Дозволити запуск Forge Sparks під час запуску."
+msgstr "Дозволити запуск Forge Sparks під час запуску системи."
 
 #. *
 #. * Set background status message
@@ -173,7 +173,7 @@ msgstr "Відкрити меню"
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr "Комбінації клавіш"
+msgstr "Клавіатурні скорочення"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
