@@ -7,7 +7,7 @@
   <name translatable="no">Forge Sparks</name>
   <summary>Get git forges notifications</summary>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>Unlicense</project_license>
+  <project_license>MIT</project_license>
   <url type="homepage">https://github.com/rafaelmardojai/forge-sparks</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/forge-sparks/issues</url>
   <url type="donation">https://mardojai.com/donate/</url>
