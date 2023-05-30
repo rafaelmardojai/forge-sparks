@@ -8,33 +8,35 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-05-31 19:51+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:7 src/window.blp:33
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:148
 msgid "Get git forges notifications"
-msgstr ""
+msgstr "Krijg meldingen van Git-forges"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notifications;meldingen;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
 msgid "Rafael Mardojai CM"
-msgstr ""
+msgstr "Rafael Mardojai CM"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
@@ -42,27 +44,27 @@ msgstr ""
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Voorkeuren"
 
 #: src/window.blp:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Sneltoetsen"
 
 #: src/window.blp:18
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Over Forge Sparks"
 
 #: src/window.blp:25
 msgid "Quit"
-msgstr ""
+msgstr "Afsluiten"
 
 #: src/window.blp:53 src/window.blp:150
 msgid "Main Menu"
-msgstr ""
+msgstr "Hoofdmenu"
 
 #: src/window.blp:58 src/preferences.blp:73
 msgid "No Accounts"
-msgstr ""
+msgstr "Geen accounts"
 
 #: src/window.blp:59
 msgid "Please add an account in the app preferences."
@@ -70,7 +72,7 @@ msgstr ""
 
 #: src/window.blp:63 src/window.blp:207 src/window.js:201
 msgid "Open Preferences"
-msgstr ""
+msgstr "Voorkeuren openen"
 
 #: src/window.blp:140
 msgid "Mark all as Read"
@@ -99,7 +101,7 @@ msgstr ""
 
 #: src/util.js:133 src/util.js:174
 msgid "now"
-msgstr ""
+msgstr "nu"
 
 #. Translators: relative date
 #: src/util.js:138
@@ -137,7 +139,7 @@ msgstr[1] ""
 #: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "op %s"
 
 #: src/window.js:187
 #, javascript-format
@@ -151,27 +153,27 @@ msgstr ""
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:146
 msgid "translator-credits"
-msgstr ""
+msgstr "Philip Goto https://philipgoto.nl/"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Menu openen"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Sneltoetsen"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Afsluiten"
 
 #: src/preferences.js:100
 msgid "The request failed."
@@ -215,7 +217,7 @@ msgstr ""
 
 #: src/preferences.blp:13
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: src/preferences.blp:16
 msgid "Keep running on background"
@@ -227,27 +229,27 @@ msgstr ""
 
 #: src/preferences.blp:34
 msgid "Start hidden"
-msgstr ""
+msgstr "Verborgen starten"
 
 #: src/preferences.blp:48
 msgid "Accounts"
-msgstr ""
+msgstr "Accounts"
 
 #: src/preferences.blp:57
 msgid "Add Account…"
-msgstr ""
+msgstr "Account toevoegen…"
 
 #: src/preferences.blp:104
 msgid "Add Account"
-msgstr ""
+msgstr "Account toevoegen"
 
 #: src/preferences.blp:115
 msgid "Add"
-msgstr ""
+msgstr "Toevoegen"
 
 #: src/preferences.blp:130
 msgid "Forge"
-msgstr ""
+msgstr "Forge"
 
 #: src/preferences.blp:136 src/preferences.blp:192
 msgid "Instance URL"
@@ -263,7 +265,7 @@ msgstr ""
 
 #: src/preferences.blp:177
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
 #: src/preferences.blp:214
 msgid "Remove Account"
