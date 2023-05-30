@@ -8,85 +8,87 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-05-31 19:51+0000\n"
+"Last-Translator: Onuralp SEZER <thunderbirdtr@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:7 src/window.blp:33
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:148
 msgid "Get git forges notifications"
-msgstr ""
+msgstr "Git forges bildirimlerini alın"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;bildirimler;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
 msgid "Rafael Mardojai CM"
-msgstr ""
+msgstr "Rafael Mardojai CM"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
-msgstr ""
+msgstr "Github, Gitea ve Forgejo desteği ile basit bir bildirim uygulaması."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Tercihler"
 
 #: src/window.blp:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Klavye kısayolları"
 
 #: src/window.blp:18
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks Hakkında"
 
 #: src/window.blp:25
 msgid "Quit"
-msgstr ""
+msgstr "Çıkış"
 
 #: src/window.blp:53 src/window.blp:150
 msgid "Main Menu"
-msgstr ""
+msgstr "Ana Menü"
 
 #: src/window.blp:58 src/preferences.blp:73
 msgid "No Accounts"
-msgstr ""
+msgstr "Hesap yok"
 
 #: src/window.blp:59
 msgid "Please add an account in the app preferences."
-msgstr ""
+msgstr "Lütfen uygulama tercihlerine bir hesap ekleyin."
 
 #: src/window.blp:63 src/window.blp:207 src/window.js:201
 msgid "Open Preferences"
-msgstr ""
+msgstr "Tercihleri Aç"
 
 #: src/window.blp:140
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Tümünü okundu olarak işaretle"
 
 #: src/window.blp:170
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Gösterilecek Bildirim Yok"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Forge Sparks'ın arka planda çalışmasına izin ver."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Başlangıçta Forge Sparks çalıştırmaya izin ver."
 
 #. *
 #. * Set background status message
@@ -95,179 +97,179 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Yeni bildirimleri izle"
 
 #: src/util.js:133 src/util.js:174
 msgid "now"
-msgstr ""
+msgstr "şimdi"
 
 #. Translators: relative date
 #: src/util.js:138
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dakika önce"
+msgstr[1] "%d dakika önce"
 
 #. Translators: relative date
 #: src/util.js:145
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d saat önce"
+msgstr[1] "%d saat önce"
 
 #. Translators: relative date
 #: src/util.js:152
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "dün"
+msgstr[1] "%d gün önce"
 
 #. Translators: relative date
 #: src/util.js:159
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d hafta önce"
+msgstr[1] "%d hafta önce"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "%s üstünde"
 
 #: src/window.js:187
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "%s hesabının kimlik doğrulaması başarısız oldu!"
 
 #: src/window.js:189
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Token iptal edilmiş veya süresi dolmuş olabilir."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:146
 msgid "translator-credits"
-msgstr ""
+msgstr "Onuralp Sezer"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Genel"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Menüyü aç"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Klavye kısayolları"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Çıkış"
 
 #: src/preferences.js:100
 msgid "The request failed."
-msgstr ""
+msgstr "İstek başarısız oldu."
 
 #: src/preferences.js:131 src/preferences.js:162
 msgid "The autostart request failed."
-msgstr ""
+msgstr "Otomatik başlatma isteği başarısız oldu."
 
 #: src/preferences.js:316 src/preferences.js:353
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Geçersiz örnek URL'si."
 
 #: src/preferences.js:372
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Hesabın kimliği doğrulanamadı"
 
 #: src/preferences.js:374
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Erişim tokeni gerekli yetkilere sahip değil"
 
 #: src/preferences.js:376
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Hesap oluşturulurken beklenmeyen hata"
 
 #: src/preferences.js:407
 msgid "New account added successfully!"
-msgstr ""
+msgstr "Yeni hesap başarıyla eklendi!"
 
 #: src/preferences.js:456
 msgid "Account edited successfully!"
-msgstr ""
+msgstr "Hesap başarıyla düzenlendi!"
 
 #: src/preferences.js:477
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Hesap kaldırılırken beklenmeyen bir hata oluştu"
 
 #: src/preferences.js:506
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Hesap kimlik doğrulaması başarısız oldu!"
 
 #: src/preferences.blp:13
 msgid "General"
-msgstr ""
+msgstr "Genel"
 
 #: src/preferences.blp:16
 msgid "Keep running on background"
-msgstr ""
+msgstr "Arka planda çalışmaya devam et"
 
 #: src/preferences.blp:23
 msgid "Run on startup"
-msgstr ""
+msgstr "Başlangıçta çalıştır"
 
 #: src/preferences.blp:34
 msgid "Start hidden"
-msgstr ""
+msgstr "Gizli başla"
 
 #: src/preferences.blp:48
 msgid "Accounts"
-msgstr ""
+msgstr "Hesaplar"
 
 #: src/preferences.blp:57
 msgid "Add Account…"
-msgstr ""
+msgstr "Hesap ekle…"
 
 #: src/preferences.blp:104
 msgid "Add Account"
-msgstr ""
+msgstr "Hesap ekle"
 
 #: src/preferences.blp:115
 msgid "Add"
-msgstr ""
+msgstr "Ekle"
 
 #: src/preferences.blp:130
 msgid "Forge"
-msgstr ""
+msgstr "Forge"
 
 #: src/preferences.blp:136 src/preferences.blp:192
 msgid "Instance URL"
-msgstr ""
+msgstr "Örnek URL"
 
 #: src/preferences.blp:143 src/preferences.blp:199
 msgid "Access Token"
-msgstr ""
+msgstr "Erişim Tokeni"
 
 #: src/preferences.blp:166
 msgid "Edit Account"
-msgstr ""
+msgstr "Hesap düzenlemek"
 
 #: src/preferences.blp:177
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: src/preferences.blp:214
 msgid "Remove Account"
-msgstr ""
+msgstr "Hesabı kaldır"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -276,6 +278,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"<a href=\"%s\">GitHub geliştirici ayarlarına</a> giderek yeni bir kişisel "
+"erişim tokeni oluşturabilirsiniz. Daha fazla bilgi için bkz. \"<a href=\"%s\""
+">Kişisel erişim tokeni oluşturma</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -283,6 +288,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks, <b>klasik</b> bir erişim belirteciyle (genel kullanım için) "
+"<i>bildirimler</i> ve <i>read:user</i> izinleri verilerek çalışır."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -290,11 +297,13 @@ msgid ""
 "To generate a new access token from your Gitea instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Gitea sunucunuzdan yeni bir erişim tokeni oluşturmak için Ayarlar → "
+"Uygulamalar'a gidin ve yeni bir belirteç oluşturun."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32 src/forges/forgejo.js:32
 msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr ""
+msgstr "Forge Sparks, <i> notifications </i> yetkisi gereklidir."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
@@ -302,11 +311,13 @@ msgid ""
 "To generate a new access token from your Forgejo instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Forgejo sunucunuzdan yeni bir erişim tokeni oluşturmak için Ayarlar → "
+"Uygulamalar'a gidin ve yeni bir token oluşturun."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Okundu olarak işaretle"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks Göster"
