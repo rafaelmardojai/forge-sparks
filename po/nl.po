@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
-"PO-Revision-Date: 2023-05-31 19:51+0000\n"
+"PO-Revision-Date: 2023-06-04 01:48+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/nl/>\n"
@@ -41,6 +41,7 @@ msgstr "Rafael Mardojai CM"
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr ""
+"Eenvoudige notifier-app met ondersteuning voor Github, Gitea en Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
@@ -68,7 +69,7 @@ msgstr "Geen accounts"
 
 #: src/window.blp:59
 msgid "Please add an account in the app preferences."
-msgstr ""
+msgstr "Voeg een account toe in de app-voorkeuren."
 
 #: src/window.blp:63 src/window.blp:207 src/window.js:201
 msgid "Open Preferences"
@@ -76,19 +77,19 @@ msgstr "Voorkeuren openen"
 
 #: src/window.blp:140
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Alles als gelezen markeren"
 
 #: src/window.blp:170
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Geen meldingen om te tonen"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Sta toe dat Forge Sparks op de achtergrond actief blijft."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Sta toe dat Forge Sparks start bij het opstarten van het systeem."
 
 #. *
 #. * Set background status message
@@ -108,32 +109,32 @@ msgstr "nu"
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minuut geleden"
+msgstr[1] "%d minuten geleden"
 
 #. Translators: relative date
 #: src/util.js:145
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d uur geleden"
+msgstr[1] "%d uur geleden"
 
 #. Translators: relative date
 #: src/util.js:152
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "gisteren"
+msgstr[1] "%d dagen geleden"
 
 #. Translators: relative date
 #: src/util.js:159
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d week geleden"
+msgstr[1] "%d weken geleden"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:165 src/util.js:169
