@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
-"PO-Revision-Date: 2023-06-04 01:48+0000\n"
-"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
+"PO-Revision-Date: 2023-06-06 11:48+0000\n"
+"Last-Translator: Maarten de Boer <info@maartendeboer.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/nl/>\n"
 "Language: nl\n"
@@ -145,11 +145,11 @@ msgstr "op %s"
 #: src/window.js:187
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Authenticatie van account %s mislukt!"
 
 #: src/window.js:189
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Het token is mogelijk ingetrokken of verlopen."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:146
@@ -178,43 +178,43 @@ msgstr "Afsluiten"
 
 #: src/preferences.js:100
 msgid "The request failed."
-msgstr ""
+msgstr "De aanvraag is mislukt."
 
 #: src/preferences.js:131 src/preferences.js:162
 msgid "The autostart request failed."
-msgstr ""
+msgstr "De aanvraag om automatisch te starten is mislukt."
 
 #: src/preferences.js:316 src/preferences.js:353
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Ongeldige instantie url."
 
 #: src/preferences.js:372
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Kon niet authenticeren met account"
 
 #: src/preferences.js:374
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Het toegangs token heeft niet de benodigde scopes"
 
 #: src/preferences.js:376
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Onverwachte fout tijdens het aanmaken van het account"
 
 #: src/preferences.js:407
 msgid "New account added successfully!"
-msgstr ""
+msgstr "Nieuw account succesvol toegevoegd!"
 
 #: src/preferences.js:456
 msgid "Account edited successfully!"
-msgstr ""
+msgstr "Account succesvol bijgewerkt!"
 
 #: src/preferences.js:477
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Onverwachte fout bij het verwijderen van het account"
 
 #: src/preferences.js:506
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Account authenticatie mislukt!"
 
 #: src/preferences.blp:13
 msgid "General"
@@ -254,15 +254,15 @@ msgstr "Forge"
 
 #: src/preferences.blp:136 src/preferences.blp:192
 msgid "Instance URL"
-msgstr ""
+msgstr "Instantie URL"
 
 #: src/preferences.blp:143 src/preferences.blp:199
 msgid "Access Token"
-msgstr ""
+msgstr "Toegangs Token"
 
 #: src/preferences.blp:166
 msgid "Edit Account"
-msgstr ""
+msgstr "Account Bewerken"
 
 #: src/preferences.blp:177
 msgid "Save"
@@ -270,7 +270,7 @@ msgstr "Opslaan"
 
 #: src/preferences.blp:214
 msgid "Remove Account"
-msgstr ""
+msgstr "Verwijder Account"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -308,8 +308,8 @@ msgstr ""
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Markeer als gelezen"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Toon Forge Sparks"
