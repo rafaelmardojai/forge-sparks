@@ -8,85 +8,88 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-06-11 07:48+0000\n"
+"Last-Translator: jolupa <jolupameister@gmail.com>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:7 src/window.blp:33
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:148
 msgid "Get git forges notifications"
-msgstr ""
+msgstr "Rep notificacions de repositoris git"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notificacions;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
 msgid "Rafael Mardojai CM"
-msgstr ""
+msgstr "Rafael Mardojai CM"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr ""
+"Aplicació de notificacions senzilla amb suport per a Github, Gitea i Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Preferències"
 
 #: src/window.blp:12
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Dreceres de teclat"
 
 #: src/window.blp:18
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Sobre Forge Sparks"
 
 #: src/window.blp:25
 msgid "Quit"
-msgstr ""
+msgstr "Sortir"
 
 #: src/window.blp:53 src/window.blp:150
 msgid "Main Menu"
-msgstr ""
+msgstr "Menú principal"
 
 #: src/window.blp:58 src/preferences.blp:73
 msgid "No Accounts"
-msgstr ""
+msgstr "Sense comptes"
 
 #: src/window.blp:59
 msgid "Please add an account in the app preferences."
-msgstr ""
+msgstr "Afegiu un compte a les preferències de l'aplicació."
 
 #: src/window.blp:63 src/window.blp:207 src/window.js:201
 msgid "Open Preferences"
-msgstr ""
+msgstr "Obrir Preferències"
 
 #: src/window.blp:140
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Marca-ho tot com a llegit"
 
 #: src/window.blp:170
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "No hi ha notificacions per mostrar"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Permet executar Forge Sparks en segon pla."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Permet executar Forge Sparks a l'inici."
 
 #. *
 #. * Set background status message
@@ -95,179 +98,179 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Seguiment de noves notificacions"
 
 #: src/util.js:133 src/util.js:174
 msgid "now"
-msgstr ""
+msgstr "ara"
 
 #. Translators: relative date
 #: src/util.js:138
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fa %d minut"
+msgstr[1] "Fa %d minuts"
 
 #. Translators: relative date
 #: src/util.js:145
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fa %d hora"
+msgstr[1] "Fa %d hores"
 
 #. Translators: relative date
 #: src/util.js:152
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ahir"
+msgstr[1] "fa %d dies"
 
 #. Translators: relative date
 #: src/util.js:159
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "fa %d setmana"
+msgstr[1] "fa %d setmanes"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "el %s"
 
 #: src/window.js:187
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "L'autenticació del compte %s ha fallat!"
 
 #: src/window.js:189
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "El token pot haver estat revocat o caducat."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:146
 msgid "translator-credits"
-msgstr ""
+msgstr "Crèdits de traduccions"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Obrir menú"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Dreceres de teclat"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Sortir"
 
 #: src/preferences.js:100
 msgid "The request failed."
-msgstr ""
+msgstr "La sol·licitud ha fallat."
 
 #: src/preferences.js:131 src/preferences.js:162
 msgid "The autostart request failed."
-msgstr ""
+msgstr "La sol·licitud d'inici automàtic ha fallat."
 
 #: src/preferences.js:316 src/preferences.js:353
 msgid "Invalid instance url."
-msgstr ""
+msgstr "URL de la instància no vàlida."
 
 #: src/preferences.js:372
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "No s'ha pogut autenticar el compte"
 
 #: src/preferences.js:374
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "El token d'accés no té els àmbits necessaris"
 
 #: src/preferences.js:376
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Error inesperat en crear el compte"
 
 #: src/preferences.js:407
 msgid "New account added successfully!"
-msgstr ""
+msgstr "Nou compte afegit correctament!"
 
 #: src/preferences.js:456
 msgid "Account edited successfully!"
-msgstr ""
+msgstr "Compte editat amb èxit!"
 
 #: src/preferences.js:477
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Error inesperat en eliminar el compte"
 
 #: src/preferences.js:506
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "L'autenticació del compte ha fallat!"
 
 #: src/preferences.blp:13
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/preferences.blp:16
 msgid "Keep running on background"
-msgstr ""
+msgstr "Continuar funcionant en segon pla"
 
 #: src/preferences.blp:23
 msgid "Run on startup"
-msgstr ""
+msgstr "Executeu a l'inici"
 
 #: src/preferences.blp:34
 msgid "Start hidden"
-msgstr ""
+msgstr "Comença amagat"
 
 #: src/preferences.blp:48
 msgid "Accounts"
-msgstr ""
+msgstr "Comptes"
 
 #: src/preferences.blp:57
 msgid "Add Account…"
-msgstr ""
+msgstr "Afegeix un compte…"
 
 #: src/preferences.blp:104
 msgid "Add Account"
-msgstr ""
+msgstr "Afegir un compte"
 
 #: src/preferences.blp:115
 msgid "Add"
-msgstr ""
+msgstr "Afegir"
 
 #: src/preferences.blp:130
 msgid "Forge"
-msgstr ""
+msgstr "Repositori"
 
 #: src/preferences.blp:136 src/preferences.blp:192
 msgid "Instance URL"
-msgstr ""
+msgstr "URL de la instància"
 
 #: src/preferences.blp:143 src/preferences.blp:199
 msgid "Access Token"
-msgstr ""
+msgstr "Token d'accés"
 
 #: src/preferences.blp:166
 msgid "Edit Account"
-msgstr ""
+msgstr "Edita el compte"
 
 #: src/preferences.blp:177
 msgid "Save"
-msgstr ""
+msgstr "Desa"
 
 #: src/preferences.blp:214
 msgid "Remove Account"
-msgstr ""
+msgstr "Suprimeix el compte"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -276,6 +279,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Pots generar un token d'accés personal nou anant a <a href=\"%s\""
+">Configuració del desenvolupador de GitHub</a>. Per obtenir més informació, "
+"vegeu \"<a href=\"%s\">Creació d'un testimoni d'accés personal</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -283,6 +289,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks requereix un token d'accés <b>classic</b> (per a ús general) "
+"amb els àmbits <i>notificacions</i> i <i>read:user</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -290,11 +298,13 @@ msgid ""
 "To generate a new access token from your Gitea instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Per generar un nou token d'accés des de la vostra instància de Gitea, aneu a "
+"Configuració → Aplicacions i genereu un nou token."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32 src/forges/forgejo.js:32
 msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr ""
+msgstr "Forge Sparks requereix l'àmbit <i>notificacions</i> concedit."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
@@ -302,11 +312,13 @@ msgid ""
 "To generate a new access token from your Forgejo instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Per generar un nou token d'accés des de la vostra instància de Forgejo, aneu "
+"a Configuració → Aplicacions i genera un nou token."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Marca com a llegit"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Mostra Forge Sparks"
