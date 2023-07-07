@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
-"PO-Revision-Date: 2023-06-06 11:48+0000\n"
-"Last-Translator: Maarten de Boer <info@maartendeboer.net>\n"
+"PO-Revision-Date: 2023-07-08 07:51+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
@@ -98,7 +98,7 @@ msgstr "Sta toe dat Forge Sparks start bij het opstarten van het systeem."
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Bijhouden van nieuwe meldingen"
 
 #: src/util.js:133 src/util.js:174
 msgid "now"
@@ -186,7 +186,7 @@ msgstr "De aanvraag om automatisch te starten is mislukt."
 
 #: src/preferences.js:316 src/preferences.js:353
 msgid "Invalid instance url."
-msgstr "Ongeldige instantie url."
+msgstr "Ongeldige instantie-URL."
 
 #: src/preferences.js:372
 msgid "Couldn’t authenticate the account"
@@ -194,7 +194,7 @@ msgstr "Kon niet authenticeren met account"
 
 #: src/preferences.js:374
 msgid "The access token doesn’t have the needed scopes"
-msgstr "Het toegangs token heeft niet de benodigde scopes"
+msgstr "De toegangssleutel heeft niet de benodigde scopes"
 
 #: src/preferences.js:376
 msgid "Unexpected error when creating the account"
@@ -214,7 +214,7 @@ msgstr "Onverwachte fout bij het verwijderen van het account"
 
 #: src/preferences.js:506
 msgid "Account authentication failed!"
-msgstr "Account authenticatie mislukt!"
+msgstr "Account-authenticatie mislukt!"
 
 #: src/preferences.blp:13
 msgid "General"
@@ -222,11 +222,11 @@ msgstr "Algemeen"
 
 #: src/preferences.blp:16
 msgid "Keep running on background"
-msgstr ""
+msgstr "Actief blijven op achtergrond"
 
 #: src/preferences.blp:23
 msgid "Run on startup"
-msgstr ""
+msgstr "Uitvoeren bij opstarten"
 
 #: src/preferences.blp:34
 msgid "Start hidden"
@@ -254,15 +254,15 @@ msgstr "Forge"
 
 #: src/preferences.blp:136 src/preferences.blp:192
 msgid "Instance URL"
-msgstr "Instantie URL"
+msgstr "Instantie-URL"
 
 #: src/preferences.blp:143 src/preferences.blp:199
 msgid "Access Token"
-msgstr "Toegangs Token"
+msgstr "Toegangssleutel"
 
 #: src/preferences.blp:166
 msgid "Edit Account"
-msgstr "Account Bewerken"
+msgstr "Account bewerken"
 
 #: src/preferences.blp:177
 msgid "Save"
@@ -270,7 +270,7 @@ msgstr "Opslaan"
 
 #: src/preferences.blp:214
 msgid "Remove Account"
-msgstr "Verwijder Account"
+msgstr "Account verwijderen"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -297,7 +297,7 @@ msgstr ""
 #. Gitea access token help
 #: src/forges/gitea.js:32 src/forges/forgejo.js:32
 msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr ""
+msgstr "Forge Sparks vereist de <i>notifications</i>-scope."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
@@ -308,8 +308,8 @@ msgstr ""
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr "Markeer als gelezen"
+msgstr "Markeren als gelezen"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
-msgstr "Toon Forge Sparks"
+msgstr "Forge Sparks weergeven"
