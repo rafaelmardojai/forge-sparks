@@ -1,0 +1,89 @@
+using Gtk 4.0;
+using Adw 1;
+
+template Gjs_AccountDialog : Adw.Window {
+  default-width: 500;
+  default-height: 500;
+  modal: true;
+
+  title: _("Add Account");
+
+  Adw.ToolbarView {
+
+    [top]
+    Adw.HeaderBar {
+      show-end-title-buttons: false;
+      show-start-title-buttons: false;
+
+      title-widget: Adw.WindowTitle titleWidget {
+        title: bind template.title;
+      };
+
+      Button cancelBtn {
+        label: _("Cancel");
+
+        clicked => _onCancel();
+      }
+
+      [end]
+      Button saveBtn {
+        label: _("Add");
+        sensitive: false;
+
+        clicked => _onSave();
+
+        styles ["suggested-action"]
+      }
+    }
+
+    Adw.ToastOverlay toasts {
+
+      Adw.PreferencesPage page {
+
+        Adw.PreferencesGroup {
+
+          hexpand: true;
+
+          Adw.ComboRow forge {
+            title: _("Forge");
+            visible: bind template.editing inverted;
+
+            notify::selected => _onForgeChanged();
+          }
+
+          Adw.EntryRow instance {
+            title: _("Instance URL");
+            visible: false;
+
+            notify::text => _onEntryChanged();
+          }
+
+          Adw.EntryRow accessToken {
+            title: _("Access Token");
+
+            notify::text => _onEntryChanged();
+          }
+
+          Label accessTokenHelp {
+            use-markup: true;
+            wrap: true;
+            margin-top: 24;
+            xalign: 0;
+          }
+        }
+
+        Adw.PreferencesGroup {
+          visible: bind template.editing;
+
+          Button removeAccount {
+            label: _("Remove Account");
+
+            styles ["destructive-action"]
+
+            clicked => _onRemoveAccount();
+          }
+        }
+      } 
+    }   
+  }
+}

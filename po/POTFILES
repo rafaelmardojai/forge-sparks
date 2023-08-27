@@ -19,3 +19,5 @@ src/model/accountsManager.js
 src/model/notificationsList.js
 src/widgets/notificationRow.blp
 src/widgets/notificationRow.js
+src/widgets/accountDialog.blp
+src/widgets/accountDialog.js

@@ -8,11 +8,11 @@ import Gtk from 'gi://Gtk';
 
 import { settings, requestBackground, setBackgroundStatus, relativeDate } from './util.js';
 import { FORGES, extractID } from './forges/index.js';
-import PreferencesWindow from './preferences.js';
 
 import AccountsManager from './model/accountsManager.js';
 import NotificationsList from './model/notificationsList.js';
 
+import AccountDialog from './widgets/accountDialog.js';
 import NotificationRow from './widgets/notificationRow.js';
 
 import AllDoneIllustration from './assets/alldone.svg';
@@ -390,17 +390,10 @@ export default class Window extends Adw.ApplicationWindow {
     }
 
     /**
-     * Open preference window with new account view opened
-     * 
-     * Uses a timeout to show the view, so the user knows from where is coming
+     * Open a dialog to add an account
      */
     _onNewAccount() {
-        const preferences = new PreferencesWindow({ transient_for: this });
-        preferences.present();
-
-        GLib.timeout_add(GLib.PRIORITY_DEFAULT, 400, () => {
-            preferences._onOpenAddAccount();
-            return GLib.SOURCE_REMOVE;
-        });
+        const dialog = new AccountDialog(null, { transient_for: this });
+        dialog.present();
     }
 };
