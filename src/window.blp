@@ -166,16 +166,16 @@ template Gjs_Window : Adw.ApplicationWindow {
                   margin-start: 12;
                   margin-bottom: 36;
 
-                  Label {
-                    label: _("No Notifications to Show");
-                    wrap: true;
-                    styles ["title-1"]
-                  }
-
                   Picture emptyPicture {
                     can-shrink: true;
                   }
 
+                  Label {
+                    label: _("No Notifications to Show");
+                    wrap: true;
+                    justify: center;
+                    styles ["title-1"]
+                  }
                 }
               };
             }
