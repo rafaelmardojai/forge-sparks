@@ -41,10 +41,12 @@ template Gjs_Window : Adw.ApplicationWindow {
     StackPage {
       name: "setup";
 
-      child: Box {
-        orientation: vertical;
+      child: Adw.ToolbarView {
 
+        [top]
         Adw.HeaderBar {
+          show-title: false;
+
           [end]
           MenuButton {
             primary: true;
@@ -55,12 +57,12 @@ template Gjs_Window : Adw.ApplicationWindow {
         }
 
         Adw.StatusPage setupPage {
-          title: _("No Accounts");
-          description: _("Please add an account in the app preferences.");
+          title: _("Welcome to Forge Sparks");
+          description: _("Add an account to receive notifications from");
           vexpand: true;
 
           Button {
-            label: _("Open Preferences");
+            label: _("Add Account…");
             halign: center;
 
             clicked => _onNewAccount();
