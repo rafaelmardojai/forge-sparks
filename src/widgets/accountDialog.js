@@ -96,6 +96,8 @@ export default class AccountDialog extends Adw.Window {
 
         /* Save current account token */
         this._account.token = token;
+
+        this._onEntryChanged();
     }
 
     /**
@@ -192,36 +194,34 @@ export default class AccountDialog extends Adw.Window {
     _onEntryChanged() {
         let valid = false;
 
-        if (this.editing) {
-            if (this._account != null) {
-                let valid = false;
-                const instances = FORGES[this._account.forge].allowInstances;
-                const urlChanged = this._account.url != this._instance.text
-                const tokenChanged = this._account.token != this._accessToken.text;
-                const urlNotEmpty = this._instance.text != '';
-                const tokenNotEmpty = this._accessToken.text != '';
-    
-                if (instances) {
-                    try {
-                        this._validateUrl(this._instance.text);
-                        this._instance.remove_css_class('error');
-                        valid = (
-                            urlNotEmpty && tokenNotEmpty && urlChanged ||
-                            urlNotEmpty && tokenNotEmpty && tokenChanged
-                        );
-                    } catch (error) {
-                        this._instance.add_css_class('error');
-                        this._toasts.add_toast(new Adw.Toast({
-                            title: _("Invalid instance url.")
-                        }));
-                    }
-                } else {
-                    valid = tokenNotEmpty && tokenChanged;
+        if (this.editing && this._account != null) {
+            const instances = FORGES[this._account.forge].allowInstances;
+            const urlChanged = this._account.url != this._instance.text
+            const tokenChanged = this._account.token != this._accessToken.text;
+            const urlNotEmpty = this._instance.text != '';
+            const tokenNotEmpty = this._accessToken.text != '';
+
+            if (instances) {
+                try {
+                    this._validateUrl(this._instance.text);
+                    this._instance.remove_css_class('error');
+                    valid = (
+                        urlNotEmpty && tokenNotEmpty && urlChanged ||
+                        urlNotEmpty && tokenNotEmpty && tokenChanged
+                    );
+                } catch (error) {
+                    this._instance.add_css_class('error');
+                    this._toasts.add_toast(new Adw.Toast({
+                        title: _("Invalid instance url.")
+                    }));
                 }
+            } else {
+                valid = tokenNotEmpty && tokenChanged;
             }
         } 
         
         else {
+            log("nbo")
             if (this._allowInstances()) {
                 try {
                     this._validateUrl(this._instance.text);
