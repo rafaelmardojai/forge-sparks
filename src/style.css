@@ -3,10 +3,6 @@
     margin: 24px 12px;
 }
 
-.empty-card {
-    padding: 24px;
-}
-
 .closed {
     color: @purple_3;
 }

@@ -11,6 +11,7 @@ import { gettext as _ } from 'gettext';
 import { settings } from './util.js';
 import Window from './window.js';
 import PreferencesWindow from './preferences.js';
+import AccountsWindow from './accountsWindow.js';
 
 import './style.css';
 import './style-dark.css';
@@ -57,6 +58,10 @@ export default class Application extends Adw.Application {
         prefsAction.connect('activate', this._showPrefs.bind(this));
         this.add_action(prefsAction);
 
+        let accountsAction = new Gio.SimpleAction({ name: 'accounts' });
+        accountsAction.connect('activate', this._showAccounts.bind(this));
+        this.add_action(accountsAction);
+
         let quitAction = new Gio.SimpleAction({ name: 'quit' });
         quitAction.connect('activate', () => {
             this.quit();
@@ -93,6 +98,7 @@ export default class Application extends Adw.Application {
         this.set_accels_for_action('app.quit', ['<Primary>q']);
         this.set_accels_for_action('app.close', ['<Primary>w']);
         this.set_accels_for_action('app.preferences', ['<Primary>comma']);
+        this.set_accels_for_action('app.accounts', ['<Primary>a']);
         this.set_accels_for_action('app.reload', ['<Primary>r']);
         this.set_accels_for_action('win.open-primary-menu', ['F10']);
         this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
@@ -136,6 +142,11 @@ export default class Application extends Adw.Application {
 
     _showPrefs() {
         const window = new PreferencesWindow({ transient_for: this.window });
+        window.present();
+    }
+
+    _showAccounts() {
+        const window = new AccountsWindow({ transient_for: this.window });
         window.present();
     }
 

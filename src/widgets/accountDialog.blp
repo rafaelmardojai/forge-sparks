@@ -58,7 +58,7 @@ template Gjs_AccountDialog : Adw.Window {
             notify::text => _onEntryChanged();
           }
 
-          Adw.EntryRow accessToken {
+          Adw.PasswordEntryRow accessToken {
             title: _("Access Token");
 
             notify::text => _onEntryChanged();

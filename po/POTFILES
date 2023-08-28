@@ -21,3 +21,5 @@ src/widgets/notificationRow.blp
 src/widgets/notificationRow.js
 src/widgets/accountDialog.blp
 src/widgets/accountDialog.js
+src/accountsWindow.blp
+src/accountsWindow.js

@@ -43,52 +43,5 @@ template Gjs_PreferencesWindow : Adw.PreferencesWindow {
         }
       }
     }
-
-    Adw.PreferencesGroup {
-      title: _("Accounts");
-
-      [header-suffix]
-      Button {
-        clicked => _onOpenAddAccount();
-
-        styles ["flat"]
-
-        Adw.ButtonContent {
-          label: _("Add Account…");
-          icon-name: "list-add-symbolic";
-        }
-      }
-
-      Stack accountsStack {
-        vhomogeneous: false;
-
-        StackPage {
-          name: "empty";
-          child: Box {
-            valign: center;
-
-            styles ["card", "empty-card"]
-
-            Label {
-              label: _("No Accounts");
-              wrap: true;
-              hexpand: true;
-              justify: center;
-
-              styles ["title-2"]
-            }
-          };
-        }
-
-        StackPage {
-          name: "accounts";
-          child: ListBox accountsList {
-            selection-mode: none;
-            
-            styles ["content"]
-          };
-        }
-      }
-    }
   }
 }
