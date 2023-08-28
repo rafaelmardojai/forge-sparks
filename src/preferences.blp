@@ -13,14 +13,14 @@ template Gjs_PreferencesWindow : Adw.PreferencesWindow {
       title: _("General");
 
       Adw.ExpanderRow background {
-        title: _("Keep running on background");
+        title: _("Keep Running in Background");
         show-enable-switch: true;
         expanded: true;
 
         notify::enable-expansion => _onBackgroundChanged();
 
         Adw.ActionRow {
-          title: _("Run on startup");
+          title: _("Run on Startup");
           activatable-widget: startup;
 
           Switch startup {
@@ -31,7 +31,7 @@ template Gjs_PreferencesWindow : Adw.PreferencesWindow {
         }
 
         Adw.ActionRow {
-          title: _("Start hidden");
+          title: _("Start Hidden");
           activatable-widget: hidden;
           sensitive: bind-property startup.active;
 

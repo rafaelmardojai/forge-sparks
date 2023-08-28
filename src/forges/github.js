@@ -23,11 +23,11 @@ export default class GitHub extends Forge {
 
     static get tokenText() {
         const tokenURL = 'https://github.com/settings/tokens';
-        const tokenHelpURL = 'https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token';
+        const tokenHelpURL = 'https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic';
 
         /* GitHub access token help */
         let tokenText = Format.vprintf(
-            _('You can generate a new personal access token going to <a href=\"%s\">GitHub developer settings</a>. For more information, see "<a href=\"%s\">Creating a personal access token</a>".'),
+            _('You can generate a new personal access token from <a href=\"%s\">GitHub developer settings</a>. For more information, see "<a href=\"%s\">Creating a personal access token</a>".'),
             [tokenURL, tokenHelpURL]
         );
         tokenText += '\n\n';
