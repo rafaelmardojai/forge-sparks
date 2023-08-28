@@ -33,6 +33,9 @@ export default class GitHub extends Forge {
         tokenText += '\n\n';
         /* GitHub access token help */
         tokenText += _('Forge Sparks requires a <b>classic</b> access token (for general use) with the <i>notifications</i> and <i>read:user</i> scopes granted.');
+        tokenText += ' ';
+        /* GitHub access token help */
+        tokenText += _('If you’re working with private repositories, you’ll also need to grant the full <i>repo</i> scope.');
 
         return tokenText;
     }
@@ -185,26 +188,38 @@ export default class GitHub extends Forge {
             const message = super.createMessage('GET', notification.subject.url);
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
-            info.state = contents.state
-            /* info.updated_at = contents.updated_at */
-            info.url = contents.html_url
 
-            /* Get pull request state */
-            if (notification.subject.type === 'PullRequest') {
-                if (contents.draft) {
-                    info.state = 'draft';
-                }
-                if (contents.state == 'closed' && contents.merged_at == null) {
-                    info.state = 'denied';
-                }
-            }
+            if (message.get_status() == '200') {
+                info.state = contents.state
+                /* info.updated_at = contents.updated_at */
+                info.url = contents.html_url
 
-            /* Get comment url */
-            if (notification.reason != 'subscribed') {
-                if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {
-                    const url = await this._getCommentURL(notification.subject.latest_comment_url);
-                    if (url)
-                        info.url = url;
+                /* Get pull request state */
+                if (notification.subject.type === 'PullRequest') {
+                    if (contents.draft) {
+                        info.state = 'draft';
+                    }
+                    if (contents.state == 'closed' && contents.merged_at == null) {
+                        info.state = 'denied';
+                    }
+                }
+
+                /* Get comment url */
+                if (notification.reason != 'subscribed') {
+                    if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {
+                        const url = await this._getCommentURL(notification.subject.latest_comment_url);
+                        if (url)
+                            info.url = url;
+                    }
+                }
+            } else {
+                /* Fallback URL if request failed, probably repo is private */
+                if (notification.subject.type === 'PullRequest') {
+                    info.url = `${notification.repository.html_url}/pulls`;
+                } else if (notification.subject.type === 'Issue') {
+                    info.url = `${notification.repository.html_url}/issues`;
+                } else {
+                    info.url = notification.repository.url
                 }
             }
 
