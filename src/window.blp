@@ -30,6 +30,8 @@ menu menu {
 template Gjs_Window : Adw.ApplicationWindow {
   default-width: 500;
   default-height: 500;
+  width-request: 360;
+  height-request: 200;
   title: _("Forge Sparks");
 
   notify::visible => _onWindowHide();
@@ -100,116 +102,114 @@ template Gjs_Window : Adw.ApplicationWindow {
     StackPage {
       name: "notifications";
 
-      child: WindowHandle {
-        Box {
-          orientation: vertical;
+      child: Adw.ToolbarView {
 
-          Adw.HeaderBar headerbar {
-            title-widget: Adw.WindowTitle {};
+        [top]
+        Adw.HeaderBar headerbar {
+          show-title: false;
+
+          Button markAsRead {
+            clicked => markAsReadAll();
 
             styles ["flat"]
 
-            Button markAsRead {
-              clicked => markAsReadAll();
-
-              styles ["flat"]
-
-              accessibility {
-                labelled-by: markAsReadLabel;
-              }
-
-              Box {
-                spacing: 6;
-
-                Stack markAsReadIcon {
-                  StackPage {
-                      name: "icon";
-                      child: Image {
-                          icon-name: "object-select-symbolic";
-                      };
-                  }
-
-                  StackPage {
-                      name: "spinner";
-                      child: Spinner markAsReadSpinner {
-                          width-request: 16;
-                          height-request: 16;
-                      };
-                  }
-                }
-
-                Label markAsReadLabel {
-                  label: _("Mark all as Read");
-                }
-              }
+            accessibility {
+              labelled-by: markAsReadLabel;
             }
 
-            [end]
-            MenuButton {
-              primary: true;
-              menu-model: menu;
-              icon-name: "open-menu-symbolic";
-              tooltip-text: _("Main Menu");
+            Box {
+              spacing: 6;
+
+              Stack markAsReadIcon {
+                StackPage {
+                    name: "icon";
+                    child: Image {
+                        icon-name: "object-select-symbolic";
+                    };
+                }
+
+                StackPage {
+                    name: "spinner";
+                    child: Spinner markAsReadSpinner {
+                        width-request: 16;
+                        height-request: 16;
+                    };
+                }
+              }
+
+              Label markAsReadLabel {
+                label: _("Mark all as Read");
+              }
             }
           }
 
-          Stack notificationsStack {
-
-            StackPage {
-              name: "empty";
-              child: Adw.Clamp {
-                maximum-size: 400;
-
-                Box {
-                  orientation: vertical;
-                  valign: center;
-                  spacing: 24;
-                  margin-end: 12;
-                  margin-start: 12;
-                  margin-bottom: 36;
-
-                  Picture emptyPicture {
-                    can-shrink: true;
-                  }
-
-                  Label {
-                    label: _("No Notifications to Show");
-                    wrap: true;
-                    justify: center;
-                    styles ["title-1"]
-                  }
-                }
-              };
-            }
-
-            StackPage {
-              name: "list";
-
-              child: ScrolledWindow scrolled {
-                hscrollbar-policy: never;
-                vexpand: true;
-
-                Adw.Clamp {
-                  ListBox notificationsList {
-                    valign: start;
-                    selection-mode: none;
-
-                    styles [
-                      "content",
-                      "margin-box"
-                    ]
-
-                  }
-                }
-              };
-            }
-          }
-
-          Adw.Banner accountBanner {
-            button-label: _("Open Preferences");
-            action-name: "app.preferences";
+          [end]
+          MenuButton {
+            primary: true;
+            menu-model: menu;
+            icon-name: "open-menu-symbolic";
+            tooltip-text: _("Main Menu");
           }
         }
+
+        Stack notificationsStack {
+
+          StackPage {
+            name: "empty";
+            child: Adw.Clamp {
+              maximum-size: 400;
+
+              Box {
+                orientation: vertical;
+                valign: center;
+                spacing: 24;
+                margin-end: 12;
+                margin-start: 12;
+                margin-bottom: 36;
+
+                Picture emptyPicture {
+                  can-shrink: true;
+                }
+
+                Label {
+                  label: _("No Notifications to Show");
+                  wrap: true;
+                  justify: center;
+                  styles ["title-1"]
+                }
+              }
+            };
+          }
+
+          StackPage {
+            name: "list";
+
+            child: ScrolledWindow {
+              hscrollbar-policy: never;
+              vexpand: true;
+
+              Adw.Clamp {
+                ListBox notificationsList {
+                  valign: start;
+                  selection-mode: none;
+
+                  styles [
+                    "content",
+                    "margin-box"
+                  ]
+
+                }
+              }
+            };
+          }
+        }
+
+        [bottom]
+        Adw.Banner accountBanner {
+          button-label: _("Open Preferences");
+          action-name: "app.preferences";
+        }
+        
       };
     }
   }

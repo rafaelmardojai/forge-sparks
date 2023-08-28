@@ -30,7 +30,7 @@ export default class Window extends Adw.ApplicationWindow {
         GObject.registerClass({
             Template,
             InternalChildren: [
-                'mainStack', 'spinner', 'headerbar', 'scrolled', 'emptyPicture',
+                'mainStack', 'spinner', 'headerbar','emptyPicture',
                 'accountBanner', 'setupPage', 'notificationsStack', 'notificationsList',
                 'markAsRead', 'markAsReadIcon', 'markAsReadSpinner',
             ],
@@ -56,7 +56,6 @@ export default class Window extends Adw.ApplicationWindow {
         this._spinner.start();
         this._setupPage.icon_name = pkg.name;
         this._emptyPicture.set_resource(AllDoneIllustration);
-        this._scrolled.vadjustment.connect('value-changed', this._onScrollChanged.bind(this));
 
         /* Listen to accounts model changes */
         accounts.connect('items-changed', () => {
@@ -371,21 +370,6 @@ export default class Window extends Adw.ApplicationWindow {
         if (!this.visible) {
             /* Set app background status */
             setBackgroundStatus();
-        }
-    }
-
-    /**
-     * Callback for when the windows scroll position changes
-     * 
-     * Toggles headerbar flat style
-     * 
-     * @param {Gtk.Adjustment} adjustment
-     */
-    _onScrollChanged(adjustment) {
-        if (adjustment.value > 0) {
-            this._headerbar.remove_css_class('flat');
-        } else {
-            this._headerbar.add_css_class('flat');
         }
     }
 
