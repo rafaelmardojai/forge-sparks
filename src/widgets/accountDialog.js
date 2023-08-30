@@ -1,6 +1,7 @@
 import Adw from 'gi://Adw';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
@@ -53,6 +54,15 @@ export default class AccountDialog extends Adw.Window {
             forgesList.append(forge.prettyName)
         }
         this._forge.model = forgesList
+
+        /* Key event controller */
+        const key_ctrl = new Gtk.EventControllerKey();
+        this.add_controller(key_ctrl);
+        key_ctrl.connect('key-pressed', (_ctrl, keyval, _keycode, _state) => {
+            if (keyval === Gdk.KEY_Escape)
+                this.close();
+            return true;
+        });
     }
 
     /**

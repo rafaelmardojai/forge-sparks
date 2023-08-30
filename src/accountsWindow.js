@@ -2,6 +2,7 @@
 
 import Adw from 'gi://Adw';
 import GObject from 'gi://GObject';
+import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
@@ -42,6 +43,15 @@ export default class AccountsWindow extends Adw.Window {
             } else {
                 this._accountsStack.set_visible_child_name('empty');
             }
+        });
+
+        /* Key event controller */
+        const key_ctrl = new Gtk.EventControllerKey();
+        this.add_controller(key_ctrl);
+        key_ctrl.connect('key-pressed', (_ctrl, keyval, _keycode, _state) => {
+            if (keyval === Gdk.KEY_Escape)
+                this.close();
+            return true;
         });
     }
 
