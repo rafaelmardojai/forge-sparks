@@ -2,7 +2,7 @@
 
 # Forge Sparks
 
-**Get git forges notifications**
+**Get Git forges notifications**
 
 <br>
 

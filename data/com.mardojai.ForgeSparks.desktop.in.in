@@ -1,7 +1,7 @@
 [Desktop Entry]
 # TRANSLATORS: Don't translate, only transliterate if needed
 Name=Forge Sparks
-Comment=Get git forges notifications
+Comment=Get Git forges notifications
 Exec=forge-sparks
 Terminal=false
 Type=Application

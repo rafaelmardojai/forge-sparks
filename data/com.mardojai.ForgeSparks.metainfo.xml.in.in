@@ -5,7 +5,7 @@
   <translation type="gettext">@app_id@</translation>
 
   <name translatable="no">Forge Sparks</name>
-  <summary>Get git forges notifications</summary>
+  <summary>Get Git forges notifications</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
   <url type="homepage">https://github.com/rafaelmardojai/forge-sparks</url>

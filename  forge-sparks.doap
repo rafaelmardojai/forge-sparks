@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">Forge Sparks</name>
-  <shortdesc xml:lang="en">Get git forges notifications</shortdesc>
+  <shortdesc xml:lang="en">Get Git forges notifications</shortdesc>
   <homepage rdf:resource="https://github.com/rafaelmardojai/forge-sparks" />
   <bug-database rdf:resource="https://github.com/rafaelmardojai/forge-sparks/issues"/>
   <programming-language>JavaScript</programming-language>
