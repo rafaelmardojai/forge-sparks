@@ -172,11 +172,15 @@ template Gjs_Window : Adw.ApplicationWindow {
                 margin-start: 12;
                 margin-bottom: 36;
 
+                accessibility {
+                  labelled-by: noNotificationsLabel;
+                }
+
                 Picture emptyPicture {
                   can-shrink: true;
                 }
 
-                Label {
+                Label noNotificationsLabel {
                   label: _("No Notifications to Show");
                   wrap: true;
                   justify: center;
