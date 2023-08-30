@@ -78,8 +78,12 @@ template Gjs_AccountDialog : Adw.Window {
 
           Button removeAccount {
             label: _("Remove Account");
+            halign: center;
 
-            styles ["destructive-action"]
+            styles [
+              "destructive-action",
+              "pill"
+            ]
 
             clicked => _onRemoveAccount();
           }
