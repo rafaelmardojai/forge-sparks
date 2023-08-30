@@ -221,7 +221,6 @@ export default class AccountDialog extends Adw.Window {
         } 
         
         else {
-            log("nbo")
             if (this._allowInstances()) {
                 try {
                     this._validateUrl(this._instance.text);
