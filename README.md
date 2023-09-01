@@ -58,3 +58,6 @@ Developed by **[Rafael Mardojai CM](https://mardojai.com)** and [contributors](h
 
 ## Donate
 If you want to support my work, you can donate me, [here you can find how](https://mardojai.com/donate/).
+
+## Code of Conduct
+The project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct).
