@@ -47,6 +47,9 @@ export default class Window extends Adw.ApplicationWindow {
         this.forges = {};
         /* Interval of the notifications requests, in seconds */
         this.interval = 60;
+        /* Fetching state */
+        this.fetching = false;
+        this.reFetch = false;
         /* Store app fail states */
         this.authFailed = null;
         this.authErrorNotified = false;
@@ -127,6 +130,7 @@ export default class Window extends Adw.ApplicationWindow {
      * The timeout event source ID is stored in $this.subscribe_source.
      */
     async subscribe() {
+        this.fetching = true;
         const app = this.get_application();
 
         /* If not accounts found, show setup view and return */
@@ -215,26 +219,37 @@ export default class Window extends Adw.ApplicationWindow {
         /* Show new notifications */
         this.showNotifications(newNotifications);
 
-        /* Add timeout to run this function again */
-        this.subscribe_source = GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
+        if (!this.reFetch) {
+            /* Add timeout to run this function again */
+            this.subscribe_source = GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
+                this.subscribe();
+                return GLib.SOURCE_REMOVE;
+            });
+        } else {
             this.subscribe();
-            return GLib.SOURCE_REMOVE;
-        });
+            this.reFetch = false;
+        }
+
+        this.fetching = false;
     }
 
     /**
      * Force notification retrieve
      */
     reload() {
-        /* Remove current timeout */
-        if (this.subscribe_source != undefined)
-            GLib.Source.remove(this.subscribe_source);
+        if (!this.fetching) {
+            /* Remove current timeout */
+            if (this.subscribe_source != undefined)
+                GLib.Source.remove(this.subscribe_source);
+
+            this.subscribe();
+        } else {
+            this.reFetch = true;
+        }
 
         /* This might be after a user interaction, show the spinner */
         this._mainStack.set_visible_child_name('loading');
         this._spinner.start();
-        
-        this.subscribe();
     }
 
     /**
