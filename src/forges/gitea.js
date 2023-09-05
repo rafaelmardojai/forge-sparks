@@ -22,7 +22,7 @@ export default class Gitea extends GitHub {
 
     static allowInstances = true;
 
-    static defaultURL = 'codeberg.org';
+    static defaultURL = 'gitea.com';
 
     static get tokenText() {
         /* Gitea access token help */

@@ -36,6 +36,7 @@ export default class AccountDialog extends Adw.Window {
         this._forges_ls = Object.values(FORGES);
         this._account = null;
         this._editing = false;
+        this._userChangedInstance = false;
 
         this.connect('notify::editing', this._onEditing.bind(this));
 
@@ -43,6 +44,7 @@ export default class AccountDialog extends Adw.Window {
         if (account != null) {
             this._account = account;
             this._editing = true;
+            this._userChangedInstance = true;
             this.notify('editing');
 
             this._loadSavedAccount();
@@ -172,6 +174,11 @@ export default class AccountDialog extends Adw.Window {
 
         /* Entries may be different so validate again */
         this._onEntryChanged();
+
+        /* Load default instance url */
+        if (!this._userChangedInstance) {
+            this._instance.text = this._forges_ls[this._forge.selected].defaultURL;
+        }
     }
 
     /**
@@ -193,6 +200,16 @@ export default class AccountDialog extends Adw.Window {
         } catch (error) {
             throw error;
         }
+    }
+
+    /**
+     * Callback when user changes the instance entry
+     * 
+     * Updates the _userChangedInstance value so we don't override the user input
+     * when them change the selected forge.
+     */
+    _onInstanceChanged() {
+        this._userChangedInstance = !this._editing && this._instance.text != this._forges_ls[this._forge.selected].defaultURL;
     }
 
     /**
@@ -391,6 +408,9 @@ export default class AccountDialog extends Adw.Window {
                 this._toasts.add_toast(errorToast);
             } else {
                 this.close();
+
+                /* Reload notifications */
+                Adw.Application.get_default().lookup_action('reload').activate(null);
             }
         } catch (error) {
             this._toasts.add_toast(errorToast);

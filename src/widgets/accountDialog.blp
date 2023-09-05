@@ -57,6 +57,7 @@ template Gjs_AccountDialog : Adw.Window {
             visible: false;
 
             notify::text => _onEntryChanged();
+            notify::text => _onInstanceChanged();
           }
 
           Adw.PasswordEntryRow accessToken {
