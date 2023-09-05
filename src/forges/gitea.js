@@ -29,10 +29,9 @@ export default class Gitea extends GitHub {
         let tokenText = _('To generate a new access token from your instance, go to Settings → Applications and generate a new token.');
         tokenText += '\n\n';
         /* Gitea access token help */
-        tokenText += _('Forge Sparks requires the <i>notifications</i> scope granted.');
+        tokenText += _('Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and <i>read:user</i> scopes granted.');
 
         return tokenText;
-
     }
 
     async markAsRead(id = null) {

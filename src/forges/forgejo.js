@@ -24,13 +24,4 @@ export default class Forgejo extends Gitea {
     static allowInstances = true;
 
     static defaultURL = 'codeberg.org';
-
-    static get tokenText() {
-        /* Forgejo access token help */
-        let tokenText = _('To generate a new access token from your instance, go to Settings → Applications and generate a new token.');
-        tokenText += '\n\n';
-        tokenText += _('Forge Sparks requires the <i>notifications</i> scope granted.');
-
-        return tokenText;
-    }
 };
