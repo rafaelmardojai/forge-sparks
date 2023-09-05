@@ -49,10 +49,12 @@ export default class GitHub extends Forge {
 
             if (message.get_status() == '401') {
                 throw 'FailedForgeAuth';
-            } else if (message.get_status() == '200') {
-                if (!('login' in contents)) {
-                    throw 'Unexpected'
-                }
+            } else if (message.get_status() == '403') {
+                throw 'FailedTokenScopes';
+            } else if (message.get_status() != '200') {
+                throw 'Unexpected'
+            } else if (!('login' in contents)) {
+                throw 'Unexpected'
             }
 
             /* Test notifications capabilities */

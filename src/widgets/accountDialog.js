@@ -302,13 +302,16 @@ export default class AccountDialog extends Adw.Window {
             const forge = new FORGES[forgeName](url, token);
             /* Try authenticating the user with access token */
             const username = await forge.getUser();
-            /* Save account to settings */
-            await accounts.saveAccount(
-                forgeName,
-                url,
-                username,
-                token
-            );
+
+            if (username != undefined) {
+                /* Save account to settings */
+                await accounts.saveAccount(
+                    forgeName,
+                    url,
+                    username,
+                    token
+                );
+            }
 
             this.close();
 
