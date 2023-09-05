@@ -62,6 +62,7 @@ export default class Window extends Adw.ApplicationWindow {
             /* Show setup view if not accounts configured */
             if (accounts.get_n_items() == 0) {
                 this._mainStack.set_visible_child_name('setup');
+                this._spinner.stop();
             }
         });
 
@@ -228,6 +229,10 @@ export default class Window extends Adw.ApplicationWindow {
         /* Remove current timeout */
         if (this.subscribe_source != undefined)
             GLib.Source.remove(this.subscribe_source);
+
+        /* This might be after a user interaction, show the spinner */
+        this._mainStack.set_visible_child_name('loading');
+        this._spinner.start();
         
         this.subscribe();
     }
