@@ -147,6 +147,10 @@ export default class Window extends Adw.ApplicationWindow {
             accounts.disconnect(this._retryHandler);
         }
 
+        if (!accounts.getAccounts().includes(this.authFailed)) {
+            this._resolveTokenError();
+        }
+
         let newNotifications = []; /* List to store new notifications */
         /* Loop accounts model */
         for (var i = 0; i < accounts.get_n_items(); i++) {
@@ -172,13 +176,7 @@ export default class Window extends Adw.ApplicationWindow {
 
                 /* Reset failed state */
                 if (this.authFailed == account.id) {
-                    this.authFailed = null;
-                    this.authErrorNotified = false;
-
-                    account.authFailed = false;
-
-                    this._accountBanner.revealed = false;
-                    app.withdraw_notification('forge-sparks-error-auth');
+                    this._resolveTokenError(account);
                 }
 
             } catch (error) {
@@ -206,7 +204,7 @@ export default class Window extends Adw.ApplicationWindow {
                         notification.set_title(title);
                         notification.set_body(description);
                         notification.set_default_action('app.activate');
-                        notification.add_button(_('Open Preferences'), 'app.preferences');
+                        notification.add_button(_('Accounts'), 'app.accounts');
                         app.send_notification('forge-sparks-error-auth', notification);
                         this.authErrorNotified = true;
                     }
@@ -399,5 +397,21 @@ export default class Window extends Adw.ApplicationWindow {
     _onNewAccount() {
         const dialog = new AccountDialog(null, { transient_for: this });
         dialog.present();
+    }
+
+    /**
+     * Resolve token error
+     * 
+     * @param {Account | null} account Account to resolve
+     */
+    _resolveTokenError(account = null) {
+        this.authFailed = null;
+        this.authErrorNotified = false;
+        if (account != null)
+            account.authFailed = false;
+
+        this._accountBanner.revealed = false;
+        const app = this.get_application();
+        app.withdraw_notification('forge-sparks-error-auth');
     }
 };

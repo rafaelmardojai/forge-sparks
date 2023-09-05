@@ -157,6 +157,12 @@ template Gjs_Window : Adw.ApplicationWindow {
           }
         }
 
+        [top]
+        Adw.Banner accountBanner {
+          button-label: _("Accounts");
+          action-name: "app.accounts";
+        }
+
         Stack notificationsStack {
 
           StackPage {
@@ -212,13 +218,6 @@ template Gjs_Window : Adw.ApplicationWindow {
             };
           }
         }
-
-        [bottom]
-        Adw.Banner accountBanner {
-          button-label: _("Open Preferences");
-          action-name: "app.preferences";
-        }
-        
       };
     }
   }
