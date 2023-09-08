@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 07:30-0500\n"
-"PO-Revision-Date: 2023-05-31 19:51+0000\n"
-"Last-Translator: Onuralp SEZER <thunderbirdtr@gmail.com>\n"
+"PO-Revision-Date: 2023-09-09 22:11+0000\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
@@ -48,7 +48,7 @@ msgstr "_Tercihler"
 
 #: src/window.blp:12
 msgid "_Keyboard Shortcuts"
-msgstr "_Klavye kısayolları"
+msgstr "_Klavye Kısayolları"
 
 #: src/window.blp:18
 msgid "About Forge Sparks"
@@ -56,7 +56,7 @@ msgstr "Forge Sparks Hakkında"
 
 #: src/window.blp:25
 msgid "Quit"
-msgstr "Çıkış"
+msgstr "Çık"
 
 #: src/window.blp:53 src/window.blp:150
 msgid "Main Menu"
@@ -64,11 +64,11 @@ msgstr "Ana Menü"
 
 #: src/window.blp:58 src/preferences.blp:73
 msgid "No Accounts"
-msgstr "Hesap yok"
+msgstr "Hesap Yok"
 
 #: src/window.blp:59
 msgid "Please add an account in the app preferences."
-msgstr "Lütfen uygulama tercihlerine bir hesap ekleyin."
+msgstr "Uygulama tercihlerinden bir hesap ekleyin."
 
 #: src/window.blp:63 src/window.blp:207 src/window.js:201
 msgid "Open Preferences"
@@ -76,7 +76,7 @@ msgstr "Tercihleri Aç"
 
 #: src/window.blp:140
 msgid "Mark all as Read"
-msgstr "Tümünü okundu olarak işaretle"
+msgstr "Tümünü Okundu İmle"
 
 #: src/window.blp:170
 msgid "No Notifications to Show"
@@ -84,11 +84,11 @@ msgstr "Gösterilecek Bildirim Yok"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr "Forge Sparks'ın arka planda çalışmasına izin ver."
+msgstr "Forge Sparksʼın arka planda çalışmasına izin ver."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr "Başlangıçta Forge Sparks çalıştırmaya izin ver."
+msgstr "Forge Sparksʼın başlangıçta çalışmasına izin ver."
 
 #. *
 #. * Set background status message
@@ -139,7 +139,7 @@ msgstr[1] "%d hafta önce"
 #: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
-msgstr "%s üstünde"
+msgstr "%s"
 
 #: src/window.js:187
 #, javascript-format
@@ -153,7 +153,10 @@ msgstr "Token iptal edilmiş veya süresi dolmuş olabilir."
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:146
 msgid "translator-credits"
-msgstr "Onuralp Sezer"
+msgstr ""
+"Onuralp Sezer\n"
+"Sabri Ünal\n"
+"Weblate Katkıcıları"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
@@ -173,7 +176,7 @@ msgstr "Klavye kısayolları"
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr "Çıkış"
+msgstr "Çık"
 
 #: src/preferences.js:100
 msgid "The request failed."
@@ -181,7 +184,7 @@ msgstr "İstek başarısız oldu."
 
 #: src/preferences.js:131 src/preferences.js:162
 msgid "The autostart request failed."
-msgstr "Otomatik başlatma isteği başarısız oldu."
+msgstr "Kendiliğinde başlatma isteği başarısız oldu."
 
 #: src/preferences.js:316 src/preferences.js:353
 msgid "Invalid instance url."
@@ -193,7 +196,7 @@ msgstr "Hesabın kimliği doğrulanamadı"
 
 #: src/preferences.js:374
 msgid "The access token doesn’t have the needed scopes"
-msgstr "Erişim tokeni gerekli yetkilere sahip değil"
+msgstr "Erişim jetonu gerekli yetkilere sahip değil"
 
 #: src/preferences.js:376
 msgid "Unexpected error when creating the account"
@@ -201,19 +204,19 @@ msgstr "Hesap oluşturulurken beklenmeyen hata"
 
 #: src/preferences.js:407
 msgid "New account added successfully!"
-msgstr "Yeni hesap başarıyla eklendi!"
+msgstr "Yeni hesap eklendi!"
 
 #: src/preferences.js:456
 msgid "Account edited successfully!"
-msgstr "Hesap başarıyla düzenlendi!"
+msgstr "Hesap düzenlendi!"
 
 #: src/preferences.js:477
 msgid "Unexpected error removing the account"
-msgstr "Hesap kaldırılırken beklenmeyen bir hata oluştu"
+msgstr "Hesap kaldırılırken beklenmeyen hata"
 
 #: src/preferences.js:506
 msgid "Account authentication failed!"
-msgstr "Hesap kimlik doğrulaması başarısız oldu!"
+msgstr "Hesap kimliği doğrulanamadı!"
 
 #: src/preferences.blp:13
 msgid "General"
@@ -237,11 +240,11 @@ msgstr "Hesaplar"
 
 #: src/preferences.blp:57
 msgid "Add Account…"
-msgstr "Hesap ekle…"
+msgstr "Hesap Ekle…"
 
 #: src/preferences.blp:104
 msgid "Add Account"
-msgstr "Hesap ekle"
+msgstr "Hesap Ekle"
 
 #: src/preferences.blp:115
 msgid "Add"
@@ -257,11 +260,11 @@ msgstr "Örnek URL"
 
 #: src/preferences.blp:143 src/preferences.blp:199
 msgid "Access Token"
-msgstr "Erişim Tokeni"
+msgstr "Erişim Jetonu"
 
 #: src/preferences.blp:166
 msgid "Edit Account"
-msgstr "Hesap düzenlemek"
+msgstr "Hesabı Düzenle"
 
 #: src/preferences.blp:177
 msgid "Save"
@@ -269,7 +272,7 @@ msgstr "Kaydet"
 
 #: src/preferences.blp:214
 msgid "Remove Account"
-msgstr "Hesabı kaldır"
+msgstr "Hesabı Kaldır"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -279,8 +282,8 @@ msgid ""
 "a personal access token</a>\"."
 msgstr ""
 "<a href=\"%s\">GitHub geliştirici ayarlarına</a> giderek yeni bir kişisel "
-"erişim tokeni oluşturabilirsiniz. Daha fazla bilgi için bkz. \"<a href=\"%s\""
-">Kişisel erişim tokeni oluşturma</a>\"."
+"erişim jetonu oluşturabilirsiniz. Daha fazla bilgi için bkz. \"<a href=\"%s\""
+">Kişisel erişim jetonu oluşturma</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -288,7 +291,7 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
-"Forge Sparks, <b>klasik</b> bir erişim belirteciyle (genel kullanım için) "
+"Forge Sparks, <b>klasik</b> bir erişim jetonuyla (genel kullanım için) "
 "<i>bildirimler</i> ve <i>read:user</i> izinleri verilerek çalışır."
 
 #. Gitea access token help
@@ -297,13 +300,13 @@ msgid ""
 "To generate a new access token from your Gitea instance go to Settings → "
 "Applications and generate a new token."
 msgstr ""
-"Gitea sunucunuzdan yeni bir erişim tokeni oluşturmak için Ayarlar → "
-"Uygulamalar'a gidin ve yeni bir belirteç oluşturun."
+"Gitea sunucunuzdan yeni erişim jetonu oluşturmak için Ayarlar → "
+"Uygulamalarʼa gidip yeni jeton oluşturun."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32 src/forges/forgejo.js:32
 msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr "Forge Sparks, <i> notifications </i> yetkisi gereklidir."
+msgstr "Forge Sparks <i>bildirimler</i> yetkisine ihtiyaç duyar."
 
 #. Forgejo access token help
 #: src/forges/forgejo.js:30
@@ -316,7 +319,7 @@ msgstr ""
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr "Okundu olarak işaretle"
+msgstr "Okundu İmle"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
