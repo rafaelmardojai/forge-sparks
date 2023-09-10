@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 07:30-0500\n"
+"POT-Creation-Date: 2023-09-09 22:32-0500\n"
 "PO-Revision-Date: 2023-06-18 17:01+0300\n"
 "Last-Translator: Сергей Ворон <voron@duck.com>\n"
 "Language-Team: \n"
@@ -20,23 +20,19 @@ msgstr ""
 "X-Generator: Poedit 3.3.1\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop.in.in:4
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:7 src/window.blp:33
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:148
-msgid "Get git forges notifications"
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
+#, fuzzy
+msgid "Get Git forges notifications"
 msgstr "Получайте уведомления git forges"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
 msgstr "git;github;notifications;уведомления;"
-
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
-msgid "Rafael Mardojai CM"
-msgstr "Rafael Mardojai CM"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
@@ -48,38 +44,48 @@ msgid "_Preferences"
 msgstr "_Настройки"
 
 #: src/window.blp:12
+#, fuzzy
+msgid "_Accounts"
+msgstr "Учетные записи"
+
+#: src/window.blp:17
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
-#: src/window.blp:18
+#: src/window.blp:23
 msgid "About Forge Sparks"
 msgstr "О Forge Sparks"
 
-#: src/window.blp:25
+#: src/window.blp:30
 msgid "Quit"
 msgstr "Выйти"
 
-#: src/window.blp:53 src/window.blp:150
+#: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: src/window.blp:58 src/preferences.blp:73
-msgid "No Accounts"
-msgstr "Нет учетных записей"
+#: src/window.blp:67
+#, fuzzy
+msgid "Welcome to Forge Sparks"
+msgstr "О Forge Sparks"
 
-#: src/window.blp:59
-msgid "Please add an account in the app preferences."
-msgstr "Пожалуйста, добавьте учетную запись в настройках приложения."
+#: src/window.blp:68 src/accountsWindow.blp:41
+msgid "Add an account to receive notifications from"
+msgstr ""
 
-#: src/window.blp:63 src/window.blp:207 src/window.js:201
-msgid "Open Preferences"
-msgstr "Открыть настройки"
+#: src/window.blp:72
+msgid "Add Account…"
+msgstr "Добавить учетную запись…"
 
-#: src/window.blp:140
+#: src/window.blp:146
 msgid "Mark all as Read"
 msgstr "Отметить все как прочитанное"
 
-#: src/window.blp:170
+#: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
+msgid "Accounts"
+msgstr "Учетные записи"
+
+#: src/window.blp:190
 msgid "No Notifications to Show"
 msgstr "Нет уведомлений для показа"
 
@@ -146,17 +152,17 @@ msgstr[2] "%d недель назад"
 msgid "on %s"
 msgstr "на %s"
 
-#: src/window.js:187
+#: src/window.js:193
 #, javascript-format
 msgid "Account %s authentication failed!"
 msgstr "Ошибка аутентификации учетной записи %s!"
 
-#: src/window.js:189
+#: src/window.js:195
 msgid "The token may have been revoked or expired."
 msgstr "Возможно, токен был отозван или срок его действия истек."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:146
+#: src/application.js:157
 msgid "translator-credits"
 msgstr "Сергей Ворон <voron@duck.com>"
 
@@ -180,106 +186,33 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Выйти"
 
-#: src/preferences.js:100
+#: src/preferences.js:66
 msgid "The request failed."
 msgstr "Ошибка запроса."
 
-#: src/preferences.js:131 src/preferences.js:162
+#: src/preferences.js:97 src/preferences.js:128
 msgid "The autostart request failed."
 msgstr "Не удалось выполнить запрос на автозапуск."
 
-#: src/preferences.js:316 src/preferences.js:353
-msgid "Invalid instance url."
-msgstr "Неверный URL сервера."
-
-#: src/preferences.js:372
-msgid "Couldn’t authenticate the account"
-msgstr "Не удалось аутентифицировать учетную запись"
-
-#: src/preferences.js:374
-msgid "The access token doesn’t have the needed scopes"
-msgstr "Токен доступа не имеет необходимых областей действия"
-
-#: src/preferences.js:376
-msgid "Unexpected error when creating the account"
-msgstr "Непредвиденная ошибка при создании учетной записи"
-
-#: src/preferences.js:407
-msgid "New account added successfully!"
-msgstr "Новая учетная запись добавлена успешно!"
-
-#: src/preferences.js:456
-msgid "Account edited successfully!"
-msgstr "Учетная запись успешно изменена!"
-
-#: src/preferences.js:477
-msgid "Unexpected error removing the account"
-msgstr "Непредвиденная ошибка при удалении учетной записи"
-
-#: src/preferences.js:506
-msgid "Account authentication failed!"
-msgstr "Ошибка авторизации учетной записи!"
-
-#: src/preferences.blp:13
-msgid "General"
-msgstr "Общие"
-
-#: src/preferences.blp:16
-msgid "Keep running on background"
+#: src/preferences.blp:15
+#, fuzzy
+msgid "Keep Running in Background"
 msgstr "Продолжать работать в фоновом режиме"
 
-#: src/preferences.blp:23
-msgid "Run on startup"
+#: src/preferences.blp:22
+#, fuzzy
+msgid "Run on Startup"
 msgstr "Выполнить при запуске системы"
 
-#: src/preferences.blp:34
-msgid "Start hidden"
+#: src/preferences.blp:33
+#, fuzzy
+msgid "Start Hidden"
 msgstr "Запускать скрытым"
 
-#: src/preferences.blp:48
-msgid "Accounts"
-msgstr "Учетные записи"
-
-#: src/preferences.blp:57
-msgid "Add Account…"
-msgstr "Добавить учетную запись…"
-
-#: src/preferences.blp:104
-msgid "Add Account"
-msgstr "Добавить учетную запись"
-
-#: src/preferences.blp:115
-msgid "Add"
-msgstr "Добавить"
-
-#: src/preferences.blp:130
-msgid "Forge"
-msgstr "Forge"
-
-#: src/preferences.blp:136 src/preferences.blp:192
-msgid "Instance URL"
-msgstr "URL сервера"
-
-#: src/preferences.blp:143 src/preferences.blp:199
-msgid "Access Token"
-msgstr "Токен доступа"
-
-#: src/preferences.blp:166
-msgid "Edit Account"
-msgstr "Изменить учетную запись"
-
-#: src/preferences.blp:177
-msgid "Save"
-msgstr "Сохранить"
-
-#: src/preferences.blp:214
-msgid "Remove Account"
-msgstr "Удалить учетную запись"
-
 #: src/forges/github.js:30
-#, javascript-format
+#, fuzzy, javascript-format
 msgid ""
-"You can generate a new personal access token going to <a href=\"%s\">GitHub "
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
@@ -297,29 +230,33 @@ msgstr ""
 "использования) с предоставленными областями <i>уведомления</i> и <i>read:"
 "user</i>."
 
+#. GitHub access token help
+#: src/forges/github.js:38
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+
 #. Gitea access token help
 #: src/forges/gitea.js:29
+#, fuzzy
 msgid ""
-"To generate a new access token from your Gitea instance go to Settings → "
+"To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
 "Чтобы создать новый токен доступа вашего сервера Gitea, перейдите в "
 "«Настройки» → «Приложения» и создайте новый токен."
 
 #. Gitea access token help
-#: src/forges/gitea.js:32 src/forges/forgejo.js:32
-msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr ""
-"Для Forge Sparks требуется предоставленная область <i>notifications</i>."
-
-#. Forgejo access token help
-#: src/forges/forgejo.js:30
+#: src/forges/gitea.js:32
+#, fuzzy
 msgid ""
-"To generate a new access token from your Forgejo instance go to Settings → "
-"Applications and generate a new token."
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
 msgstr ""
-"Чтобы создать новый токен доступа вашего сервера Forgejo, перейдите в "
-"«Настройки» → «Приложения» и создайте новый токен."
+"Для Forge Sparks требуется <b>классический</b> токен доступа (для общего "
+"использования) с предоставленными областями <i>уведомления</i> и <i>read:"
+"user</i>."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
@@ -328,3 +265,103 @@ msgstr "Пометить, как прочитанное"
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
 msgstr "Показать Forge Sparks"
+
+#: src/widgets/accountDialog.blp:10
+msgid "Add Account"
+msgstr "Добавить учетную запись"
+
+#: src/widgets/accountDialog.blp:24
+msgid "Cancel"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:31
+msgid "Add"
+msgstr "Добавить"
+
+#: src/widgets/accountDialog.blp:49
+msgid "Forge"
+msgstr "Forge"
+
+#: src/widgets/accountDialog.blp:56
+msgid "Instance URL"
+msgstr "URL сервера"
+
+#: src/widgets/accountDialog.blp:64
+msgid "Access Token"
+msgstr "Токен доступа"
+
+#: src/widgets/accountDialog.blp:81
+msgid "Remove Account"
+msgstr "Удалить учетную запись"
+
+#: src/widgets/accountDialog.js:84
+msgid "Edit Account"
+msgstr "Изменить учетную запись"
+
+#: src/widgets/accountDialog.js:85
+msgid "Save"
+msgstr "Сохранить"
+
+#: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
+msgid "Invalid instance url."
+msgstr "Неверный URL сервера."
+
+#: src/widgets/accountDialog.js:278
+msgid "Couldn’t authenticate the account"
+msgstr "Не удалось аутентифицировать учетную запись"
+
+#: src/widgets/accountDialog.js:280
+msgid "The access token doesn’t have the needed scopes"
+msgstr "Токен доступа не имеет необходимых областей действия"
+
+#: src/widgets/accountDialog.js:282
+msgid "Unexpected error when creating the account"
+msgstr "Непредвиденная ошибка при создании учетной записи"
+
+#: src/widgets/accountDialog.js:404
+msgid "Unexpected error removing the account"
+msgstr "Непредвиденная ошибка при удалении учетной записи"
+
+#: src/accountsWindow.blp:22
+msgid "Add…"
+msgstr ""
+
+#: src/accountsWindow.blp:40
+msgid "No Accounts"
+msgstr "Нет учетных записей"
+
+#: src/accountsWindow.js:79
+msgid "Account authentication failed!"
+msgstr "Ошибка авторизации учетной записи!"
+
+#~ msgid "Get git forges notifications"
+#~ msgstr "Получайте уведомления git forges"
+
+#~ msgid "Rafael Mardojai CM"
+#~ msgstr "Rafael Mardojai CM"
+
+#~ msgid "Please add an account in the app preferences."
+#~ msgstr "Пожалуйста, добавьте учетную запись в настройках приложения."
+
+#~ msgid "Open Preferences"
+#~ msgstr "Открыть настройки"
+
+#~ msgid "New account added successfully!"
+#~ msgstr "Новая учетная запись добавлена успешно!"
+
+#~ msgid "Account edited successfully!"
+#~ msgstr "Учетная запись успешно изменена!"
+
+#~ msgid "General"
+#~ msgstr "Общие"
+
+#~ msgid "Forge Sparks requires the <i>notifications</i> scope granted."
+#~ msgstr ""
+#~ "Для Forge Sparks требуется предоставленная область <i>notifications</i>."
+
+#~ msgid ""
+#~ "To generate a new access token from your Forgejo instance go to Settings "
+#~ "→ Applications and generate a new token."
+#~ msgstr ""
+#~ "Чтобы создать новый токен доступа вашего сервера Forgejo, перейдите в "
+#~ "«Настройки» → «Приложения» и создайте новый токен."

@@ -156,7 +156,7 @@ export default class Application extends Adw.Application {
             /* Translators: Replace "translator-credits" with your names, one name per line */
             translator_credits: _('translator-credits'),
             application_name: GLib.get_application_name(),
-            comments: _('Get git forges notifications'),
+            comments: _('Get Git forges notifications'),
             application_icon: pkg.name,
             version: pkg.version,
             website: '',

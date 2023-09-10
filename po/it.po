@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 07:30-0500\n"
+"POT-Creation-Date: 2023-09-09 22:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,22 +18,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop.in.in:4
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:7 src/window.blp:33
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
 msgstr ""
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:148
-msgid "Get git forges notifications"
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
+msgid "Get Git forges notifications"
 msgstr ""
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
-
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:14
-msgid "Rafael Mardojai CM"
 msgstr ""
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
@@ -45,38 +40,46 @@ msgid "_Preferences"
 msgstr ""
 
 #: src/window.blp:12
+msgid "_Accounts"
+msgstr ""
+
+#: src/window.blp:17
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: src/window.blp:18
+#: src/window.blp:23
 msgid "About Forge Sparks"
 msgstr ""
 
-#: src/window.blp:25
+#: src/window.blp:30
 msgid "Quit"
 msgstr ""
 
-#: src/window.blp:53 src/window.blp:150
+#: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
 msgstr ""
 
-#: src/window.blp:58 src/preferences.blp:73
-msgid "No Accounts"
+#: src/window.blp:67
+msgid "Welcome to Forge Sparks"
 msgstr ""
 
-#: src/window.blp:59
-msgid "Please add an account in the app preferences."
+#: src/window.blp:68 src/accountsWindow.blp:41
+msgid "Add an account to receive notifications from"
 msgstr ""
 
-#: src/window.blp:63 src/window.blp:207 src/window.js:201
-msgid "Open Preferences"
+#: src/window.blp:72
+msgid "Add Account…"
 msgstr ""
 
-#: src/window.blp:140
+#: src/window.blp:146
 msgid "Mark all as Read"
 msgstr ""
 
-#: src/window.blp:170
+#: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
+msgid "Accounts"
+msgstr ""
+
+#: src/window.blp:190
 msgid "No Notifications to Show"
 msgstr ""
 
@@ -139,17 +142,17 @@ msgstr[1] ""
 msgid "on %s"
 msgstr ""
 
-#: src/window.js:187
+#: src/window.js:193
 #, javascript-format
 msgid "Account %s authentication failed!"
 msgstr ""
 
-#: src/window.js:189
+#: src/window.js:195
 msgid "The token may have been revoked or expired."
 msgstr ""
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:146
+#: src/application.js:157
 msgid "translator-credits"
 msgstr ""
 
@@ -173,106 +176,30 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr ""
 
-#: src/preferences.js:100
+#: src/preferences.js:66
 msgid "The request failed."
 msgstr ""
 
-#: src/preferences.js:131 src/preferences.js:162
+#: src/preferences.js:97 src/preferences.js:128
 msgid "The autostart request failed."
 msgstr ""
 
-#: src/preferences.js:316 src/preferences.js:353
-msgid "Invalid instance url."
+#: src/preferences.blp:15
+msgid "Keep Running in Background"
 msgstr ""
 
-#: src/preferences.js:372
-msgid "Couldn’t authenticate the account"
+#: src/preferences.blp:22
+msgid "Run on Startup"
 msgstr ""
 
-#: src/preferences.js:374
-msgid "The access token doesn’t have the needed scopes"
-msgstr ""
-
-#: src/preferences.js:376
-msgid "Unexpected error when creating the account"
-msgstr ""
-
-#: src/preferences.js:407
-msgid "New account added successfully!"
-msgstr ""
-
-#: src/preferences.js:456
-msgid "Account edited successfully!"
-msgstr ""
-
-#: src/preferences.js:477
-msgid "Unexpected error removing the account"
-msgstr ""
-
-#: src/preferences.js:506
-msgid "Account authentication failed!"
-msgstr ""
-
-#: src/preferences.blp:13
-msgid "General"
-msgstr ""
-
-#: src/preferences.blp:16
-msgid "Keep running on background"
-msgstr ""
-
-#: src/preferences.blp:23
-msgid "Run on startup"
-msgstr ""
-
-#: src/preferences.blp:34
-msgid "Start hidden"
-msgstr ""
-
-#: src/preferences.blp:48
-msgid "Accounts"
-msgstr ""
-
-#: src/preferences.blp:57
-msgid "Add Account…"
-msgstr ""
-
-#: src/preferences.blp:104
-msgid "Add Account"
-msgstr ""
-
-#: src/preferences.blp:115
-msgid "Add"
-msgstr ""
-
-#: src/preferences.blp:130
-msgid "Forge"
-msgstr ""
-
-#: src/preferences.blp:136 src/preferences.blp:192
-msgid "Instance URL"
-msgstr ""
-
-#: src/preferences.blp:143 src/preferences.blp:199
-msgid "Access Token"
-msgstr ""
-
-#: src/preferences.blp:166
-msgid "Edit Account"
-msgstr ""
-
-#: src/preferences.blp:177
-msgid "Save"
-msgstr ""
-
-#: src/preferences.blp:214
-msgid "Remove Account"
+#: src/preferences.blp:33
+msgid "Start Hidden"
 msgstr ""
 
 #: src/forges/github.js:30
 #, javascript-format
 msgid ""
-"You can generate a new personal access token going to <a href=\"%s\">GitHub "
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
@@ -284,23 +211,25 @@ msgid ""
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
 
+#. GitHub access token help
+#: src/forges/github.js:38
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+
 #. Gitea access token help
 #: src/forges/gitea.js:29
 msgid ""
-"To generate a new access token from your Gitea instance go to Settings → "
+"To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
 
 #. Gitea access token help
-#: src/forges/gitea.js:32 src/forges/forgejo.js:32
-msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-msgstr ""
-
-#. Forgejo access token help
-#: src/forges/forgejo.js:30
+#: src/forges/gitea.js:32
 msgid ""
-"To generate a new access token from your Forgejo instance go to Settings → "
-"Applications and generate a new token."
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
 msgstr ""
 
 #: src/model/notification.js:67
@@ -309,4 +238,72 @@ msgstr ""
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:10
+msgid "Add Account"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:24
+msgid "Cancel"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:31
+msgid "Add"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:49
+msgid "Forge"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:56
+msgid "Instance URL"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:64
+msgid "Access Token"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:81
+msgid "Remove Account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:84
+msgid "Edit Account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:85
+msgid "Save"
+msgstr ""
+
+#: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
+msgid "Invalid instance url."
+msgstr ""
+
+#: src/widgets/accountDialog.js:278
+msgid "Couldn’t authenticate the account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:280
+msgid "The access token doesn’t have the needed scopes"
+msgstr ""
+
+#: src/widgets/accountDialog.js:282
+msgid "Unexpected error when creating the account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:404
+msgid "Unexpected error removing the account"
+msgstr ""
+
+#: src/accountsWindow.blp:22
+msgid "Add…"
+msgstr ""
+
+#: src/accountsWindow.blp:40
+msgid "No Accounts"
+msgstr ""
+
+#: src/accountsWindow.js:79
+msgid "Account authentication failed!"
 msgstr ""
