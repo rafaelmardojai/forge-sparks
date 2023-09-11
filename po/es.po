@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-05-31 19:51+0000\n"
+"PO-Revision-Date: 2023-09-12 14:55+0000\n"
 "Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -26,7 +26,6 @@ msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
-#, fuzzy
 msgid "Get Git forges notifications"
 msgstr "Recibe notificaciones de forjas git"
 
@@ -44,9 +43,8 @@ msgid "_Preferences"
 msgstr "_Preferencias"
 
 #: src/window.blp:12
-#, fuzzy
 msgid "_Accounts"
-msgstr "Cuentas"
+msgstr "_Cuentas"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
@@ -65,13 +63,12 @@ msgid "Main Menu"
 msgstr "Menú principal"
 
 #: src/window.blp:67
-#, fuzzy
 msgid "Welcome to Forge Sparks"
-msgstr "Acerca de Forge Sparks"
+msgstr "Bienvenido a Forge Sparks"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Añadir una cuenta para recibir notificaciones"
 
 #: src/window.blp:72
 msgid "Add Account…"
@@ -79,7 +76,7 @@ msgstr "Agregar cuenta…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr "Marcar como leído"
+msgstr "Marcar todo como leído"
 
 #: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
 msgid "Accounts"
@@ -191,31 +188,27 @@ msgid "The autostart request failed."
 msgstr "La solicitud de autoarranque falló."
 
 #: src/preferences.blp:15
-#, fuzzy
 msgid "Keep Running in Background"
 msgstr "Seguir funcionando en segundo plano"
 
 #: src/preferences.blp:22
-#, fuzzy
 msgid "Run on Startup"
 msgstr "Ejecutar al inicio"
 
 #: src/preferences.blp:33
-#, fuzzy
 msgid "Start Hidden"
 msgstr "Iniciar oculto"
 
 #: src/forges/github.js:30
-#, fuzzy, javascript-format
+#, javascript-format
 msgid ""
 "You can generate a new personal access token from <a href=\"%s\">GitHub "
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
-"Puedes generar un nuevo token de acceso personal yendo a la <a "
-"href=\"%s\">configuración de desarrollador de GitHub</a>. Para más "
-"información, consulta \"<a href=\"%s\">Crear un token de acceso personal</"
-"a>\"."
+"Puedes generar un nuevo token de acceso personal yendo a la <a href=\"%s\""
+">configuración de desarrollador de GitHub</a>. Para más información, "
+"consulta \"<a href=\"%s\">Crear un token de acceso personal</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -232,26 +225,26 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Si trabajas con repositorios privados, también tendrás que conceder el "
+"ámbito completo de <i>repo</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
-#, fuzzy
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
-"Para generar un nuevo token de acceso desde tu instancia de Gitea ve a "
-"Configuración → Aplicaciones y genera un nuevo token."
+"Para generar un nuevo token de acceso desde tu instancia, ve a Configuración "
+"→ Aplicaciones y genera un nuevo token."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
-#, fuzzy
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
-"Forge Sparks requiere un token de acceso <b>classic</b> (para uso general) "
-"con los ámbitos de <i>notifications</i> y <i>read:user</i> concedidos."
+"Forge Sparks requiere los ámbitos <i>read:issue</i>, <i>write:notification</"
+"i> y <i>read:user</i> concedidos."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
@@ -267,7 +260,7 @@ msgstr "Agregar cuenta"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
@@ -319,7 +312,7 @@ msgstr "Error inesperado al eliminar la cuenta"
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Agregar…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
