@@ -6,6 +6,7 @@
 
 <br>
 
+[![GNMOME Circle](https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/badge.svg)](https://circle.gnome.org/)
 [![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app)
 
 [![GitHub](https://img.shields.io/github/license/rafaelmardojai/forge-sparks.svg)](https://github.com/rafaelmardojai/forge-sparks/blob/master/LICENSE)
@@ -20,6 +21,8 @@
 Simple notifier app with support for Github, Gitea and Forgejo.
 
 ## Install
+
+<a href="https://flathub.org/apps/com.mardojai.ForgeSparks"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
 
 ### Nightly
 
