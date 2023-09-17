@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-05-31 19:51+0000\n"
-"Last-Translator: volkov <d2oo1dle2x@gmail.com>\n"
+"PO-Revision-Date: 2023-09-18 10:59+0000\n"
+"Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -27,7 +27,6 @@ msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
-#, fuzzy
 msgid "Get Git forges notifications"
 msgstr "Отримувати сповіщення git forges"
 
@@ -44,9 +43,8 @@ msgid "_Preferences"
 msgstr "_Налаштування"
 
 #: src/window.blp:12
-#, fuzzy
 msgid "_Accounts"
-msgstr "Облікові записи"
+msgstr "_Облікові записи"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
@@ -65,13 +63,12 @@ msgid "Main Menu"
 msgstr "Головне меню"
 
 #: src/window.blp:67
-#, fuzzy
 msgid "Welcome to Forge Sparks"
-msgstr "Про Forge Sparks"
+msgstr "Ласкаво просимо до Forge Sparks"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Додати обліковий запис для отримання повідомлень від"
 
 #: src/window.blp:72
 msgid "Add Account…"
@@ -195,22 +192,19 @@ msgid "The autostart request failed."
 msgstr "Запит на автозапуск не вдалося виконати."
 
 #: src/preferences.blp:15
-#, fuzzy
 msgid "Keep Running in Background"
-msgstr "Продовжити працювати у фоновому режимі"
+msgstr "Продовжувати працювати у фоновому режимі"
 
 #: src/preferences.blp:22
-#, fuzzy
 msgid "Run on Startup"
 msgstr "Запустити під час запуску"
 
 #: src/preferences.blp:33
-#, fuzzy
 msgid "Start Hidden"
 msgstr "Початок приховано"
 
 #: src/forges/github.js:30
-#, fuzzy, javascript-format
+#, javascript-format
 msgid ""
 "You can generate a new personal access token from <a href=\"%s\">GitHub "
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
@@ -236,26 +230,26 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Якщо ви працюєте з приватними репозиторіями, вам також потрібно надати "
+"повний обсяг <i>репо</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
-#, fuzzy
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
-"Щоб згенерувати новий токен доступу для вашого екземпляра Gitea, перейдіть "
-"до Налаштування → Застосунки та згенеруйте новий токен."
+"Щоб створити новий токен доступу з вашого екземпляра, перейдіть до "
+"Налаштування → Застосунки та створіть новий токен."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
-#, fuzzy
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
-"Forge Sparks потребує <b>класичного токену доступу</b> (для загального "
-"використання) з дозволеними <i>сповіщеннями</i> та <i>read:user</i>."
+"Forge Sparks вимагає <i>read: issue</i>, <i>write: notification</i> і "
+"<i>read: user</i> надано дозвіл."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
@@ -271,7 +265,7 @@ msgstr "Додати обліковий запис"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
@@ -323,7 +317,7 @@ msgstr "Несподівана помилка видалення обліков�
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Додати…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
