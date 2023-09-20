@@ -27,9 +27,23 @@
     <screenshot>
       <image>https://raw.githubusercontent.com/rafaelmardojai/forge-sparks/main/data/screenshots/2.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/rafaelmardojai/forge-sparks/main/data/screenshots/3.png</image>
+    </screenshot>
   </screenshots>
 
   <releases translatable="no">
+  <release version="0.2.0" date="2023-09-20">
+      <description>
+        <ul>
+          <li>Improved initial view</li>
+          <li>Accounts management moved to a separate window</li>
+          <li>Minimum improvements to the UI</li>
+          <li>Bug fixes</li>
+          <li>Now part of GNOME Circle</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.1" date="2023-05-29">
       <description>
         <p>Minimal improvements and fixes.</p>
