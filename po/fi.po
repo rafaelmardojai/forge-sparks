@@ -8,88 +8,91 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-09-23 07:00+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "Nouda Git-tietovarastojen ilmoitukset"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notifications;ilmoitukset;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr ""
+"Yksinkertainen ilmoitussovellus, joka tukee Githubia, Giteaa ja Forgejo:ta."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Asetukset"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "_Tilit"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Pikanäppäimet"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Tietoja - Forge Sparks"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "Lopeta"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "Päävalikko"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "Tervetuloa Forge Sparksiin"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Lisää tili saadaksesi ilmoituksia"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "Lisää tili…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Merkitse kaikki luetuiksi"
 
 #: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
 msgid "Accounts"
-msgstr ""
+msgstr "Tilit"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Ei ilmoituksia näytettäväksi"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Salli Forge Sparksin suoritus taustalla."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Salli Forge Sparksin suoritus käynnistymisen yhteydessä."
 
 #. *
 #. * Set background status message
@@ -98,103 +101,103 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Tarkkaillaan uusia ilmoituksia"
 
 #: src/util.js:133 src/util.js:174
 msgid "now"
-msgstr ""
+msgstr "nyt"
 
 #. Translators: relative date
 #: src/util.js:138
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minuutti sitten"
+msgstr[1] "%d minuuttia sitten"
 
 #. Translators: relative date
 #: src/util.js:145
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tunti sitten"
+msgstr[1] "%d tuntia sitten"
 
 #. Translators: relative date
 #: src/util.js:152
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "eilen"
+msgstr[1] "%d päivää sitten"
 
 #. Translators: relative date
 #: src/util.js:159
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d viikko sitten"
+msgstr[1] "%d viikkoa sitten"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "%s"
 
 #: src/window.js:193
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Tilin %s tunnistautuminen epäonnistui!"
 
 #: src/window.js:195
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Poletti saattaa olla kumottu tai se on vanhentunut."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:157
 msgid "translator-credits"
-msgstr ""
+msgstr "Jiri Grönroos"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Yleiset"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Avaa valikko"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Pikanäppäimet"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Lopeta"
 
 #: src/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "Pyyntö epäonnistui."
 
 #: src/preferences.js:97 src/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "Automaattikäynnistyksen pyyntö epäonnistui."
 
 #: src/preferences.blp:15
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "Jatka suoritusta taustalla"
 
 #: src/preferences.blp:22
 msgid "Run on Startup"
-msgstr ""
+msgstr "Suorita käynnistyksen yhteydessä"
 
 #: src/preferences.blp:33
 msgid "Start Hidden"
-msgstr ""
+msgstr "Käynnistä pienennettynä"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -203,6 +206,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Voit luoda henkilökohtaisen pääsypoletin <a href=\"%s\">GitHubin "
+"kehittäjäasetuksissa</a>. Lisätietoja sivulla \"<a href=\"%s\">Creating a "
+"personal access token</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -210,6 +216,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks vaatii <b>klassisen</b> pääsypoletin (yleiskäyttöä varten), "
+"jossa on myönnetty skoopit <i>notifications</i> ja <i>read:user</i>."
 
 #. GitHub access token help
 #: src/forges/github.js:38
@@ -217,13 +225,15 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Jos työskentelet yksityisten tietovarastojen parissa, sinun tulee myöntää "
+"myös täysi <i>repo</i>-skooppi."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
-msgstr ""
+msgstr "Luo uusi pääsypoletti instanssistasi menemällä Asetukset → Sovellukset."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
@@ -231,79 +241,81 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks vaatii, että skoopit <i>read:issue</i>, <i>write:notification</"
+"i> ja <i>read:user</i> myönnetään."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Merkitse luetuksi"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Näytä Forge Sparks"
 
 #: src/widgets/accountDialog.blp:10
 msgid "Add Account"
-msgstr ""
+msgstr "Lisää tili"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "Peru"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
-msgstr ""
+msgstr "Lisää"
 
 #: src/widgets/accountDialog.blp:49
 msgid "Forge"
-msgstr ""
+msgstr "Tietovarasto"
 
 #: src/widgets/accountDialog.blp:56
 msgid "Instance URL"
-msgstr ""
+msgstr "Instanssin URL-osoite"
 
 #: src/widgets/accountDialog.blp:64
 msgid "Access Token"
-msgstr ""
+msgstr "Pääsypoletti"
 
 #: src/widgets/accountDialog.blp:81
 msgid "Remove Account"
-msgstr ""
+msgstr "Poista tili"
 
 #: src/widgets/accountDialog.js:84
 msgid "Edit Account"
-msgstr ""
+msgstr "Muokkaa tiliä"
 
 #: src/widgets/accountDialog.js:85
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Virheellinen instanssin URL-osoite."
 
 #: src/widgets/accountDialog.js:278
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Tiliä ei voitu todentaa"
 
 #: src/widgets/accountDialog.js:280
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Pääsypoletissa ei ole vaadittuja skooppeja"
 
 #: src/widgets/accountDialog.js:282
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Odottamaton virhe tiliä luotaessa"
 
 #: src/widgets/accountDialog.js:404
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Odottamaton virhe tiliä poistaessa"
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Lisää…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
-msgstr ""
+msgstr "Ei tilejä"
 
 #: src/accountsWindow.js:79
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Tilin todentaminen epäonnistui!"
