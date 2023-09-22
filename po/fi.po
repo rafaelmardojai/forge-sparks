@@ -1,0 +1,309 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.mardojai.ForgeSparks package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.mardojai.ForgeSparks\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-09 22:32-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. TRANSLATORS: Don't translate, only transliterate if needed
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
+msgid "Forge Sparks"
+msgstr ""
+
+#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
+msgid "Get Git forges notifications"
+msgstr ""
+
+#: data/com.mardojai.ForgeSparks.desktop.in.in:12
+msgid "git;github;notifications;"
+msgstr ""
+
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
+msgid "Simple notifier app with support for Github, Gitea and Forgejo."
+msgstr ""
+
+#: src/window.blp:7
+msgid "_Preferences"
+msgstr ""
+
+#: src/window.blp:12
+msgid "_Accounts"
+msgstr ""
+
+#: src/window.blp:17
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: src/window.blp:23
+msgid "About Forge Sparks"
+msgstr ""
+
+#: src/window.blp:30
+msgid "Quit"
+msgstr ""
+
+#: src/window.blp:62 src/window.blp:156
+msgid "Main Menu"
+msgstr ""
+
+#: src/window.blp:67
+msgid "Welcome to Forge Sparks"
+msgstr ""
+
+#: src/window.blp:68 src/accountsWindow.blp:41
+msgid "Add an account to receive notifications from"
+msgstr ""
+
+#: src/window.blp:72
+msgid "Add Account…"
+msgstr ""
+
+#: src/window.blp:146
+msgid "Mark all as Read"
+msgstr ""
+
+#: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
+msgid "Accounts"
+msgstr ""
+
+#: src/window.blp:190
+msgid "No Notifications to Show"
+msgstr ""
+
+#: src/util.js:58
+msgid "Allow running Forge Sparks on background."
+msgstr ""
+
+#: src/util.js:58
+msgid "Allow running Forge Sparks on startup."
+msgstr ""
+
+#. *
+#. * Set background status message
+#. *
+#. * @param {String} message
+#.
+#: src/util.js:82
+msgid "Monitoring new notifications"
+msgstr ""
+
+#: src/util.js:133 src/util.js:174
+msgid "now"
+msgstr ""
+
+#. Translators: relative date
+#: src/util.js:138
+#, javascript-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date
+#: src/util.js:145
+#, javascript-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date
+#: src/util.js:152
+#, javascript-format
+msgid "yesterday"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date
+#: src/util.js:159
+#, javascript-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: relative date, %s is date formatted as "May 01, 2022"
+#: src/util.js:165 src/util.js:169
+#, javascript-format
+msgid "on %s"
+msgstr ""
+
+#: src/window.js:193
+#, javascript-format
+msgid "Account %s authentication failed!"
+msgstr ""
+
+#: src/window.js:195
+msgid "The token may have been revoked or expired."
+msgstr ""
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/application.js:157
+msgid "translator-credits"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:15
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:20
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr ""
+
+#: src/gtk/help-overlay.blp:25
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: src/preferences.js:66
+msgid "The request failed."
+msgstr ""
+
+#: src/preferences.js:97 src/preferences.js:128
+msgid "The autostart request failed."
+msgstr ""
+
+#: src/preferences.blp:15
+msgid "Keep Running in Background"
+msgstr ""
+
+#: src/preferences.blp:22
+msgid "Run on Startup"
+msgstr ""
+
+#: src/preferences.blp:33
+msgid "Start Hidden"
+msgstr ""
+
+#: src/forges/github.js:30
+#, javascript-format
+msgid ""
+"You can generate a new personal access token from <a href=\"%s\">GitHub "
+"developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
+"a personal access token</a>\"."
+msgstr ""
+
+#. GitHub access token help
+#: src/forges/github.js:35
+msgid ""
+"Forge Sparks requires a <b>classic</b> access token (for general use) with "
+"the <i>notifications</i> and <i>read:user</i> scopes granted."
+msgstr ""
+
+#. GitHub access token help
+#: src/forges/github.js:38
+msgid ""
+"If you’re working with private repositories, you’ll also need to grant the "
+"full <i>repo</i> scope."
+msgstr ""
+
+#. Gitea access token help
+#: src/forges/gitea.js:29
+msgid ""
+"To generate a new access token from your instance, go to Settings → "
+"Applications and generate a new token."
+msgstr ""
+
+#. Gitea access token help
+#: src/forges/gitea.js:32
+msgid ""
+"Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
+"<i>read:user</i> scopes granted."
+msgstr ""
+
+#: src/model/notification.js:67
+msgid "Mark as Read"
+msgstr ""
+
+#: src/model/notification.js:74
+msgid "Show Forge Sparks"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:10
+msgid "Add Account"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:24
+msgid "Cancel"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:31
+msgid "Add"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:49
+msgid "Forge"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:56
+msgid "Instance URL"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:64
+msgid "Access Token"
+msgstr ""
+
+#: src/widgets/accountDialog.blp:81
+msgid "Remove Account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:84
+msgid "Edit Account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:85
+msgid "Save"
+msgstr ""
+
+#: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
+msgid "Invalid instance url."
+msgstr ""
+
+#: src/widgets/accountDialog.js:278
+msgid "Couldn’t authenticate the account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:280
+msgid "The access token doesn’t have the needed scopes"
+msgstr ""
+
+#: src/widgets/accountDialog.js:282
+msgid "Unexpected error when creating the account"
+msgstr ""
+
+#: src/widgets/accountDialog.js:404
+msgid "Unexpected error removing the account"
+msgstr ""
+
+#: src/accountsWindow.blp:22
+msgid "Add…"
+msgstr ""
+
+#: src/accountsWindow.blp:40
+msgid "No Accounts"
+msgstr ""
+
+#: src/accountsWindow.js:79
+msgid "Account authentication failed!"
+msgstr ""
