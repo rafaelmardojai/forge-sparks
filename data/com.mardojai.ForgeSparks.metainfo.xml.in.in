@@ -34,7 +34,7 @@
 
   <releases translatable="no">
   <release version="0.2.0" date="2023-09-20">
-      <description>
+      <description translatable="no">
         <ul>
           <li>Improved initial view</li>
           <li>Accounts management moved to a separate window</li>
@@ -45,12 +45,12 @@
       </description>
     </release>
     <release version="0.1.1" date="2023-05-29">
-      <description>
+      <description translatable="no">
         <p>Minimal improvements and fixes.</p>
       </description>
     </release>
     <release version="0.1.0" date="2023-05-26">
-      <description>
+      <description translatable="no">
         <p>Initial release.</p>
         <ul>
           <li>Support for Forgejo</li>
