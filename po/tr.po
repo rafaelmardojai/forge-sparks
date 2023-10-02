@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-09-09 22:11+0000\n"
+"PO-Revision-Date: 2023-10-03 20:11+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -26,7 +26,6 @@ msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
-#, fuzzy
 msgid "Get Git forges notifications"
 msgstr "Git forges bildirimlerini alın"
 
@@ -43,9 +42,8 @@ msgid "_Preferences"
 msgstr "_Tercihler"
 
 #: src/window.blp:12
-#, fuzzy
 msgid "_Accounts"
-msgstr "Hesaplar"
+msgstr "_Hesaplar"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
@@ -64,13 +62,12 @@ msgid "Main Menu"
 msgstr "Ana Menü"
 
 #: src/window.blp:67
-#, fuzzy
 msgid "Welcome to Forge Sparks"
-msgstr "Forge Sparks Hakkında"
+msgstr "Forge Sparksʼa Hoş Geldiniz"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Bildirim almak içi hesap ekleyin"
 
 #: src/window.blp:72
 msgid "Add Account…"
@@ -193,30 +190,27 @@ msgid "The autostart request failed."
 msgstr "Kendiliğinde başlatma isteği başarısız oldu."
 
 #: src/preferences.blp:15
-#, fuzzy
 msgid "Keep Running in Background"
-msgstr "Arka planda çalışmaya devam et"
+msgstr "Arka Planda Çalışmaya Devam Et"
 
 #: src/preferences.blp:22
-#, fuzzy
 msgid "Run on Startup"
-msgstr "Başlangıçta çalıştır"
+msgstr "Başlangıçta Çalıştır"
 
 #: src/preferences.blp:33
-#, fuzzy
 msgid "Start Hidden"
-msgstr "Gizli başla"
+msgstr "Gizli Başla"
 
 #: src/forges/github.js:30
-#, fuzzy, javascript-format
+#, javascript-format
 msgid ""
 "You can generate a new personal access token from <a href=\"%s\">GitHub "
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
-"<a href=\"%s\">GitHub geliştirici ayarlarına</a> giderek yeni bir kişisel "
-"erişim jetonu oluşturabilirsiniz. Daha fazla bilgi için bkz. \"<a "
-"href=\"%s\">Kişisel erişim jetonu oluşturma</a>\"."
+"<a href=\"%s\">GitHub geliştirici ayarlarına</a> giderek yeni kişisel erişim "
+"jetonu oluşturabilirsiniz. Daha fazla bilgi için bkz: \"<a href=\"%s\""
+">Kişisel erişim jetonu oluşturma</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -233,26 +227,26 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Özel depolarla çalışıyorsanız <i>depo</i> kapsamının tamamını izin vermeniz "
+"gerekir."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
-#, fuzzy
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
-"Gitea sunucunuzdan yeni erişim jetonu oluşturmak için Ayarlar → "
-"Uygulamalarʼa gidip yeni jeton oluşturun."
+"Örneğinizden yeni erişim jetonu oluşturmak için Ayarlar → Uygulamalarʼa "
+"gidip yeni jeton oluşturun."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
-#, fuzzy
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
-"Forge Sparks, <b>klasik</b> bir erişim jetonuyla (genel kullanım için) "
-"<i>bildirimler</i> ve <i>read:user</i> izinleri verilerek çalışır."
+"Forge Sparks, <i>read:issue</i>, <i>write:notification</i> ve <i>read:user</"
+"i> izinlerinin verilmesini gerektirir."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
@@ -268,7 +262,7 @@ msgstr "Hesap Ekle"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
@@ -320,7 +314,7 @@ msgstr "Hesap kaldırılırken beklenmeyen hata"
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Ekle…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
