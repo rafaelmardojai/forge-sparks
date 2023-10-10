@@ -11,6 +11,8 @@
   <url type="homepage">https://github.com/rafaelmardojai/forge-sparks</url>
   <url type="bugtracker">https://github.com/rafaelmardojai/forge-sparks/issues</url>
   <url type="donation">https://mardojai.com/donate/</url>
+  <url type="translate">https://hosted.weblate.org/engage/forge-sparks/</url>
+  <url type="vcs-browser">https://github.com/rafaelmardojai/forge-sparks</url>
   <developer_name translatable="no">Rafael Mardojai CM</developer_name>
   <update_contact>email_AT_rafaelmardojai.com</update_contact>
 
