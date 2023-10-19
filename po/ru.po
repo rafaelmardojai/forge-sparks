@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-06-18 17:01+0300\n"
-"Last-Translator: Сергей Ворон <voron@duck.com>\n"
-"Language-Team: \n"
-"Language: ru_RU\n"
+"PO-Revision-Date: 2023-10-21 04:06+0000\n"
+"Last-Translator: Сергей <asvmail.as@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/ru/>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.3.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.1\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -26,9 +27,8 @@ msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
-#, fuzzy
 msgid "Get Git forges notifications"
-msgstr "Получайте уведомления git forges"
+msgstr "Получайте уведомления Git forges"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
@@ -44,9 +44,8 @@ msgid "_Preferences"
 msgstr "_Настройки"
 
 #: src/window.blp:12
-#, fuzzy
 msgid "_Accounts"
-msgstr "Учетные записи"
+msgstr "_Учетные записи"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
@@ -65,13 +64,12 @@ msgid "Main Menu"
 msgstr "Главное меню"
 
 #: src/window.blp:67
-#, fuzzy
 msgid "Welcome to Forge Sparks"
-msgstr "О Forge Sparks"
+msgstr "Добро пожаловать в Forge Sparks"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Добавьте учетную запись для получения уведомлений от"
 
 #: src/window.blp:72
 msgid "Add Account…"
@@ -195,12 +193,10 @@ msgid "The autostart request failed."
 msgstr "Не удалось выполнить запрос на автозапуск."
 
 #: src/preferences.blp:15
-#, fuzzy
 msgid "Keep Running in Background"
 msgstr "Продолжать работать в фоновом режиме"
 
 #: src/preferences.blp:22
-#, fuzzy
 msgid "Run on Startup"
 msgstr "Выполнить при запуске системы"
 
@@ -239,24 +235,21 @@ msgstr ""
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
-#, fuzzy
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
-"Чтобы создать новый токен доступа вашего сервера Gitea, перейдите в "
+"Чтобы создать новый токен доступа из вашего экземпляра, перейдите в "
 "«Настройки» → «Приложения» и создайте новый токен."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
-#, fuzzy
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
-"Для Forge Sparks требуется <b>классический</b> токен доступа (для общего "
-"использования) с предоставленными областями <i>уведомления</i> и <i>read:"
-"user</i>."
+"Для Forge Sparks требуются предоставленные области <i>read:issue</i>, "
+"<i>write:notification</i> и <i>read:user</i>."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
@@ -272,7 +265,7 @@ msgstr "Добавить учетную запись"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
@@ -324,7 +317,7 @@ msgstr "Непредвиденная ошибка при удалении уче
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Добавить…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
