@@ -8,88 +8,90 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-11-04 00:36+0000\n"
+"Last-Translator: sköldpadda <weblate@turtle.garden>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "Få aviseringar om Git forges"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;codeberg;gitea;forgejo;aviseringar;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
-msgstr ""
+msgstr "Enkel aviseringsapplication som stöder Github, Gitea, och Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Inställningar"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "_Konton"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Tangentbordsgenvägar"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Om Forge Sparks"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "Avsluta"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "Huvudsmeny"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "Välkommen till Forge Sparks"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Lägg till ett konto för att hämta aviseringar"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "Lägg Till Konto…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Markera Alla som Läst"
 
 #: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
 msgid "Accounts"
-msgstr ""
+msgstr "Konton"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Inga Aviseringar"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Tillåt Forge Sparks att köra i bakgrunden."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Tillåt Forge Sparks att köra vid start."
 
 #. *
 #. * Set background status message
@@ -98,27 +100,27 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Övervakar nya aviseringar"
 
 #: src/util.js:133 src/util.js:174
 msgid "now"
-msgstr ""
+msgstr "nu"
 
 #. Translators: relative date
 #: src/util.js:138
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "för %d minut sedan"
+msgstr[1] "för %d minuter sedan"
 
 #. Translators: relative date
 #: src/util.js:145
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "för %d timme sedan"
+msgstr[1] "för %d timmar sedan"
 
 #. Translators: relative date
 #: src/util.js:152
@@ -133,68 +135,69 @@ msgstr[1] ""
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "förra veckan"
+msgstr[1] "för %d veckor sedan"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "på %s"
 
 #: src/window.js:193
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Authentisiering misslyckades för konto %s!"
 
 #: src/window.js:195
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Token har kanske återkallats eller löpt ut."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:157
 msgid "translator-credits"
-msgstr ""
+msgstr "skøldis <forgesparks@turtle.garden>"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Allmänt"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Öppna meny"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Tangentbordsgenvägar"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Avsluta"
 
 #: src/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "Förfrågan misslyckades."
 
 #: src/preferences.js:97 src/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "Autostartsförfrågan misslyckades."
 
 #: src/preferences.blp:15
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "Fortstätta att Köra i Backgrunden"
 
 #: src/preferences.blp:22
 msgid "Run on Startup"
-msgstr ""
+msgstr "Köra vid Start"
 
 #: src/preferences.blp:33
+#, fuzzy
 msgid "Start Hidden"
-msgstr ""
+msgstr "Starta Dold"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -203,6 +206,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Man kan generera en ny personaliskt access token genom att använda <a href=\""
+"%s\">GitHub:s ”Developer Settings”</a>. För mer information, läsa ”<a href=\""
+"%s\">Creating a personal access token</a>”."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -210,6 +216,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks behöver en <b>classic</b> access token (för allmäna "
+"användningar) med <i>notifications</i> -och <i>read:user</i>omfång beviljade."
 
 #. GitHub access token help
 #: src/forges/github.js:38
@@ -217,6 +225,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Om du vill hantera aviseringar för privata repositories behöver du bevilja "
+"det fullständiga <i>repo</i>omfånget."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -224,6 +234,8 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"För att generera en ny åtkomst-token från en instans kan man åka till "
+"Inställningar → Applikationer och generera en ny åtkomst-token."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
@@ -231,79 +243,81 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks behöver de <i>read:issue</i>-, <i>write:notification</i>-, och "
+"<i>read:user</i>omfången att beviljades."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Markera som läst"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Visa Forge Sparks"
 
 #: src/widgets/accountDialog.blp:10
 msgid "Add Account"
-msgstr ""
+msgstr "Lägg till konto"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 #: src/widgets/accountDialog.blp:49
 msgid "Forge"
-msgstr ""
+msgstr "Forge"
 
 #: src/widgets/accountDialog.blp:56
 msgid "Instance URL"
-msgstr ""
+msgstr "Instans URL"
 
 #: src/widgets/accountDialog.blp:64
 msgid "Access Token"
-msgstr ""
+msgstr "Åtkomst-token"
 
 #: src/widgets/accountDialog.blp:81
 msgid "Remove Account"
-msgstr ""
+msgstr "Ta Bort Konto"
 
 #: src/widgets/accountDialog.js:84
 msgid "Edit Account"
-msgstr ""
+msgstr "Redigera Konto"
 
 #: src/widgets/accountDialog.js:85
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Ogiltig instans URL."
 
 #: src/widgets/accountDialog.js:278
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Autentisering för kontot misslyckades"
 
 #: src/widgets/accountDialog.js:280
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Den åtkomst-token har inte de behövda omfången"
 
 #: src/widgets/accountDialog.js:282
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Oförväntat fel vid kontoskapande"
 
 #: src/widgets/accountDialog.js:404
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Oförväntat fel vid kontoborttagning"
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Lägg till…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
-msgstr ""
+msgstr "Inga Konton"
 
 #: src/accountsWindow.js:79
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Kontoautentisering misslyckades!"
