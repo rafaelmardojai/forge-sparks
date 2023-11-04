@@ -67,6 +67,18 @@
     <display_length compare="ge">360</display_length>
   </requires>
 
+  <categories>
+    <category>GNOME</category>
+    <category>GTK</category>
+    <category>Network</category>
+  </categories>
+
+  <keywords>
+    <keyword translate="no">git</keyword>
+    <keyword translate="no">github</keyword>
+    <keyword>notifications</keyword>
+  </keywords>
+
   <recommends>
     <control>keyboard</control>
     <control>pointing</control>
