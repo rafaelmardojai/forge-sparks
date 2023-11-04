@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-11-04 00:36+0000\n"
-"Last-Translator: sköldpadda <weblate@turtle.garden>\n"
+"PO-Revision-Date: 2023-11-05 08:33+0000\n"
+"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/sv/>\n"
 "Language: sv\n"
@@ -127,8 +127,8 @@ msgstr[1] "för %d timmar sedan"
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "i går"
+msgstr[1] "%d dagar sedan"
 
 #. Translators: relative date
 #: src/util.js:159
@@ -195,9 +195,8 @@ msgid "Run on Startup"
 msgstr "Köra vid Start"
 
 #: src/preferences.blp:33
-#, fuzzy
 msgid "Start Hidden"
-msgstr "Starta Dold"
+msgstr "Starta dold"
 
 #: src/forges/github.js:30
 #, javascript-format
