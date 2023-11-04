@@ -34,8 +34,8 @@
     </screenshot>
   </screenshots>
 
-  <releases translatable="no">
-  <release version="0.2.0" date="2023-09-20">
+  <releases>
+    <release version="0.2.0" date="2023-09-20">
       <description translatable="no">
         <ul>
           <li>Improved initial view</li>
