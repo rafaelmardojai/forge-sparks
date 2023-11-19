@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-10-21 04:06+0000\n"
+"PO-Revision-Date: 2023-11-20 12:02+0000\n"
 "Last-Translator: Сергей <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.2\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -201,20 +201,19 @@ msgid "Run on Startup"
 msgstr "Выполнить при запуске системы"
 
 #: src/preferences.blp:33
-#, fuzzy
 msgid "Start Hidden"
 msgstr "Запускать скрытым"
 
 #: src/forges/github.js:30
-#, fuzzy, javascript-format
+#, javascript-format
 msgid ""
 "You can generate a new personal access token from <a href=\"%s\">GitHub "
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
 "Вы можете создать новый токен личного доступа в <a href=\"%s\">настройках "
-"разработчика GitHub</a>. Дополнительную информацию см. в разделе \"<a "
-"href=\"%s\">Создание токена личного доступа</a>\"."
+"разработчика GitHub</a>. Дополнительную информацию см. в разделе \"<a href=\""
+"%s\">Создание токена личного доступа</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -232,6 +231,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Если вы работаете с приватными репозиториями, вам также нужно предоставить "
+"разрешение на всю область <i>repo</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -244,6 +245,7 @@ msgstr ""
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
+#, fuzzy
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
@@ -253,7 +255,7 @@ msgstr ""
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr "Пометить, как прочитанное"
+msgstr "Пометить как прочитанное"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
