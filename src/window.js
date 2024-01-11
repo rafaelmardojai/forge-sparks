@@ -161,8 +161,15 @@ export default class Window extends Adw.ApplicationWindow {
                 try {
                     const token = await accounts.getAccountToken(account.id);
                     this.forges[account.id] = new FORGES[account.forge](
-                        account.url, token, account.id, account.displayName
+                        account.url, token, account.id, account.userId, account.displayName
                     );
+
+                    /* Fetch user ID for older accounts (Forge Sparks =< 0.2) */
+                    if (account.userId === 0) {
+                        const [userId, _username] = await this.forges[account.id].getUser();
+                        account.userId = userId;  // Update user ID on account
+                        this.forges[account.id].userId = userId;  // Update user ID on existing forge instance
+                    }
                 } catch (error) {
                     /* TODO: Notify the user that this failed */
                     log(error);

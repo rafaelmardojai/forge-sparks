@@ -47,13 +47,15 @@ export default class GitHub extends Forge {
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
 
+            log(`${url} response resulted in ${message.get_status()}`);
+
             if (message.get_status() == '401') {
                 throw 'FailedForgeAuth';
             } else if (message.get_status() == '403') {
                 throw 'FailedTokenScopes';
             } else if (message.get_status() != '200') {
                 throw 'Unexpected'
-            } else if (!('login' in contents)) {
+            } else if (!('login' in contents) || !('id' in contents)) {
                 throw 'Unexpected'
             }
 
@@ -66,7 +68,7 @@ export default class GitHub extends Forge {
                 throw 'FailedTokenScopes';
             }
 
-            return contents.login;
+            return [contents.id, contents.login];
         } catch (error) {
             throw error;
         }
@@ -214,6 +216,20 @@ export default class GitHub extends Forge {
                             info.url = url;
                     }
                 }
+
+                /* Add notification referrer to url */
+                /* Only if forge is GitHub */
+                if (Forge.name === 'github') {
+                    const referrer = this._getNotificationReferrerID(notification.id);
+                    const n = info.url.lastIndexOf('#');  // Get hash position
+
+                    if (n < 0) {
+                        info.url += `?notification_referrer_id=${referrer}`;
+                    } else {
+                        info.url = `${info.url.substring(0, n)}?notification_referrer_id=${referrer}${info.url.substring(n)}`;
+                    }
+                }
+                
             } else {
                 /* Fallback URL if request failed, probably repo is private */
                 if (notification.subject.type === 'PullRequest') {
@@ -252,6 +268,32 @@ export default class GitHub extends Forge {
             return contents.html_url;
         } catch (e) {
             throw e;
+        }
+    }
+
+    /**
+     * Get notification referrer ID 
+     * 
+     * Needed to show the notification shelf on GitHub's web UI
+     * 
+     * Based on Daniel Lamando snippet
+     * https://github.com/sindresorhus/notifier-for-github/issues/268
+     * 
+     * @param {String} id Notification ID
+     * @param {Number} version Version of the referrer ID
+     * @returns {String} The base64 encoded referrer ID.
+     */
+    _getNotificationReferrerID(id, version = 1) {
+        switch (version) {
+            case 2:
+                /**
+                 * This one does't seem to work.
+                 * The leading bytes are probably dynamic or have changed.
+                 */
+                return 'NT_' + GLib.base64_encode(`\x93\x00\xCD\x9E\xB4\xB0${id}:${this.userId}`).replace(/=+$/, '');
+            default:
+                /* Old but still works */
+                return GLib.base64_encode(`018:NotificationThread${id}:${this.userId}`);
         }
     }
 

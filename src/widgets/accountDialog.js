@@ -318,13 +318,14 @@ export default class AccountDialog extends Adw.Window {
             /* Instantiate the class for the forge */
             const forge = new FORGES[forgeName](url, token);
             /* Try authenticating the user with access token */
-            const username = await forge.getUser();
+            const [userId, username] = await forge.getUser();
 
             if (username != undefined) {
                 /* Save account to settings */
                 await accounts.saveAccount(
                     forgeName,
                     url,
+                    userId,
                     username,
                     token
                 );
@@ -370,11 +371,12 @@ export default class AccountDialog extends Adw.Window {
         if (newToken != this._account.token || newUrl != this._account.url) {
             try {
                 const forge = new forgeClass(newUrl, newToken);
-                const username = await forge.getUser();
+                const [userId, username] = await forge.getUser();
 
                 await accounts.updateAccount(
                     this._account.id,
                     newUrl,
+                    userId,
                     username,
                     newToken
                 );

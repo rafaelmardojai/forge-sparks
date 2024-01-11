@@ -37,9 +37,10 @@ export default class Forge {
      * @param {String} url The url of the forge
      * @param {String} token The access token
      * @param {String} account Account ID associated to the instance
+     * @param {Number} userId Account user ID associated to the instance
      * @param {String} accountName Account name associated to the instance
      */
-    constructor(url, token, account = null, accountName = '') {
+    constructor(url, token, account = null, userId = null, accountName = '') {
         /**
          * URL passed when the class was instantiated, the same as
          * this.defaultURL if this.allowInstances is false
@@ -56,6 +57,11 @@ export default class Forge {
          * Account ID on Forge Sparks settings
          */
         this.account = account;
+
+        /**
+         * Account user ID on Forge Sparks settings
+         */
+        this.userId = userId;
 
         /**
          * Account name (username@instance.tld)
@@ -78,7 +84,7 @@ export default class Forge {
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws {Unexpected} Got a response but could not find the username
      * @throws Any other error when making the request or reading the response
-     * @returns {String} The username
+     * @returns {Array<Number, String>} The id and username
      */
     async getUser() {
 
