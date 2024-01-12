@@ -44,7 +44,6 @@ export default class AccountDialog extends Adw.Window {
         if (account != null) {
             this._account = account;
             this._editing = true;
-            this._userChangedInstance = true;
             this.notify('editing');
 
             this._loadSavedAccount();
@@ -176,7 +175,7 @@ export default class AccountDialog extends Adw.Window {
         this._onEntryChanged();
 
         /* Load default instance url */
-        if (!this._userChangedInstance) {
+        if (!this._userChangedInstance && this._account == null) {
             this._instance.text = this._forges_ls[this._forge.selected].defaultURL;
         }
     }
