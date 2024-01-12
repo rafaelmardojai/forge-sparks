@@ -74,6 +74,15 @@ export default class Forge {
     }
 
     /**
+     * Authorization header value
+     * 
+     * @type {String}
+     */
+    get authorization() {
+        return 'token ' + this.token;
+    }
+
+    /**
      * Get the username
      * 
      * Get username from the logged in user.
@@ -144,7 +153,7 @@ export default class Forge {
             message.request_headers.append(key, value);
         });
         // Append auth header
-        message.request_headers.append('Authorization', 'token ' + this.token);
+        message.request_headers.append('Authorization', this.authorization);
         message.request_headers.append('Time-Zone', 'UTC');
 
         return message;
