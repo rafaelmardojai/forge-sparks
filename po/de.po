@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-10-08 19:01+0000\n"
+"PO-Revision-Date: 2024-01-14 12:31+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -64,9 +64,8 @@ msgid "Main Menu"
 msgstr "Hauptfenster"
 
 #: src/window.blp:67
-#, fuzzy
 msgid "Welcome to Forge Sparks"
-msgstr "Info zu Forge Sparks"
+msgstr "Willkommen bei Forge Sparks"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
