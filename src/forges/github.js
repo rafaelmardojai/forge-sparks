@@ -257,7 +257,7 @@ export default class GitHub extends Forge {
      * e.g. https://github.com/user/repo/issues/1#issuecomment-1529954726
      */
     async _getCommentURL(url) {
-        if (url === null)
+        if (!url || url === null)
             return;
 
         try {
