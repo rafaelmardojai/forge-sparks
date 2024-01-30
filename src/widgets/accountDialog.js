@@ -12,7 +12,7 @@ import Template from './accountDialog.blp' assert { type: 'uri' };
 
 const accounts = new AccountsManager();
 
-export default class AccountDialog extends Adw.Window {
+export default class AccountDialog extends Adw.Dialog {
 
     static {
         GObject.registerClass({

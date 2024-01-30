@@ -9,7 +9,7 @@ import { settings, requestBackground } from './util.js';
 
 import Template from './preferences.blp' assert { type: 'uri' };
 
-export default class PreferencesWindow extends Adw.PreferencesWindow {
+export default class PreferencesWindow extends Adw.PreferencesDialog {
 
     static {
         GObject.registerClass({

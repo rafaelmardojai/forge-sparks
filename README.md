@@ -36,7 +36,7 @@ You can clone and run from GNOME Builder.
 
 - GJS (>= 1.72) `gjs`
 - GTK4 (>= 4.10) `gtk4`
-- libadwaita (>= 1.3.0) `libadwaita`
+- libadwaita (>= 1.5.0) `libadwaita`
 - libsoup (>= 3.0) `libsoup`
 - libsecret (>= 0.20) `libsecret`
 - libportal (>= 0.6) `libportal`

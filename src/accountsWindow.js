@@ -13,7 +13,7 @@ import Template from './accountsWindow.blp' assert { type: 'uri' };
 
 const accounts = new AccountsManager();
 
-export default class AccountsWindow extends Adw.Window {
+export default class AccountsWindow extends Adw.Dialog {
 
     static {
         GObject.registerClass({
@@ -56,8 +56,8 @@ export default class AccountsWindow extends Adw.Window {
     }
 
     _onOpenAddAccount() {
-        const dialog = new AccountDialog(null, { transient_for: this });
-        dialog.present();
+        const dialog = new AccountDialog(null);
+        dialog.present(this);
     }
 
     /**
@@ -89,8 +89,8 @@ export default class AccountsWindow extends Adw.Window {
         account.bind_property('auth-failed', authError, 'visible', GObject.BindingFlags.SYNC_CREATE)
 
         row.connect('activated', () => {
-            const dialog = new AccountDialog(account, { transient_for: this });
-            dialog.present();
+            const dialog = new AccountDialog(account);
+            dialog.present(this);
         });
 
         return row;

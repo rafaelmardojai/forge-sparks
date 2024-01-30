@@ -141,17 +141,17 @@ export default class Application extends Adw.Application {
     }
 
     _showPrefs() {
-        const window = new PreferencesWindow({ transient_for: this.window });
-        window.present();
+        const window = new PreferencesWindow();
+        window.present(this.window);
     }
 
     _showAccounts() {
-        const window = new AccountsWindow({ transient_for: this.window });
-        window.present();
+        const window = new AccountsWindow();
+        window.present(this.window);
     }
 
     _showAbout() {
-        const about = new Adw.AboutWindow({
+        const about = new Adw.AboutDialog({
             developers: ['Rafael Mardojai CM'],
             /* Translators: Replace "translator-credits" with your names, one name per line */
             translator_credits: _('translator-credits'),
@@ -161,11 +161,9 @@ export default class Application extends Adw.Application {
             version: pkg.version,
             website: '',
             copyright: 'Copyright 2022 Rafael Mardojai CM',
-            modal: true,
-            transient_for: this.window,
             license_type: Gtk.License.MIT_X11,
         });
-        about.present();
+        about.present(this.window);
     }
 
     _openNotification(_action, params) {
