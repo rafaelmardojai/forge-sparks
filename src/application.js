@@ -10,8 +10,8 @@ import { gettext as _ } from 'gettext';
 
 import { settings } from './util.js';
 import Window from './window.js';
-import PreferencesWindow from './preferences.js';
-import AccountsWindow from './accountsWindow.js';
+import PreferencesDialog from './widgets/preferences.js';
+import AccountsDialog from './widgets/accountsDialog.js';
 
 import './style.css';
 import './style-dark.css';
@@ -141,12 +141,12 @@ export default class Application extends Adw.Application {
     }
 
     _showPrefs() {
-        const window = new PreferencesWindow();
+        const window = new PreferencesDialog();
         window.present(this.window);
     }
 
     _showAccounts() {
-        const window = new AccountsWindow();
+        const window = new AccountsDialog();
         window.present(this.window);
     }
 

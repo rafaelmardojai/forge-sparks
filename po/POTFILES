@@ -6,13 +6,12 @@ src/window.js
 src/application.js
 src/main.js
 src/gtk/help-overlay.blp
-src/preferences.js
-src/preferences.blp
 src/forges/forge.js
 src/forges/github.js
 src/forges/index.js
 src/forges/gitea.js
 src/forges/forgejo.js
+src/forges/gitlab.js
 src/model/notification.js
 src/model/account.js
 src/model/accountsManager.js
@@ -21,6 +20,7 @@ src/widgets/notificationRow.blp
 src/widgets/notificationRow.js
 src/widgets/accountDialog.blp
 src/widgets/accountDialog.js
-src/accountsWindow.blp
-src/accountsWindow.js
-src/forges/gitlab.js
+src/widgets/preferences.blp
+src/widgets/preferences.js
+src/widgets/accountsDialog.blp
+src/widgets/accountsDialog.js

@@ -402,8 +402,8 @@ export default class Window extends Adw.ApplicationWindow {
      * Open a dialog to add an account
      */
     _onNewAccount() {
-        const dialog = new AccountDialog(null, { transient_for: this });
-        dialog.present();
+        const dialog = new AccountDialog(null);
+        dialog.present(this);
     }
 
     /**

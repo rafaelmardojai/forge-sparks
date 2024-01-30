@@ -5,11 +5,11 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
-import { settings, requestBackground } from './util.js';
+import { settings, requestBackground } from '../util.js';
 
 import Template from './preferences.blp' assert { type: 'uri' };
 
-export default class PreferencesWindow extends Adw.PreferencesDialog {
+export default class PreferencesDialog extends Adw.PreferencesDialog {
 
     static {
         GObject.registerClass({
@@ -21,7 +21,7 @@ export default class PreferencesWindow extends Adw.PreferencesDialog {
     }
 
     /**
-     * Crete a PreferencesWindow
+     * Crete a PreferencesDialog
      */
     constructor(constructProperties = {}) {
         super(constructProperties);

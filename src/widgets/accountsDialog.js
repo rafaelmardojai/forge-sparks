@@ -6,14 +6,14 @@ import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
-import AccountsManager from './model/accountsManager.js';
-import AccountDialog from './widgets/accountDialog.js';
+import AccountsManager from '../model/accountsManager.js';
+import AccountDialog from './accountDialog.js';
 
-import Template from './accountsWindow.blp' assert { type: 'uri' };
+import Template from './accountsDialog.blp' assert { type: 'uri' };
 
 const accounts = new AccountsManager();
 
-export default class AccountsWindow extends Adw.Dialog {
+export default class AccountsDialog extends Adw.Dialog {
 
     static {
         GObject.registerClass({
@@ -25,7 +25,7 @@ export default class AccountsWindow extends Adw.Dialog {
     }
 
     /**
-     * Crete a PreferencesWindow
+     * Crete a PreferencesDialog
      */
     constructor(constructProperties = {}) {
         super(constructProperties);
