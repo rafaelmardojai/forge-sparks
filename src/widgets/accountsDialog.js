@@ -44,15 +44,6 @@ export default class AccountsDialog extends Adw.Dialog {
                 this._accountsStack.set_visible_child_name('empty');
             }
         });
-
-        /* Key event controller */
-        const key_ctrl = new Gtk.EventControllerKey();
-        this.add_controller(key_ctrl);
-        key_ctrl.connect('key-pressed', (_ctrl, keyval, _keycode, _state) => {
-            if (keyval === Gdk.KEY_Escape)
-                this.close();
-            return true;
-        });
     }
 
     _onOpenAddAccount() {

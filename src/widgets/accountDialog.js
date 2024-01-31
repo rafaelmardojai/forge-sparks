@@ -55,15 +55,6 @@ export default class AccountDialog extends Adw.Dialog {
             forgesList.append(forge.prettyName)
         }
         this._forge.model = forgesList
-
-        /* Key event controller */
-        const key_ctrl = new Gtk.EventControllerKey();
-        this.add_controller(key_ctrl);
-        key_ctrl.connect('key-pressed', (_ctrl, keyval, _keycode, _state) => {
-            if (keyval === Gdk.KEY_Escape)
-                this.close();
-            return true;
-        });
     }
 
     /**
