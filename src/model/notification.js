@@ -13,6 +13,7 @@ import draftIcon from '../icons/merge-draft-symbolic.svg' assert { type: 'icon' 
 import deniedIcon from '../icons/merge-denied-symbolic.svg' assert { type: 'icon' };
 import mergedIcon from '../icons/merge-merged-symbolic.svg' assert { type: 'icon' };
 import discussionIcon from '../icons/discussion-symbolic.svg' assert { type: 'icon' };
+import tagIcon from '../icons/tag-symbolic.svg' assert { type: 'icon' };
 
 /* Notification object class */
 export default class Notification extends GObject.Object {
@@ -105,6 +106,8 @@ export default class Notification extends GObject.Object {
                 }
             case 'Discussion':
                 return discussionIcon;
+            case 'Release':
+                return tagIcon;
             default: return 'preferences-system-details-symbolic';
         }
     }
