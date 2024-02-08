@@ -8,88 +8,91 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-02-09 04:02+0000\n"
+"Last-Translator: Kinten Le <kinten108101@protonmail.com>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
+#, fuzzy
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "Nhận thông báo từ các Git forge"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;thông báo;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
-msgstr ""
+msgstr "Ứng dụng thông báo đơn giản, hỗ trợ Github, Gitea, và Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Tùy thích"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "Tài _khoản"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Phím tắt"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Thông tin về Forge Sparks"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "Thoát"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu chính"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "Chào mừng đến Forge Sparks"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Thêm tài khoản và nhận thông báo từ đây"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "Thêm tài khoản…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Đánh dấu tất cả là đã đọc"
 
 #: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
 msgid "Accounts"
-msgstr ""
+msgstr "Tài khoản"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Không có thông báo để hiển thị"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Cho phép chạy Forge Sparks trong nền."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Cho phép chạy Forge Sparks khi khởi động máy."
 
 #. *
 #. * Set background status message
@@ -98,103 +101,99 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Theo dõi các thông báo mới"
 
 #: src/util.js:133 src/util.js:174
 msgid "now"
-msgstr ""
+msgstr "bây giờ"
 
 #. Translators: relative date
 #: src/util.js:138
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d phút trước"
 
 #. Translators: relative date
 #: src/util.js:145
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tiếng trước"
 
 #. Translators: relative date
 #: src/util.js:152
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ngày trước"
 
 #. Translators: relative date
 #: src/util.js:159
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tuần trước"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:165 src/util.js:169
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "vào %s"
 
 #: src/window.js:193
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Xác minh tài khoản %s thất bại!"
 
 #: src/window.js:195
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Token có thể đã bị thu hồi hoặc quá hạn sử dụng."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:157
 msgid "translator-credits"
-msgstr ""
+msgstr "Kinten Le <kinten108101@protonmail.com>"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Chung"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Mở menu"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Phím tắt"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Thoát"
 
 #: src/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "Yêu cầu thất bại."
 
 #: src/preferences.js:97 src/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "Yêu cầu tự khởi động thất bại."
 
 #: src/preferences.blp:15
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "Chạy tiếp trong nền"
 
 #: src/preferences.blp:22
 msgid "Run on Startup"
-msgstr ""
+msgstr "Chạy khi khởi động máy"
 
 #: src/preferences.blp:33
 msgid "Start Hidden"
-msgstr ""
+msgstr "Ẩn khi bắt đầu"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -203,6 +202,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Bạn có thể tạo personal access token tại <a href=\"%s\">trang cài đặt dành "
+"cho nhà phát triển trên GitHub</a>. Để biết thêm thông tin chi tiết, hãy xem "
+"\"<a href=\"%s\">Creating a personal access token</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -210,6 +212,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks yêu cầu <b>classic</b> access token (dùng cho mục đích chung) "
+"được ban phạm vi quyền <i>notifications</i> và <i>read:user</i>."
 
 #. GitHub access token help
 #: src/forges/github.js:38
@@ -217,6 +221,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Nếu repository đang ở chế độ private, bạn cần ban thêm phạm vi quyền "
+"<i>repo</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -224,6 +230,8 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Để tạo access token từ instance, vào Settings → Applicatons rồi bấm tạo "
+"token mới."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
@@ -231,34 +239,36 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks yêu cầu bạn ban phạm vi quyền <i>read:issue</i>, "
+"<i>write:notification</i> và <i>read:user</i>."
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
-msgstr ""
+msgstr "Đánh dấu đã đọc"
 
 #: src/model/notification.js:74
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Hiển thị Forge Sparks"
 
 #: src/widgets/accountDialog.blp:10
 msgid "Add Account"
-msgstr ""
+msgstr "Thêm tài khoản"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "Thôi"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
-msgstr ""
+msgstr "Thêm"
 
 #: src/widgets/accountDialog.blp:49
 msgid "Forge"
-msgstr ""
+msgstr "Forge"
 
 #: src/widgets/accountDialog.blp:56
 msgid "Instance URL"
-msgstr ""
+msgstr "URL của instance"
 
 #: src/widgets/accountDialog.blp:64
 msgid "Access Token"
@@ -266,44 +276,44 @@ msgstr ""
 
 #: src/widgets/accountDialog.blp:81
 msgid "Remove Account"
-msgstr ""
+msgstr "Xóa tài khoản"
 
 #: src/widgets/accountDialog.js:84
 msgid "Edit Account"
-msgstr ""
+msgstr "Chỉnh tài khoản"
 
 #: src/widgets/accountDialog.js:85
 msgid "Save"
-msgstr ""
+msgstr "Lưu"
 
 #: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Instance URL không hợp lệ."
 
 #: src/widgets/accountDialog.js:278
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Không thể xác minh tài khoản"
 
 #: src/widgets/accountDialog.js:280
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Bạn ban không đủ phạm vi quyền cho access token"
 
 #: src/widgets/accountDialog.js:282
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Lỗi khi tạo tài khoản"
 
 #: src/widgets/accountDialog.js:404
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Lỗi khi xóa tài khoản"
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Thêm…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
-msgstr ""
+msgstr "Không có tài khoản"
 
 #: src/accountsWindow.js:79
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Xác minh tài khoản thất bại!"
