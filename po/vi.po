@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2024-02-09 04:02+0000\n"
+"PO-Revision-Date: 2024-02-15 17:02+0000\n"
 "Last-Translator: Kinten Le <kinten108101@protonmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/vi/>\n"
@@ -26,7 +26,6 @@ msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
-#, fuzzy
 msgid "Get Git forges notifications"
 msgstr "Nhận thông báo từ các Git forge"
 
@@ -52,7 +51,7 @@ msgstr "_Phím tắt"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr "Thông tin về Forge Sparks"
+msgstr "Giới thiệu Forge Sparks"
 
 #: src/window.blp:30
 msgid "Quit"
@@ -230,7 +229,7 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
-"Để tạo access token từ instance, vào Settings → Applicatons rồi bấm tạo "
+"Để tạo access token từ instance, vào Settings → Applications rồi bấm tạo "
 "token mới."
 
 #. Gitea access token help
@@ -272,7 +271,7 @@ msgstr "URL của instance"
 
 #: src/widgets/accountDialog.blp:64
 msgid "Access Token"
-msgstr ""
+msgstr "Access token"
 
 #: src/widgets/accountDialog.blp:81
 msgid "Remove Account"
