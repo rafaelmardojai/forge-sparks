@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2023-07-08 07:51+0000\n"
+"PO-Revision-Date: 2024-02-18 09:02+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/forge-"
-"sparks/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.4\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -26,7 +26,6 @@ msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
-#, fuzzy
 msgid "Get Git forges notifications"
 msgstr "Krijg meldingen van Git-forges"
 
@@ -44,9 +43,8 @@ msgid "_Preferences"
 msgstr "_Voorkeuren"
 
 #: src/window.blp:12
-#, fuzzy
 msgid "_Accounts"
-msgstr "Accounts"
+msgstr "_Accounts"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
@@ -65,13 +63,12 @@ msgid "Main Menu"
 msgstr "Hoofdmenu"
 
 #: src/window.blp:67
-#, fuzzy
 msgid "Welcome to Forge Sparks"
-msgstr "Over Forge Sparks"
+msgstr "Welkom bij Forge Sparks"
 
 #: src/window.blp:68 src/accountsWindow.blp:41
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Voeg een account toe om meldingen van te krijgen"
 
 #: src/window.blp:72
 msgid "Add Account…"
@@ -191,17 +188,14 @@ msgid "The autostart request failed."
 msgstr "De aanvraag om automatisch te starten is mislukt."
 
 #: src/preferences.blp:15
-#, fuzzy
 msgid "Keep Running in Background"
-msgstr "Actief blijven op achtergrond"
+msgstr "Actief blijven op achter­grond"
 
 #: src/preferences.blp:22
-#, fuzzy
 msgid "Run on Startup"
 msgstr "Uitvoeren bij opstarten"
 
 #: src/preferences.blp:33
-#, fuzzy
 msgid "Start Hidden"
 msgstr "Verborgen starten"
 
@@ -212,6 +206,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"U kunt een nieuw persoonlijk toegangs­token genereren via de <a href=\"%s\""
+">GitHub-ontwikkelaars­instellingen</a>. Voor meer informatie, zie ‘<a href=\""
+"%s\">Een persoonlijk toegangs­token maken</a>’."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -219,6 +216,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks vereist een <b>klassiek</b> toegangs­token (voor algemeen "
+"gebruik) met de toe­gekende scopes <i>notifications</i> en <i>read:user</i>."
 
 #. GitHub access token help
 #: src/forges/github.js:38
@@ -226,6 +225,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Als u met privé-repositories werkt, moet u ook de volledige <i>repo</i>-"
+"scope toekennen."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -233,14 +234,17 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Om een nieuw toegangs­token van uw instantie te genereren, gaat u naar "
+"Instellingen → Apps en genereert u een nieuw token."
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
-#, fuzzy
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
-msgstr "Forge Sparks vereist de <i>notifications</i>-scope."
+msgstr ""
+"Forge Sparks vereist dat de volgende scopes zijn toegekend: <i>read:issue</"
+"i>, <i>write:notification</i> en <i>read:user</i>"
 
 #: src/model/notification.js:67
 msgid "Mark as Read"
@@ -256,7 +260,7 @@ msgstr "Account toevoegen"
 
 #: src/widgets/accountDialog.blp:24
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: src/widgets/accountDialog.blp:31
 msgid "Add"
@@ -308,7 +312,7 @@ msgstr "Onverwachte fout bij het verwijderen van het account"
 
 #: src/accountsWindow.blp:22
 msgid "Add…"
-msgstr ""
+msgstr "Toevoegen…"
 
 #: src/accountsWindow.blp:40
 msgid "No Accounts"
