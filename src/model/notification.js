@@ -14,6 +14,7 @@ import deniedIcon from '../icons/merge-denied-symbolic.svg' assert { type: 'icon
 import mergedIcon from '../icons/merge-merged-symbolic.svg' assert { type: 'icon' };
 import discussionIcon from '../icons/discussion-symbolic.svg' assert { type: 'icon' };
 import tagIcon from '../icons/tag-symbolic.svg' assert { type: 'icon' };
+import commitIcon from '../icons/commit-symbolic.svg' assert { type: 'icon' };
 
 /* Notification object class */
 export default class Notification extends GObject.Object {
@@ -108,6 +109,8 @@ export default class Notification extends GObject.Object {
                 return discussionIcon;
             case 'Release':
                 return tagIcon;
+            case 'Commit':
+                return commitIcon;
             default: return 'preferences-system-details-symbolic';
         }
     }
