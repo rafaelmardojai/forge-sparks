@@ -3,7 +3,7 @@
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
-import Template from './notificationRow.blp' assert { type: 'uri' };
+import Template from './notificationRow.blp' with { type: 'uri' };
 
 /* Widget representing a notification */
 export default class NotificationRow extends Gtk.ListBoxRow {

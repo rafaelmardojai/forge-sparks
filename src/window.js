@@ -16,7 +16,8 @@ import AccountDialog from './widgets/accountDialog.js';
 import NotificationRow from './widgets/notificationRow.js';
 
 import AllDoneIllustration from './assets/alldone.svg';
-import Template from './window.blp' assert { type: 'uri' };
+import Template from './window.blp' with { type: 'uri' };
+import HelpOverlayTemplate from './gtk/help-overlay.blp' with { type: 'resource' };
 
 const Format = imports.format;
 
@@ -53,6 +54,10 @@ export default class Window extends Adw.ApplicationWindow {
         /* Store app fail states */
         this.authFailed = null;
         this.authErrorNotified = false;
+
+        /* Set help overlay */
+        const help_overlay = Gtk.Builder.new_from_resource(HelpOverlayTemplate).get_object('help_overlay');
+        this.set_help_overlay(help_overlay);
 
         /* Set app initial state */
         this._mainStack.set_visible_child_name('loading');

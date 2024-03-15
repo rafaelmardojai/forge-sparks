@@ -9,7 +9,7 @@ import { gettext as _ } from 'gettext';
 import AccountsManager from '../model/accountsManager.js';
 import AccountDialog from './accountDialog.js';
 
-import Template from './accountsDialog.blp' assert { type: 'uri' };
+import Template from './accountsDialog.blp' with { type: 'uri' };
 
 const accounts = new AccountsManager();
 

@@ -15,7 +15,6 @@ import AccountsDialog from './widgets/accountsDialog.js';
 
 import './style.css';
 import './style-dark.css';
-import './gtk/help-overlay.blp' assert { type: 'builder' };
 
 export default class Application extends Adw.Application {
 

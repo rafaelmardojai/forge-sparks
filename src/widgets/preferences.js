@@ -7,7 +7,7 @@ import { gettext as _ } from 'gettext';
 
 import { settings, requestBackground } from '../util.js';
 
-import Template from './preferences.blp' assert { type: 'uri' };
+import Template from './preferences.blp' with { type: 'uri' };
 
 export default class PreferencesDialog extends Adw.PreferencesDialog {
 

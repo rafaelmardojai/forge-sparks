@@ -8,7 +8,7 @@ import { gettext as _ } from 'gettext';
 import { FORGES } from '../forges/index.js';
 import AccountsManager from '../model/accountsManager.js';
 
-import Template from './accountDialog.blp' assert { type: 'uri' };
+import Template from './accountDialog.blp' with { type: 'uri' };
 
 const accounts = new AccountsManager();
 
