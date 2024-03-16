@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-09 22:32-0500\n"
-"PO-Revision-Date: 2024-02-07 01:02+0000\n"
+"PO-Revision-Date: 2024-03-17 17:01+0000\n"
 "Last-Translator: \"André L. Alvares\" <andrluiz.alvares.alvares84@gmail.com>"
 "\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/forge-sparks/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -228,6 +228,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Se você está trabalhando com repositórios privados, também terá de conceder "
+"o escopo completo de <i>repo</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
