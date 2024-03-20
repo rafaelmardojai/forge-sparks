@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template Gjs_PreferencesDialog : Adw.PreferencesDialog {
+template $Gjs_PreferencesDialog : Adw.PreferencesDialog {
 
   Adw.PreferencesPage {
 
@@ -12,7 +12,7 @@ template Gjs_PreferencesDialog : Adw.PreferencesDialog {
         show-enable-switch: true;
         expanded: true;
 
-        notify::enable-expansion => _onBackgroundChanged();
+        notify::enable-expansion => $_onBackgroundChanged();
 
         Adw.ActionRow {
           title: _("Run on Startup");
@@ -21,19 +21,19 @@ template Gjs_PreferencesDialog : Adw.PreferencesDialog {
           Switch startup {
             valign: center;
 
-            notify::active => _onStartupChanged();
+            notify::active => $_onStartupChanged();
           }
         }
 
         Adw.ActionRow {
           title: _("Start Hidden");
           activatable-widget: hidden;
-          sensitive: bind-property startup.active;
+          sensitive: bind startup.active;
 
           Switch hidden {
             valign: center;
 
-            notify::active => _onStartupHiddenChanged();
+            notify::active => $_onStartupHiddenChanged();
           }
         }
       }

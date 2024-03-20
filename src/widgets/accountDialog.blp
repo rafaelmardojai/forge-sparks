@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template Gjs_AccountDialog : Adw.Dialog {
+template $Gjs_AccountDialog : Adw.Dialog {
   title: _("Add Account");
   content-width: 360;
 
@@ -19,7 +19,7 @@ template Gjs_AccountDialog : Adw.Dialog {
       Button cancelBtn {
         label: _("Cancel");
 
-        clicked => _onCancel();
+        clicked => $_onCancel();
       }
 
       [end]
@@ -27,7 +27,7 @@ template Gjs_AccountDialog : Adw.Dialog {
         label: _("Add");
         sensitive: false;
 
-        clicked => _onSave();
+        clicked => $_onSave();
 
         styles ["suggested-action"]
       }
@@ -45,21 +45,21 @@ template Gjs_AccountDialog : Adw.Dialog {
             title: _("Forge");
             visible: bind template.editing inverted;
 
-            notify::selected => _onForgeChanged();
+            notify::selected => $_onForgeChanged();
           }
 
           Adw.EntryRow instance {
             title: _("Instance URL");
             visible: false;
 
-            notify::text => _onEntryChanged();
-            notify::text => _onInstanceChanged();
+            notify::text => $_onEntryChanged();
+            notify::text => $_onInstanceChanged();
           }
 
           Adw.PasswordEntryRow accessToken {
             title: _("Access Token");
 
-            notify::text => _onEntryChanged();
+            notify::text => $_onEntryChanged();
           }
 
           Label accessTokenHelp {
@@ -82,7 +82,7 @@ template Gjs_AccountDialog : Adw.Dialog {
               "pill"
             ]
 
-            clicked => _onRemoveAccount();
+            clicked => $_onRemoveAccount();
           }
         }
       } 

@@ -1,9 +1,9 @@
 using Gtk 4.0;
 using Adw 1;
 
-template Gjs_NotificationRow : ListBoxRow {
-    tooltip-text: bind Gjs_NotificationRow.title;
-    notify::parent => _onParent();
+template $Gjs_NotificationRow : ListBoxRow {
+    tooltip-text: bind template.title;
+    notify::parent => $_onParent();
 
     Box {
         orientation: horizontal;
@@ -16,7 +16,7 @@ template Gjs_NotificationRow : ListBoxRow {
             StackPage {
                 name: "icon";
                 child: Image icon {
-                    icon-name: bind Gjs_NotificationRow.icon-name;
+                    icon-name: bind template.icon-name;
                 };
             }
 
@@ -40,7 +40,7 @@ template Gjs_NotificationRow : ListBoxRow {
 
                 [start]
                 Label {
-                    label: bind Gjs_NotificationRow.title;
+                    label: bind template.title;
                     xalign: 0;
                     hexpand: true;
                     ellipsize: end;
@@ -48,7 +48,7 @@ template Gjs_NotificationRow : ListBoxRow {
 
                 [end]
                 Label {
-                    label: bind Gjs_NotificationRow.date;
+                    label: bind template.date;
                     xalign: 0;
                     margin-start: 6;
 
@@ -62,7 +62,7 @@ template Gjs_NotificationRow : ListBoxRow {
 
                 [start]
                 Label {
-                    label: bind Gjs_NotificationRow.repo;
+                    label: bind template.repo;
                     xalign: 0;
                     ellipsize: end;
 
@@ -71,7 +71,7 @@ template Gjs_NotificationRow : ListBoxRow {
 
                 [end]
                 Label {
-                    label: bind Gjs_NotificationRow.account;
+                    label: bind template.account;
                     xalign: 0;
                     ellipsize: start;
                     halign: end;

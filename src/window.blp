@@ -32,14 +32,14 @@ menu menu {
   }
 }
 
-template Gjs_Window : Adw.ApplicationWindow {
+template $Gjs_Window : Adw.ApplicationWindow {
   default-width: 500;
   default-height: 500;
   width-request: 360;
   height-request: 200;
   title: _("Forge Sparks");
 
-  notify::visible => _onWindowHide();
+  notify::visible => $_onWindowHide();
 
   Stack mainStack {
 
@@ -72,7 +72,7 @@ template Gjs_Window : Adw.ApplicationWindow {
             label: _("Add Account…");
             halign: center;
 
-            clicked => _onNewAccount();
+            clicked => $_onNewAccount();
 
             styles [
               "suggested-action",
@@ -114,7 +114,7 @@ template Gjs_Window : Adw.ApplicationWindow {
           show-title: false;
 
           Button markAsRead {
-            clicked => markAsReadAll();
+            clicked => $markAsReadAll();
 
             styles ["flat"]
 
