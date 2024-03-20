@@ -39,7 +39,7 @@ You can clone and run from GNOME Builder.
 - libadwaita (>= 1.5.0) `libadwaita`
 - libsoup (>= 3.0) `libsoup`
 - libsecret (>= 0.20) `libsecret`
-- libportal (>= 0.6) `libportal`
+- libportal (>= 0.7) `libportal`
 - Meson `meson`
 - Ninja `ninja`
 

@@ -80,39 +80,9 @@ export function requestBackground(window, autostart=false, hidden=false) {
  * @param {String} message
  */
 export function setBackgroundStatus(message=_('Monitoring new notifications')) {
-    if (typeof portal.set_background_status === 'function') {
-        portal.set_background_status(message, null, (portal, result) => {
-            portal.set_background_status_finish(result);
-        });
-    } else {
-        /* Call the portal using DBus */
-        const connection = Gio.DBus.session;
-        const messageVariant = new GLib.Variant('(a{sv})', [{
-            'message': new GLib.Variant('s', message)
-        }]);
-
-        connection.call(
-            'org.freedesktop.portal.Desktop',
-            '/org/freedesktop/portal/desktop',
-            'org.freedesktop.portal.Background',
-            'SetStatus',
-            messageVariant,
-            null,
-            Gio.DBusCallFlags.NONE,
-            -1,
-            null,
-            (connection, res) => {
-                try {
-                    connection.call_finish(res);
-                } catch (e) {
-                    if (e instanceof Gio.DBusError)
-                        Gio.DBusError.strip_remote_error(e);
-                    
-                    console.error(e);
-                }
-            }
-        );
-    }
+    portal.set_background_status(message, null, (portal, result) => {
+        portal.set_background_status_finish(result);
+    });
 }
 
 /**
