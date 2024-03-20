@@ -177,7 +177,7 @@ export default class Window extends Adw.ApplicationWindow {
                     }
                 } catch (error) {
                     /* TODO: Notify the user that this failed */
-                    log(error);
+                    console.error(error);
                 }
             }
 
@@ -221,7 +221,7 @@ export default class Window extends Adw.ApplicationWindow {
                         this.authErrorNotified = true;
                     }
                 } else {
-                    log(error);
+                    console.error(error);
                 }
             }
         }
@@ -350,7 +350,7 @@ export default class Window extends Adw.ApplicationWindow {
                 await this.forges[id].markAsRead();
             } catch (error) {
                 /* TODO: Notify the user that this failed */
-                logError(error);
+                console.error(error);
             }
         }
 

@@ -47,7 +47,7 @@ export default class GitHub extends Forge {
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
 
-            log(`${url} response resulted in ${message.get_status()}`);
+            console.log(`${url} response resulted in ${message.get_status()}`);
 
             if (message.get_status() == '401') {
                 throw 'FailedForgeAuth';
@@ -83,7 +83,7 @@ export default class GitHub extends Forge {
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents(bytes);
 
-            log(`${url} response resulted in ${message.get_status()}`);
+            console.log(`${url} response resulted in ${message.get_status()}`);
             /* this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince; */
 
             if (message.get_status() == '200') {

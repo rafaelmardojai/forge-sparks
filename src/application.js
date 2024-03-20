@@ -119,8 +119,8 @@ export default class Application extends Adw.Application {
 
     vfunc_startup() {
         super.vfunc_startup();
-        log('Forge Sparks:', pkg.name);
-        log('Version:', pkg.version);
+        console.log('Forge Sparks:', pkg.name);
+        console.log('Version:', pkg.version);
     }
 
     vfunc_activate() {

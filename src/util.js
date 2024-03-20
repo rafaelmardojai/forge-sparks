@@ -44,7 +44,7 @@ export function requestBackground(window, autostart=false, hidden=false) {
         /* parent = XdpGtk4.parent_new_gtk(window); */
         /* FIXME: gdk_wayland_toplevel_export_handle: assertion 'GDK_IS_WAYLAND_TOPLEVEL (toplevel)' failed */
     } catch (error) {
-        logError(error);
+        console.error(error);
     }
 
     return new Promise((resolve) => {
@@ -65,7 +65,7 @@ export function requestBackground(window, autostart=false, hidden=false) {
                     resolve(success);
                 } catch (e) {
                     if (e.code !== Gio.IOErrorEnum.CANCELLED) {
-                        logError(e);
+                        console.error(e);
                     }
                     resolve(false);
                 }
@@ -108,7 +108,7 @@ export function setBackgroundStatus(message=_('Monitoring new notifications')) {
                     if (e instanceof Gio.DBusError)
                         Gio.DBusError.strip_remote_error(e);
                     
-                    logError(e);
+                    console.error(e);
                 }
             }
         );
@@ -170,6 +170,6 @@ export function relativeDate(date) {
         }
     }
 
-    logError('Date is in the future!');
+    console.error('Date is in the future!');
     return _('now');
 }
