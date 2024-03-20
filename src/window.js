@@ -76,7 +76,7 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Setup notifications model */
         this.model = new NotificationsList();
-        this.notified = {}; /* Store notifications {id: timestamp} that have been notified */
+        this.notified = settings.get_value('notified').deepUnpack(); /* Notifications that have been notified {id: timestamp} */
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
             if (this.model.get_n_items() > 0) {
                 this._notificationsStack.set_visible_child_name('list');
@@ -295,6 +295,16 @@ export default class Window extends Adw.ApplicationWindow {
             /* Add notification id and timestamp to notified dict */
             this.notified[notification.id] = notification.updatedAt;
         }
+
+        /* Sanitize notified ids before saving */
+        Object.keys(this.notified).forEach(id => {
+            if (!this.model.getByID(id)) {
+                delete this.notified[id];
+            }
+        });
+
+        /* Save notified ids so if the app restarts we don't notify again */
+        settings.set_value('notified', new GLib.Variant('a{ss}', this.notified));
 
         /* Stop loading view, and show notifications view */
         this._mainStack.set_visible_child_name('notifications');

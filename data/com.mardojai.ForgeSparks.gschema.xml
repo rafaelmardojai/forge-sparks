@@ -20,6 +20,9 @@
     <key type="as" name="accounts">
       <default>[]</default>
     </key>
+    <key type="a{ss}" name="notified">
+      <default>{}</default>
+    </key>
   </schema>
 
   <!-- Account -->
