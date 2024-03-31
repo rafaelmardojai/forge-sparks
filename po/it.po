@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-09 22:32-0500\n"
+"POT-Creation-Date: 2024-03-31 08:40-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -23,7 +23,7 @@ msgid "Forge Sparks"
 msgstr ""
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:158
 msgid "Get Git forges notifications"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr ""
 msgid "git;github;notifications;"
 msgstr ""
 
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:24
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Welcome to Forge Sparks"
 msgstr ""
 
-#: src/window.blp:68 src/accountsWindow.blp:41
+#: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Mark all as Read"
 msgstr ""
 
-#: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
+#: src/window.blp:162 src/window.js:219 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
 msgstr ""
 
@@ -100,12 +100,12 @@ msgstr ""
 msgid "Monitoring new notifications"
 msgstr ""
 
-#: src/util.js:133 src/util.js:174
+#: src/util.js:103 src/util.js:144
 msgid "now"
 msgstr ""
 
 #. Translators: relative date
-#: src/util.js:138
+#: src/util.js:108
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -113,7 +113,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:145
+#: src/util.js:115
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -121,7 +121,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:152
+#: src/util.js:122
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -129,7 +129,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:159
+#: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -137,22 +137,22 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:165 src/util.js:169
+#: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
 msgstr ""
 
-#: src/window.js:193
+#: src/window.js:205
 #, javascript-format
 msgid "Account %s authentication failed!"
 msgstr ""
 
-#: src/window.js:195
+#: src/window.js:207
 msgid "The token may have been revoked or expired."
 msgstr ""
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:157
+#: src/application.js:156
 msgid "translator-credits"
 msgstr ""
 
@@ -174,26 +174,6 @@ msgstr ""
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
-
-#: src/preferences.js:66
-msgid "The request failed."
-msgstr ""
-
-#: src/preferences.js:97 src/preferences.js:128
-msgid "The autostart request failed."
-msgstr ""
-
-#: src/preferences.blp:15
-msgid "Keep Running in Background"
-msgstr ""
-
-#: src/preferences.blp:22
-msgid "Run on Startup"
-msgstr ""
-
-#: src/preferences.blp:33
-msgid "Start Hidden"
 msgstr ""
 
 #: src/forges/github.js:30
@@ -232,78 +212,110 @@ msgid ""
 "<i>read:user</i> scopes granted."
 msgstr ""
 
-#: src/model/notification.js:67
+#. GitLab access token help
+#: src/forges/gitlab.js:24
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+
+#. GitLab access token help
+#: src/forges/gitlab.js:27
+msgid "Forge Sparks requires the <i>api</i> scopes granted."
+msgstr ""
+
+#: src/model/notification.js:69
 msgid "Mark as Read"
 msgstr ""
 
-#: src/model/notification.js:74
+#: src/model/notification.js:76
 msgid "Show Forge Sparks"
 msgstr ""
 
-#: src/widgets/accountDialog.blp:10
+#: src/widgets/accountDialog.blp:5
 msgid "Add Account"
 msgstr ""
 
-#: src/widgets/accountDialog.blp:24
+#: src/widgets/accountDialog.blp:20
 msgid "Cancel"
 msgstr ""
 
-#: src/widgets/accountDialog.blp:31
+#: src/widgets/accountDialog.blp:27
 msgid "Add"
 msgstr ""
 
-#: src/widgets/accountDialog.blp:49
+#: src/widgets/accountDialog.blp:45
 msgid "Forge"
 msgstr ""
 
-#: src/widgets/accountDialog.blp:56
+#: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
 msgstr ""
 
-#: src/widgets/accountDialog.blp:64
+#: src/widgets/accountDialog.blp:60
 msgid "Access Token"
 msgstr ""
 
-#: src/widgets/accountDialog.blp:81
+#: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
 msgstr ""
 
-#: src/widgets/accountDialog.js:84
+#: src/widgets/accountDialog.js:74
 msgid "Edit Account"
 msgstr ""
 
-#: src/widgets/accountDialog.js:85
+#: src/widgets/accountDialog.js:75
 msgid "Save"
 msgstr ""
 
-#: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
+#: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
 msgstr ""
 
-#: src/widgets/accountDialog.js:278
+#: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
 msgstr ""
 
-#: src/widgets/accountDialog.js:280
+#: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
 msgstr ""
 
-#: src/widgets/accountDialog.js:282
+#: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
 msgstr ""
 
-#: src/widgets/accountDialog.js:404
+#: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
 msgstr ""
 
-#: src/accountsWindow.blp:22
+#: src/widgets/preferences.blp:11
+msgid "Keep Running in Background"
+msgstr ""
+
+#: src/widgets/preferences.blp:18
+msgid "Run on Startup"
+msgstr ""
+
+#: src/widgets/preferences.blp:29
+msgid "Start Hidden"
+msgstr ""
+
+#: src/widgets/preferences.js:66
+msgid "The request failed."
+msgstr ""
+
+#: src/widgets/preferences.js:97 src/widgets/preferences.js:128
+msgid "The autostart request failed."
+msgstr ""
+
+#: src/widgets/accountsDialog.blp:18
 msgid "Add…"
 msgstr ""
 
-#: src/accountsWindow.blp:40
+#: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
 msgstr ""
 
-#: src/accountsWindow.js:79
+#: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
 msgstr ""

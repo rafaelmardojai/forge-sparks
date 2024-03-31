@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-09 22:32-0500\n"
+"POT-Creation-Date: 2024-03-31 08:40-0500\n"
 "PO-Revision-Date: 2024-02-18 09:02+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
-"forge-sparks/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/forge-"
+"sparks/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:158
 msgid "Get Git forges notifications"
 msgstr "Krijg meldingen van Git-forges"
 
@@ -33,7 +33,7 @@ msgstr "Krijg meldingen van Git-forges"
 msgid "git;github;notifications;"
 msgstr "git;github;notifications;meldingen;"
 
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:24
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr ""
 "Eenvoudige notifier-app met ondersteuning voor Github, Gitea en Forgejo."
@@ -66,7 +66,7 @@ msgstr "Hoofdmenu"
 msgid "Welcome to Forge Sparks"
 msgstr "Welkom bij Forge Sparks"
 
-#: src/window.blp:68 src/accountsWindow.blp:41
+#: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
 msgstr "Voeg een account toe om meldingen van te krijgen"
 
@@ -78,7 +78,7 @@ msgstr "Account toevoegen…"
 msgid "Mark all as Read"
 msgstr "Alles als gelezen markeren"
 
-#: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
+#: src/window.blp:162 src/window.js:219 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
 msgstr "Accounts"
 
@@ -103,12 +103,12 @@ msgstr "Sta toe dat Forge Sparks start bij het opstarten van het systeem."
 msgid "Monitoring new notifications"
 msgstr "Bijhouden van nieuwe meldingen"
 
-#: src/util.js:133 src/util.js:174
+#: src/util.js:103 src/util.js:144
 msgid "now"
 msgstr "nu"
 
 #. Translators: relative date
-#: src/util.js:138
+#: src/util.js:108
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -116,7 +116,7 @@ msgstr[0] "%d minuut geleden"
 msgstr[1] "%d minuten geleden"
 
 #. Translators: relative date
-#: src/util.js:145
+#: src/util.js:115
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -124,7 +124,7 @@ msgstr[0] "%d uur geleden"
 msgstr[1] "%d uur geleden"
 
 #. Translators: relative date
-#: src/util.js:152
+#: src/util.js:122
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -132,7 +132,7 @@ msgstr[0] "gisteren"
 msgstr[1] "%d dagen geleden"
 
 #. Translators: relative date
-#: src/util.js:159
+#: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -140,22 +140,22 @@ msgstr[0] "%d week geleden"
 msgstr[1] "%d weken geleden"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:165 src/util.js:169
+#: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
 msgstr "op %s"
 
-#: src/window.js:193
+#: src/window.js:205
 #, javascript-format
 msgid "Account %s authentication failed!"
 msgstr "Authenticatie van account %s mislukt!"
 
-#: src/window.js:195
+#: src/window.js:207
 msgid "The token may have been revoked or expired."
 msgstr "Het token is mogelijk ingetrokken of verlopen."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:157
+#: src/application.js:156
 msgid "translator-credits"
 msgstr "Philip Goto https://philipgoto.nl/"
 
@@ -179,26 +179,6 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: src/preferences.js:66
-msgid "The request failed."
-msgstr "De aanvraag is mislukt."
-
-#: src/preferences.js:97 src/preferences.js:128
-msgid "The autostart request failed."
-msgstr "De aanvraag om automatisch te starten is mislukt."
-
-#: src/preferences.blp:15
-msgid "Keep Running in Background"
-msgstr "Actief blijven op achter­grond"
-
-#: src/preferences.blp:22
-msgid "Run on Startup"
-msgstr "Uitvoeren bij opstarten"
-
-#: src/preferences.blp:33
-msgid "Start Hidden"
-msgstr "Verborgen starten"
-
 #: src/forges/github.js:30
 #, javascript-format
 msgid ""
@@ -206,9 +186,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
-"U kunt een nieuw persoonlijk toegangs­token genereren via de <a href=\"%s\""
-">GitHub-ontwikkelaars­instellingen</a>. Voor meer informatie, zie ‘<a href=\""
-"%s\">Een persoonlijk toegangs­token maken</a>’."
+"U kunt een nieuw persoonlijk toegangs­token genereren via de <a "
+"href=\"%s\">GitHub-ontwikkelaars­instellingen</a>. Voor meer informatie, zie "
+"‘<a href=\"%s\">Een persoonlijk toegangs­token maken</a>’."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -246,79 +226,117 @@ msgstr ""
 "Forge Sparks vereist dat de volgende scopes zijn toegekend: <i>read:issue</"
 "i>, <i>write:notification</i> en <i>read:user</i>"
 
-#: src/model/notification.js:67
+#. GitLab access token help
+#: src/forges/gitlab.js:24
+#, fuzzy
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"Om een nieuw toegangs­token van uw instantie te genereren, gaat u naar "
+"Instellingen → Apps en genereert u een nieuw token."
+
+#. GitLab access token help
+#: src/forges/gitlab.js:27
+#, fuzzy
+msgid "Forge Sparks requires the <i>api</i> scopes granted."
+msgstr ""
+"Forge Sparks vereist dat de volgende scopes zijn toegekend: <i>read:issue</"
+"i>, <i>write:notification</i> en <i>read:user</i>"
+
+#: src/model/notification.js:69
 msgid "Mark as Read"
 msgstr "Markeren als gelezen"
 
-#: src/model/notification.js:74
+#: src/model/notification.js:76
 msgid "Show Forge Sparks"
 msgstr "Forge Sparks weergeven"
 
-#: src/widgets/accountDialog.blp:10
+#: src/widgets/accountDialog.blp:5
 msgid "Add Account"
 msgstr "Account toevoegen"
 
-#: src/widgets/accountDialog.blp:24
+#: src/widgets/accountDialog.blp:20
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/widgets/accountDialog.blp:31
+#: src/widgets/accountDialog.blp:27
 msgid "Add"
 msgstr "Toevoegen"
 
-#: src/widgets/accountDialog.blp:49
+#: src/widgets/accountDialog.blp:45
 msgid "Forge"
 msgstr "Forge"
 
-#: src/widgets/accountDialog.blp:56
+#: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
 msgstr "Instantie-URL"
 
-#: src/widgets/accountDialog.blp:64
+#: src/widgets/accountDialog.blp:60
 msgid "Access Token"
 msgstr "Toegangssleutel"
 
-#: src/widgets/accountDialog.blp:81
+#: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
 msgstr "Account verwijderen"
 
-#: src/widgets/accountDialog.js:84
+#: src/widgets/accountDialog.js:74
 msgid "Edit Account"
 msgstr "Account bewerken"
 
-#: src/widgets/accountDialog.js:85
+#: src/widgets/accountDialog.js:75
 msgid "Save"
 msgstr "Opslaan"
 
-#: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
+#: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
 msgstr "Ongeldige instantie-URL."
 
-#: src/widgets/accountDialog.js:278
+#: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
 msgstr "Kon niet authenticeren met account"
 
-#: src/widgets/accountDialog.js:280
+#: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
 msgstr "De toegangssleutel heeft niet de benodigde scopes"
 
-#: src/widgets/accountDialog.js:282
+#: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
 msgstr "Onverwachte fout tijdens het aanmaken van het account"
 
-#: src/widgets/accountDialog.js:404
+#: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
 msgstr "Onverwachte fout bij het verwijderen van het account"
 
-#: src/accountsWindow.blp:22
+#: src/widgets/preferences.blp:11
+msgid "Keep Running in Background"
+msgstr "Actief blijven op achter­grond"
+
+#: src/widgets/preferences.blp:18
+msgid "Run on Startup"
+msgstr "Uitvoeren bij opstarten"
+
+#: src/widgets/preferences.blp:29
+msgid "Start Hidden"
+msgstr "Verborgen starten"
+
+#: src/widgets/preferences.js:66
+msgid "The request failed."
+msgstr "De aanvraag is mislukt."
+
+#: src/widgets/preferences.js:97 src/widgets/preferences.js:128
+msgid "The autostart request failed."
+msgstr "De aanvraag om automatisch te starten is mislukt."
+
+#: src/widgets/accountsDialog.blp:18
 msgid "Add…"
 msgstr "Toevoegen…"
 
-#: src/accountsWindow.blp:40
+#: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
 msgstr "Geen accounts"
 
-#: src/accountsWindow.js:79
+#: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
 msgstr "Account-authenticatie mislukt!"
 

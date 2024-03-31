@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-09 22:32-0500\n"
+"POT-Creation-Date: 2024-03-31 08:40-0500\n"
 "PO-Revision-Date: 2023-09-18 10:59+0000\n"
 "Last-Translator: Dan <jonweblin2205@protonmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -26,7 +26,7 @@ msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:159
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:158
 msgid "Get Git forges notifications"
 msgstr "Отримувати сповіщення git forges"
 
@@ -34,7 +34,7 @@ msgstr "Отримувати сповіщення git forges"
 msgid "git;github;notifications;"
 msgstr "git;github;notifications;сповіщення;"
 
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:18
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:24
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
 msgstr "Простий додаток-сповіщувач з підтримкою Github, Gitea та Forgejo."
 
@@ -66,7 +66,7 @@ msgstr "Головне меню"
 msgid "Welcome to Forge Sparks"
 msgstr "Ласкаво просимо до Forge Sparks"
 
-#: src/window.blp:68 src/accountsWindow.blp:41
+#: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
 msgstr "Додати обліковий запис для отримання повідомлень від"
 
@@ -78,7 +78,7 @@ msgstr "Додати обліковий запис…"
 msgid "Mark all as Read"
 msgstr "Позначити все як прочитане"
 
-#: src/window.blp:162 src/window.js:207 src/accountsWindow.blp:9
+#: src/window.blp:162 src/window.js:219 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
 msgstr "Облікові записи"
 
@@ -103,12 +103,12 @@ msgstr "Дозволити запуск Forge Sparks під час запуск�
 msgid "Monitoring new notifications"
 msgstr "Шукаю нові сповіщення"
 
-#: src/util.js:133 src/util.js:174
+#: src/util.js:103 src/util.js:144
 msgid "now"
 msgstr "зараз"
 
 #. Translators: relative date
-#: src/util.js:138
+#: src/util.js:108
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -117,7 +117,7 @@ msgstr[1] "%d хвилини тому"
 msgstr[2] "%d хвилин тому"
 
 #. Translators: relative date
-#: src/util.js:145
+#: src/util.js:115
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -126,7 +126,7 @@ msgstr[1] "%d години тому"
 msgstr[2] "%d годин тому"
 
 #. Translators: relative date
-#: src/util.js:152
+#: src/util.js:122
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -135,7 +135,7 @@ msgstr[1] "%d дні тому"
 msgstr[2] "%d днів тому"
 
 #. Translators: relative date
-#: src/util.js:159
+#: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -144,22 +144,22 @@ msgstr[1] "%d тижні тому"
 msgstr[2] "%d тижнів тому"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:165 src/util.js:169
+#: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
 msgstr "на %s"
 
-#: src/window.js:193
+#: src/window.js:205
 #, javascript-format
 msgid "Account %s authentication failed!"
 msgstr "Не вдалося виконати автентифікацію облікового запису %s!"
 
-#: src/window.js:195
+#: src/window.js:207
 msgid "The token may have been revoked or expired."
 msgstr "Можливо, токен було анульовано або термін його дії закінчився."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:157
+#: src/application.js:156
 msgid "translator-credits"
 msgstr "kefir2105"
 
@@ -182,26 +182,6 @@ msgstr "Клавіатурні скорочення"
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Вийти"
-
-#: src/preferences.js:66
-msgid "The request failed."
-msgstr "Запит не виконано."
-
-#: src/preferences.js:97 src/preferences.js:128
-msgid "The autostart request failed."
-msgstr "Запит на автозапуск не вдалося виконати."
-
-#: src/preferences.blp:15
-msgid "Keep Running in Background"
-msgstr "Продовжувати працювати у фоновому режимі"
-
-#: src/preferences.blp:22
-msgid "Run on Startup"
-msgstr "Запустити під час запуску"
-
-#: src/preferences.blp:33
-msgid "Start Hidden"
-msgstr "Початок приховано"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -251,79 +231,115 @@ msgstr ""
 "Forge Sparks вимагає <i>read: issue</i>, <i>write: notification</i> і "
 "<i>read: user</i> надано дозвіл."
 
-#: src/model/notification.js:67
+#. GitLab access token help
+#: src/forges/gitlab.js:24
+#, fuzzy
+msgid ""
+"To generate a new access token from your instance, go to Preferences → "
+"Access Tokens and generate a new token."
+msgstr ""
+"Щоб створити новий токен доступу з вашого екземпляра, перейдіть до "
+"Налаштування → Застосунки та створіть новий токен."
+
+#. GitLab access token help
+#: src/forges/gitlab.js:27
+#, fuzzy
+msgid "Forge Sparks requires the <i>api</i> scopes granted."
+msgstr "Forge Sparks вимагає <i>сповіщення</i> про наданий дозвіл."
+
+#: src/model/notification.js:69
 msgid "Mark as Read"
 msgstr "Відзначити як прочитане"
 
-#: src/model/notification.js:74
+#: src/model/notification.js:76
 msgid "Show Forge Sparks"
 msgstr "Показати Forge Sparks"
 
-#: src/widgets/accountDialog.blp:10
+#: src/widgets/accountDialog.blp:5
 msgid "Add Account"
 msgstr "Додати обліковий запис"
 
-#: src/widgets/accountDialog.blp:24
+#: src/widgets/accountDialog.blp:20
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/widgets/accountDialog.blp:31
+#: src/widgets/accountDialog.blp:27
 msgid "Add"
 msgstr "Додати"
 
-#: src/widgets/accountDialog.blp:49
+#: src/widgets/accountDialog.blp:45
 msgid "Forge"
 msgstr "Forge"
 
-#: src/widgets/accountDialog.blp:56
+#: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
 msgstr "URL-адреса екземпляра"
 
-#: src/widgets/accountDialog.blp:64
+#: src/widgets/accountDialog.blp:60
 msgid "Access Token"
 msgstr "Токен доступу"
 
-#: src/widgets/accountDialog.blp:81
+#: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
 msgstr "Видалити обліковий запис"
 
-#: src/widgets/accountDialog.js:84
+#: src/widgets/accountDialog.js:74
 msgid "Edit Account"
 msgstr "Редагувати обліковий запис"
 
-#: src/widgets/accountDialog.js:85
+#: src/widgets/accountDialog.js:75
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/widgets/accountDialog.js:242 src/widgets/accountDialog.js:259
+#: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
 msgstr "Недійсна URL-адреса екземпляра."
 
-#: src/widgets/accountDialog.js:278
+#: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
 msgstr "Не вдалося автентифікувати обліковий запис"
 
-#: src/widgets/accountDialog.js:280
+#: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
 msgstr "Токен доступу не має необхідних діапазонів"
 
-#: src/widgets/accountDialog.js:282
+#: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
 msgstr "Неочікувана помилка при створенні облікового запису"
 
-#: src/widgets/accountDialog.js:404
+#: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
 msgstr "Несподівана помилка видалення облікового запису"
 
-#: src/accountsWindow.blp:22
+#: src/widgets/preferences.blp:11
+msgid "Keep Running in Background"
+msgstr "Продовжувати працювати у фоновому режимі"
+
+#: src/widgets/preferences.blp:18
+msgid "Run on Startup"
+msgstr "Запустити під час запуску"
+
+#: src/widgets/preferences.blp:29
+msgid "Start Hidden"
+msgstr "Початок приховано"
+
+#: src/widgets/preferences.js:66
+msgid "The request failed."
+msgstr "Запит не виконано."
+
+#: src/widgets/preferences.js:97 src/widgets/preferences.js:128
+msgid "The autostart request failed."
+msgstr "Запит на автозапуск не вдалося виконати."
+
+#: src/widgets/accountsDialog.blp:18
 msgid "Add…"
 msgstr "Додати…"
 
-#: src/accountsWindow.blp:40
+#: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
 msgstr "Немає облікових записів"
 
-#: src/accountsWindow.js:79
+#: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
 msgstr "Помилка автентифікації облікового запису!"
 
@@ -347,9 +363,6 @@ msgstr "Помилка автентифікації облікового зап�
 
 #~ msgid "General"
 #~ msgstr "Загальні"
-
-#~ msgid "Forge Sparks requires the <i>notifications</i> scope granted."
-#~ msgstr "Forge Sparks вимагає <i>сповіщення</i> про наданий дозвіл."
 
 #~ msgid ""
 #~ "To generate a new access token from your Forgejo instance go to Settings "
