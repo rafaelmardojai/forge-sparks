@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 08:40-0500\n"
-"PO-Revision-Date: 2023-09-12 14:55+0000\n"
-"Last-Translator: Rafael Mardojai CM <mardojai.cardenas@gmail.com>\n"
+"PO-Revision-Date: 2024-04-01 15:01+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -229,19 +229,17 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
-#, fuzzy
 msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
 msgstr ""
-"Para generar un nuevo token de acceso desde tu instancia, ve a Configuración "
-"→ Aplicaciones y genera un nuevo token."
+"Para generar un nuevo token de acceso desde su instancia, vaya a "
+"Preferencias → Tokens de acceso y genere un nuevo token."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-#, fuzzy
 msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr "Forge Sparks requiere el permiso <i>notifications</i> concedido."
+msgstr "Forge Sparks requiere que se concedan los permisos <i>api</i>."
 
 #: src/model/notification.js:69
 msgid "Mark as Read"
