@@ -20,6 +20,11 @@
   </developer>
   <update_contact>email_AT_rafaelmardojai.com</update_contact>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#d69b6a</color>
+    <color type="primary" scheme_preference="dark">#4d3928</color>
+  </branding>
+
   <description>
     <p>Simple notifier app with support for Github, Gitea and Forgejo.</p>
   </description>
