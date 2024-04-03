@@ -44,6 +44,16 @@
   </screenshots>
 
   <releases>
+    <release version="0.3.0" date="2024-04-02">
+      <description translate="no">
+        <ul>
+          <li>Added GitLab support</li>
+          <li>Include notification referrer for GitHub to trigger the notification shelf</li>
+          <li>Use new GNOME 46 adaptive dialogs</li>
+          <li>Bug fixes</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.0" date="2023-09-20">
       <description translate="no">
         <ul>
