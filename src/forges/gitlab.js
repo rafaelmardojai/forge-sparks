@@ -78,7 +78,7 @@ export default class GitLab extends Forge {
                         unread: (item.state === 'pending'),
                         updatedAt: item.updated_at,
                         state: item.target.state,
-                        title: item.body,
+                        title: item.target.title,
                         repository: item.project.path_with_namespace,
                         url: item.target_url,
                         account_name: this.accountName
