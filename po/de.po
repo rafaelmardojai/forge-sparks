@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 08:40-0500\n"
-"PO-Revision-Date: 2024-04-25 11:07+0000\n"
+"PO-Revision-Date: 2024-04-27 12:07+0000\n"
 "Last-Translator: Gabriel Brand <gabr.brand@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.1-dev\n"
+"X-Generator: Weblate 5.5.1\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -73,7 +73,7 @@ msgstr "Fügen Sie ein Konto hinzu, um Benachrichtigungen zu erhalten"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr "Konto hinzufügen …"
+msgstr "Konto hinzufügen …"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
@@ -89,11 +89,11 @@ msgstr "Keine Benachrichtigungen anzuzeigen"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr "Erlaube Forge Sparks im Hintergrund weiterzulaufen."
+msgstr "Erlauben Sie Forge Sparks die Ausführung im Hintergrund."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr "Erlaube Forge Sparks beim Hochfahren zu starten."
+msgstr "Erlauben Sie Forge Sparks beim Hochfahren zu starten."
 
 #. *
 #. * Set background status message
@@ -113,32 +113,32 @@ msgstr "Jetzt"
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] "vor %d Minute"
-msgstr[1] "vor %d Minuten"
+msgstr[0] "Vor %d Minute"
+msgstr[1] "Vor %d Minuten"
 
 #. Translators: relative date
 #: src/util.js:115
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] "vor %d Stunde"
-msgstr[1] "vor %d Stunden"
+msgstr[0] "Vor %d Stunde"
+msgstr[1] "Vor %d Stunden"
 
 #. Translators: relative date
 #: src/util.js:122
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] "gestern"
-msgstr[1] "vor %d Tagen"
+msgstr[0] "Gestern"
+msgstr[1] "Vor %d Tagen"
 
 #. Translators: relative date
 #: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] "vor %d Woche"
-msgstr[1] "vor %d Wochen"
+msgstr[0] "Vor %d Woche"
+msgstr[1] "Vor %d Wochen"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:135 src/util.js:139
@@ -189,9 +189,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
-"Sie können einen persönlichen Zugriffstoken in den <a href=\"%s\">GitHub-"
-"Entwicklereinstellungen</a> generieren. Weitere Informationen finden Sie "
-"unter \"<a href=\"%s\">Erstellen eines personal access token (classic)</a>\"."
+"Sie können einen neuen persönlichen Zugriffstoken in den <a href=\"%s\""
+">GitHub-Entwicklereinstellungen</a> generieren. Weitere Informationen finden "
+"Sie unter \"<a href=\"%s\">Erstellen eines persönlichen Zugriffstoken</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -199,8 +199,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
-"Forge Sparks erfordert einen <b>klassischen</b> Zugriffstoken (für die "
-"allgemeine Nutzung) mit den Berechtigungen <i>notifications</i> und "
+"Forge Sparks erfordert einen <b>klassischen</b> Zugriffstoken (zum "
+"allgemeinen Gebrauch) mit den Berechtigungen <i>notifications</i> und "
 "<i>read:user</i>."
 
 #. GitHub access token help
@@ -250,7 +250,7 @@ msgstr "Als gelesen markieren"
 
 #: src/model/notification.js:76
 msgid "Show Forge Sparks"
-msgstr "Zeige Forge Sparks"
+msgstr "Forge Sparks anzeigen"
 
 #: src/widgets/accountDialog.blp:5
 msgid "Add Account"
@@ -310,15 +310,15 @@ msgstr "Unerwarteter Fehler beim Entfernen des Kontos"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr "Im Hintergrund weiterlaufen lassen"
+msgstr "Im Hintergrund weiter ausführen"
 
 #: src/widgets/preferences.blp:18
 msgid "Run on Startup"
-msgstr "Beim Starten ausführen"
+msgstr "Beim Hochfahren ausführen"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr "Verdeckt starten"
+msgstr "Im Hintergrund starten"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
@@ -330,7 +330,7 @@ msgstr "Die Autostart-Anfrage ist fehlgeschlagen."
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr "Hinzufügen…"
+msgstr "Hinzufügen …"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
