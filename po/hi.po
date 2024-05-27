@@ -8,88 +8,90 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 08:40-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-05-28 16:09+0000\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/hi/>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "फोर्ज स्पार्क्स"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:158
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "गिट फोर्ज अधिसूचनाएं प्राप्त करें"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "गिट;गिटहब;अधिसूचनाएं;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:24
 msgid "Simple notifier app with support for Github, Gitea and Forgejo."
-msgstr ""
+msgstr "Github, Gitea और Forgejo के समर्थन के साथ सरल सूचक ऐप।"
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "प्राथमिकताएं (_P)"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "खाता (_A)"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "कीबोर्ड शॉर्टकट (_K)"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "फोर्ज स्पार्क्स के बारे में"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "बंद करें"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "मुख्य मेनू"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "फोर्ज स्पार्क्स में आपका स्वागत है"
 
 #: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "अधिसूचनाएं प्राप्त करने के लिए एक खाता जोड़ें"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "खाता जोड़ें…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "सभी पठित चिह्नित करें"
 
 #: src/window.blp:162 src/window.js:219 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
-msgstr ""
+msgstr "खाते"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "दिखाने के लिए कोई अधिसूचना नहीं"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "पृष्ठभूमि पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "स्टार्टअप पर फोर्ज स्पार्क्स चलाने की अनुमति दें।"
 
 #. *
 #. * Set background status message
@@ -98,83 +100,83 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "नई अधिसूचनाओं की निगरानी"
 
 #: src/util.js:103 src/util.js:144
 msgid "now"
-msgstr ""
+msgstr "अभी"
 
 #. Translators: relative date
 #: src/util.js:108
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d मिनट पहले"
+msgstr[1] "%d मिनट पहले"
 
 #. Translators: relative date
 #: src/util.js:115
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d घंटा पहले"
+msgstr[1] "%d घंटे पहले"
 
 #. Translators: relative date
 #: src/util.js:122
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "कल"
+msgstr[1] "%d दिन पहले"
 
 #. Translators: relative date
 #: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d हफ्ता पहले"
+msgstr[1] "%d हफ्ते पहले"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "%s पर"
 
 #: src/window.js:205
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "खाता %s प्रमाणीकरण विफल!"
 
 #: src/window.js:207
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "टोकन रद्द या समाप्त हो सकता है।"
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:156
 msgid "translator-credits"
-msgstr ""
+msgstr "Scrambled777 <weblate.scrambled777@simplelogin.com>"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "सामान्य"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "मेनू खोलें"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "कीबोर्ड शॉर्टकट"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "बंद करें"
 
 #: src/forges/github.js:30
 #, javascript-format
@@ -183,6 +185,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"आप <a href=\"%s\">गिटहब डेवलपर सेटिंग</a> से एक नया व्यक्तिगत एक्सेस टोकन "
+"उत्पन्न कर सकते हैं। अधिक जानकारी के लिए, \"<a href=\"%s\">व्यक्तिगत एक्सेस "
+"टोकन बनाना</a>\" देखें।"
 
 #. GitHub access token help
 #: src/forges/github.js:35
@@ -190,6 +195,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"फोर्ज स्पार्क्स को <i>अधिसूचनाएं</i> और <i>read:user</i> स्कोप के साथ एक "
+"<b>क्लासिक</b> एक्सेस टोकन (सामान्य उपयोग के लिए) की आवश्यकता होती है।"
 
 #. GitHub access token help
 #: src/forges/github.js:38
@@ -197,6 +204,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"यदि आप निजी रिपॉजिटरी के साथ काम कर रहे हैं, तो आपको पूर्ण <i>रेपो</i> स्कोप "
+"देने की भी आवश्यकता होगी।"
 
 #. Gitea access token help
 #: src/forges/gitea.js:29
@@ -204,6 +213,8 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"अपने इंस्टैंस से एक नया एक्सेस टोकन उत्पन्न करने के लिए, सेटिंग्स → अनुप्रयो"
+"ग पर जाएं और एक नया टोकन उत्पन्न करें।"
 
 #. Gitea access token help
 #: src/forges/gitea.js:32
@@ -211,6 +222,8 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"फोर्ज स्पार्क्स को <i>read:issue</i>, <i>write:notification</i> और "
+"<i>read:user</i> स्कोप दिए जाने की आवश्यकता है।"
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -218,104 +231,106 @@ msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
 msgstr ""
+"अपने इंस्टैंस से एक नया एक्सेस टोकन उत्पन्न करने के लिए, प्राथमिकताएं → एक्से"
+"स टोकन पर जाएं और एक नया टोकन उत्पन्न करें।"
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
 msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr ""
+msgstr "फोर्ज स्पार्क्स को दिए गए <i>api</i> स्कोप की आवश्यकता है।"
 
 #: src/model/notification.js:69
 msgid "Mark as Read"
-msgstr ""
+msgstr "पठित चिह्नित करें"
 
 #: src/model/notification.js:76
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "फोर्ज स्पार्क्स दिखाएं"
 
 #: src/widgets/accountDialog.blp:5
 msgid "Add Account"
-msgstr ""
+msgstr "खाता जोड़ें"
 
 #: src/widgets/accountDialog.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करें"
 
 #: src/widgets/accountDialog.blp:27
 msgid "Add"
-msgstr ""
+msgstr "जोड़ें"
 
 #: src/widgets/accountDialog.blp:45
 msgid "Forge"
-msgstr ""
+msgstr "फोर्ज"
 
 #: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
-msgstr ""
+msgstr "इंस्टैंस URL"
 
 #: src/widgets/accountDialog.blp:60
 msgid "Access Token"
-msgstr ""
+msgstr "एक्सेस टोकन"
 
 #: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
-msgstr ""
+msgstr "खाता हटाएं"
 
 #: src/widgets/accountDialog.js:74
 msgid "Edit Account"
-msgstr ""
+msgstr "खाता संपादित करें"
 
 #: src/widgets/accountDialog.js:75
 msgid "Save"
-msgstr ""
+msgstr "सहेजें"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr ""
+msgstr "अमान्य इंस्टैंस URL।"
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "खाता प्रमाणित नहीं किया जा सका"
 
 #: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "एक्सेस टोकन में आवश्यक दायरे नहीं हैं"
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "खाता बनाते समय अप्रत्याशित त्रुटि"
 
 #: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "खाता हटाने में अनपेक्षित त्रुटि"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "पृष्ठभूमि में चालू रखें"
 
 #: src/widgets/preferences.blp:18
 msgid "Run on Startup"
-msgstr ""
+msgstr "शुरुआत पर चलाएं"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr ""
+msgstr "छुपे हुए प्रारंभ करें"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "अनुरोध विफल रहा।"
 
 #: src/widgets/preferences.js:97 src/widgets/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "स्वतः प्रारंभ अनुरोध विफल रहा।"
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr ""
+msgstr "जोड़ें…"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
-msgstr ""
+msgstr "कोई खाता नहीं"
 
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "खाता प्रमाणीकरण विफल!"
