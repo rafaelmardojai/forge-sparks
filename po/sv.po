@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-31 08:40-0500\n"
-"PO-Revision-Date: 2024-04-22 08:07+0000\n"
+"PO-Revision-Date: 2024-06-18 05:09+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -156,7 +156,9 @@ msgstr "Token har kanske återkallats eller löpt ut."
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:156
 msgid "translator-credits"
-msgstr "skøldis <forgesparks@turtle.garden>"
+msgstr ""
+"skøldis <forgesparks@turtle.garden>\n"
+"Luna Jernberg <droidbittin@gmail.com>"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
@@ -236,11 +238,8 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-#, fuzzy
 msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr ""
-"Forge Sparks behöver de <i>read:issue</i>-, <i>write:notification</i>-, och "
-"<i>read:user</i>omfången att beviljades."
+msgstr "Forge Sparks kräver <i>api</i> omfång beviljade."
 
 #: src/model/notification.js:69
 msgid "Mark as Read"
