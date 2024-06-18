@@ -13,8 +13,6 @@
   <url type="donation">https://mardojai.com/donate/</url>
   <url type="translate">https://hosted.weblate.org/engage/forge-sparks/</url>
   <url type="vcs-browser">https://github.com/rafaelmardojai/forge-sparks</url>
-  <!-- developer_name tag deprecated with Appstream 1.0 -->
-  <developer_name translate="no">Rafael Mardojai CM</developer_name>
   <developer id="com.mardojai">
       <name translate="no">Rafael Mardojai CM</name>
   </developer>
@@ -26,7 +24,7 @@
   </branding>
 
   <description>
-    <p>Simple notifier app with support for Github, Gitea and Forgejo.</p>
+    <p>Simple notifier app with support for GitLab, Github, Gitea and Forgejo.</p>
   </description>
 
   <content_rating type="oars-1.1" />
