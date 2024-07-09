@@ -22,7 +22,7 @@ Simple notifier app with support for Github, Gitea and Forgejo.
 
 ## Install
 
-<a href="https://flathub.org/apps/com.mardojai.ForgeSparks"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
+<a href="https://flathub.org/apps/com.mardojai.ForgeSparks"><img alt="Download on Flathub" src="https://flathub.org/api/badge?svg&locale=en"/></a>
 
 ### Nightly
 
