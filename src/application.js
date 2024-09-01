@@ -140,13 +140,19 @@ export default class Application extends Adw.Application {
     }
 
     _showPrefs() {
-        const window = new PreferencesDialog();
-        window.present(this.window);
+        if (this.preferencesDialog != undefined) return;
+
+        this.preferencesDialog = new PreferencesDialog();
+        this.preferencesDialog.present(this.window);
+        this.preferencesDialog.connect('closed', () => {this.preferencesDialog = undefined});
     }
 
     _showAccounts() {
-        const window = new AccountsDialog();
-        window.present(this.window);
+        if (this.accountsDialog != undefined) return;
+
+        this.accountsDialog = new AccountsDialog();
+        this.accountsDialog.present(this.window);
+        this.accountsDialog.connect('closed', () => {this.accountsDialog = undefined});
     }
 
     _showAbout() {
