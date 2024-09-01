@@ -24,6 +24,8 @@ export default class Gitea extends GitHub {
 
     static defaultURL = 'gitea.com';
 
+    static scopes = ['read:issue', 'write:notification', 'read:user'];
+
     static get tokenText() {
         /* Gitea access token help */
         let tokenText = _('To generate a new access token from your instance, go to Settings → Applications and generate a new token.');

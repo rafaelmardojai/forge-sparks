@@ -27,6 +27,13 @@ export default class Forge {
     static defaultURL = 'example.com';
 
     /**
+     * Scopes needed
+     * 
+     * @type {Array<String>}
+     */
+    static scopes = [];
+
+    /**
      * Help text on how to get an access token for this forge
      */
     static tokenText;

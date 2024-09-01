@@ -21,6 +21,8 @@ export default class GitHub extends Forge {
 
     static defaultURL = 'github.com';
 
+    static scopes = ['notifications', 'read:user'];
+
     static get tokenText() {
         const tokenURL = 'https://github.com/settings/tokens';
         const tokenHelpURL = 'https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic';
