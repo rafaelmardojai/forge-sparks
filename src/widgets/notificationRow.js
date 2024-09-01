@@ -11,7 +11,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     static {
         GObject.registerClass({
             Template,
-            InternalChildren: ['iconStack', 'icon', 'spinner'],
+            InternalChildren: ['iconStack', 'icon'],
             Signals: {
                 'activated': {},
             },
@@ -203,10 +203,8 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         /* When is set to true, show spinner; when false, show icon */
         if (this._progress) {
             this._iconStack.set_visible_child_name('spinner');
-            this._spinner.start();
         } else {
             this._iconStack.set_visible_child_name('icon');
-            this._spinner.stop();
         }
     }
 };
