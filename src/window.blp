@@ -96,9 +96,9 @@ template $Gjs_Window : Adw.ApplicationWindow {
           halign: center;
           valign: center;
 
-          Spinner spinner {
-            width-request: 32;
-            height-request: 32;
+          Adw.Spinner {
+            width-request: 64;
+            height-request: 64;
           }
         }
       };
@@ -135,7 +135,7 @@ template $Gjs_Window : Adw.ApplicationWindow {
 
                 StackPage {
                     name: "spinner";
-                    child: Spinner markAsReadSpinner {
+                    child: Adw.Spinner {
                         width-request: 16;
                         height-request: 16;
                     };

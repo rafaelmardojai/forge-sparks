@@ -31,9 +31,9 @@ export default class Window extends Adw.ApplicationWindow {
         GObject.registerClass({
             Template,
             InternalChildren: [
-                'mainStack', 'spinner', 'headerbar','emptyPicture',
-                'accountBanner', 'setupPage', 'notificationsStack', 'notificationsList',
-                'markAsRead', 'markAsReadIcon', 'markAsReadSpinner',
+                'mainStack', 'headerbar','emptyPicture', 'accountBanner',
+                'setupPage', 'notificationsStack', 'notificationsList',
+                'markAsRead', 'markAsReadIcon',
             ],
         }, this);
     }
@@ -61,7 +61,6 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Set app initial state */
         this._mainStack.set_visible_child_name('loading');
-        this._spinner.start();
         this._setupPage.icon_name = pkg.name;
         this._emptyPicture.set_resource(AllDoneIllustration);
 
@@ -70,7 +69,6 @@ export default class Window extends Adw.ApplicationWindow {
             /* Show setup view if not accounts configured */
             if (accounts.get_n_items() == 0) {
                 this._mainStack.set_visible_child_name('setup');
-                this._spinner.stop();
             }
         });
 
@@ -259,7 +257,6 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* This might be after a user interaction, show the spinner */
         this._mainStack.set_visible_child_name('loading');
-        this._spinner.start();
     }
 
     /**
@@ -308,9 +305,6 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Stop loading view, and show notifications view */
         this._mainStack.set_visible_child_name('notifications');
-        if (this._spinner.spinning) {
-            this._spinner.stop();
-        }
     }
 
     /**
@@ -342,7 +336,6 @@ export default class Window extends Adw.ApplicationWindow {
         this._markAsRead.sensitive = false;
         this._notificationsList.sensitive = false;
         this._markAsReadIcon.set_visible_child_name('spinner');
-        this._markAsReadSpinner.start();
 
         /* Mark as read all notifications on all accounts */
         for (const id in this.forges) {
@@ -360,7 +353,6 @@ export default class Window extends Adw.ApplicationWindow {
         this._markAsRead.sensitive = true;
         this._notificationsList.sensitive = true;
         this._markAsReadIcon.set_visible_child_name('icon');
-        this._markAsReadSpinner.stop();
     }
 
     /**
