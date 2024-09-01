@@ -130,11 +130,20 @@ export default class Window extends Adw.ApplicationWindow {
      * Run notifications getter task.
      * 
      * This is a recursive function with a timeout set by $this.interval.
-     * The timeout event source ID is stored in $this.subscribe_source.
+     * The timeout event source ID is stored in $this._subscribeSource.
      */
     async subscribe() {
         this.fetching = true;
         const app = this.get_application();
+
+        if (this._retryHandler != undefined) {
+            accounts.disconnect(this._retryHandler);
+        }
+
+        /* Resolve token error */
+        if (!accounts.getAccounts().includes(this.authFailed)) {
+            this._resolveTokenError();
+        }
 
         /* If not accounts found, show setup view and return */
         if (!accounts.get_n_items()) {
@@ -144,14 +153,6 @@ export default class Window extends Adw.ApplicationWindow {
                 this.subscribe();
             });
             return;
-        }
-
-        if (!this._retryHandler === undefined) {
-            accounts.disconnect(this._retryHandler);
-        }
-
-        if (!accounts.getAccounts().includes(this.authFailed)) {
-            this._resolveTokenError();
         }
 
         let newNotifications = []; /* List to store new notifications */
@@ -229,13 +230,13 @@ export default class Window extends Adw.ApplicationWindow {
 
         if (!this.reFetch) {
             /* Add timeout to run this function again */
-            this.subscribe_source = GLib.timeout_add(GLib.PRIORITY_DEFAULT, this.interval * 1000, () => {
+            this._subscribeSource = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, this.interval, () => {
                 this.subscribe();
                 return GLib.SOURCE_REMOVE;
             });
         } else {
-            this.subscribe();
             this.reFetch = false;
+            this.subscribe();
         }
 
         this.fetching = false;
@@ -247,8 +248,10 @@ export default class Window extends Adw.ApplicationWindow {
     reload() {
         if (!this.fetching) {
             /* Remove current timeout */
-            if (this.subscribe_source != undefined)
-                GLib.Source.remove(this.subscribe_source);
+            if (this._subscribeSource != undefined) {
+                GLib.Source.remove(this._subscribeSource);
+                this._subscribeSource = undefined;
+            }
 
             this.subscribe();
         } else {
@@ -378,7 +381,7 @@ export default class Window extends Adw.ApplicationWindow {
         }
 
         /* Open link and mark as read when widget is activated */
-        row.connect('activated', () => {
+        row.connect('activated', (row) => {
             /* Set progress state on widget */
             row.progress = true;
             row.sensitive = false;

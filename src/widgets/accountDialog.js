@@ -199,7 +199,7 @@ export default class AccountDialog extends Adw.Dialog {
      * when them change the selected forge.
      */
     _onInstanceChanged() {
-        this._userChangedInstance = !this._editing && this._instance.text != this._forges_ls[this._forge.selected].defaultURL;
+        this._userChangedInstance = !this.editing && this._instance.text != this._forges_ls[this._forge.selected].defaultURL;
     }
 
     /**

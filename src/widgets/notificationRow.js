@@ -33,6 +33,9 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     constructor(constructProperties = {}) {
         super(constructProperties);
 
+        /* Parent for `activated` signal */
+        this._previous_parent = null
+
         /* Add a css class to the icon depending on the notification state */
         switch (this.state) {
             case 'open':
@@ -58,12 +61,19 @@ export default class NotificationRow extends Gtk.ListBoxRow {
      * we need more control over the row layout.
      */
     _onParent() {
+        if (this._previous_parent != null) {
+            this._previous_parent.disconnect(this._parent_signal_handler);
+            this._previous_parent = null
+        }
+
         if (this.parent != null) {
-            this.parent.connect('row-activated', (_list, row) => {
+            this._parent_signal_handler = this.parent.connect('row-activated', (_list, row) => {
                 if (row === this) {
                     this.emit('activated');
                 }
             });
+
+            this._previous_parent = this.parent
         }
     }
 

@@ -59,7 +59,11 @@ export default class NotificationsList extends GObject.Object {
      */
     clear() {
         const removed = this._notifications.length;
-        this._notifications.length = 0;
+
+        while (this._notifications.length) {
+            this._notifications.pop();
+        }
+
         this.items_changed(0, removed, 0);
     }
 
