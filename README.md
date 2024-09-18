@@ -18,7 +18,7 @@
 </p>
 
 ## Description
-Simple notifier app with support for Github, Gitea and Forgejo.
+Simple notifier app with support for Github, GitLab, Gitea and Forgejo.
 
 ## Install
 
