@@ -1,5 +1,5 @@
 project('forge-sparks',
-  version: '0.3.0',
+  version: '0.4.0',
   meson_version: '>= 0.63.0',
   license: 'GPL-3.0'
 )
