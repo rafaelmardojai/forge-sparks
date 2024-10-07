@@ -54,6 +54,7 @@ export default class Window extends Adw.ApplicationWindow {
         /* Store app fail states */
         this.authFailed = null;
         this.authErrorNotified = false;
+        this.networkError = false;
 
         /* Set help overlay */
         const help_overlay = Gtk.Builder.new_from_resource(HelpOverlayTemplate).get_object('help_overlay');
@@ -190,8 +191,18 @@ export default class Window extends Adw.ApplicationWindow {
                     this._resolveTokenError(account);
                 }
 
+                this.networkError = false;
             } catch (error) {
-                if (error === 'FailedForgeAuth') {
+                if (error instanceof GLib.Error) {
+                    if (
+                        error.matches(Gio.IOErrorEnum, Gio.ResolverError.NETWORK_UNREACHABLE)
+                        || error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.TIMED_OUT)
+                        || error.matches(Gio.ResolverError, Gio.ResolverError.NOT_FOUND)
+                    ) {
+                        this.networkError = true;
+                    } 
+                    console.error(error);
+                } else if (error === 'FailedForgeAuth') {
                     /* Update state */
                     this.authFailed = account.id;
                     account.authFailed = true;
@@ -226,7 +237,9 @@ export default class Window extends Adw.ApplicationWindow {
         }
 
         /* Show new notifications */
-        this.showNotifications(newNotifications);
+        if (!(this.networkError && newNotifications.length === 0))
+            this.showNotifications(newNotifications);
+        else this._mainStack.set_visible_child_name('notifications');
 
         if (!this.reFetch) {
             /* Add timeout to run this function again */
