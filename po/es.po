@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-07 08:14-0500\n"
-"PO-Revision-Date: 2024-04-01 15:01+0000\n"
+"PO-Revision-Date: 2024-10-08 14:15+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
@@ -34,10 +34,9 @@ msgid "git;github;notifications;"
 msgstr "git;github;notificaciones;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
-#, fuzzy
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
 msgstr ""
-"Sencilla aplicación notificadora compatible con Github, Gitea y Forgejo."
+"Aplicación de notificación sencilla para GitLab, Github, Gitea y Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
