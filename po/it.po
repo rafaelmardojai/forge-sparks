@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 08:40-0500\n"
+"POT-Creation-Date: 2024-10-07 08:14-0500\n"
 "PO-Revision-Date: 2024-04-17 15:03+0000\n"
 "Last-Translator: glemco <glemco@posteo.net>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -25,7 +25,7 @@ msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:158
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
 msgstr "Ricevi le notifiche di Git forges"
 
@@ -33,8 +33,9 @@ msgstr "Ricevi le notifiche di Git forges"
 msgid "git;github;notifications;"
 msgstr "git;github;notifiche;"
 
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:24
-msgid "Simple notifier app with support for Github, Gitea and Forgejo."
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
+#, fuzzy
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
 msgstr "Semplice app per notifiche con supporto a Github, Gitea e Forgejo."
 
 #: src/window.blp:7
@@ -77,7 +78,7 @@ msgstr "Aggiungi Account…"
 msgid "Mark all as Read"
 msgstr "Segna tutte come Lette"
 
-#: src/window.blp:162 src/window.js:219 src/widgets/accountsDialog.blp:5
+#: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
 msgstr "Account"
 
@@ -144,17 +145,17 @@ msgstr[1] "%d settimane fa"
 msgid "on %s"
 msgstr "il %s"
 
-#: src/window.js:205
+#: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
 msgstr "L'autenticazione dell'account %s è fallita!"
 
-#: src/window.js:207
+#: src/window.js:217
 msgid "The token may have been revoked or expired."
 msgstr "Il token potrebbe essere stato revocato o scaduto."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:156
+#: src/application.js:162
 msgid "translator-credits"
 msgstr "glemco"
 
@@ -178,19 +179,20 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Esci"
 
-#: src/forges/github.js:30
+#: src/forges/github.js:32
 #, javascript-format
 msgid ""
 "You can generate a new personal access token from <a href=\"%s\">GitHub "
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
-"Puoi generare un nuovo token di accesso personale dalle <a href=\"%s\""
-">Impostazioni sviluppatore di GitHub</a>. Per ulteriori informazioni, "
-"consulta \"<a href=\"%s\">Creazione di un token di accesso personale</a>\"."
+"Puoi generare un nuovo token di accesso personale dalle <a "
+"href=\"%s\">Impostazioni sviluppatore di GitHub</a>. Per ulteriori "
+"informazioni, consulta \"<a href=\"%s\">Creazione di un token di accesso "
+"personale</a>\"."
 
 #. GitHub access token help
-#: src/forges/github.js:35
+#: src/forges/github.js:37
 msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
@@ -199,7 +201,7 @@ msgstr ""
 "con permessi di <i>notifiche</i> e <i>lettura:utente</i> concessi."
 
 #. GitHub access token help
-#: src/forges/github.js:38
+#: src/forges/github.js:40
 msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
@@ -208,7 +210,7 @@ msgstr ""
 "<i>repo</i>."
 
 #. Gitea access token help
-#: src/forges/gitea.js:29
+#: src/forges/gitea.js:31
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
@@ -217,13 +219,13 @@ msgstr ""
 "Impostazioni → Applicazioni e genera un nuovo token."
 
 #. Gitea access token help
-#: src/forges/gitea.js:32
+#: src/forges/gitea.js:34
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
-"Forge Sparks richiede i permessi di <i>lettura:issue</i> , "
-"<i>scrittura:notifiche</i> e <i>lettura:utente</i> concessi."
+"Forge Sparks richiede i permessi di <i>lettura:issue</i> , <i>scrittura:"
+"notifiche</i> e <i>lettura:utente</i> concessi."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -231,8 +233,8 @@ msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
 msgstr ""
-"Per generare un nuovo token di accesso dalla tua istanza, vai su Preferenze →"
-" Token di Accesso e genera un nuovo token."
+"Per generare un nuovo token di accesso dalla tua istanza, vai su Preferenze "
+"→ Token di Accesso e genera un nuovo token."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27

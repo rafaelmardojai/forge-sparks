@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 08:40-0500\n"
+"POT-Creation-Date: 2024-10-07 08:14-0500\n"
 "PO-Revision-Date: 2024-03-17 17:01+0000\n"
 "Last-Translator: \"André L. Alvares\" <andrluiz.alvares.alvares84@gmail."
 "com>\n"
@@ -26,7 +26,7 @@ msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:158
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
 msgstr "Receba notificações das forjas Git"
 
@@ -34,8 +34,9 @@ msgstr "Receba notificações das forjas Git"
 msgid "git;github;notifications;"
 msgstr "git;github;notificações;"
 
-#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:24
-msgid "Simple notifier app with support for Github, Gitea and Forgejo."
+#: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
+#, fuzzy
+msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
 msgstr ""
 "Simples aplicativo notificador com suporte para Github, Gitea e Forgejo."
 
@@ -79,7 +80,7 @@ msgstr "Adicionar Conta…"
 msgid "Mark all as Read"
 msgstr "Marca todas como Lidas"
 
-#: src/window.blp:162 src/window.js:219 src/widgets/accountsDialog.blp:5
+#: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
 msgstr "Contas"
 
@@ -146,17 +147,17 @@ msgstr[1] "%d semanas atrás"
 msgid "on %s"
 msgstr "em %s"
 
-#: src/window.js:205
+#: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
 msgstr "Conta %s falhou na autenticação!"
 
-#: src/window.js:207
+#: src/window.js:217
 msgid "The token may have been revoked or expired."
 msgstr "O token pode ter sido revogado ou expirado."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.js:156
+#: src/application.js:162
 msgid "translator-credits"
 msgstr "Fúlvio Leo <fulviokaldas@outlook.com>"
 
@@ -180,7 +181,7 @@ msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Sai"
 
-#: src/forges/github.js:30
+#: src/forges/github.js:32
 #, fuzzy, javascript-format
 msgid ""
 "You can generate a new personal access token from <a href=\"%s\">GitHub "
@@ -192,7 +193,7 @@ msgstr ""
 "veja \"<a href=\"%s\">Criando um token de acesso pessoal</a>\"."
 
 #. GitHub access token help
-#: src/forges/github.js:35
+#: src/forges/github.js:37
 msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
@@ -201,7 +202,7 @@ msgstr ""
 "escopos <i>notifications</i> e <i>read:user</i> concedidos."
 
 #. GitHub access token help
-#: src/forges/github.js:38
+#: src/forges/github.js:40
 msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
@@ -210,7 +211,7 @@ msgstr ""
 "o escopo completo de <i>repo</i>."
 
 #. Gitea access token help
-#: src/forges/gitea.js:29
+#: src/forges/gitea.js:31
 #, fuzzy
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
@@ -220,7 +221,7 @@ msgstr ""
 "Applications e generate a new token."
 
 #. Gitea access token help
-#: src/forges/gitea.js:32
+#: src/forges/gitea.js:34
 msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
