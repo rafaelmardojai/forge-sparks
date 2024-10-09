@@ -221,7 +221,7 @@ export default class GitHub extends Forge {
 
                 /* Add notification referrer to url */
                 /* Only if forge is GitHub */
-                if (Forge.name === 'github') {
+                if (this.constructor.name === 'github') {
                     const referrer = this._getNotificationReferrerID(notification.id);
                     const n = info.url.lastIndexOf('#');  // Get hash position
 
