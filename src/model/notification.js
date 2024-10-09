@@ -16,6 +16,8 @@ import discussionIcon from '../icons/discussion-symbolic.svg' with { type: 'icon
 import tagIcon from '../icons/tag-symbolic.svg' with { type: 'icon' };
 import commitIcon from '../icons/commit-symbolic.svg' with { type: 'icon' };
 
+const DEFAULT_ICON = 'preferences-system-details-symbolic';
+
 /* Notification object class */
 export default class Notification extends GObject.Object {
 
@@ -51,7 +53,11 @@ export default class Notification extends GObject.Object {
      */
     get notification() {
         const notification = new Gio.Notification();
-        const icon = new Gio.ThemedIcon({name: `${pkg.name}-${this.iconName}`});
+        const icon = new Gio.ThemedIcon(
+            {
+                name: this.iconName != DEFAULT_ICON ? `${pkg.name}-${this.iconName}` : this.iconName
+            }
+        );
 
         notification.set_title(this.title);
         notification.set_body(this.repository);
@@ -112,7 +118,7 @@ export default class Notification extends GObject.Object {
                 return tagIcon;
             case 'Commit':
                 return commitIcon;
-            default: return 'preferences-system-details-symbolic';
+            default: return DEFAULT_ICON;
         }
     }
 
