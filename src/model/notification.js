@@ -93,6 +93,7 @@ export default class Notification extends GObject.Object {
                     default:
                         return issueIcon;
                 }
+            case 'Pull':
             case 'PullRequest':
             case 'MergeRequest':
                 switch (this.state) {
