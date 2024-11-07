@@ -80,9 +80,11 @@ export function requestBackground(window, autostart=false, hidden=false) {
  * @param {String} message
  */
 export function setBackgroundStatus(message=_('Monitoring new notifications')) {
-    portal.set_background_status(message, null, (portal, result) => {
-        portal.set_background_status_finish(result);
-    });
+    if (Xdp.Portal.running_under_sandbox()) {
+        portal.set_background_status(message, null, (portal, result) => {
+            portal.set_background_status_finish(result);
+        });
+    }
 }
 
 /**
