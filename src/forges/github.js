@@ -17,7 +17,7 @@ export default class GitHub extends Forge {
 
     static prettyName = 'GitHub';
 
-    static allowInstances = false;
+    static allowInstances = true;
 
     static defaultURL = 'github.com';
 
@@ -309,6 +309,6 @@ export default class GitHub extends Forge {
      * @returns {String} The resulting URI
      */
     buildURI(path, query = {}) {
-        return Forge.buildURI(GITHUB_API, path, query);
+        return Forge.buildURI(`api.${this.url}`, path, query);
     }
 };
