@@ -1,7 +1,7 @@
 {
   "app-id": "com.mardojai.ForgeSparks",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "44",
+  "runtime-version": "47",
   "sdk": "org.gnome.Sdk",
   "command": "forge-sparks",
   "finish-args": [
@@ -16,30 +16,32 @@
     {
       "name": "blueprint",
       "buildsystem": "meson",
-      "cleanup": ["*"],
+      "cleanup": [
+        "*"
+      ],
       "sources": [
-          {
-              "type": "git",
-              "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
-              "tag": "v0.8.1",
-              "commit": "aa7679618e864748f4f4d8f15283906e712752fe"
-          }
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+          "tag": "v0.14.0",
+          "commit": "8e10fcf8692108b9d4ab78f41086c5d7773ef864"
+        }
       ]
     },
     {
       "name": "libportal",
       "buildsystem": "meson",
       "config-opts": [
-          "-Ddocs=false",
-          "-Dvapi=false",
-          "-Dbackends=gtk4"
+        "-Ddocs=false",
+        "-Dvapi=false",
+        "-Dbackend-gtk4=enabled"
       ],
       "sources": [
-          {
-              "type": "archive",
-              "url": "https://github.com/flatpak/libportal/releases/download/0.6/libportal-0.6.tar.xz",
-              "sha256": "88a12c3ba71bc31acff7238c280de697d609cebc50830c3766776ec35abc6566"
-          }
+        {
+          "type": "archive",
+          "url": "https://github.com/flatpak/libportal/releases/download/0.8.1/libportal-0.8.1.tar.xz",
+          "sha256": "281e54e4f8561125a65d20658f1462ab932b2b1258c376fed2137718441825ac"
+        }
       ]
     },
     {

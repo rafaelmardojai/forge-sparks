@@ -16,30 +16,32 @@
     {
       "name": "blueprint",
       "buildsystem": "meson",
-      "cleanup": ["*"],
+      "cleanup": [
+        "*"
+      ],
       "sources": [
-          {
-              "type": "git",
-              "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
-              "tag": "v0.10.0",
-              "commit": "2a39a16391122af2f3d812e478c1c1398c98b972"
-          }
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+          "tag": "v0.14.0",
+          "commit": "8e10fcf8692108b9d4ab78f41086c5d7773ef864"
+        }
       ]
     },
     {
       "name": "libportal",
       "buildsystem": "meson",
       "config-opts": [
-          "-Ddocs=false",
-          "-Dvapi=false",
-          "-Dbackend-gtk4=enabled"
+        "-Ddocs=false",
+        "-Dvapi=false",
+        "-Dbackend-gtk4=enabled"
       ],
       "sources": [
-          {
-              "type": "archive",
-              "url": "https://github.com/flatpak/libportal/releases/download/0.7.1/libportal-0.7.1.tar.xz",
-              "sha256": "297b90b263fad22190a26b8c7e8ea938fe6b18fb936265e588927179920d3805"
-          }
+        {
+          "type": "archive",
+          "url": "https://github.com/flatpak/libportal/releases/download/0.8.1/libportal-0.8.1.tar.xz",
+          "sha256": "281e54e4f8561125a65d20658f1462ab932b2b1258c376fed2137718441825ac"
+        }
       ]
     },
     {
