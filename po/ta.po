@@ -8,88 +8,92 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-07 08:14-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-12-27 16:03+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "ஃபோர்ச் தீப்பொறிகள்"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "அறிவிலி ஃபோர்சச் அறிவிப்புகளைப் பெறுங்கள்"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "கிட்; கிதுப்; அறிவிப்புகள்;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
 msgstr ""
+"அறிவிலிஆய்வு, அறிவிலிமையம், கிட்டா மற்றும் ஃபோர்ச்சோவுக்கான ஆதரவுடன் எளிய அறிவிப்பாளர் "
+"பயன்பாடு."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_ முனைகள்"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "_ கணக்குகள்"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "ஃபோர்ச் ச்பார்க்ச் பற்றி"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "வெளியேறு"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "பட்டியல் விளையாடுங்கள்"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "ஃபோர்ச் ச்பார்க்சுக்கு வருக"
 
 #: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "அறிவிப்புகளைப் பெற ஒரு கணக்கைச் சேர்க்கவும்"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "கணக்கைச் சேர்க்கவும்…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "அனைத்தையும் படித்தபடி குறிக்கவும்"
 
 #: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
-msgstr ""
+msgstr "கணக்குகள்"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "காட்ட அறிவிப்புகள் எதுவும் இல்லை"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "பின்னணியில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "தொடக்கத்தில் ஃபோர்ச் தீப்பொறிகளை இயக்க அனுமதிக்கவும்."
 
 #. *
 #. * Set background status message
@@ -98,83 +102,83 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "புதிய அறிவிப்புகளை கண்காணித்தல்"
 
 #: src/util.js:103 src/util.js:144
 msgid "now"
-msgstr ""
+msgstr "இப்போது"
 
 #. Translators: relative date
 #: src/util.js:108
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d மணித்துளி முன்பு"
+msgstr[1] "%d நிமிடங்களுக்கு முன்பு"
 
 #. Translators: relative date
 #: src/util.js:115
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d மணி நேரத்திற்கு முன்பு"
+msgstr[1] "%d மணிநேரங்களுக்கு முன்பு"
 
 #. Translators: relative date
 #: src/util.js:122
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "நேற்று"
+msgstr[1] "%d சில நாட்களுக்கு முன்பு"
 
 #. Translators: relative date
 #: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d வாரத்திற்கு முன்பு"
+msgstr[1] "%d வாரங்களுக்கு முன்பு"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "%s"
 
 #: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "கணக்கு %s ஏற்பு தோல்வியடைந்தது!"
 
 #: src/window.js:217
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "கிள்ளாக்கு ரத்து செய்யப்பட்டிருக்கலாம் அல்லது காலாவதியானது."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:162
 msgid "translator-credits"
-msgstr ""
+msgstr "மொழிபெயர்ப்பாளர்-வரவு"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "பொது"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "திறந்த பட்டியல்"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "வெளியேறு"
 
 #: src/forges/github.js:32
 #, javascript-format
@@ -183,6 +187,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"<A href = \"%s\"> அறிவிலிமையம் உருவாக்குபவர் அமைப்புகள் </a> இலிருந்து புதிய தனிப்பட்"
+"ட அணுகல் கிள்ளாக்கை நீங்கள் உருவாக்கலாம். மேலும் தகவலுக்கு, \"<a href =\"%s "
+"\"> தனிப்பட்ட அணுகல் கிள்ளாக்கை உருவாக்குதல் </a>\" ஐப் பார்க்கவும்."
 
 #. GitHub access token help
 #: src/forges/github.js:37
@@ -190,6 +197,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"ஃபோர்ச் ச்பார்க்சுக்கு <b> கிளாசிக் </b> <i> அறிவிப்புகள் </i> மற்றும் <i> படிக்க: பயனர் "
+"</i> ச்கோப்புகள் வழங்கப்பட்ட ஒரு <b> கிளாசிக் </b> அணுகல் கிள்ளாக்கு தேவை."
 
 #. GitHub access token help
 #: src/forges/github.js:40
@@ -197,6 +206,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"நீங்கள் தனியார் களஞ்சியங்களுடன் பணிபுரிகிறீர்கள் என்றால், நீங்கள் முழு <i> ரெப்போ </i> "
+"நோக்கத்தையும் வழங்க வேண்டும்."
 
 #. Gitea access token help
 #: src/forges/gitea.js:31
@@ -204,6 +215,8 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"உங்கள் நிகழ்விலிருந்து புதிய அணுகல் கிள்ளாக்கை உருவாக்க, அமைப்புகள் → பயன்பாடுகளுக்குச் "
+"சென்று புதிய கிள்ளாக்கை உருவாக்கவும்."
 
 #. Gitea access token help
 #: src/forges/gitea.js:34
@@ -211,6 +224,8 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"ஃபோர்ச் ச்பார்க்சுக்கு <i> படிக்க: வெளியீடு </i>, <i> எழுது: அறிவிப்பு </i> மற்றும் <i> "
+"படிக்க: பயனர் </i> ச்கோப்புகள் வழங்கப்பட்டன."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -218,104 +233,106 @@ msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
 msgstr ""
+"உங்கள் நிகழ்விலிருந்து புதிய அணுகல் கிள்ளாக்கை உருவாக்க, விருப்பத்தேர்வுகள் → டோக்கன்களை "
+"அணுகவும், புதிய கிள்ளாக்கை உருவாக்கவும்."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
 msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr ""
+msgstr "ஃபோர்ச் ச்பார்க்சுக்கு <i> பநிஇ </i> ச்கோப்புகள் தேவை."
 
 #: src/model/notification.js:69
 msgid "Mark as Read"
-msgstr ""
+msgstr "படித்தபடி குறி"
 
 #: src/model/notification.js:76
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "ஃபோர்ச் ச்பார்க்சைக் காட்டு"
 
 #: src/widgets/accountDialog.blp:5
 msgid "Add Account"
-msgstr ""
+msgstr "கணக்கைச் சேர்க்கவும்"
 
 #: src/widgets/accountDialog.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்துசெய்"
 
 #: src/widgets/accountDialog.blp:27
 msgid "Add"
-msgstr ""
+msgstr "கூட்டு"
 
 #: src/widgets/accountDialog.blp:45
 msgid "Forge"
-msgstr ""
+msgstr "ஃபார்ச்"
 
 #: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
-msgstr ""
+msgstr "நிகழ்வு முகவரி"
 
 #: src/widgets/accountDialog.blp:60
 msgid "Access Token"
-msgstr ""
+msgstr "அணுகல் கிள்ளாக்கு"
 
 #: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
-msgstr ""
+msgstr "கணக்கை அகற்று"
 
 #: src/widgets/accountDialog.js:74
 msgid "Edit Account"
-msgstr ""
+msgstr "கணக்கைத் திருத்தவும்"
 
 #: src/widgets/accountDialog.js:75
 msgid "Save"
-msgstr ""
+msgstr "சேமி"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr ""
+msgstr "தவறான நிகழ்வு முகவரி."
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "கணக்கை அங்கீகரிக்க முடியவில்லை"
 
 #: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "அணுகல் டோக்கனில் தேவையான நோக்கங்கள் இல்லை"
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "கணக்கை உருவாக்கும் போது எதிர்பாராத பிழை"
 
 #: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "கணக்கை அகற்றுவதில் எதிர்பாராத பிழை"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "பின்னணியில் தொடர்ந்து இயங்கும்"
 
 #: src/widgets/preferences.blp:18
 msgid "Run on Startup"
-msgstr ""
+msgstr "தொடக்கத்தில் இயக்கவும்"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr ""
+msgstr "மறைக்கத் தொடங்குங்கள்"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "கோரிக்கை தோல்வியடைந்தது."
 
 #: src/widgets/preferences.js:97 src/widgets/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "ஆட்டோச்டார்ட் கோரிக்கை தோல்வியடைந்தது."
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr ""
+msgstr "சேர்க்கவும்…"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
-msgstr ""
+msgstr "கணக்குகள் இல்லை"
 
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "கணக்கு ஏற்பு தோல்வியடைந்தது!"
