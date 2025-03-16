@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-07 08:14-0500\n"
-"PO-Revision-Date: 2025-03-16 14:22+0000\n"
+"PO-Revision-Date: 2025-03-16 21:49+0000\n"
 "Last-Translator: Henri Aunin <contact@hen.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/et/>\n"
@@ -214,6 +214,8 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Loo uus pääsutunnus oma Gitea platvormil. Mine Sätted → Rakendused ja loo "
+"uus pääsutunnus."
 
 #. Gitea access token help
 #: src/forges/gitea.js:34
@@ -221,6 +223,8 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks vajab luba skoopidele <i>read:issue</i>, <i>write:notification</"
+"i> ja <i>read:user</i>."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -232,31 +236,32 @@ msgstr ""
 #. GitLab access token help
 #: src/forges/gitlab.js:27
 msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr ""
+msgstr "Forge Sparks vajab luba skoobile <i>api</i>."
 
 #: src/model/notification.js:69
 msgid "Mark as Read"
-msgstr ""
+msgstr "Märgista loetuks"
 
 #: src/model/notification.js:76
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Näita Forge Sparksi"
 
 #: src/widgets/accountDialog.blp:5
 msgid "Add Account"
-msgstr ""
+msgstr "Lisa konto"
 
 #: src/widgets/accountDialog.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "Tühista"
 
 #: src/widgets/accountDialog.blp:27
 msgid "Add"
-msgstr ""
+msgstr "Lisa"
 
 #: src/widgets/accountDialog.blp:45
+#, fuzzy
 msgid "Forge"
-msgstr ""
+msgstr "Forge"
 
 #: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
@@ -268,15 +273,16 @@ msgstr ""
 
 #: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
-msgstr ""
+msgstr "Eemalda konto"
 
 #: src/widgets/accountDialog.js:74
+#, fuzzy
 msgid "Edit Account"
-msgstr ""
+msgstr "Muuda kontot"
 
 #: src/widgets/accountDialog.js:75
 msgid "Save"
-msgstr ""
+msgstr "Salvesta"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
@@ -292,19 +298,20 @@ msgstr ""
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Ootamatu viga konto lisamisel"
 
 #: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Ootamatu viga konto eemaldamisel"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "Jooksuta rakendus taustal"
 
 #: src/widgets/preferences.blp:18
+#, fuzzy
 msgid "Run on Startup"
-msgstr ""
+msgstr "Jooksuta rakendus arvuti käivitamisel"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
@@ -320,12 +327,12 @@ msgstr ""
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr ""
+msgstr "Lisa…"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
-msgstr ""
+msgstr "Pole kontosi"
 
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Konto autentimine ebaõnnestus!"
