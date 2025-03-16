@@ -8,19 +8,21 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-07 08:14-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-16 14:22+0000\n"
+"Last-Translator: Henri Aunin <contact@hen.ee>\n"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
@@ -29,7 +31,7 @@ msgstr ""
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notifications;märguanded;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
@@ -37,23 +39,23 @@ msgstr ""
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Eelistused"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "K_ontod"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Kiirklahvid"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Rakenduse teave"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "Sulge"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
@@ -61,35 +63,35 @@ msgstr ""
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "Tere tulemast"
 
 #: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Lisa konto, et saada märguandeid"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "Lisa konto…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Märgi kõik loetuks"
 
 #: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
-msgstr ""
+msgstr "Kontod"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Pole ühtegi märguannet näidata"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Luba rakendusel taustal jooksutada."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Luba rakendusel arvuti käivitamisel jooksutada."
 
 #. *
 #. * Set background status message
@@ -98,54 +100,54 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Monitoori uusi märguandeid"
 
 #: src/util.js:103 src/util.js:144
 msgid "now"
-msgstr ""
+msgstr "nüüd"
 
 #. Translators: relative date
 #: src/util.js:108
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minut tagasi"
+msgstr[1] "%d minutit tagasi"
 
 #. Translators: relative date
 #: src/util.js:115
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tund tagasi"
+msgstr[1] "%d tundi tagasi"
 
 #. Translators: relative date
 #: src/util.js:122
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "eile"
+msgstr[1] "%d päeva tagasi"
 
 #. Translators: relative date
 #: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nädal tagasi"
+msgstr[1] "%d nädalat tagasi"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "%s"
 
 #: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Konto %s autentimine ebaõnnestus!"
 
 #: src/window.js:217
 msgid "The token may have been revoked or expired."
@@ -154,27 +156,28 @@ msgstr ""
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:162
 msgid "translator-credits"
-msgstr ""
+msgstr "Henri Aunin <contact@hen.ee>"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Üldine"
 
 #: src/gtk/help-overlay.blp:15
+#, fuzzy
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Ava valikud"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Kiirklahvid"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Sulge"
 
 #: src/forges/github.js:32
 #, javascript-format
@@ -183,6 +186,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Loo omale uus \"personal access token\" <a href=\"%s\">GitHubi "
+"arendajasätetes</a>. Rohkem informatsiooni saab leheküljel \"<a href=\"%s\""
+">Creating a personal access token</a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:37
@@ -190,6 +196,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks vajab \"<b>classic</b> access tokenit\" (üldiseks kasutamiseks)"
+", kus on antud luba skoopidele <i>notifications</i> ja <i>read:user</i>."
 
 #. GitHub access token help
 #: src/forges/github.js:40
@@ -197,6 +205,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Kui kasutad privaatseid GitHub hoidlaid, siis pead lubama ka <i>repo</i> "
+"skoopi."
 
 #. Gitea access token help
 #: src/forges/gitea.js:31
