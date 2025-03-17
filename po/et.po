@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-07 08:14-0500\n"
-"PO-Revision-Date: 2025-03-16 21:49+0000\n"
+"PO-Revision-Date: 2025-03-17 19:39+0000\n"
 "Last-Translator: Henri Aunin <contact@hen.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/et/>\n"
@@ -27,7 +27,7 @@ msgstr "Forge Sparks"
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "Saa hõlpsasti Giti teenuste märguandeid"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
@@ -36,6 +36,8 @@ msgstr "git;github;notifications;märguanded;"
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
 msgstr ""
+"Lihtne märguannete rakendus, mis toetab GitLab, GitHub, Gitea ja Forgejo "
+"teenuseid."
 
 #: src/window.blp:7
 msgid "_Preferences"
@@ -59,7 +61,7 @@ msgstr "Sulge"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "Peamenüü"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
@@ -151,7 +153,7 @@ msgstr "Konto %s autentimine ebaõnnestus!"
 
 #: src/window.js:217
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Pääsutunnus võib olla tühistatud või aegunud."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:162
@@ -164,10 +166,9 @@ msgid "General"
 msgstr "Üldine"
 
 #: src/gtk/help-overlay.blp:15
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr "Ava valikud"
+msgstr "Ava menüü"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
@@ -232,6 +233,8 @@ msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
 msgstr ""
+"Loo uus pääsutunnus kohandatud GitLabi veebilehest, minnes Preferences → "
+"Access Tokens ja loo uus pääsutunnus."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
@@ -259,24 +262,22 @@ msgid "Add"
 msgstr "Lisa"
 
 #: src/widgets/accountDialog.blp:45
-#, fuzzy
 msgid "Forge"
 msgstr "Forge"
 
 #: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
-msgstr ""
+msgstr "Kohandatud Git teenuse URL"
 
 #: src/widgets/accountDialog.blp:60
 msgid "Access Token"
-msgstr ""
+msgstr "Pääsutunnus"
 
 #: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
 msgstr "Eemalda konto"
 
 #: src/widgets/accountDialog.js:74
-#, fuzzy
 msgid "Edit Account"
 msgstr "Muuda kontot"
 
@@ -286,15 +287,15 @@ msgstr "Salvesta"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Vigane URL."
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Ei suutnud autentida"
 
 #: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Pääsutunnusel pole vajalikud skoobid"
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
@@ -309,21 +310,20 @@ msgid "Keep Running in Background"
 msgstr "Jooksuta rakendus taustal"
 
 #: src/widgets/preferences.blp:18
-#, fuzzy
 msgid "Run on Startup"
-msgstr "Jooksuta rakendus arvuti käivitamisel"
+msgstr "Käivita rakendus arvuti käivitamisel"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr ""
+msgstr "Käivita rakendus peidetult"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "Päring ebaõnnestus."
 
 #: src/widgets/preferences.js:97 src/widgets/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "Automaatkäivituse päring ebaõnnestus."
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
