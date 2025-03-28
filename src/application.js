@@ -135,7 +135,7 @@ export default class Application extends Adw.Application {
             this.window._onWindowHide();
             this.hidden = false;
         } else {
-            this.window.show();
+            this.window.present();
         }
     }
 
