@@ -25,5 +25,5 @@ Gio._promisify(Secret, 'password_clear', 'password_clear_finish');
 
 export function main(argv) {
     const application = new Application();
-    return application.run(argv);
+    return application.runAsync(argv);
 }

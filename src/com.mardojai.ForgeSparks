@@ -1,8 +1,7 @@
 #!@GJS@ -m
 
-import { exit } from "system";
+import { exit, programArgs } from "system";
 import Gio from "gi://Gio";
-import GLib from "gi://GLib";
 import { setConsoleLogDomain } from "console";
 
 imports.package.init({
@@ -19,16 +18,6 @@ const resource = Gio.resource_load(
 );
 Gio.resources_register(resource);
 
-const loop = GLib.MainLoop.new(null, false);
-import("resource://com/mardojai/ForgeSparks@profile@/main.js")
-    .then((main) => {
-        // Temporary solution to https://gitlab.gnome.org/GNOME/gjs/-/issues/468
-        GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
-        loop.quit();
-        const exit_code = imports.package.run(main);
-        exit(exit_code);
-        return GLib.SOURCE_REMOVE;
-        });
-    })
-    .catch(logError);
-loop.run();
+const module = await import("resource://com/mardojai/ForgeSparks@profile@/main.js");
+const exitCode = await module.main(programArgs);
+exit(exitCode);
