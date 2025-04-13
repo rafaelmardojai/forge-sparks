@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
-    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v5
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: "forge-sparks-devel.flatpak"
         manifest-path: "com.mardojai.ForgeSparksDevel.json"
