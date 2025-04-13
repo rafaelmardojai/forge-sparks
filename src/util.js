@@ -95,11 +95,11 @@ export function setBackgroundStatus(message=_('Monitoring new notifications')) {
  */
 export function relativeDate(date) {
     const now = GLib.DateTime.new_now(date.get_timezone());
-    const difference = date.difference(now);
+    const difference = now.difference(date);
 
-    if (difference < 0) {
+    if (difference > 0) {
         /* microseconds to minutes */
-        const minutes = Math.round(Math.abs(difference) / 6e+7);
+        const minutes = Math.round(difference / 6e+7);
 
         if (minutes < 1) {
             return _('now');
