@@ -39,7 +39,7 @@ msgstr "برنامه آگاه‌ساز ساده با پشتیبانی از گی�
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr "ـترجیحات"
+msgstr "_ترجیحات"
 
 #: src/window.blp:12
 msgid "_Accounts"
@@ -47,35 +47,35 @@ msgstr ""
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_میانبرهای تخته‌کلید"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "درباره فورج اسپارک"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "خروج"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "منو اصلی"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "خوش‌آمدید به فورج اسپارک"
 
 #: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "یک حساب اضافه کنید تا آگاهی‌ها را دریافت کنید"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "افزودن حساب…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "علامت زدن همه  به عنوان خوانده‌شده"
 
 #: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
