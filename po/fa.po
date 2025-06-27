@@ -35,11 +35,11 @@ msgstr "گیت;گیتهاب;آگاهی‌ها;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
-msgstr "برنامه آگاه‌ساز ساده با پشتیبانی از گیت‌لب، گیتهاب، گیتی و فورجئو"
+msgstr "برنامه آگاه‌ساز ساده با پشتیبانی از گیت‌لب، گیتهاب، گیتی و فورجو."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "ـترجیحات"
 
 #: src/window.blp:12
 msgid "_Accounts"
