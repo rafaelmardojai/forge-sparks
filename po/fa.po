@@ -75,19 +75,19 @@ msgstr "افزودن حساب…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr "علامت زدن همه  به عنوان خوانده‌شده"
+msgstr "علامت زدن همه به عنوان خوانده‌شده"
 
 #: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
-msgstr ""
+msgstr "حساب‌ها"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "هیچ آگاهی برای نمایش نیست"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "اجازه اجرا فورج اسپارک در پس‌زمینه"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
