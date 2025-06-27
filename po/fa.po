@@ -8,28 +8,30 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-07 08:14-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-06-29 00:05+0000\n"
+"Last-Translator: Mir Sobhan <mr.sobhan.n@outlook.com>\n"
+"Language-Team: Persian <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "فورج اسپارک"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:5
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "آگاهی های فورج گیت را دریافت کنید"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "گیت;گیتهاب;آگاهی‌ها"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
