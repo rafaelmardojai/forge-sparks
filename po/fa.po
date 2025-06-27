@@ -31,11 +31,11 @@ msgstr "آگاهی های فورج گیت را دریافت کنید"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr "گیت;گیتهاب;آگاهی‌ها"
+msgstr "گیت;گیتهاب;آگاهی‌ها;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
-msgstr ""
+msgstr "برنامه آگاه‌ساز ساده با پشتیبانی از گیت‌لب، گیتهاب، گیتی و فورجئو"
 
 #: src/window.blp:7
 msgid "_Preferences"
