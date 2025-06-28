@@ -272,52 +272,52 @@ msgstr "ذخیره"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr "URL نمونه غیرمعتبر"
+msgstr "URL نمونه غیرمعتبر."
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "احراز حساب امکان نیافت"
 
 #: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "توکن دسترسی حوزه های مورد نیاز را ندارد"
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "خطای نامنتظره هنگام ایجاد حساب"
 
 #: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "خطای غیرمنتظره هنگام زدودن حساب"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "نگهداری اجرا در پس‌زمینه"
 
 #: src/widgets/preferences.blp:18
 msgid "Run on Startup"
-msgstr ""
+msgstr "اجرا در شروع اولیه"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr ""
+msgstr "شروع پنهانی"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "درخواست ناموفق بود."
 
 #: src/widgets/preferences.js:97 src/widgets/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "درخواست اجرای خودکار ناموفق بود."
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr ""
+msgstr "افزودن…"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
-msgstr ""
+msgstr "هیچ حسابی نیست"
 
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "احراز حساب شکست خورد!"
