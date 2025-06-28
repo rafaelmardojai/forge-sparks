@@ -142,12 +142,12 @@ msgstr[1] "%d هفته قبل"
 #: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
-msgstr "در"
+msgstr "در %s"
 
 #: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "احراز هویت حساب %s شکست خورد"
 
 #: src/window.js:217
 msgid "The token may have been revoked or expired."
