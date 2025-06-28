@@ -128,21 +128,21 @@ msgstr[1] "%d ساعت قبل"
 msgid "yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "دیروز"
-msgstr[1] ""
+msgstr[1] "%d روز قبل"
 
 #. Translators: relative date
 #: src/util.js:129
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d هفته قبل"
+msgstr[1] "%d هفته قبل"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:135 src/util.js:139
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "در"
 
 #: src/window.js:215
 #, javascript-format
