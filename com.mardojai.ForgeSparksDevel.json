@@ -10,7 +10,8 @@
     "--socket=wayland",
     "--device=dri",
     "--share=network",
-    "--talk-name=org.a11y.Bus"
+    "--talk-name=org.a11y.Bus",
+    "--talk-name=org.freedesktop.secrets"
   ],
   "modules": [
     {
