@@ -24,7 +24,7 @@ export default class GitLab extends Forge {
         let tokenText = _('To generate a new access token from your instance, go to Preferences → Access Tokens and generate a new token.');
         tokenText += '\n\n';
         /* GitLab access token help */
-        tokenText += _('Forge Sparks requires the <i>api</i> scopes granted.');
+        tokenText += _('Forge Sparks needs <i>read_api</i> scope to read notifications or full <i>api</i> scope to also mark todos as done.');
 
         return tokenText;
     }

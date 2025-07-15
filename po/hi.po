@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-07 08:14-0500\n"
+"POT-Creation-Date: 2025-07-14 19:58-0500\n"
 "PO-Revision-Date: 2024-05-28 16:09+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/forge-sparks/forge-"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Generator: Weblate 5.6-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
+#: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
 msgstr "फोर्ज स्पार्क्स"
 
-#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
 msgstr "गिट फोर्ज अधिसूचनाएं प्राप्त करें"
@@ -103,12 +103,12 @@ msgstr "स्टार्टअप पर फोर्ज स्पार्क
 msgid "Monitoring new notifications"
 msgstr "नई अधिसूचनाओं की निगरानी"
 
-#: src/util.js:103 src/util.js:144
+#: src/util.js:105 src/util.js:146
 msgid "now"
 msgstr "अभी"
 
 #. Translators: relative date
-#: src/util.js:108
+#: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -116,7 +116,7 @@ msgstr[0] "%d मिनट पहले"
 msgstr[1] "%d मिनट पहले"
 
 #. Translators: relative date
-#: src/util.js:115
+#: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -124,7 +124,7 @@ msgstr[0] "%d घंटा पहले"
 msgstr[1] "%d घंटे पहले"
 
 #. Translators: relative date
-#: src/util.js:122
+#: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -132,7 +132,7 @@ msgstr[0] "कल"
 msgstr[1] "%d दिन पहले"
 
 #. Translators: relative date
-#: src/util.js:129
+#: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -140,7 +140,7 @@ msgstr[0] "%d हफ्ता पहले"
 msgstr[1] "%d हफ्ते पहले"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:135 src/util.js:139
+#: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
 msgstr "%s पर"
@@ -236,14 +236,19 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr "फोर्ज स्पार्क्स को दिए गए <i>api</i> स्कोप की आवश्यकता है।"
+#, fuzzy
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"फोर्ज स्पार्क्स को <i>read:issue</i>, <i>write:notification</i> और <i>read:user</"
+"i> स्कोप दिए जाने की आवश्यकता है।"
 
-#: src/model/notification.js:69
+#: src/model/notification.js:75
 msgid "Mark as Read"
 msgstr "पठित चिह्नित करें"
 
-#: src/model/notification.js:76
+#: src/model/notification.js:82
 msgid "Show Forge Sparks"
 msgstr "फोर्ज स्पार्क्स दिखाएं"
 
@@ -334,3 +339,6 @@ msgstr "कोई खाता नहीं"
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
 msgstr "खाता प्रमाणीकरण विफल!"
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "फोर्ज स्पार्क्स को दिए गए <i>api</i> स्कोप की आवश्यकता है।"

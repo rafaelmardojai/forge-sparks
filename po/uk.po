@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-07 08:14-0500\n"
+"POT-Creation-Date: 2025-07-14 19:58-0500\n"
 "PO-Revision-Date: 2025-03-04 16:02+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -21,11 +21,11 @@ msgstr ""
 "X-Generator: Weblate 5.10.3-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
+#: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
 msgstr "Отримувати сповіщення git forges"
@@ -104,12 +104,12 @@ msgstr "Дозволити запуск Forge Sparks під час запуск�
 msgid "Monitoring new notifications"
 msgstr "Шукаю нові сповіщення"
 
-#: src/util.js:103 src/util.js:144
+#: src/util.js:105 src/util.js:146
 msgid "now"
 msgstr "зараз"
 
 #. Translators: relative date
-#: src/util.js:108
+#: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -118,7 +118,7 @@ msgstr[1] "%d хвилини тому"
 msgstr[2] "%d хвилин тому"
 
 #. Translators: relative date
-#: src/util.js:115
+#: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -127,7 +127,7 @@ msgstr[1] "%d години тому"
 msgstr[2] "%d годин тому"
 
 #. Translators: relative date
-#: src/util.js:122
+#: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -136,7 +136,7 @@ msgstr[1] "%d дні тому"
 msgstr[2] "%d днів тому"
 
 #. Translators: relative date
-#: src/util.js:129
+#: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -145,7 +145,7 @@ msgstr[1] "%d тижні тому"
 msgstr[2] "%d тижнів тому"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:135 src/util.js:139
+#: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
 msgstr "на %s"
@@ -243,14 +243,19 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr "Для Forge Sparks потрібні надані області <i>api</i>."
+#, fuzzy
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks вимагає <i>read: issue</i>, <i>write: notification</i> і "
+"<i>read: user</i> надано дозвіл."
 
-#: src/model/notification.js:69
+#: src/model/notification.js:75
 msgid "Mark as Read"
 msgstr "Відзначити як прочитане"
 
-#: src/model/notification.js:76
+#: src/model/notification.js:82
 msgid "Show Forge Sparks"
 msgstr "Показати Forge Sparks"
 
@@ -341,6 +346,9 @@ msgstr "Немає облікових записів"
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
 msgstr "Помилка автентифікації облікового запису!"
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "Для Forge Sparks потрібні надані області <i>api</i>."
 
 #~ msgid "Get git forges notifications"
 #~ msgstr "Отримувати сповіщення git forges"

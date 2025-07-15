@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-07 08:14-0500\n"
+"POT-Creation-Date: 2025-07-14 19:58-0500\n"
 "PO-Revision-Date: 2024-03-17 17:01+0000\n"
-"Last-Translator: \"André L. Alvares\" <andrluiz.alvares.alvares84@gmail."
-"com>\n"
+"Last-Translator: \"André L. Alvares\" "
+"<andrluiz.alvares.alvares84@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/pt/>\n"
 "Language: pt\n"
@@ -21,11 +21,11 @@ msgstr ""
 "X-Generator: Weblate 5.5-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
+#: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
 msgstr "Receba notificações das forjas Git"
@@ -105,12 +105,12 @@ msgstr "Permite executar o Forge Sparks na inicialização do sistema."
 msgid "Monitoring new notifications"
 msgstr "Monitorando novas notificações"
 
-#: src/util.js:103 src/util.js:144
+#: src/util.js:105 src/util.js:146
 msgid "now"
 msgstr "agora"
 
 #. Translators: relative date
-#: src/util.js:108
+#: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -118,7 +118,7 @@ msgstr[0] "%d minuto atrás"
 msgstr[1] "%d minutos atrás"
 
 #. Translators: relative date
-#: src/util.js:115
+#: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -126,7 +126,7 @@ msgstr[0] "%d hora atrás"
 msgstr[1] "%d horas atrás"
 
 #. Translators: relative date
-#: src/util.js:122
+#: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -134,7 +134,7 @@ msgstr[0] "ontem"
 msgstr[1] "%d dias atrás"
 
 #. Translators: relative date
-#: src/util.js:129
+#: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -142,7 +142,7 @@ msgstr[0] "%d semana atrás"
 msgstr[1] "%d semanas atrás"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:135 src/util.js:139
+#: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
 msgstr "em %s"
@@ -242,14 +242,18 @@ msgstr ""
 #. GitLab access token help
 #: src/forges/gitlab.js:27
 #, fuzzy
-msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr "Forge Sparks requer o escopo <i>notifications</i> concedido."
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Forge Sparks requer token de acesso <b>clássico</b> (para uso geral) com os "
+"escopos <i>notifications</i> e <i>read:user</i> concedidos."
 
-#: src/model/notification.js:69
+#: src/model/notification.js:75
 msgid "Mark as Read"
 msgstr "Marcar como Lida"
 
-#: src/model/notification.js:76
+#: src/model/notification.js:82
 msgid "Show Forge Sparks"
 msgstr "Exibir Forge Sparks"
 
@@ -342,6 +346,10 @@ msgstr "Sem Contas"
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
 msgstr "Autenticação da conta falhou!"
+
+#, fuzzy
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "Forge Sparks requer o escopo <i>notifications</i> concedido."
 
 #~ msgid "Get git forges notifications"
 #~ msgstr "Receba notificações do git forges"

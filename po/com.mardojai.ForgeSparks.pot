@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-07 08:14-0500\n"
+"POT-Creation-Date: 2025-07-14 19:58-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
+#: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
 msgstr ""
 
-#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
 msgstr ""
@@ -101,12 +101,12 @@ msgstr ""
 msgid "Monitoring new notifications"
 msgstr ""
 
-#: src/util.js:103 src/util.js:144
+#: src/util.js:105 src/util.js:146
 msgid "now"
 msgstr ""
 
 #. Translators: relative date
-#: src/util.js:108
+#: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -114,7 +114,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:115
+#: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -122,7 +122,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:122
+#: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -130,7 +130,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date
-#: src/util.js:129
+#: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -138,7 +138,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:135 src/util.js:139
+#: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
 msgstr ""
@@ -222,14 +222,16 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-msgid "Forge Sparks requires the <i>api</i> scopes granted."
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
 msgstr ""
 
-#: src/model/notification.js:69
+#: src/model/notification.js:75
 msgid "Mark as Read"
 msgstr ""
 
-#: src/model/notification.js:76
+#: src/model/notification.js:82
 msgid "Show Forge Sparks"
 msgstr ""
 

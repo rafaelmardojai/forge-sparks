@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-07 08:14-0500\n"
+"POT-Creation-Date: 2025-07-14 19:58-0500\n"
 "PO-Revision-Date: 2024-10-08 14:15+0000\n"
 "Last-Translator: Сергей <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/forge-sparks/"
@@ -21,11 +21,11 @@ msgstr ""
 "X-Generator: Weblate 5.8-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
-#: data/com.mardojai.ForgeSparks.desktop.in.in:4 src/window.blp:40
+#: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
 msgstr "Forge Sparks"
 
-#: data/com.mardojai.ForgeSparks.desktop.in.in:5
+#: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
 msgstr "Получайте уведомления Git forges"
@@ -105,12 +105,12 @@ msgstr "Разрешить запуск Forge Sparks при старте сис�
 msgid "Monitoring new notifications"
 msgstr "Отслеживание новых уведомлений"
 
-#: src/util.js:103 src/util.js:144
+#: src/util.js:105 src/util.js:146
 msgid "now"
 msgstr "сейчас"
 
 #. Translators: relative date
-#: src/util.js:108
+#: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
@@ -119,7 +119,7 @@ msgstr[1] "%d минуты назад"
 msgstr[2] "%d минут назад"
 
 #. Translators: relative date
-#: src/util.js:115
+#: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -128,7 +128,7 @@ msgstr[1] "%d часа назад"
 msgstr[2] "%d часов назад"
 
 #. Translators: relative date
-#: src/util.js:122
+#: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
@@ -137,7 +137,7 @@ msgstr[1] "%d дня назад"
 msgstr[2] "%d дней назад"
 
 #. Translators: relative date
-#: src/util.js:129
+#: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
@@ -146,7 +146,7 @@ msgstr[1] "%d недели назад"
 msgstr[2] "%d недель назад"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
-#: src/util.js:135 src/util.js:139
+#: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
 msgstr "на %s"
@@ -203,8 +203,8 @@ msgid ""
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
 "Для Forge Sparks требуется <b>классический</b> токен доступа (для общего "
-"использования) с предоставленными областями <i>уведомления</i> и <i>read:"
-"user</i>."
+"использования) с предоставленными областями <i>уведомления</i> и "
+"<i>read:user</i>."
 
 #. GitHub access token help
 #: src/forges/github.js:40
@@ -230,8 +230,8 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
-"Для Forge Sparks требуются области доступа <i>read:issue</i>, <i>write:"
-"notification</i> и <i>read:user</i>."
+"Для Forge Sparks требуются области доступа <i>read:issue</i>, "
+"<i>write:notification</i> и <i>read:user</i>."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -244,14 +244,19 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-msgid "Forge Sparks requires the <i>api</i> scopes granted."
-msgstr "Для Forge Sparks требуется область доступа <i>api</i>."
+#, fuzzy
+msgid ""
+"Forge Sparks needs <i>read_api</i> scope to read notifications or full "
+"<i>api</i> scope to also mark todos as done."
+msgstr ""
+"Для Forge Sparks требуются области доступа <i>read:issue</i>, "
+"<i>write:notification</i> и <i>read:user</i>."
 
-#: src/model/notification.js:69
+#: src/model/notification.js:75
 msgid "Mark as Read"
 msgstr "Пометить как прочитанное"
 
-#: src/model/notification.js:76
+#: src/model/notification.js:82
 msgid "Show Forge Sparks"
 msgstr "Показать Forge Sparks"
 
@@ -342,6 +347,9 @@ msgstr "Нет учетных записей"
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
 msgstr "Ошибка авторизации учетной записи!"
+
+#~ msgid "Forge Sparks requires the <i>api</i> scopes granted."
+#~ msgstr "Для Forge Sparks требуется область доступа <i>api</i>."
 
 #~ msgid "Get git forges notifications"
 #~ msgstr "Получайте уведомления git forges"
