@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: 2024-10-08 14:15+0000\n"
+"PO-Revision-Date: 2025-07-16 16:01+0000\n"
 "Last-Translator: Сергей <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
@@ -244,13 +244,12 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-#, fuzzy
 msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
-"Для Forge Sparks требуются области доступа <i>read:issue</i>, "
-"<i>write:notification</i> и <i>read:user</i>."
+"Для Forge Sparks требуется область <i>read_api</i> для чтения уведомлений "
+"или полная область <i>api</i>, чтобы также помечать задачи как выполненные."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
