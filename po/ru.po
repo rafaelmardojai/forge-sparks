@@ -248,8 +248,9 @@ msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
-"Для Forge Sparks требуется область <i>read_api</i> для чтения уведомлений "
-"или полная область <i>api</i>, чтобы также помечать задачи как выполненные."
+"Для Forge Sparks требуется область действия <i>read_api</i> для чтения "
+"уведомлений или полная область действия <i>api</i>, чтобы также помечать "
+"задачи как выполненные."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
