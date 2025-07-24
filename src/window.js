@@ -70,6 +70,7 @@ export default class Window extends Adw.ApplicationWindow {
         /* Store app fail states */
         this.authFailed = null;
         this.authErrorNotified = false;
+        this.fetchError = false;
         this.networkError = false;
 
         /* Set help overlay */
@@ -228,8 +229,10 @@ export default class Window extends Adw.ApplicationWindow {
                     this._resolveTokenError(account);
                 }
 
+                this.fetchError = false;
                 this.networkError = false;
             } catch (error) {
+                this.fetchError = true;
                 if (error instanceof GLib.Error) {
                     if (
                         error.matches(
@@ -371,12 +374,14 @@ export default class Window extends Adw.ApplicationWindow {
             this.notified[notification.id] = notification.updatedAt;
         }
 
-        /* Sanitize notified ids before saving */
-        Object.keys(this.notified).forEach((id) => {
-            if (!this.model.getByID(id)) {
-                delete this.notified[id];
-            }
-        });
+        if (!this.fetchError) {
+            /* Sanitize notified ids before saving */
+            Object.keys(this.notified).forEach((id) => {
+                if (!this.model.getByID(id)) {
+                    delete this.notified[id];
+                }
+            });
+        }
 
         /* Save notified ids so if the app restarts we don't notify again */
         settings.set_value(
