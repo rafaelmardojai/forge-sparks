@@ -127,7 +127,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     /**
      * Notification title
      *
-     * @type {String}
+     * @type {string}
      */
     get title() {
         if (this._title === undefined) this._title = null;
@@ -145,7 +145,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     /**
      * Notification date
      *
-     * @type {String}
+     * @type {string}
      */
     get date() {
         if (this._date === undefined) this._date = null;
@@ -163,7 +163,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     /**
      * Notification repository name
      *
-     * @type {String}
+     * @type {string}
      */
     get repo() {
         if (this._repo === undefined) this._repo = null;
@@ -181,7 +181,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     /**
      * Notification account name
      *
-     * @type {String}
+     * @type {string}
      */
     get account() {
         if (this._account === undefined) this._account = null;
@@ -199,7 +199,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     /**
      * Notification state
      *
-     * @type {String}
+     * @type {string}
      */
     get state() {
         if (this._state === undefined) this._state = null;
@@ -217,7 +217,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     /**
      * Notification icon name
      *
-     * @type {String}
+     * @type {string}
      */
     get iconName() {
         if (this._iconName === undefined) this._iconName = null;
@@ -235,7 +235,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
     /**
      * Notification progress state
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     get progress() {
         return this._progress;

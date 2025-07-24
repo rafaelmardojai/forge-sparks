@@ -57,7 +57,10 @@ export default class Window extends Adw.ApplicationWindow {
     constructor(constructProperties = {}) {
         super(constructProperties);
 
-        /* Store accounts forge instances */
+        /**
+         * Store accounts forge instances
+         * @type {Object.<string, import('./forges/forge.js').default>}
+         */
         this.forges = {};
         /* Interval of the notifications requests, in seconds */
         this.interval = 60;
@@ -183,6 +186,7 @@ export default class Window extends Adw.ApplicationWindow {
         let newNotifications = []; /* List to store new notifications */
         /* Loop accounts model */
         for (var i = 0; i < accounts.get_n_items(); i++) {
+            /** @type {import('./model/account.js').default} */
             const account = accounts.get_item(i);
 
             /* Init a corresponding forge instance for the account if isn't yet */
@@ -389,7 +393,7 @@ export default class Window extends Adw.ApplicationWindow {
      *
      * Mark it as read and withdraw it from desktop inbox
      *
-     * @param {String} id  Notification ID
+     * @param {string} id  Notification ID
      */
     async resolveNotification(id) {
         const app = this.get_application();
@@ -436,7 +440,7 @@ export default class Window extends Adw.ApplicationWindow {
      * Create a widget from a notification object
      *
      * @param {Notification} notification The notification object
-     * @returns {Gtk.WIdget} The widget representing a notification
+     * @returns {Gtk.Widget} The widget representing a notification
      */
     _createNotificationRow(notification) {
         /* Create widget from notification values */
@@ -494,7 +498,7 @@ export default class Window extends Adw.ApplicationWindow {
     /**
      * Resolve token error
      *
-     * @param {Account | null} account Account to resolve
+     * @param {import('./model/account.js').default | null} account Account to resolve
      */
     _resolveTokenError(account = null) {
         this.authFailed = null;

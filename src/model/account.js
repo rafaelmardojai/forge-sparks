@@ -79,7 +79,7 @@ export default class Account extends GObject.Object {
      *
      * (username@instance.tld)
      *
-     * @type {String}
+     * @type {string}
      */
     get displayName() {
         return `${this._username}@${this._url}`;
@@ -95,7 +95,7 @@ export default class Account extends GObject.Object {
     /**
      * Account ID from app settings
      *
-     * @type {String}
+     * @type {string}
      */
     get id() {
         if (this._id === undefined) this._id = null;
@@ -113,7 +113,7 @@ export default class Account extends GObject.Object {
     /**
      * Account forge name
      *
-     * @type {String}
+     * @type {string}
      */
     get forge() {
         if (this._forge === undefined) this._forge = null;
@@ -131,7 +131,7 @@ export default class Account extends GObject.Object {
     /**
      * Account server URL
      *
-     * @type {String}
+     * @type {string}
      */
     get url() {
         if (this._url === undefined) this._url = null;
@@ -149,7 +149,7 @@ export default class Account extends GObject.Object {
     /**
      * Account username
      *
-     * @type {String}
+     * @type {string}
      */
     get username() {
         if (this._username === undefined) this._username = null;
@@ -167,7 +167,7 @@ export default class Account extends GObject.Object {
     /**
      * Account user ID
      *
-     * @type {Number}
+     * @type {number}
      */
     get userId() {
         if (this._userId === undefined) this._userId = null;
@@ -185,7 +185,7 @@ export default class Account extends GObject.Object {
     /**
      * If the account auth failed
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     get authFailed() {
         return this._authFailed || false;

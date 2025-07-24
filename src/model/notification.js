@@ -152,7 +152,7 @@ export default class Notification extends GObject.Object {
     /**
      * Icon name for the Notification
      *
-     * @type {String}
+     * @type {string}
      */
     get iconName() {
         switch (this.type) {
@@ -190,7 +190,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification ID
      *
-     * @type {String}
+     * @type {string}
      */
     get id() {
         if (this._id === undefined) this._id = null;
@@ -208,7 +208,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification type
      *
-     * @type {String}
+     * @type {string}
      */
     get type() {
         if (this._type === undefined) this._type = null;
@@ -226,7 +226,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification unread state
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     get unread() {
         return this._unread;
@@ -240,7 +240,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification updated at date in ISO 8601 format
      *
-     * @type {String}
+     * @type {string}
      */
     get updatedAt() {
         if (this._updatedAt === undefined) this._updatedAt = null;
@@ -273,7 +273,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification timestamp
      *
-     * @type {Number}
+     * @type {number}
      */
     get timestamp() {
         return this.dateTime.to_unix();
@@ -282,7 +282,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification state
      *
-     * @type {String}
+     * @type {string}
      */
     get state() {
         if (this._state === undefined) this._state = null;
@@ -300,7 +300,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification title
      *
-     * @type {String}
+     * @type {string}
      */
     get title() {
         if (this._title === undefined) this._title = null;
@@ -318,7 +318,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification repository name
      *
-     * @type {String}
+     * @type {string}
      */
     get repository() {
         if (this._repository === undefined) this._repository = null;
@@ -336,7 +336,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification url
      *
-     * @type {String}
+     * @type {string}
      */
     get url() {
         if (this._url === undefined) this._url = null;
@@ -354,7 +354,7 @@ export default class Notification extends GObject.Object {
     /**
      * Notification account name
      *
-     * @type {String}
+     * @type {string}
      */
     get accountName() {
         if (this._accountName === undefined) this._accountName = null;

@@ -75,7 +75,7 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * If the form is editing an existing account
      *
-     * @type {Boolean}
+     * @type {boolean}
      */
     get editing() {
         return this._editing;
@@ -120,7 +120,7 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Get selected forge name from the new account view
      *
-     * @returns {String} Fhe forge name
+     * @returns {string} Fhe forge name
      */
     _getSeletedForge() {
         return this._forges_ls[this._forge.selected].name;
@@ -129,7 +129,7 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Get if selected forge in new account view allows instances
      *
-     * @returns {Boolean} If it allows instances
+     * @returns {boolean} If it allows instances
      */
     _allowInstances() {
         if (this.editing) {
@@ -142,7 +142,7 @@ export default class AccountDialog extends Adw.Dialog {
      * Get instance url set in the new account view.
      * Or forge default url if it doesn't allow instances
      *
-     * @returns {String} If it allows instances
+     * @returns {string} If it allows instances
      */
     _getInstanceURL() {
         if (!this._allowInstances()) {
@@ -158,7 +158,7 @@ export default class AccountDialog extends Adw.Dialog {
      * Get host from GLib.Uri with the www removed
      *
      * @param {GLib.Uri} uri URL to get the host
-     * @returns {String} The URI host
+     * @returns {string} The URI host
      */
     _getUriHost(uri) {
         let host = uri.get_host();
@@ -191,7 +191,7 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Validate and get GLib.Uri from url string
      *
-     * @param {String} url URL to validate
+     * @param {string} url URL to validate
      * @trows Trows an error if GLib failed parsing the url
      * @returns {GLib.Uri} Parser URI
      */
@@ -283,7 +283,7 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Get error user visible text
      *
-     * @returns {String} The error text
+     * @returns {string} The error text
      */
     _errorText(error) {
         switch (error) {

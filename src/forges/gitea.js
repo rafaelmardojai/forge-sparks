@@ -81,9 +81,9 @@ export default class Gitea extends GitHub {
      * This is a simplified version of Forge.buildURI with passed instance url
      * set as host and api v1 prepended to path
      *
-     * @param {String} path The URI path
+     * @param {string} path The URI path
      * @param {Object.<string, string>} query The URI query
-     * @returns {String} The resulting URI
+     * @returns {string} The resulting URI
      */
     buildURI(path, query = {}) {
         return Forge.buildURI(this.url, '/api/v1/' + path, query);

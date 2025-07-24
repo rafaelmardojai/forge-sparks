@@ -188,7 +188,7 @@ export default class GitHub extends Forge {
      *
      * @param {Object} notification The notification object from the response JSON
      * @throws Throws an error if failed making the request or reading the data
-     * @returns {Object.<string, string>} The object with the info
+     * @returns {Promise<Object.<string, string>>} The object with the info
      */
     async _getSubjectInfo(notification) {
         const info = {}; /* Here we'll store the info */
@@ -299,10 +299,10 @@ export default class GitHub extends Forge {
     /**
      * Get latest comment url from Issue
      *
-     * @param {String} url The url of the API to request the comments url
+     * @param {string} url The url of the API to request the comments url
      * e.g https://api.github.com/repos/user/repo/issues/comments/1529954726
      * @throws Throws an error if failed making the request or reading the data
-     * @returns {String | void} The HTML comment url.
+     * @returns {Promise<string | void>} The HTML comment url.
      * e.g. https://github.com/user/repo/issues/1#issuecomment-1529954726
      */
     async _getCommentURL(url) {
@@ -331,9 +331,9 @@ export default class GitHub extends Forge {
      * Based on Daniel Lamando snippet
      * https://github.com/sindresorhus/notifier-for-github/issues/268
      *
-     * @param {String} id Notification ID
-     * @param {Number} version Version of the referrer ID
-     * @returns {String} The base64 encoded referrer ID.
+     * @param {string} id Notification ID
+     * @param {number} version Version of the referrer ID
+     * @returns {string} The base64 encoded referrer ID.
      */
     _getNotificationReferrerID(id, version = 1) {
         switch (version) {
@@ -361,9 +361,9 @@ export default class GitHub extends Forge {
      *
      * This is a simplified version of Forge.buildURI with Github API url set as host
      *
-     * @param {String} path The URI path
+     * @param {string} path The URI path
      * @param {Object.<string, string>} query The URI query
-     * @returns {String} The resulting URI
+     * @returns {string} The resulting URI
      */
     buildURI(path, query = {}) {
         return Forge.buildURI(`api.${this.url}`, path, query);

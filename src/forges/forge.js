@@ -40,11 +40,11 @@ export default class Forge {
     /**
      * Crete a Forge
      *
-     * @param {String} url The url of the forge
-     * @param {String} token The access token
-     * @param {String} account Account ID associated to the instance
-     * @param {Number} userId Account user ID associated to the instance
-     * @param {String} accountName Account name associated to the instance
+     * @param {string} url The url of the forge
+     * @param {string} token The access token
+     * @param {string} account Account ID associated to the instance
+     * @param {number} userId Account user ID associated to the instance
+     * @param {string} accountName Account name associated to the instance
      */
     constructor(url, token, account = null, userId = null, accountName = '') {
         /**
@@ -82,7 +82,7 @@ export default class Forge {
     /**
      * Authorization header value
      *
-     * @type {String}
+     * @type {string}
      */
     get authorization() {
         return 'token ' + this.token;
@@ -99,7 +99,7 @@ export default class Forge {
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws {Unexpected} Got a response but could not find the username
      * @throws Any other error when making the request or reading the response
-     * @returns {Array<Number, String>} The id and username
+     * @returns {Promise<Array<number, string>>} The id and username
      */
     async getUser() {}
 
@@ -110,17 +110,17 @@ export default class Forge {
      *
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws Will throw an error if some part of the process fails
-     * @returns {Array<Notification>} The notifications
+     * @returns {Promise<Array<Notification>>} The notifications
      */
     async getNotifications() {}
 
     /**
      * Mark notifications as read
      *
-     * @param {String|Number|null} id ID of the notification to mark as read
+     * @param {string|number|null} id ID of the notification to mark as read
      * or null if all should be marked.
      * @throws Will throw an error if some part of the process fails
-     * @returns {Boolean} If the operation was successful
+     * @returns {Promise<boolean>} If the operation was successful
      */
     async markAsRead(id = null) {}
 
@@ -131,8 +131,8 @@ export default class Forge {
      * Adds access token as Authorization http header
      * Adds UTC as Time-Zone http header
      *
-     * @param {String} method HTTP method for the message
-     * @param {String} url URL for the message
+     * @param {string} method HTTP method for the message
+     * @param {string} url URL for the message
      * @param {Object} data Request body data
      * @param {Object.<string, string>} headers HTTP headers for the message
      * @returns {Soup.Message}
@@ -180,7 +180,7 @@ export default class Forge {
      * Create a more unique ID using the forge account ID
      *
      * @param {String|Number} id ID to make unique
-     * @returns {String}
+     * @returns {string}
      */
     formatID(id) {
         return `${this.account}-${id}`;
@@ -189,10 +189,10 @@ export default class Forge {
     /**
      * Build a request URI from multiple parts
      *
-     * @param {String} host The URI host
-     * @param {String} path The URI path
+     * @param {string} host The URI host
+     * @param {string} path The URI path
      * @param {Object.<string, string>} query The URI query
-     * @returns {String} The resulting URI
+     * @returns {string} The resulting URI
      */
     static buildURI(host, path, query = {}) {
         /* Prepend slash to the path if not present */

@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 
-import Gio from "gi://Gio";
-import GLib from "gi://GLib";
-import Soup from "gi://Soup";
-import Xdp from "gi://Xdp";
-import XdpGtk4 from "gi://XdpGtk4";
-import { gettext as _, ngettext } from "gettext";
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import Soup from 'gi://Soup';
+import Xdp from 'gi://Xdp';
+import XdpGtk4 from 'gi://XdpGtk4';
+import { gettext as _, ngettext } from 'gettext';
 
 const Format = imports.format;
 
@@ -14,7 +14,7 @@ const Format = imports.format;
  */
 export const settings = new Gio.Settings({
     schema_id: pkg.name,
-    path: "/com/mardojai/ForgeSparks/",
+    path: '/com/mardojai/ForgeSparks/',
 });
 
 /**
@@ -31,11 +31,11 @@ export const portal = new Xdp.Portal();
 /**
  * Request background portal
  *
- * @param {Gtk.window} window The window making the request
- * @param {Boolean} autostart If autostart should be requested as well
- * @param {Boolean} hidden If autostart should de done hidden. Depends on
+ * @param {Gtk.Window} window The window making the request
+ * @param {boolean} autostart If autostart should be requested as well
+ * @param {boolean} hidden If autostart should de done hidden. Depends on
  * autostart being true. Adds the --hidden flag to the app command.
- * @returns {Boolean} If request was successful
+ * @returns {Promise<boolean>} If request was successful
  */
 export function requestBackground(window, autostart = false, hidden = false) {
     /* Try getting parent from window */
@@ -48,14 +48,14 @@ export function requestBackground(window, autostart = false, hidden = false) {
     }
 
     return new Promise((resolve) => {
-        let command = ["forge-sparks"];
-        if (autostart && hidden) command.push("--hidden");
+        let command = ['forge-sparks'];
+        if (autostart && hidden) command.push('--hidden');
 
         portal.request_background(
             parent,
             autostart
-                ? _("Allow running Forge Sparks on background.")
-                : _("Allow running Forge Sparks on startup."),
+                ? _('Allow running Forge Sparks on background.')
+                : _('Allow running Forge Sparks on startup.'),
             command,
             autostart
                 ? Xdp.BackgroundFlags.AUTOSTART
@@ -79,10 +79,10 @@ export function requestBackground(window, autostart = false, hidden = false) {
 /**
  * Set background status message
  *
- * @param {String} message
+ * @param {string} message
  */
 export function setBackgroundStatus(
-    message = _("Monitoring new notifications"),
+    message = _('Monitoring new notifications'),
 ) {
     if (Xdp.Portal.running_under_sandbox()) {
         portal.set_background_status(message, null, (portal, result) => {
@@ -95,7 +95,7 @@ export function setBackgroundStatus(
  * Get relative date string from GLib.DateTime
  *
  * @param {GLib.DateTime} date
- * @returns {String}
+ * @returns {string}
  */
 export function relativeDate(date) {
     const now = GLib.DateTime.new_now(date.get_timezone());
@@ -106,44 +106,44 @@ export function relativeDate(date) {
         const minutes = Math.round(difference / 6e7);
 
         if (minutes < 1) {
-            return _("now");
+            return _('now');
         } else if (minutes < 60) {
             return Format.vprintf(
                 /* Translators: relative date */
-                ngettext("%d minute ago", "%d minutes ago", minutes),
+                ngettext('%d minute ago', '%d minutes ago', minutes),
                 [minutes],
             );
         } else if (minutes < 1440) {
             const hours = Math.round(minutes / 60);
             return Format.vprintf(
                 /* Translators: relative date */
-                ngettext("%d hour ago", "%d hours ago", hours),
+                ngettext('%d hour ago', '%d hours ago', hours),
                 [hours],
             );
         } else if (minutes < 10080) {
             const days = Math.round(minutes / 1440);
             return Format.vprintf(
                 /* Translators: relative date */
-                ngettext("yesterday", "%d days ago", days),
+                ngettext('yesterday', '%d days ago', days),
                 [days],
             );
         } else if (minutes < 40320) {
             const weeks = Math.round(minutes / 10080);
             return Format.vprintf(
                 /* Translators: relative date */
-                ngettext("%d week ago", "%d weeks ago", weeks),
+                ngettext('%d week ago', '%d weeks ago', weeks),
                 [weeks],
             );
         } else if (now.get_year() === date.get_year()) {
-            const formattedDate = date.format("%b %d");
+            const formattedDate = date.format('%b %d');
             /* Translators: relative date, %s is date formatted as "May 01, 2022" */
-            return Format.vprintf(_("on %s"), [formattedDate]);
+            return Format.vprintf(_('on %s'), [formattedDate]);
         } else {
-            const formattedDate = date.format("%d %b, %Y");
-            return Format.vprintf(_("on %s"), [formattedDate]);
+            const formattedDate = date.format('%d %b, %Y');
+            return Format.vprintf(_('on %s'), [formattedDate]);
         }
     }
 
-    console.error("Date is in the future!");
-    return _("now");
+    console.error('Date is in the future!');
+    return _('now');
 }

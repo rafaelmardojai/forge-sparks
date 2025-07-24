@@ -39,7 +39,7 @@ export default class NotificationsList extends GObject.Object {
     /**
      * Get item from list model
      *
-     * @param {Number} position Position of the item to get
+     * @param {number} position Position of the item to get
      * @returns {Number|null} The notification object or null if not objects
      * in the position
      */
@@ -50,7 +50,7 @@ export default class NotificationsList extends GObject.Object {
     /**
      * Get number of items in list model
      *
-     * @returns {Number} The length of the list model
+     * @returns {number} The length of the list model
      */
     vfunc_get_n_items() {
         return this._notifications.length;
@@ -82,7 +82,7 @@ export default class NotificationsList extends GObject.Object {
     /**
      * Get a notifications by its ID
      *
-     * @param {String} id The id of the notification to get
+     * @param {string} id The id of the notification to get
      * @returns {Notification}
      */
     getByID(id) {
@@ -97,7 +97,7 @@ export default class NotificationsList extends GObject.Object {
     /**
      * Remove a notifications by its ID
      *
-     * @param {String} id The id of the notification to remove
+     * @param {string} id The id of the notification to remove
      */
     removeByID(id) {
         let removeIndex = -1;
