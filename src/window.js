@@ -163,6 +163,8 @@ export default class Window extends Adw.ApplicationWindow {
      */
     async subscribe() {
         this.fetching = true;
+        this.fetchError = false;
+        this.networkError = false;
         const app = this.get_application();
 
         if (this._retryHandler != undefined) {
@@ -220,7 +222,7 @@ export default class Window extends Adw.ApplicationWindow {
 
             /* Get notifications from forge */
             try {
-                let notifications =
+                const notifications =
                     await this.forges[account.id].getNotifications(this);
                 newNotifications.push(...notifications);
 
@@ -228,9 +230,6 @@ export default class Window extends Adw.ApplicationWindow {
                 if (this.authFailed == account.id) {
                     this._resolveTokenError(account);
                 }
-
-                this.fetchError = false;
-                this.networkError = false;
             } catch (error) {
                 this.fetchError = true;
                 if (error instanceof GLib.Error) {
