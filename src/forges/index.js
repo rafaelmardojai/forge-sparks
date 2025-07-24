@@ -6,11 +6,11 @@ import GitHub from './github.js';
 import GitLab from './gitlab.js';
 
 export const FORGES = {
-    'forgejo': Forgejo,
-    'gitea': Gitea,
-    'github': GitHub,
-    'gitlab': GitLab,
-}
+    forgejo: Forgejo,
+    gitea: Gitea,
+    github: GitHub,
+    gitlab: GitLab,
+};
 
 /**
  * Extract account and notification id

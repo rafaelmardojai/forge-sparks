@@ -8,7 +8,6 @@ import Notification from '../model/notification.js';
 import { session } from './../util.js';
 
 export default class GitLab extends Forge {
-
     static name = 'gitlab';
 
     static prettyName = 'GitLab';
@@ -21,10 +20,14 @@ export default class GitLab extends Forge {
 
     static get tokenText() {
         /* GitLab access token help */
-        let tokenText = _('To generate a new access token from your instance, go to Preferences → Access Tokens and generate a new token.');
+        let tokenText = _(
+            'To generate a new access token from your instance, go to Preferences → Access Tokens and generate a new token.',
+        );
         tokenText += '\n\n';
         /* GitLab access token help */
-        tokenText += _('Forge Sparks needs <i>read_api</i> scope to read notifications or full <i>api</i> scope to also mark todos as done.');
+        tokenText += _(
+            'Forge Sparks needs <i>read_api</i> scope to read notifications or full <i>api</i> scope to also mark todos as done.',
+        );
 
         return tokenText;
     }
@@ -37,7 +40,11 @@ export default class GitLab extends Forge {
         try {
             const url = this.buildURI('user');
             const message = super.createMessage('GET', url);
-            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const bytes = await session.send_and_read_async(
+                message,
+                GLib.PRIORITY_DEFAULT,
+                null,
+            );
             const contents = super.readContents(bytes);
 
             console.log(`${url} response resulted in ${message.get_status()}`);
@@ -47,9 +54,9 @@ export default class GitLab extends Forge {
             } else if (message.get_status() == '403') {
                 throw 'FailedTokenScopes';
             } else if (message.get_status() != '200') {
-                throw 'Unexpected'
+                throw 'Unexpected';
             } else if (!('username' in contents) || !('id' in contents)) {
-                throw 'Unexpected'
+                throw 'Unexpected';
             }
 
             return [contents.id, contents.username];
@@ -62,7 +69,11 @@ export default class GitLab extends Forge {
         try {
             const url = this.buildURI('todos');
             const message = super.createMessage('GET', url);
-            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const bytes = await session.send_and_read_async(
+                message,
+                GLib.PRIORITY_DEFAULT,
+                null,
+            );
             const contents = super.readContents(bytes);
 
             console.log(`${url} response resulted in ${message.get_status()}`);
@@ -75,13 +86,13 @@ export default class GitLab extends Forge {
                     const notification = new Notification({
                         id: super.formatID(item.id),
                         type: item.target_type,
-                        unread: (item.state === 'pending'),
+                        unread: item.state === 'pending',
                         updatedAt: item.updated_at,
                         state: item.target.state,
                         title: item.target.title,
                         repository: item.project.path_with_namespace,
                         url: item.target_url,
-                        account_name: this.accountName
+                        account_name: this.accountName,
                     });
                     notifications.push(notification);
                 }
@@ -94,7 +105,7 @@ export default class GitLab extends Forge {
                 /* Unauthorized, token scopes */
                 throw 'FailedTokenScopes';
             } else {
-                throw 'Unexpected'
+                throw 'Unexpected';
             }
         } catch (e) {
             throw e;
@@ -106,14 +117,22 @@ export default class GitLab extends Forge {
             if (id != null) {
                 const url = this.buildURI(`todos/${id}/mark_as_done`);
                 const message = super.createMessage('POST', url);
-                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+                await session.send_and_read_async(
+                    message,
+                    GLib.PRIORITY_DEFAULT,
+                    null,
+                );
 
                 /* If OK */
                 return message.get_status() == '200';
             } else {
                 const url = this.buildURI('todos/mark_as_done');
                 const message = super.createMessage('POST', url);
-                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+                await session.send_and_read_async(
+                    message,
+                    GLib.PRIORITY_DEFAULT,
+                    null,
+                );
 
                 /* If No Content */
                 return message.get_status() == '204';
@@ -125,10 +144,10 @@ export default class GitLab extends Forge {
 
     /**
      * Build a request URI from multiple parts
-     * 
+     *
      * This is a simplified version of Forge.buildURI with passed instance url
      * set as host and api v4 prepended to path
-     * 
+     *
      * @param {String} path The URI path
      * @param {Object.<string, string>} query The URI query
      * @returns {String} The resulting URI
@@ -136,4 +155,4 @@ export default class GitLab extends Forge {
     buildURI(path, query = {}) {
         return Forge.buildURI(this.url, '/api/v4/' + path, query);
     }
-};
+}

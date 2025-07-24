@@ -13,18 +13,33 @@ import Template from './accountDialog.blp' with { type: 'uri' };
 const accounts = new AccountsManager();
 
 export default class AccountDialog extends Adw.Dialog {
-
     static {
-        GObject.registerClass({
-            Template,
-            InternalChildren: [
-                'forge', 'instance', 'accessToken', 'accessTokenHelp', 'removeAccount',
-                'saveBtn', 'toasts', 'page', 'titleWidget',
-            ],
-            Properties: {
-                'editing': GObject.ParamSpec.boolean('editing', null, null, GObject.ParamFlags.READWRITE, null)
+        GObject.registerClass(
+            {
+                Template,
+                InternalChildren: [
+                    'forge',
+                    'instance',
+                    'accessToken',
+                    'accessTokenHelp',
+                    'removeAccount',
+                    'saveBtn',
+                    'toasts',
+                    'page',
+                    'titleWidget',
+                ],
+                Properties: {
+                    editing: GObject.ParamSpec.boolean(
+                        'editing',
+                        null,
+                        null,
+                        GObject.ParamFlags.READWRITE,
+                        null,
+                    ),
+                },
             },
-        }, this);
+            this,
+        );
     }
 
     /**
@@ -52,14 +67,14 @@ export default class AccountDialog extends Adw.Dialog {
         /* Populate forges list (Create account view) */
         const forgesList = new Gtk.StringList();
         for (const forge of this._forges_ls) {
-            forgesList.append(forge.prettyName)
+            forgesList.append(forge.prettyName);
         }
-        this._forge.model = forgesList
+        this._forge.model = forgesList;
     }
 
     /**
      * If the form is editing an existing account
-     * 
+     *
      * @type {Boolean}
      */
     get editing() {
@@ -71,7 +86,7 @@ export default class AccountDialog extends Adw.Dialog {
      */
     _onEditing() {
         if (this.editing) {
-            this.title = _('Edit Account')
+            this.title = _('Edit Account');
             this._saveBtn.label = _('Save');
 
             if (this._account != null)
@@ -86,7 +101,7 @@ export default class AccountDialog extends Adw.Dialog {
         /* Load saved instance URL */
         if (this._allowInstances()) {
             this._instance.visible = true;
-            this._instance.text = this._account.url
+            this._instance.text = this._account.url;
         }
 
         /* Load saved token */
@@ -94,7 +109,7 @@ export default class AccountDialog extends Adw.Dialog {
         this._accessToken.text = token;
 
         /* Token help text */
-        this._accessTokenHelp.label = FORGES[this._account.forge].tokenText
+        this._accessTokenHelp.label = FORGES[this._account.forge].tokenText;
 
         /* Save current account token */
         this._account.token = token;
@@ -103,22 +118,22 @@ export default class AccountDialog extends Adw.Dialog {
     }
 
     /**
-     * Get selected forge name from the new account view 
-     * 
+     * Get selected forge name from the new account view
+     *
      * @returns {String} Fhe forge name
      */
     _getSeletedForge() {
-        return this._forges_ls[this._forge.selected].name
+        return this._forges_ls[this._forge.selected].name;
     }
 
     /**
      * Get if selected forge in new account view allows instances
-     * 
+     *
      * @returns {Boolean} If it allows instances
      */
     _allowInstances() {
         if (this.editing) {
-            return FORGES[this._account.forge].allowInstances
+            return FORGES[this._account.forge].allowInstances;
         }
         return this._forges_ls[this._forge.selected].allowInstances;
     }
@@ -126,7 +141,7 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Get instance url set in the new account view.
      * Or forge default url if it doesn't allow instances
-     * 
+     *
      * @returns {String} If it allows instances
      */
     _getInstanceURL() {
@@ -141,7 +156,7 @@ export default class AccountDialog extends Adw.Dialog {
 
     /**
      * Get host from GLib.Uri with the www removed
-     * 
+     *
      * @param {GLib.Uri} uri URL to get the host
      * @returns {String} The URI host
      */
@@ -160,20 +175,22 @@ export default class AccountDialog extends Adw.Dialog {
         /* Enable or disable instance URL entry */
         this._instance.visible = this._allowInstances();
         /* Token help text */
-        this._accessTokenHelp.label = this._forges_ls[this._forge.selected].tokenText
+        this._accessTokenHelp.label =
+            this._forges_ls[this._forge.selected].tokenText;
 
         /* Entries may be different so validate again */
         this._onEntryChanged();
 
         /* Load default instance url */
         if (!this._userChangedInstance && this._account == null) {
-            this._instance.text = this._forges_ls[this._forge.selected].defaultURL;
+            this._instance.text =
+                this._forges_ls[this._forge.selected].defaultURL;
         }
     }
 
     /**
      * Validate and get GLib.Uri from url string
-     * 
+     *
      * @param {String} url URL to validate
      * @trows Trows an error if GLib failed parsing the url
      * @returns {GLib.Uri} Parser URI
@@ -194,18 +211,21 @@ export default class AccountDialog extends Adw.Dialog {
 
     /**
      * Callback when user changes the instance entry
-     * 
+     *
      * Updates the _userChangedInstance value so we don't override the user input
      * when them change the selected forge.
      */
     _onInstanceChanged() {
-        this._userChangedInstance = !this.editing && this._instance.text != this._forges_ls[this._forge.selected].defaultURL;
+        this._userChangedInstance =
+            !this.editing &&
+            this._instance.text !=
+                this._forges_ls[this._forge.selected].defaultURL;
     }
 
     /**
      * Callback when any entry changes
      * Validate instance url and access token.
-     * 
+     *
      * Updates save button sensitivity after validating the values.
      */
     _onEntryChanged() {
@@ -213,7 +233,7 @@ export default class AccountDialog extends Adw.Dialog {
 
         if (this.editing && this._account != null) {
             const instances = FORGES[this._account.forge].allowInstances;
-            const urlChanged = this._account.url != this._instance.text
+            const urlChanged = this._account.url != this._instance.text;
             const tokenChanged = this._account.token != this._accessToken.text;
             const urlNotEmpty = this._instance.text != '';
             const tokenNotEmpty = this._accessToken.text != '';
@@ -222,32 +242,35 @@ export default class AccountDialog extends Adw.Dialog {
                 try {
                     this._validateUrl(this._instance.text);
                     this._instance.remove_css_class('error');
-                    valid = (
-                        urlNotEmpty && tokenNotEmpty && urlChanged ||
-                        urlNotEmpty && tokenNotEmpty && tokenChanged
-                    );
+                    valid =
+                        (urlNotEmpty && tokenNotEmpty && urlChanged) ||
+                        (urlNotEmpty && tokenNotEmpty && tokenChanged);
                 } catch (error) {
                     this._instance.add_css_class('error');
-                    this._toasts.add_toast(new Adw.Toast({
-                        title: _("Invalid instance url.")
-                    }));
+                    this._toasts.add_toast(
+                        new Adw.Toast({
+                            title: _('Invalid instance url.'),
+                        }),
+                    );
                 }
             } else {
                 valid = tokenNotEmpty && tokenChanged;
             }
-        } 
-        
-        else {
+        } else {
             if (this._allowInstances()) {
                 try {
                     this._validateUrl(this._instance.text);
                     this._instance.remove_css_class('error');
-                    valid = this._accessToken.text != '' && this._instance.text != '';
+                    valid =
+                        this._accessToken.text != '' &&
+                        this._instance.text != '';
                 } catch (error) {
                     this._instance.add_css_class('error');
-                    this._toasts.add_toast(new Adw.Toast({
-                        title: _("Invalid instance url.")
-                    }));
+                    this._toasts.add_toast(
+                        new Adw.Toast({
+                            title: _('Invalid instance url.'),
+                        }),
+                    );
                 }
             } else {
                 valid = this._accessToken.text != '';
@@ -259,17 +282,17 @@ export default class AccountDialog extends Adw.Dialog {
 
     /**
      * Get error user visible text
-     * 
+     *
      * @returns {String} The error text
      */
     _errorText(error) {
         switch (error) {
             case 'FailedForgeAuth':
-                return _("Couldn’t authenticate the account");
+                return _('Couldn’t authenticate the account');
             case 'FailedTokenScopes':
-                return _("The access token doesn’t have the needed scopes");
+                return _('The access token doesn’t have the needed scopes');
             default:
-                return _("Unexpected error when creating the account");
+                return _('Unexpected error when creating the account');
         }
     }
 
@@ -287,7 +310,7 @@ export default class AccountDialog extends Adw.Dialog {
         if (this.editing) {
             this._updateAccount();
         } else {
-            this._addAccount()
+            this._addAccount();
         }
     }
 
@@ -317,19 +340,23 @@ export default class AccountDialog extends Adw.Dialog {
                     url,
                     userId,
                     username,
-                    token
+                    token,
                 );
             }
 
             this.close();
 
             /* Reload notifications */
-            Adw.Application.get_default().lookup_action('reload').activate(null);
+            Adw.Application.get_default()
+                .lookup_action('reload')
+                .activate(null);
         } catch (error) {
             console.log(error);
-            this._toasts.add_toast(new Adw.Toast({
-                title: this._errorText(error)
-            }));
+            this._toasts.add_toast(
+                new Adw.Toast({
+                    title: this._errorText(error),
+                }),
+            );
         } finally {
             this._page.sensitive = true;
         }
@@ -340,8 +367,7 @@ export default class AccountDialog extends Adw.Dialog {
      * Update account in settings.
      */
     async _updateAccount() {
-        if (!this.editing)
-            return;
+        if (!this.editing) return;
 
         /* Make the whole form insensitive */
         this._page.sensitive = false;
@@ -368,18 +394,22 @@ export default class AccountDialog extends Adw.Dialog {
                     newUrl,
                     userId,
                     username,
-                    newToken
+                    newToken,
                 );
 
                 this.close();
 
                 /* Reload notifications */
-                Adw.Application.get_default().lookup_action('reload').activate(null);
+                Adw.Application.get_default()
+                    .lookup_action('reload')
+                    .activate(null);
             } catch (error) {
                 console.log(error);
-                this._toasts.add_toast(new Adw.Toast({
-                    title: this._errorText(error)
-                }));
+                this._toasts.add_toast(
+                    new Adw.Toast({
+                        title: this._errorText(error),
+                    }),
+                );
             }
         }
 
@@ -390,10 +420,11 @@ export default class AccountDialog extends Adw.Dialog {
      * Callback when the user removes an account
      */
     async _onRemoveAccount() {
-        if (!this.editing)
-            return;
+        if (!this.editing) return;
 
-        const errorToast = new Adw.Toast({ title: _("Unexpected error removing the account") });
+        const errorToast = new Adw.Toast({
+            title: _('Unexpected error removing the account'),
+        });
         try {
             const success = await accounts.removeAccount(this._account.id);
             if (!success) {
@@ -402,10 +433,12 @@ export default class AccountDialog extends Adw.Dialog {
                 this.close();
 
                 /* Reload notifications */
-                Adw.Application.get_default().lookup_action('reload').activate(null);
+                Adw.Application.get_default()
+                    .lookup_action('reload')
+                    .activate(null);
             }
         } catch (error) {
             this._toasts.add_toast(errorToast);
         }
     }
-};
+}

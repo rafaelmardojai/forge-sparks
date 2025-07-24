@@ -12,22 +12,20 @@ import Account from './account.js';
 /*
  * Secrets schema for saving accounts access tokens
  */
-const SECRETS_SCHEMA = new Secret.Schema(
-    pkg.name,
-    Secret.SchemaFlags.NONE,
-    {
-        'id': Secret.SchemaAttributeType.STRING,
-    }
-);
+const SECRETS_SCHEMA = new Secret.Schema(pkg.name, Secret.SchemaFlags.NONE, {
+    id: Secret.SchemaAttributeType.STRING,
+});
 
 /* Class for managing accounts. */
 export default class AccountsManager extends GObject.Object {
-
     static {
-        GObject.registerClass({
-            GTypeName: 'AccountsManager',
-            Implements: [Gio.ListModel],
-        }, this);
+        GObject.registerClass(
+            {
+                GTypeName: 'AccountsManager',
+                Implements: [Gio.ListModel],
+            },
+            this,
+        );
     }
 
     /* Create an AccountsManager */
@@ -39,18 +37,35 @@ export default class AccountsManager extends GObject.Object {
             return AccountsManager.instance;
         }
 
-        this._accountsSettings = {}; /* Store accessed account settings instances */
-        this._accounts = []; /* Private list storing the items of the list model */
+        this._accountsSettings =
+            {}; /* Store accessed account settings instances */
+        this._accounts =
+            []; /* Private list storing the items of the list model */
 
         /* Populate model with saved accounts */
         for (const id of this.getAccounts()) {
             const settings = this._getAccountSettings(id);
             const account = new Account({ id: id });
 
-            settings.bind('forge', account, 'forge', Gio.SettingsBindFlags.DEFAULT)
-            settings.bind('url', account, 'url', Gio.SettingsBindFlags.DEFAULT)
-            settings.bind('username', account, 'username', Gio.SettingsBindFlags.DEFAULT)
-            settings.bind('user-id', account, 'user-id', Gio.SettingsBindFlags.DEFAULT)
+            settings.bind(
+                'forge',
+                account,
+                'forge',
+                Gio.SettingsBindFlags.DEFAULT,
+            );
+            settings.bind('url', account, 'url', Gio.SettingsBindFlags.DEFAULT);
+            settings.bind(
+                'username',
+                account,
+                'username',
+                Gio.SettingsBindFlags.DEFAULT,
+            );
+            settings.bind(
+                'user-id',
+                account,
+                'user-id',
+                Gio.SettingsBindFlags.DEFAULT,
+            );
 
             this._accounts.push(account);
         }
@@ -62,7 +77,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Get list model stored item type
-     * 
+     *
      * @returns {GType} The list model object type
      */
     vfunc_get_item_type() {
@@ -71,7 +86,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Get item from list model
-     * 
+     *
      * @param {Number} position Position of the item to get
      * @returns {Account|null} The account object or null if not objects
      * in the position
@@ -82,7 +97,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Get number of items in list model
-     * 
+     *
      * @returns {Number} The length of the list model
      */
     vfunc_get_n_items() {
@@ -91,7 +106,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Get ann account from the list model by its ID
-     * 
+     *
      * @param {String} id The account ID
      * @returns {Account|null}
      */
@@ -106,7 +121,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Gets the saved accounts
-     * 
+     *
      * @return {Array<String>} Accounts ids
      */
     getAccounts() {
@@ -115,7 +130,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * If the user has more than one account
-     * 
+     *
      * @return {Boolean} If true
      */
     isMultiple() {
@@ -124,7 +139,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Save a new account in the secrets service and app settings
-     * 
+     *
      * @param  {String} forge Account forge name
      * @param  {String} url Account forge url
      * @param  {Number} userId Account user ID
@@ -138,7 +153,7 @@ export default class AccountsManager extends GObject.Object {
         const id = GLib.uuid_string_random();
         /* Attributes for the secret */
         const attributes = {
-            'id': id,
+            id: id,
         };
         const label = 'Access token for ' + url;
 
@@ -150,7 +165,7 @@ export default class AccountsManager extends GObject.Object {
                 Secret.COLLECTION_DEFAULT,
                 label,
                 token,
-                null
+                null,
             );
 
             if (success) {
@@ -169,10 +184,30 @@ export default class AccountsManager extends GObject.Object {
 
                 /* Add to list model */
                 const account = new Account({ id: id });
-                accountSettings.bind('forge', account, 'forge', Gio.SettingsBindFlags.DEFAULT)
-                accountSettings.bind('url', account, 'url', Gio.SettingsBindFlags.DEFAULT)
-                accountSettings.bind('username', account, 'username', Gio.SettingsBindFlags.DEFAULT)
-                accountSettings.bind('user-id', account, 'user-id', Gio.SettingsBindFlags.DEFAULT)
+                accountSettings.bind(
+                    'forge',
+                    account,
+                    'forge',
+                    Gio.SettingsBindFlags.DEFAULT,
+                );
+                accountSettings.bind(
+                    'url',
+                    account,
+                    'url',
+                    Gio.SettingsBindFlags.DEFAULT,
+                );
+                accountSettings.bind(
+                    'username',
+                    account,
+                    'username',
+                    Gio.SettingsBindFlags.DEFAULT,
+                );
+                accountSettings.bind(
+                    'user-id',
+                    account,
+                    'user-id',
+                    Gio.SettingsBindFlags.DEFAULT,
+                );
                 this._accounts.push(account);
                 this.items_changed(this._accounts.length - 1, 0, 1);
 
@@ -187,7 +222,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Update account in the secrets service and app settings
-     * 
+     *
      * @param  {String} id Account id
      * @param  {String} url Account forge url
      * @param  {Number} userId Account user ID
@@ -200,16 +235,20 @@ export default class AccountsManager extends GObject.Object {
         try {
             const label = 'Access token for ' + url;
             /* Remove previous secret */
-            const successRemove = await Secret.password_clear(SECRETS_SCHEMA, { 'id': id }, null);
+            const successRemove = await Secret.password_clear(
+                SECRETS_SCHEMA,
+                { id: id },
+                null,
+            );
 
             /* Store new secret */
             const successAdd = await Secret.password_store(
                 SECRETS_SCHEMA,
-                { 'id': id },
+                { id: id },
                 Secret.COLLECTION_DEFAULT,
                 label,
                 token,
-                null
+                null,
             );
 
             /* Update settings */
@@ -230,7 +269,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Remove account from everywhere
-     * 
+     *
      * @param  {String} id Account id
      * @throws Throws an error if failed removing the account from secrets
      * @return {Boolean} If the account was successfully removed
@@ -238,7 +277,11 @@ export default class AccountsManager extends GObject.Object {
     async removeAccount(id) {
         try {
             /* Remove secret */
-            const success = await Secret.password_clear(SECRETS_SCHEMA, { 'id': id }, null);
+            const success = await Secret.password_clear(
+                SECRETS_SCHEMA,
+                { id: id },
+                null,
+            );
 
             /* Remove from app settings */
             if (success) {
@@ -262,7 +305,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Gets an account setting value
-     * 
+     *
      * @param {String} id Account id
      * @param {String} setting Setting name
      * @return {*} The setting value
@@ -274,14 +317,18 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Gets the account access token saved in the secrets service
-     * 
+     *
      * @param  {String} id Account id
      * @throws Throws an error if failed getting the token from secrets
      * @return {String} The token
      */
     async getAccountToken(id) {
         try {
-            const token = await Secret.password_lookup(SECRETS_SCHEMA, { 'id': id }, null);
+            const token = await Secret.password_lookup(
+                SECRETS_SCHEMA,
+                { id: id },
+                null,
+            );
             return token;
         } catch (error) {
             throw error;
@@ -290,7 +337,7 @@ export default class AccountsManager extends GObject.Object {
 
     /**
      * Gets the Gio.Settings instance for the account
-     * 
+     *
      * @param  {String} id Account id
      * @return {Gio.Settings} The instance of the account settings
      */
@@ -304,7 +351,7 @@ export default class AccountsManager extends GObject.Object {
 
             this._accountsSettings[id] = new Gio.Settings({
                 schema: pkg.name + '.account',
-                path: path
+                path: path,
             });
         }
         return this._accountsSettings[id];

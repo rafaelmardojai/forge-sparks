@@ -7,12 +7,14 @@ import Notification from './notification.js';
 
 /* List model to store notifications */
 export default class NotificationsList extends GObject.Object {
-
     static {
-        GObject.registerClass({
-            GTypeName: 'NotificationsList',
-            Implements: [Gio.ListModel],
-        }, this);
+        GObject.registerClass(
+            {
+                GTypeName: 'NotificationsList',
+                Implements: [Gio.ListModel],
+            },
+            this,
+        );
     }
 
     /**
@@ -27,7 +29,7 @@ export default class NotificationsList extends GObject.Object {
 
     /**
      * Get list model stored item type
-     * 
+     *
      * @returns {GType} The list model object type
      */
     vfunc_get_item_type() {
@@ -36,7 +38,7 @@ export default class NotificationsList extends GObject.Object {
 
     /**
      * Get item from list model
-     * 
+     *
      * @param {Number} position Position of the item to get
      * @returns {Number|null} The notification object or null if not objects
      * in the position
@@ -47,7 +49,7 @@ export default class NotificationsList extends GObject.Object {
 
     /**
      * Get number of items in list model
-     * 
+     *
      * @returns {Number} The length of the list model
      */
     vfunc_get_n_items() {
@@ -69,7 +71,7 @@ export default class NotificationsList extends GObject.Object {
 
     /**
      * Append a new notification to the model
-     * 
+     *
      * @param {Notification} notification The notification to append
      */
     append(notification) {
@@ -79,7 +81,7 @@ export default class NotificationsList extends GObject.Object {
 
     /**
      * Get a notifications by its ID
-     * 
+     *
      * @param {String} id The id of the notification to get
      * @returns {Notification}
      */
@@ -94,7 +96,7 @@ export default class NotificationsList extends GObject.Object {
 
     /**
      * Remove a notifications by its ID
-     * 
+     *
      * @param {String} id The id of the notification to remove
      */
     removeByID(id) {
@@ -111,4 +113,4 @@ export default class NotificationsList extends GObject.Object {
             this.items_changed(removeIndex, 1, 0);
         }
     }
-};
+}

@@ -17,7 +17,6 @@ import './style.css';
 import './style-dark.css';
 
 export default class Application extends Adw.Application {
-
     static {
         GObject.registerClass(this);
     }
@@ -32,11 +31,23 @@ export default class Application extends Adw.Application {
         this.hidden = false;
 
         /* Command line options */
-        this.add_main_option('version', 'v'.charCodeAt(0), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
-            'Print version information and exit', null);
+        this.add_main_option(
+            'version',
+            'v'.charCodeAt(0),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.NONE,
+            'Print version information and exit',
+            null,
+        );
 
-        this.add_main_option('hidden', 'h'.charCodeAt(0), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
-            'Start hidden', null);
+        this.add_main_option(
+            'hidden',
+            'h'.charCodeAt(0),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.NONE,
+            'Start hidden',
+            null,
+        );
 
         /* Setup application actions */
         this._initAppActions();
@@ -75,14 +86,17 @@ export default class Application extends Adw.Application {
 
         let notificationAction = new Gio.SimpleAction({
             name: 'open-notification',
-            parameter_type: new GLib.VariantType('as')
+            parameter_type: new GLib.VariantType('as'),
         });
-        notificationAction.connect('activate', this._openNotification.bind(this));
+        notificationAction.connect(
+            'activate',
+            this._openNotification.bind(this),
+        );
         this.add_action(notificationAction);
 
         let markReadAction = new Gio.SimpleAction({
             name: 'mark-read',
-            parameter_type: new GLib.VariantType('s')
+            parameter_type: new GLib.VariantType('s'),
         });
         markReadAction.connect('activate', this._markAsRead.bind(this));
         this.add_action(markReadAction);
@@ -100,7 +114,9 @@ export default class Application extends Adw.Application {
         this.set_accels_for_action('app.accounts', ['<Primary><Shift>a']);
         this.set_accels_for_action('app.reload', ['<Primary>r']);
         this.set_accels_for_action('win.open-primary-menu', ['F10']);
-        this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
+        this.set_accels_for_action('win.show-help-overlay', [
+            '<Primary>question',
+        ]);
     }
 
     vfunc_handle_local_options(options) {
@@ -114,7 +130,7 @@ export default class Application extends Adw.Application {
             this.hidden = true;
         }
 
-        return -1;  /* Continue execution */
+        return -1; /* Continue execution */
     }
 
     vfunc_startup() {
@@ -144,7 +160,9 @@ export default class Application extends Adw.Application {
 
         this.preferencesDialog = new PreferencesDialog();
         this.preferencesDialog.present(this.window);
-        this.preferencesDialog.connect('closed', () => {this.preferencesDialog = undefined});
+        this.preferencesDialog.connect('closed', () => {
+            this.preferencesDialog = undefined;
+        });
     }
 
     _showAccounts() {
@@ -152,7 +170,9 @@ export default class Application extends Adw.Application {
 
         this.accountsDialog = new AccountsDialog();
         this.accountsDialog.present(this.window);
-        this.accountsDialog.connect('closed', () => {this.accountsDialog = undefined});
+        this.accountsDialog.connect('closed', () => {
+            this.accountsDialog = undefined;
+        });
     }
 
     _showAbout() {
@@ -178,8 +198,7 @@ export default class Application extends Adw.Application {
         const launcher = new Gtk.UriLauncher({ uri: url });
 
         let window = this.window;
-        if (this.window.hide_on_close)
-            window = null;
+        if (this.window.hide_on_close) window = null;
 
         launcher.launch(window, null, (_obj, result) => {
             const success = launcher.launch_finish(result);
@@ -194,4 +213,4 @@ export default class Application extends Adw.Application {
         const [id, _length] = param.get_string();
         this.window.resolveNotification(id);
     }
-};
+}

@@ -10,14 +10,14 @@ import { settings, requestBackground } from '../util.js';
 import Template from './preferences.blp' with { type: 'uri' };
 
 export default class PreferencesDialog extends Adw.PreferencesDialog {
-
     static {
-        GObject.registerClass({
-            Template,
-            InternalChildren: [
-                'background', 'startup', 'hidden',
-            ],
-        }, this);
+        GObject.registerClass(
+            {
+                Template,
+                InternalChildren: ['background', 'startup', 'hidden'],
+            },
+            this,
+        );
     }
 
     /**
@@ -27,7 +27,8 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
         super(constructProperties);
 
         /* Load saved settings */
-        this._background.enable_expansion = settings.get_boolean('hide-on-close');
+        this._background.enable_expansion =
+            settings.get_boolean('hide-on-close');
         this._startup.active = settings.get_boolean('autostart');
         this._hidden.active = settings.get_boolean('autostart-hidden');
     }
@@ -38,17 +39,22 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
      */
     async _onBackgroundChanged() {
         /* If saved pref have not changed, return */
-        if (this._background.enable_expansion == settings.get_boolean('hide-on-close'))
+        if (
+            this._background.enable_expansion ==
+            settings.get_boolean('hide-on-close')
+        )
             return;
 
         /* Check if autostart should also be requested */
-        const autostart = (settings.get_boolean('autostart') && this._background.enable_expansion);
+        const autostart =
+            settings.get_boolean('autostart') &&
+            this._background.enable_expansion;
         /* Check if hidden should also be requested */
-        const hidden = (autostart && settings.get_boolean('autostart-hidden'));
+        const hidden = autostart && settings.get_boolean('autostart-hidden');
         /* Request background permission and possibly autostart to the portal */
         const success = await requestBackground(this, autostart, hidden);
         /* New boolean value depends on success and user choice */
-        const newValue = (this._background.enable_expansion && success)
+        const newValue = this._background.enable_expansion && success;
 
         /* Update the saved the preference */
         settings.set_boolean('hide-on-close', newValue);
@@ -62,9 +68,11 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
 
         /* If success was false, show a toast */
         if (!success)
-            this.add_toast(new Adw.Toast({
-                title: _('The request failed.')
-            }));
+            this.add_toast(
+                new Adw.Toast({
+                    title: _('The request failed.'),
+                }),
+            );
     }
 
     /**
@@ -73,15 +81,18 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
      */
     async _onStartupChanged() {
         /* If saved pref have not changed, return */
-        if (this._startup.active == settings.get_boolean('autostart'))
-            return;
+        if (this._startup.active == settings.get_boolean('autostart')) return;
 
         /* Check if hidden should also be requested */
         const hidden = settings.get_boolean('autostart-hidden');
         /* Request background permission and autostart new value to the portal */
-        const success = await requestBackground(this, this._startup.active, hidden);
+        const success = await requestBackground(
+            this,
+            this._startup.active,
+            hidden,
+        );
         /* New boolean value depends on success and user choice */
-        const newValue = (this._startup.active && success)
+        const newValue = this._startup.active && success;
 
         /* Update the saved the preference */
         settings.set_boolean('autostart', newValue);
@@ -93,9 +104,11 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
 
         /* If success was false, show a toast */
         if (!success)
-            this.add_toast(new Adw.Toast({
-                title: _('The autostart request failed.')
-            }));
+            this.add_toast(
+                new Adw.Toast({
+                    title: _('The autostart request failed.'),
+                }),
+            );
     }
 
     /**
@@ -110,9 +123,13 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
         /* Get autostart state */
         const autostart = settings.get_boolean('autostart');
         /* Request background permission and autostart new value to the portal */
-        const success = await requestBackground(this, autostart, this._hidden.active);
+        const success = await requestBackground(
+            this,
+            autostart,
+            this._hidden.active,
+        );
         /* New boolean value depends on success and user choice */
-        const newValue = (this._hidden.active && success)
+        const newValue = this._hidden.active && success;
 
         /* Update the saved the preference */
         settings.set_boolean('autostart-hidden', newValue);
@@ -124,8 +141,10 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
 
         /* If success was false, show a toast */
         if (!success)
-            this.add_toast(new Adw.Toast({
-                title: _('The autostart request failed.')
-            }));
+            this.add_toast(
+                new Adw.Toast({
+                    title: _('The autostart request failed.'),
+                }),
+            );
     }
-};
+}

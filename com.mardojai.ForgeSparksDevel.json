@@ -1,62 +1,58 @@
 {
-  "id": "com.mardojai.ForgeSparksDevel",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "master",
-  "sdk": "org.gnome.Sdk",
-  "command": "forge-sparks",
-  "finish-args": [
-    "--share=ipc",
-    "--socket=fallback-x11",
-    "--socket=wayland",
-    "--device=dri",
-    "--share=network",
-    "--talk-name=org.a11y.Bus"
-  ],
-  "modules": [
-    {
-      "name": "blueprint",
-      "buildsystem": "meson",
-      "cleanup": [
-        "*"
-      ],
-      "sources": [
+    "id": "com.mardojai.ForgeSparksDevel",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "master",
+    "sdk": "org.gnome.Sdk",
+    "command": "forge-sparks",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--share=network",
+        "--talk-name=org.a11y.Bus"
+    ],
+    "modules": [
         {
-          "type": "git",
-          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
-          "branch": "main"
-        }
-      ]
-    },
-    {
-      "name": "libportal",
-      "buildsystem": "meson",
-      "config-opts": [
-        "-Ddocs=false",
-        "-Dvapi=false",
-        "-Dbackend-gtk4=enabled"
-      ],
-      "sources": [
+            "name": "blueprint",
+            "buildsystem": "meson",
+            "cleanup": ["*"],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+                    "branch": "main"
+                }
+            ]
+        },
         {
-          "type": "archive",
-          "url": "https://github.com/flatpak/libportal/releases/download/0.9.1/libportal-0.9.1.tar.xz",
-          "sha256": "de801ee349ed3c255a9af3c01b1a401fab5b3fc1c35eb2fd7dfb35d4b8194d7f"
-        }
-      ]
-    },
-    {
-      "name": "forge-sparks",
-      "buildsystem": "meson",
-      "builddir": true,
-      "run-tests": true,
-      "config-opts": [
-        "-Dprofile=development"
-      ],
-      "sources": [
+            "name": "libportal",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Ddocs=false",
+                "-Dvapi=false",
+                "-Dbackend-gtk4=enabled"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/flatpak/libportal/releases/download/0.9.1/libportal-0.9.1.tar.xz",
+                    "sha256": "de801ee349ed3c255a9af3c01b1a401fab5b3fc1c35eb2fd7dfb35d4b8194d7f"
+                }
+            ]
+        },
         {
-          "type": "dir",
-          "path": "."
+            "name": "forge-sparks",
+            "buildsystem": "meson",
+            "builddir": true,
+            "run-tests": true,
+            "config-opts": ["-Dprofile=development"],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

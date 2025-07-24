@@ -6,7 +6,12 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
-import { settings, requestBackground, setBackgroundStatus, relativeDate } from './util.js';
+import {
+    settings,
+    requestBackground,
+    setBackgroundStatus,
+    relativeDate,
+} from './util.js';
 import { FORGES, extractID } from './forges/index.js';
 
 import AccountsManager from './model/accountsManager.js';
@@ -26,16 +31,24 @@ const accounts = new AccountsManager();
 
 /* Main application window */
 export default class Window extends Adw.ApplicationWindow {
-
     static {
-        GObject.registerClass({
-            Template,
-            InternalChildren: [
-                'mainStack', 'headerbar','emptyPicture', 'accountBanner',
-                'setupPage', 'notificationsStack', 'notificationsList',
-                'markAsRead', 'markAsReadIcon',
-            ],
-        }, this);
+        GObject.registerClass(
+            {
+                Template,
+                InternalChildren: [
+                    'mainStack',
+                    'headerbar',
+                    'emptyPicture',
+                    'accountBanner',
+                    'setupPage',
+                    'notificationsStack',
+                    'notificationsList',
+                    'markAsRead',
+                    'markAsReadIcon',
+                ],
+            },
+            this,
+        );
     }
 
     /**
@@ -57,7 +70,10 @@ export default class Window extends Adw.ApplicationWindow {
         this.networkError = false;
 
         /* Set help overlay */
-        const help_overlay = Gtk.Builder.new_from_resource(HelpOverlayTemplate).get_object('help_overlay');
+        const help_overlay =
+            Gtk.Builder.new_from_resource(HelpOverlayTemplate).get_object(
+                'help_overlay',
+            );
         this.set_help_overlay(help_overlay);
 
         /* Set app initial state */
@@ -75,7 +91,9 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Setup notifications model */
         this.model = new NotificationsList();
-        this.notified = settings.get_value('notified').deepUnpack(); /* Notifications that have been notified {id: timestamp} */
+        this.notified = settings
+            .get_value('notified')
+            .deepUnpack(); /* Notifications that have been notified {id: timestamp} */
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
             if (this.model.get_n_items() > 0) {
                 this._notificationsStack.set_visible_child_name('list');
@@ -86,21 +104,27 @@ export default class Window extends Adw.ApplicationWindow {
         });
 
         /* Sort the model by timestamp */
-        const expression = new Gtk.PropertyExpression(this.model.get_item_type(), null, 'timestamp');
+        const expression = new Gtk.PropertyExpression(
+            this.model.get_item_type(),
+            null,
+            'timestamp',
+        );
         this.sortedModel = new Gtk.SortListModel({
             model: this.model,
             sorter: new Gtk.NumericSorter({
                 expression: expression,
-                sort_order: Gtk.SortType.DESCENDING
+                sort_order: Gtk.SortType.DESCENDING,
             }),
         });
 
         /* Bind sorted model to notifications list box */
-        this._notificationsList.bind_model(this.sortedModel, this._createNotificationRow.bind(this));
+        this._notificationsList.bind_model(
+            this.sortedModel,
+            this._createNotificationRow.bind(this),
+        );
 
         /* Add devel class */
-        if (pkg.name.endsWith('Devel'))
-            this.add_css_class('devel');
+        if (pkg.name.endsWith('Devel')) this.add_css_class('devel');
 
         /* First run, background request */
         if (!settings.get_boolean('first-run')) {
@@ -129,7 +153,7 @@ export default class Window extends Adw.ApplicationWindow {
 
     /**
      * Run notifications getter task.
-     * 
+     *
      * This is a recursive function with a timeout set by $this.interval.
      * The timeout event source ID is stored in $this._subscribeSource.
      */
@@ -162,18 +186,26 @@ export default class Window extends Adw.ApplicationWindow {
             const account = accounts.get_item(i);
 
             /* Init a corresponding forge instance for the account if isn't yet */
-            if (!(account.id in this.forges) || this.forges[account.id] == undefined) {
+            if (
+                !(account.id in this.forges) ||
+                this.forges[account.id] == undefined
+            ) {
                 try {
                     const token = await accounts.getAccountToken(account.id);
                     this.forges[account.id] = new FORGES[account.forge](
-                        account.url, token, account.id, account.userId, account.displayName
+                        account.url,
+                        token,
+                        account.id,
+                        account.userId,
+                        account.displayName,
                     );
 
                     /* Fetch user ID for older accounts (Forge Sparks =< 0.2) */
                     if (account.userId === 0) {
-                        const [userId, _username] = await this.forges[account.id].getUser();
-                        account.userId = userId;  // Update user ID on account
-                        this.forges[account.id].userId = userId;  // Update user ID on existing forge instance
+                        const [userId, _username] =
+                            await this.forges[account.id].getUser();
+                        account.userId = userId; // Update user ID on account
+                        this.forges[account.id].userId = userId; // Update user ID on existing forge instance
                     }
                 } catch (error) {
                     /* TODO: Notify the user that this failed */
@@ -183,7 +215,8 @@ export default class Window extends Adw.ApplicationWindow {
 
             /* Get notifications from forge */
             try {
-                let notifications = await this.forges[account.id].getNotifications(this);
+                let notifications =
+                    await this.forges[account.id].getNotifications(this);
                 newNotifications.push(...notifications);
 
                 /* Reset failed state */
@@ -195,12 +228,21 @@ export default class Window extends Adw.ApplicationWindow {
             } catch (error) {
                 if (error instanceof GLib.Error) {
                     if (
-                        error.matches(Gio.IOErrorEnum, Gio.ResolverError.NETWORK_UNREACHABLE)
-                        || error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.TIMED_OUT)
-                        || error.matches(Gio.ResolverError, Gio.ResolverError.NOT_FOUND)
+                        error.matches(
+                            Gio.IOErrorEnum,
+                            Gio.ResolverError.NETWORK_UNREACHABLE,
+                        ) ||
+                        error.matches(
+                            Gio.IOErrorEnum,
+                            Gio.IOErrorEnum.TIMED_OUT,
+                        ) ||
+                        error.matches(
+                            Gio.ResolverError,
+                            Gio.ResolverError.NOT_FOUND,
+                        )
                     ) {
                         this.networkError = true;
-                    } 
+                    }
                     console.error(error);
                 } else if (error === 'FailedForgeAuth') {
                     /* Update state */
@@ -212,9 +254,12 @@ export default class Window extends Adw.ApplicationWindow {
 
                     /* Display error */
                     const title = Format.vprintf(
-                        _('Account %s authentication failed!'), [account.displayName]
+                        _('Account %s authentication failed!'),
+                        [account.displayName],
                     );
-                    const description = _('The token may have been revoked or expired.');
+                    const description = _(
+                        'The token may have been revoked or expired.',
+                    );
 
                     /* Show error banner */
                     this._accountBanner.title = title + '\n' + description;
@@ -227,7 +272,10 @@ export default class Window extends Adw.ApplicationWindow {
                         notification.set_body(description);
                         notification.set_default_action('app.activate');
                         notification.add_button(_('Accounts'), 'app.accounts');
-                        app.send_notification('forge-sparks-error-auth', notification);
+                        app.send_notification(
+                            'forge-sparks-error-auth',
+                            notification,
+                        );
                         this.authErrorNotified = true;
                     }
                 } else {
@@ -243,10 +291,14 @@ export default class Window extends Adw.ApplicationWindow {
 
         if (!this.reFetch) {
             /* Add timeout to run this function again */
-            this._subscribeSource = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, this.interval, () => {
-                this.subscribe();
-                return GLib.SOURCE_REMOVE;
-            });
+            this._subscribeSource = GLib.timeout_add_seconds(
+                GLib.PRIORITY_DEFAULT,
+                this.interval,
+                () => {
+                    this.subscribe();
+                    return GLib.SOURCE_REMOVE;
+                },
+            );
         } else {
             this.reFetch = false;
             this.subscribe();
@@ -277,9 +329,9 @@ export default class Window extends Adw.ApplicationWindow {
 
     /**
      * Show notifications to the user
-     * 
+     *
      * Updates notification model and sends desktop notifications
-     * 
+     *
      * @param {Array<Notification>} notifications New notifications
      */
     showNotifications(notifications) {
@@ -300,8 +352,14 @@ export default class Window extends Adw.ApplicationWindow {
             if (!this.visible || !this.is_active) {
                 /* If notification hasn't been notified before or has changed
                    since last time, send desktop notification */
-                if (!notification.id in this.notified || this.notified[notification.id] != notification.updatedAt) {
-                    app.send_notification(`fs-${notification.id}`, notification.notification);
+                if (
+                    (!notification.id) in this.notified ||
+                    this.notified[notification.id] != notification.updatedAt
+                ) {
+                    app.send_notification(
+                        `fs-${notification.id}`,
+                        notification.notification,
+                    );
                 }
             }
 
@@ -310,14 +368,17 @@ export default class Window extends Adw.ApplicationWindow {
         }
 
         /* Sanitize notified ids before saving */
-        Object.keys(this.notified).forEach(id => {
+        Object.keys(this.notified).forEach((id) => {
             if (!this.model.getByID(id)) {
                 delete this.notified[id];
             }
         });
 
         /* Save notified ids so if the app restarts we don't notify again */
-        settings.set_value('notified', new GLib.Variant('a{ss}', this.notified));
+        settings.set_value(
+            'notified',
+            new GLib.Variant('a{ss}', this.notified),
+        );
 
         /* Stop loading view, and show notifications view */
         this._mainStack.set_visible_child_name('notifications');
@@ -325,9 +386,9 @@ export default class Window extends Adw.ApplicationWindow {
 
     /**
      * Resolve a notification
-     * 
+     *
      * Mark it as read and withdraw it from desktop inbox
-     * 
+     *
      * @param {String} id  Notification ID
      */
     async resolveNotification(id) {
@@ -373,9 +434,9 @@ export default class Window extends Adw.ApplicationWindow {
 
     /**
      * Create a widget from a notification object
-     * 
+     *
      * @param {Notification} notification The notification object
-     * @returns {Gtk.WIdget} The widget representing a notification 
+     * @returns {Gtk.WIdget} The widget representing a notification
      */
     _createNotificationRow(notification) {
         /* Create widget from notification values */
@@ -399,12 +460,13 @@ export default class Window extends Adw.ApplicationWindow {
             row.progress = true;
             row.sensitive = false;
 
-            const action = this.get_application().lookup_action('open-notification');
+            const action =
+                this.get_application().lookup_action('open-notification');
             action.activate(
-                GLib.Variant.new_array(
-                    new GLib.VariantType('s'),
-                    [GLib.Variant.new_string(notification.id), GLib.Variant.new_string(notification.url)]
-                )
+                GLib.Variant.new_array(new GLib.VariantType('s'), [
+                    GLib.Variant.new_string(notification.id),
+                    GLib.Variant.new_string(notification.url),
+                ]),
             );
         });
 
@@ -431,17 +493,16 @@ export default class Window extends Adw.ApplicationWindow {
 
     /**
      * Resolve token error
-     * 
+     *
      * @param {Account | null} account Account to resolve
      */
     _resolveTokenError(account = null) {
         this.authFailed = null;
         this.authErrorNotified = false;
-        if (account != null)
-            account.authFailed = false;
+        if (account != null) account.authFailed = false;
 
         this._accountBanner.revealed = false;
         const app = this.get_application();
         app.withdraw_notification('forge-sparks-error-auth');
     }
-};
+}

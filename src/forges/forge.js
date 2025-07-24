@@ -5,7 +5,6 @@ import Soup from 'gi://Soup';
 
 /* Git Forge base class. */
 export default class Forge {
-
     /**
      * Name (identifier) of the forge
      */
@@ -28,7 +27,7 @@ export default class Forge {
 
     /**
      * Scopes needed
-     * 
+     *
      * @type {Array<String>}
      */
     static scopes = [];
@@ -40,7 +39,7 @@ export default class Forge {
 
     /**
      * Crete a Forge
-     * 
+     *
      * @param {String} url The url of the forge
      * @param {String} token The access token
      * @param {String} account Account ID associated to the instance
@@ -82,7 +81,7 @@ export default class Forge {
 
     /**
      * Authorization header value
-     * 
+     *
      * @type {String}
      */
     get authorization() {
@@ -91,10 +90,10 @@ export default class Forge {
 
     /**
      * Get the username
-     * 
+     *
      * Get username from the logged in user.
      * Used for validating an access token when adding a new account.
-     * 
+     *
      * @throws {FailedTokenScopes} If the access token doesn't have the
      * notifications scope
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
@@ -102,42 +101,36 @@ export default class Forge {
      * @throws Any other error when making the request or reading the response
      * @returns {Array<Number, String>} The id and username
      */
-    async getUser() {
-
-    }
+    async getUser() {}
 
     /**
      * Get notifications
-     * 
+     *
      * Get all unread notifications for the logged in user
-     * 
+     *
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws Will throw an error if some part of the process fails
      * @returns {Array<Notification>} The notifications
      */
-    async getNotifications() {
-
-    }
+    async getNotifications() {}
 
     /**
      * Mark notifications as read
-     * 
+     *
      * @param {String|Number|null} id ID of the notification to mark as read
      * or null if all should be marked.
      * @throws Will throw an error if some part of the process fails
      * @returns {Boolean} If the operation was successful
      */
-    async markAsRead(id = null) {
-
-    }
+    async markAsRead(id = null) {}
 
     /**
      * Helper for creating Soup.Message
-     * 
+     *
      * Coverts data to JSON string and encodes it to bytes
      * Adds access token as Authorization http header
      * Adds UTC as Time-Zone http header
-     * 
+     *
      * @param {String} method HTTP method for the message
      * @param {String} url URL for the message
      * @param {Object} data Request body data
@@ -152,7 +145,7 @@ export default class Forge {
         const bytes = this.encoder.encode(data);
         message.set_request_body_from_bytes(
             'application/json',
-            new GLib.Bytes(bytes)
+            new GLib.Bytes(bytes),
         );
 
         // Append provided headers
@@ -168,9 +161,9 @@ export default class Forge {
 
     /**
      * Read the contents of a response
-     * 
+     *
      * Converts bytes to a JS Object
-     * 
+     *
      * @param {GLib.Bytes} bytes Bites to read content from
      * @returns {Object}
      */
@@ -185,7 +178,7 @@ export default class Forge {
 
     /**
      * Create a more unique ID using the forge account ID
-     * 
+     *
      * @param {String|Number} id ID to make unique
      * @returns {String}
      */
@@ -195,23 +188,25 @@ export default class Forge {
 
     /**
      * Build a request URI from multiple parts
-     * 
+     *
      * @param {String} host The URI host
      * @param {String} path The URI path
      * @param {Object.<string, string>} query The URI query
      * @returns {String} The resulting URI
      */
     static buildURI(host, path, query = {}) {
-
         /* Prepend slash to the path if not present */
         if (!path.startsWith('/')) {
             path = '/' + path;
         }
 
         /* Generate query string from the query dictionary */
-        var queryString = Object.keys(query).map(key => key + '=' + query[key]).join('&').replace(' ', '+');
+        var queryString = Object.keys(query)
+            .map((key) => key + '=' + query[key])
+            .join('&')
+            .replace(' ', '+');
         if (!queryString) {
-            queryString = null
+            queryString = null;
         }
 
         /* Build a https URI with the elements */
@@ -223,7 +218,7 @@ export default class Forge {
             -1,
             path,
             queryString,
-            null
+            null,
         );
 
         return uri.to_string();

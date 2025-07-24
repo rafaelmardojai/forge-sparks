@@ -1,6 +1,7 @@
 blueprint_compiler = find_program('blueprint-compiler')
 gjspack = find_program('../troll/gjspack/bin/gjspack')
-gresource = custom_target('gjspack',
+gresource = custom_target(
+  'gjspack',
   input: ['main.js', '../po/POTFILES'],
   output: application_id + '.src.gresource',
   command: [
@@ -9,8 +10,7 @@ gresource = custom_target('gjspack',
     '--project-root', meson.source_root(),
     '--resource-root', meson.project_source_root() / 'src',
     '--blueprint-compiler', blueprint_compiler,
-    '--no-executable',
-    '@INPUT0@',
+    '--no-executable', '@INPUT0@',
     '--potfiles', '@INPUT1@',
     '@OUTDIR@',
   ],
@@ -33,7 +33,7 @@ configure_file(
   output: application_id,
   configuration: bin_conf,
   install: true,
-  install_dir: pkgdatadir
+  install_dir: pkgdatadir,
 )
 
 subdir('icons')
