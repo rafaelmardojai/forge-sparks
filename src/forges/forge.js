@@ -133,20 +133,22 @@ export default class Forge {
      *
      * @param {string} method HTTP method for the message
      * @param {string} url URL for the message
-     * @param {Object} data Request body data
+     * @param {Object|null} data Request body data
      * @param {Object.<string, string>} headers HTTP headers for the message
      * @returns {Soup.Message}
      */
-    createMessage(method, url, data = {}, headers = {}) {
+    createMessage(method, url, data = null, headers = {}) {
         const message = Soup.Message.new(method, url);
 
         // Add data
-        data = JSON.stringify(data);
-        const bytes = this.encoder.encode(data);
-        message.set_request_body_from_bytes(
-            'application/json',
-            new GLib.Bytes(bytes),
-        );
+        if (data != null) {
+            data = JSON.stringify(data);
+            const bytes = this.encoder.encode(data);
+            message.set_request_body_from_bytes(
+                'application/json',
+                new GLib.Bytes(bytes),
+            );
+        }
 
         // Append provided headers
         Object.entries(headers).forEach(([key, value]) => {
