@@ -42,6 +42,14 @@
   </screenshots>
 
   <releases>
+    <release version="1.0.0" date="2025-07-26">
+      <description translate="no">
+        <ul>
+          <li>Allow private GitHub instances</li>
+          <li>Bug fixes</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.4.0" date="2024-10-07">
       <description translate="no">
         <ul>

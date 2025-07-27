@@ -1,7 +1,8 @@
-project('forge-sparks',
-  version: '0.4.0',
+project(
+  'forge-sparks',
+  version: '1.0.0',
   meson_version: '>= 0.63.0',
-  license: 'GPL-3.0'
+  license: 'GPL-3.0',
 )
 
 if get_option('profile') == 'development'
@@ -10,7 +11,7 @@ if get_option('profile') == 'development'
   if vcs_tag == ''
     version_suffix = '-devel'
   else
-    version_suffix = '-@0@'.format (vcs_tag)
+    version_suffix = '-@0@'.format(vcs_tag)
   endif
 else
   profile = ''
@@ -18,7 +19,7 @@ else
 endif
 
 application_id = 'com.mardojai.ForgeSparks@0@'.format(profile)
-version =  meson.project_version() + version_suffix
+version = meson.project_version() + version_suffix
 
 prefix = get_option('prefix')
 bindir = prefix / get_option('bindir')
@@ -36,11 +37,11 @@ subdir('po')
 install_symlink(
   meson.project_name(),
   pointing_to: pkgdatadir / application_id,
-  install_dir: bindir
+  install_dir: bindir,
 )
 
 gnome.post_install(
   glib_compile_schemas: true,
   gtk_update_icon_cache: true,
-  update_desktop_database: true
+  update_desktop_database: true,
 )
