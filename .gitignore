@@ -1,4 +1,5 @@
 .vscode
+.flatplay
 .flatpak
 .flatpak-builder
 _build
