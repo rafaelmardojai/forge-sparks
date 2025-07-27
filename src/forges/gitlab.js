@@ -83,18 +83,25 @@ export default class GitLab extends Forge {
                 let notifications = [];
 
                 for (const item of contents) {
-                    const notification = new Notification({
-                        id: super.formatID(item.id),
-                        type: item.target_type,
-                        unread: item.state === 'pending',
-                        updatedAt: item.updated_at,
-                        state: item.target.state,
-                        title: item.target.title,
-                        repository: item.project.path_with_namespace,
-                        url: item.target_url,
-                        account_name: this.accountName,
-                    });
-                    notifications.push(notification);
+                    try {
+                        const notification = new Notification({
+                            id: super.formatID(item.id),
+                            type: item.target_type,
+                            unread: item.state === 'pending',
+                            updatedAt: item.updated_at,
+                            state: item.target.state,
+                            title: item.target.title,
+                            repository:
+                                'project' in item
+                                    ? item.project.path_with_namespace
+                                    : item.author.name,
+                            url: item.target_url,
+                            account_name: this.accountName,
+                        });
+                        notifications.push(notification);
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
 
                 return notifications;
