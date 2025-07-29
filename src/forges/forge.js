@@ -99,7 +99,7 @@ export default class Forge {
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws {Unexpected} Got a response but could not find the username
      * @throws Any other error when making the request or reading the response
-     * @returns {Promise<Array<number, string>>} The id and username
+     * @returns {Promise<[number, string]>} The id and username
      */
     async getUser() {}
 
@@ -181,7 +181,7 @@ export default class Forge {
     /**
      * Create a more unique ID using the forge account ID
      *
-     * @param {String|Number} id ID to make unique
+     * @param {string|number} id ID to make unique
      * @returns {string}
      */
     formatID(id) {

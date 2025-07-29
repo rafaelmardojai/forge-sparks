@@ -5,6 +5,9 @@ import Gitea from './gitea.js';
 import GitHub from './github.js';
 import GitLab from './gitlab.js';
 
+/**
+ * Map of Forges implementations
+ */
 export const FORGES = {
     forgejo: Forgejo,
     gitea: Gitea,

@@ -40,7 +40,7 @@ export default class NotificationsList extends GObject.Object {
      * Get item from list model
      *
      * @param {number} position Position of the item to get
-     * @returns {Number|null} The notification object or null if not objects
+     * @returns {number|null} The notification object or null if not objects
      * in the position
      */
     vfunc_get_item(position) {

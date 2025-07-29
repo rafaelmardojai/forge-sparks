@@ -120,9 +120,9 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Get selected forge name from the new account view
      *
-     * @returns {string} Fhe forge name
+     * @returns {string} The forge name
      */
-    _getSeletedForge() {
+    _getSelectedForge() {
         return this._forges_ls[this._forge.selected].name;
     }
 
@@ -326,9 +326,12 @@ export default class AccountDialog extends Adw.Dialog {
             /* Get form values */
             const token = this._accessToken.text;
             const url = this._getInstanceURL();
-            const forgeName = this._getSeletedForge();
+            const forgeName = this._getSelectedForge();
 
-            /* Instantiate the class for the forge */
+            /**
+             * Instantiate the class for the forge
+             * @type {import('../forges/forge.js').default}
+             */
             const forge = new FORGES[forgeName](url, token);
             /* Try authenticating the user with access token */
             const [userId, username] = await forge.getUser();

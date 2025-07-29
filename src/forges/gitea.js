@@ -11,7 +11,7 @@ import { session } from './../util.js';
  * Gitea implementation
  *
  * Gitea has a GitHub compatible API, so we can basically just derive from our
- * GitHub class and tweak some mothods.
+ * GitHub class and tweak some methods.
  */
 export default class Gitea extends GitHub {
     static name = 'gitea';

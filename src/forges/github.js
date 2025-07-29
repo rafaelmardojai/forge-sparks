@@ -306,7 +306,7 @@ export default class GitHub extends Forge {
      * @param {string} url The url of the API to request the comments url
      * e.g https://api.github.com/repos/user/repo/issues/comments/1529954726
      * @throws Throws an error if failed making the request or reading the data
-     * @returns {Promise<string | void>} The HTML comment url.
+     * @returns {Promise<string|void>} The HTML comment url.
      * e.g. https://github.com/user/repo/issues/1#issuecomment-1529954726
      */
     async _getCommentURL(url) {
@@ -343,7 +343,7 @@ export default class GitHub extends Forge {
         switch (version) {
             case 2:
                 /**
-                 * This one does't seem to work.
+                 * This one doesn't seem to work.
                  * The leading bytes are probably dynamic or have changed.
                  */
                 return (

@@ -125,7 +125,7 @@ export default class AccountsManager extends GObject.Object {
     /**
      * Gets the saved accounts
      *
-     * @return {Array<String>} Accounts ids
+     * @return {Array<string>} Accounts ids
      */
     getAccounts() {
         return settings.get_strv('accounts');
