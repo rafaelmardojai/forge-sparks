@@ -195,7 +195,11 @@ export default class GitHub extends Forge {
      * @returns {Promise<Object.<string, string>>} The object with the info
      */
     async _getSubjectInfo(notification) {
-        const info = {}; /* Here we'll store the info */
+        /* Here we'll store the info */
+        const info = {
+            url: notification.repository.html_url,
+            state: '',
+        };
 
         /* Early return for subjects that doesn't have the data that we want */
         if (
@@ -220,7 +224,6 @@ export default class GitHub extends Forge {
                     /* https://github.com/orgs/community/discussions/15252 */
                     info.url = `${notification.repository.html_url}/discussions`;
                     break;
-                default:
             }
             return info;
         }
