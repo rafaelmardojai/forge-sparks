@@ -1,6 +1,6 @@
 #!@GJS@ -m
 
-import { exit, programArgs } from "system";
+import { exit, programArgs, programInvocationName } from "system";
 import Gio from "gi://Gio";
 import { setConsoleLogDomain } from "console";
 
@@ -19,5 +19,5 @@ const resource = Gio.resource_load(
 Gio.resources_register(resource);
 
 const module = await import("resource://com/mardojai/ForgeSparks@profile@/main.js");
-const exitCode = await module.main(programArgs);
+const exitCode = await module.main([programInvocationName, ...programArgs]);
 exit(exitCode);
