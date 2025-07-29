@@ -111,24 +111,28 @@ export default class GitHub extends Forge {
                 let notifications = [];
 
                 for (const item of contents) {
-                    const info = await this._getSubjectInfo(item);
-                    const notification = new Notification({
-                        id: super.formatID(item.id),
-                        type: item.subject.type,
-                        unread: item.unread,
-                        updatedAt:
-                            'updated_at' in info
-                                ? info.updated_at
-                                : item.updated_at,
-                        title: item.subject.title,
-                        repository: item.repository.full_name,
-                        url: info.url,
-                        account_name: this.accountName,
-                    });
-                    if (info.state) {
-                        notification.state = info.state;
+                    try {
+                        const info = await this._getSubjectInfo(item);
+                        const notification = new Notification({
+                            id: super.formatID(item.id),
+                            type: item.subject.type,
+                            unread: item.unread,
+                            updatedAt:
+                                'updated_at' in info
+                                    ? info.updated_at
+                                    : item.updated_at,
+                            title: item.subject.title,
+                            repository: item.repository.full_name,
+                            url: info.url,
+                            account_name: this.accountName,
+                        });
+                        if (info.state) {
+                            notification.state = info.state;
+                        }
+                        notifications.push(notification);
+                    } catch (e) {
+                        console.error(e);
                     }
-                    notifications.push(notification);
                 }
 
                 return notifications;
