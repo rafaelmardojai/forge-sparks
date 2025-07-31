@@ -8,88 +8,92 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-08-01 01:02+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"forge-sparks/forge-sparks/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "Obtenha notificações de forjas Git"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notifications;notificações;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
 msgstr ""
+"Aplicativo notificador simples com suporte para GitLab, Github, Gitea e "
+"Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Preferências"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "_Contas"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "Atalhos de _teclado"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "Sobre o Forge Sparks"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "Sai"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "Menu principal"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "Boas-vindas ao Forge Sparks"
 
 #: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Adicione uma conta para receber notificações"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "Adicionar conta…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Marcar todas como lidas"
 
 #: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
-msgstr ""
+msgstr "Contas"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Nenhuma notificação pra mostrar"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Permite execução do Forge Sparks em segundo plano."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Permite execução do Forge Sparks na inicialização."
 
 #. *
 #. * Set background status message
@@ -98,83 +102,83 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Monitorando novas notificações"
 
 #: src/util.js:105 src/util.js:146
 msgid "now"
-msgstr ""
+msgstr "agora"
 
 #. Translators: relative date
 #: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minuto atrás"
+msgstr[1] "%d minutos atrás"
 
 #. Translators: relative date
 #: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d hora atrás"
+msgstr[1] "%d horas atrás"
 
 #. Translators: relative date
 #: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ontem"
+msgstr[1] "%d dias atrás"
 
 #. Translators: relative date
 #: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d semana atrás"
+msgstr[1] "%d semanas atrás"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "em %s"
 
 #: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Falha na autenticação da conta %s!"
 
 #: src/window.js:217
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "O token pode ter sido revogado ou expirado."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:162
 msgid "translator-credits"
-msgstr ""
+msgstr "Rafael Fontenelle <rafaelff@gnome.org>"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Geral"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Abre o menu"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Atalhos de teclado"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Sai"
 
 #: src/forges/github.js:32
 #, javascript-format
@@ -183,6 +187,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Você pode gerar um novo token de acesso pessoal nas <a href=\"%s\""
+">configurações de desenvolvedor do GitHub</a>. Para mais informações, veja "
+"\"<a href=\"%s\">Criando um token de acesso pessoal</a>\" (em inglês)."
 
 #. GitHub access token help
 #: src/forges/github.js:37
@@ -190,6 +197,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"O Forge Sparks requer um token de acesso <b>clássico</b> (para uso geral) "
+"com os escopos <i>notifications</i> e <i>read:user</i> concedidos."
 
 #. GitHub access token help
 #: src/forges/github.js:40
@@ -197,6 +206,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Se estiver trabalhando com repositórios privados, você também precisará "
+"conceder o escopo <i>repo</i> completo."
 
 #. Gitea access token help
 #: src/forges/gitea.js:31
@@ -204,6 +215,8 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Para gerar um novo token de acesso da sua instância, vá para Settings → "
+"Applications e gere um novo token."
 
 #. Gitea access token help
 #: src/forges/gitea.js:34
@@ -211,6 +224,8 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"O Forge Sparks requer que os escopos <i>read:issue</i>, "
+"<i>write:notification</i> e <i>read:user</i> sejam concedidos."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -218,6 +233,8 @@ msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
 msgstr ""
+"Para gerar um novo token de acesso da sua instância, vá para Preferências → "
+"Tokens de acesso e gere um novo token."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
@@ -225,99 +242,101 @@ msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
+"O Forge Sparks precisa do escopo <i>read_api</i> para ler notificações ou do "
+"escopo <i>api</i> completo para também marcar tarefas como concluídas."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
-msgstr ""
+msgstr "Marcar como lida"
 
 #: src/model/notification.js:82
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Mostrar o Forge Sparks"
 
 #: src/widgets/accountDialog.blp:5
 msgid "Add Account"
-msgstr ""
+msgstr "Adicionar conta"
 
 #: src/widgets/accountDialog.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: src/widgets/accountDialog.blp:27
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 #: src/widgets/accountDialog.blp:45
 msgid "Forge"
-msgstr ""
+msgstr "Forja"
 
 #: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
-msgstr ""
+msgstr "URL da instância"
 
 #: src/widgets/accountDialog.blp:60
 msgid "Access Token"
-msgstr ""
+msgstr "Token de acesso"
 
 #: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
-msgstr ""
+msgstr "Remover conta"
 
 #: src/widgets/accountDialog.js:74
 msgid "Edit Account"
-msgstr ""
+msgstr "Editar conta"
 
 #: src/widgets/accountDialog.js:75
 msgid "Save"
-msgstr ""
+msgstr "Salvar"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr ""
+msgstr "URL de instância inválida."
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Não foi possível autenticar a conta"
 
 #: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "O token de acesso não tem os escopos necessários"
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Erro inesperado ao criar a conta"
 
 #: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Erro inesperado ao remover a conta"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "Continuar executando em segundo plano"
 
 #: src/widgets/preferences.blp:18
 msgid "Run on Startup"
-msgstr ""
+msgstr "Executar na inicialização"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr ""
+msgstr "Iniciar oculto"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "A requisição falhou."
 
 #: src/widgets/preferences.js:97 src/widgets/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "A requisição de inicialização automática falhou."
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr ""
+msgstr "Adicionar…"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
-msgstr ""
+msgstr "Nenhuma conta"
 
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Falha na autenticação da conta!"
