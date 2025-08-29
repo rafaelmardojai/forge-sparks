@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: 2024-11-03 13:00+0000\n"
+"PO-Revision-Date: 2025-08-30 16:01+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
@@ -240,13 +240,13 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-#, fuzzy
 msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
-"Forge Sparks, <i>read:issue</i>, <i>write:notification</i> ve <i>read:user</"
-"i> izinlerinin verilmesini gerektirir."
+"Forge Sparks, bildirimleri okumak için <i>read_api</i> kapsamına ya da "
+"yapılacakları tamamlandı olarak işaretlemek için tam <i>api</i> kapsamına "
+"ihtiyaç duyar."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
