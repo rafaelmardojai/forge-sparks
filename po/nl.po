@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: 2024-12-11 09:00+0000\n"
+"PO-Revision-Date: 2025-09-06 12:01+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/forge-"
-"sparks/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
@@ -238,13 +238,12 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-#, fuzzy
 msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
-"Forge Sparks vereist dat de volgende scopes zijn toegekend: <i>read:issue</"
-"i>, <i>write:notification</i> en <i>read:user</i>"
+"Forge Sparks heeft de scope <i>read_api</i> nodig om meldingen te lezen of "
+"de volledige scope <i>api</i> om taken ook als voltooid te markeren."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
