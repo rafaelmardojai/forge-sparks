@@ -8,88 +8,90 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-10-09 07:07+0000\n"
+"Last-Translator: Jiening Yu <jiening.yu@outlook.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/forge-sparks/forge-sparks/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "收取来自 Git 托管平台的通知"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notifications;通知;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
-msgstr ""
+msgstr "支持 GitLab, GitHub, Gitea 与Forgejo 的简易通知程序"
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_偏好设置"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "_帐号"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_快捷键"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "关于Forge Sparks"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "主菜单"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "欢迎来到Forge Sparks"
 
 #: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "添加帐号以接收通知"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "添加帐号…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "全部设为已读"
 
 #: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
-msgstr ""
+msgstr "帐号"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "无通知"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "允许Forge Sparks在后台运行"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "允许Forge Sparks在启动时运行"
 
 #. *
 #. * Set background status message
@@ -98,83 +100,79 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "正在收取新通知"
 
 #: src/util.js:105 src/util.js:146
 msgid "now"
-msgstr ""
+msgstr "现在"
 
 #. Translators: relative date
 #: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d分钟前"
 
 #. Translators: relative date
 #: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d小时前"
 
 #. Translators: relative date
 #: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d天前"
 
 #. Translators: relative date
 #: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d星期前"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "%s"
 
 #: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "帐号%s认证失败！"
 
 #: src/window.js:217
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Token可能已过期或被撤销"
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:162
 msgid "translator-credits"
-msgstr ""
+msgstr "Jiening Yu <jiening.yu@outlook.com>"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "通用"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "打开菜单"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "快捷键"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: src/forges/github.js:32
 #, javascript-format
@@ -183,6 +181,8 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"您可于<a href=\"%s\">GitHub开发者设置</a>中生成新的个人Token。见<a href="
+"\"%s\">创建个人Token</a>以了解更多。"
 
 #. GitHub access token help
 #: src/forges/github.js:37
@@ -190,20 +190,22 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks需要一个具<i>notifications</i>和<i>read:user</i>权限的<b>经典</b>"
+"Token以为常规使用。"
 
 #. GitHub access token help
 #: src/forges/github.js:40
 msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
-msgstr ""
+msgstr "如果你需要接收来自私人仓库的通知，则还需要整个<i>repo</i>范围的权限。"
 
 #. Gitea access token help
 #: src/forges/gitea.js:31
 msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
-msgstr ""
+msgstr "请前往 应用 → 访问令牌 以生成一个新的Token。"
 
 #. Gitea access token help
 #: src/forges/gitea.js:34
@@ -211,113 +213,116 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks需要 <i>read:issue</i>, <i>write:notification</i> 与 <i>read:user"
+"</i>权限。"
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
 msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
-msgstr ""
+msgstr "请前往 用户设置 → 访问令牌 以生成一个新的Token。"
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
 msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
-msgstr ""
+msgstr "Forge Sparks需要 <i>read_api</i> 权限以获取通知或完整的 <i>api</i> 权限以进一"
+"步将代办项标记为完成。"
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
-msgstr ""
+msgstr "设为已读"
 
 #: src/model/notification.js:82
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "显示Forge Sparks"
 
 #: src/widgets/accountDialog.blp:5
 msgid "Add Account"
-msgstr ""
+msgstr "添加帐号"
 
 #: src/widgets/accountDialog.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/widgets/accountDialog.blp:27
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: src/widgets/accountDialog.blp:45
 msgid "Forge"
-msgstr ""
+msgstr "平台实现"
 
 #: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
-msgstr ""
+msgstr "平台URL"
 
 #: src/widgets/accountDialog.blp:60
 msgid "Access Token"
-msgstr ""
+msgstr "访问Token"
 
 #: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
-msgstr ""
+msgstr "移除帐号"
 
 #: src/widgets/accountDialog.js:74
 msgid "Edit Account"
-msgstr ""
+msgstr "编辑帐号"
 
 #: src/widgets/accountDialog.js:75
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr ""
+msgstr "无效的平台URL"
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "无法认证账户"
 
 #: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "此Token无所需的全部权限"
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "创建账户时产生意外错误"
 
 #: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "移除账户时产生意外错误"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "持续在后台运行"
 
 #: src/widgets/preferences.blp:18
 msgid "Run on Startup"
-msgstr ""
+msgstr "于启动时运行"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr ""
+msgstr "启动时隐藏"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "请求失败"
 
 #: src/widgets/preferences.js:97 src/widgets/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "自动启动请求失败"
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr ""
+msgstr "添加…"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
-msgstr ""
+msgstr "无帐号"
 
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "帐号认证失败！"
