@@ -8,88 +8,92 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-11-06 20:51+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/forge-sparks/"
+"forge-sparks/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
 msgid "Forge Sparks"
-msgstr ""
+msgstr "Forge Sparks"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:4
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:8 src/application.js:164
 msgid "Get Git forges notifications"
-msgstr ""
+msgstr "Dostávejte notifikace z Git forge systémů"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr ""
+msgstr "git;github;notifikace;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
 msgstr ""
+"Jednoduchá aplikace pro příjem notifikací. Funguje s GitLab, GiHub, Gitea a "
+"Forgejo."
 
 #: src/window.blp:7
 msgid "_Preferences"
-msgstr ""
+msgstr "_Předvolby"
 
 #: src/window.blp:12
 msgid "_Accounts"
-msgstr ""
+msgstr "Účt_y"
 
 #: src/window.blp:17
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Klávesové zkratky"
 
 #: src/window.blp:23
 msgid "About Forge Sparks"
-msgstr ""
+msgstr "O Forge Sparks"
 
 #: src/window.blp:30
 msgid "Quit"
-msgstr ""
+msgstr "Ukončit"
 
 #: src/window.blp:62 src/window.blp:156
 msgid "Main Menu"
-msgstr ""
+msgstr "Hlavní nabídka"
 
 #: src/window.blp:67
 msgid "Welcome to Forge Sparks"
-msgstr ""
+msgstr "Vítejte ve Forge Sparks"
 
 #: src/window.blp:68 src/widgets/accountsDialog.blp:39
 msgid "Add an account to receive notifications from"
-msgstr ""
+msgstr "Přidejte účet ze kterého přijímat notifikace"
 
 #: src/window.blp:72
 msgid "Add Account…"
-msgstr ""
+msgstr "Přidat účet…"
 
 #: src/window.blp:146
 msgid "Mark all as Read"
-msgstr ""
+msgstr "Označit vše jako přečtené"
 
 #: src/window.blp:162 src/window.js:229 src/widgets/accountsDialog.blp:5
 msgid "Accounts"
-msgstr ""
+msgstr "Účty"
 
 #: src/window.blp:190
 msgid "No Notifications to Show"
-msgstr ""
+msgstr "Žádné notifikace k zobrazení"
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on background."
-msgstr ""
+msgstr "Umožnit běh Forge Sparks na pozadí."
 
 #: src/util.js:58
 msgid "Allow running Forge Sparks on startup."
-msgstr ""
+msgstr "Umožnit automatické spouštění Forge Sparks po přihlášení do systému."
 
 #. *
 #. * Set background status message
@@ -98,83 +102,87 @@ msgstr ""
 #.
 #: src/util.js:82
 msgid "Monitoring new notifications"
-msgstr ""
+msgstr "Monitorují se nové notifikace"
 
 #: src/util.js:105 src/util.js:146
 msgid "now"
-msgstr ""
+msgstr "nyní"
 
 #. Translators: relative date
 #: src/util.js:110
 #, javascript-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "před %d minutou"
+msgstr[1] "před %d minutami"
+msgstr[2] "před %d minutami"
 
 #. Translators: relative date
 #: src/util.js:117
 #, javascript-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "před %d hodinou"
+msgstr[1] "před %d hodinami"
+msgstr[2] "před %d hodinami"
 
 #. Translators: relative date
 #: src/util.js:124
 #, javascript-format
 msgid "yesterday"
 msgid_plural "%d days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "včera"
+msgstr[1] "před %d dny"
+msgstr[2] "před %d dny"
 
 #. Translators: relative date
 #: src/util.js:131
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "před %d týdnem"
+msgstr[1] "před %d týdny"
+msgstr[2] "před %d týdny"
 
 #. Translators: relative date, %s is date formatted as "May 01, 2022"
 #: src/util.js:137 src/util.js:141
 #, javascript-format
 msgid "on %s"
-msgstr ""
+msgstr "%s"
 
 #: src/window.js:215
 #, javascript-format
 msgid "Account %s authentication failed!"
-msgstr ""
+msgstr "Přihlášení k účtu %s se nezdařilo!"
 
 #: src/window.js:217
 msgid "The token may have been revoked or expired."
-msgstr ""
+msgstr "Je možné, že platnost tokenu byla odvolána nebo skončila."
 
 #. Translators: Replace "translator-credits" with your names, one name per line
 #: src/application.js:162
 msgid "translator-credits"
-msgstr ""
+msgstr "Pavel Borecki"
 
 #: src/gtk/help-overlay.blp:11
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "Obecné"
 
 #: src/gtk/help-overlay.blp:15
 msgctxt "shortcut window"
 msgid "Open menu"
-msgstr ""
+msgstr "Otevřít nabídku"
 
 #: src/gtk/help-overlay.blp:20
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Klávesové zkratky"
 
 #: src/gtk/help-overlay.blp:25
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "Ukončit"
 
 #: src/forges/github.js:32
 #, javascript-format
@@ -183,6 +191,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
+"Nový osobní přístupový token je možné si vytvořit z <a href=\"%s\">nastavení "
+"vývojáře na GitHub</a>. Podrobnosti viz „<a href=\"%s\">Vytvoření osobního "
+"přístupového tokenu</a>“."
 
 #. GitHub access token help
 #: src/forges/github.js:37
@@ -190,6 +201,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks vyžaduje <b>klasický</b> přístupový token (pro obecné použití), "
+"kterému byly uděleny rozsahy <i>notifikace</i> a <i>read:user</i>."
 
 #. GitHub access token help
 #: src/forges/github.js:40
@@ -197,6 +210,8 @@ msgid ""
 "If you’re working with private repositories, you’ll also need to grant the "
 "full <i>repo</i> scope."
 msgstr ""
+"Pokud pracujete s neveřejnými repozitáři, je také třeba udělit plný rozsah "
+"<i>repo</i>."
 
 #. Gitea access token help
 #: src/forges/gitea.js:31
@@ -204,6 +219,8 @@ msgid ""
 "To generate a new access token from your instance, go to Settings → "
 "Applications and generate a new token."
 msgstr ""
+"Pokud ze své instance chcete vytvořit nový přístupový token, jděte do "
+"Nastavení → Aplikace a vytvořte ho."
 
 #. Gitea access token help
 #: src/forges/gitea.js:34
@@ -211,6 +228,8 @@ msgid ""
 "Forge Sparks requires the <i>read:issue</i>, <i>write:notification</i> and "
 "<i>read:user</i> scopes granted."
 msgstr ""
+"Forge Sparks vyžaduje udělení rozsahů <i>read:issue</i>, "
+"<i>write:notification</i> a <i>read:user</i>."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -218,6 +237,8 @@ msgid ""
 "To generate a new access token from your instance, go to Preferences → "
 "Access Tokens and generate a new token."
 msgstr ""
+"Pokud ze své instance chcete vytvořit nový přístupový token, jděte do "
+"Předvolby → Přístupové tokeny a vytvořte ho."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
@@ -225,99 +246,101 @@ msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
+"Forge Sparks potřebuje pro čtení notifikací rozsah <i>read_api</i>, případně "
+"úplný rozsah <i>api</i>, aby bylo možné také označovat úkoly za dokončené."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
-msgstr ""
+msgstr "Označit jako přečtené"
 
 #: src/model/notification.js:82
 msgid "Show Forge Sparks"
-msgstr ""
+msgstr "Zobrazit Forge Sparks"
 
 #: src/widgets/accountDialog.blp:5
 msgid "Add Account"
-msgstr ""
+msgstr "Přidat účet"
 
 #: src/widgets/accountDialog.blp:20
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: src/widgets/accountDialog.blp:27
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #: src/widgets/accountDialog.blp:45
 msgid "Forge"
-msgstr ""
+msgstr "Forge"
 
 #: src/widgets/accountDialog.blp:52
 msgid "Instance URL"
-msgstr ""
+msgstr "URL instance"
 
 #: src/widgets/accountDialog.blp:60
 msgid "Access Token"
-msgstr ""
+msgstr "Přístupový token"
 
 #: src/widgets/accountDialog.blp:77
 msgid "Remove Account"
-msgstr ""
+msgstr "Odebrat účet"
 
 #: src/widgets/accountDialog.js:74
 msgid "Edit Account"
-msgstr ""
+msgstr "Upravit účet"
 
 #: src/widgets/accountDialog.js:75
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr ""
+msgstr "Neplatná url instance."
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
-msgstr ""
+msgstr "Nebylo možné ověřit se účtem"
 
 #: src/widgets/accountDialog.js:270
 msgid "The access token doesn’t have the needed scopes"
-msgstr ""
+msgstr "Přístupový token nemá potřebné rozsahy"
 
 #: src/widgets/accountDialog.js:272
 msgid "Unexpected error when creating the account"
-msgstr ""
+msgstr "Neočekávaná chyba při vytváření účtu"
 
 #: src/widgets/accountDialog.js:396
 msgid "Unexpected error removing the account"
-msgstr ""
+msgstr "Neočekávaná chyba při odebírání účtu"
 
 #: src/widgets/preferences.blp:11
 msgid "Keep Running in Background"
-msgstr ""
+msgstr "Ponechat spuštěné na pozadí"
 
 #: src/widgets/preferences.blp:18
 msgid "Run on Startup"
-msgstr ""
+msgstr "Spouštět při startu"
 
 #: src/widgets/preferences.blp:29
 msgid "Start Hidden"
-msgstr ""
+msgstr "Spouštět skryté"
 
 #: src/widgets/preferences.js:66
 msgid "The request failed."
-msgstr ""
+msgstr "Požadavek se nezdařil."
 
 #: src/widgets/preferences.js:97 src/widgets/preferences.js:128
 msgid "The autostart request failed."
-msgstr ""
+msgstr "Požadavek na automatické spouštění se nezdařil."
 
 #: src/widgets/accountsDialog.blp:18
 msgid "Add…"
-msgstr ""
+msgstr "Přidat…"
 
 #: src/widgets/accountsDialog.blp:38
 msgid "No Accounts"
-msgstr ""
+msgstr "Žádné účty"
 
 #: src/widgets/accountsDialog.js:70
 msgid "Account authentication failed!"
-msgstr ""
+msgstr "Ověření účtem se nezdařilo!"
