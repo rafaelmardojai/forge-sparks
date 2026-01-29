@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: 2024-11-29 14:00+0000\n"
+"PO-Revision-Date: 2026-01-30 10:01+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
@@ -236,13 +236,12 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-#, fuzzy
 msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
-"Forge Sparks vaatii, että skoopit <i>read:issue</i>, <i>write:notification</"
-"i> ja <i>read:user</i> myönnetään."
+"Forge Sparks tarvitsee <i>read_api</i>-laajuuden ilmoitusten lukemiseen tai "
+"täyden <i>api</i>-laajuuden tehtävien merkitsemiseen valmiiksi."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
