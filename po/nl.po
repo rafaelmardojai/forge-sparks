@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: 2025-09-06 12:01+0000\n"
-"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/"
-"forge-sparks/nl/>\n"
+"PO-Revision-Date: 2026-02-24 21:09+0000\n"
+"Last-Translator: Thomas Boom <thomasnowprod@proton.me>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/forge-sparks/forge-"
+"sparks/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
@@ -31,7 +31,7 @@ msgstr "Krijg meldingen van Git-forges"
 
 #: data/com.mardojai.ForgeSparks.desktop.in.in:12
 msgid "git;github;notifications;"
-msgstr "git;github;notifications;meldingen;"
+msgstr "git;github;meldingen;"
 
 #: data/com.mardojai.ForgeSparks.metainfo.xml.in.in:27
 msgid "Simple notifier app with support for GitLab, Github, Gitea and Forgejo."
