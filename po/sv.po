@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.mardojai.ForgeSparks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-14 19:58-0500\n"
-"PO-Revision-Date: 2024-10-08 14:15+0000\n"
+"PO-Revision-Date: 2026-04-09 18:09+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/forge-sparks/"
 "forge-sparks/sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #. TRANSLATORS: Don't translate, only transliterate if needed
 #: data/com.mardojai.ForgeSparks.desktop.in.in:3 src/window.blp:40
@@ -188,9 +188,9 @@ msgid ""
 "developer settings</a>. For more information, see \"<a href=\"%s\">Creating "
 "a personal access token</a>\"."
 msgstr ""
-"Man kan generera en ny personaliskt access token genom att använda <a "
-"href=\"%s\">GitHub:s ”Developer Settings”</a>. För mer information, läsa ”<a "
-"href=\"%s\">Creating a personal access token</a>”."
+"Man kan generera en ny personlig access token genom att använda <a "
+"href=\"%s\">GitHub:s ”Developer Settings</a>. För mer information, läsa ”<a "
+"href=\"%s\">Skapa en personlig access token </a>\"."
 
 #. GitHub access token help
 #: src/forges/github.js:37
@@ -198,8 +198,8 @@ msgid ""
 "Forge Sparks requires a <b>classic</b> access token (for general use) with "
 "the <i>notifications</i> and <i>read:user</i> scopes granted."
 msgstr ""
-"Forge Sparks behöver en <b>classic</b> access token (för allmäna "
-"användningar) med <i>notifications</i> -och <i>read:user</i>omfång beviljade."
+"Forge Sparks behöver en <b>klassisk</b> access token (för allmäna "
+"användning) med <i>notifications</i> -och <i>read:user</i> omfång beviljade."
 
 #. GitHub access token help
 #: src/forges/github.js:40
@@ -208,7 +208,7 @@ msgid ""
 "full <i>repo</i> scope."
 msgstr ""
 "Om du vill hantera aviseringar för privata repositories behöver du bevilja "
-"det fullständiga <i>repo</i>omfånget."
+"det fullständiga <i>repo</i> omfånget."
 
 #. Gitea access token help
 #: src/forges/gitea.js:31
@@ -226,7 +226,7 @@ msgid ""
 "<i>read:user</i> scopes granted."
 msgstr ""
 "Forge Sparks behöver de <i>read:issue</i>-, <i>write:notification</i>-, och "
-"<i>read:user</i>omfången att beviljades."
+"<i>read:user</i> omfången att beviljades."
 
 #. GitLab access token help
 #: src/forges/gitlab.js:24
@@ -239,13 +239,12 @@ msgstr ""
 
 #. GitLab access token help
 #: src/forges/gitlab.js:27
-#, fuzzy
 msgid ""
 "Forge Sparks needs <i>read_api</i> scope to read notifications or full "
 "<i>api</i> scope to also mark todos as done."
 msgstr ""
-"Forge Sparks behöver de <i>read:issue</i>-, <i>write:notification</i>-, och "
-"<i>read:user</i>omfången att beviljades."
+"Forge Sparks behöver de <i>read_api</i> omfång för att läsa aviseringar "
+"eller fullständigt<i>api</i> omfång för att även markera att göra som gjorda."
 
 #: src/model/notification.js:75
 msgid "Mark as Read"
@@ -293,7 +292,7 @@ msgstr "Spara"
 
 #: src/widgets/accountDialog.js:232 src/widgets/accountDialog.js:249
 msgid "Invalid instance url."
-msgstr "Ogiltig instans URL."
+msgstr "Ogiltig instans url."
 
 #: src/widgets/accountDialog.js:268
 msgid "Couldn’t authenticate the account"
