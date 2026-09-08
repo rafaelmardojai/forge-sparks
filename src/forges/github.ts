@@ -320,7 +320,7 @@ export default class GitHub extends Forge {
                 info.url = contents.html_url;
 
                 /* Get pull request state */
-                if (notification.subject.type === 'PullRequest') {
+                if (notification.subject.type === 'PullRequest' || notification.subject.type === 'Pull') {
                     if (contents.draft) {
                         info.state = 'draft';
                     }
@@ -331,7 +331,11 @@ export default class GitHub extends Forge {
 
                 /* Get comment url */
                 if (notification.reason != 'subscribed') {
-                    if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {
+                    if (
+                        notification.subject.type === 'Issue' ||
+                        notification.subject.type === 'PullRequest' ||
+                        notification.subject.type === 'Pull'
+                    ) {
                         const url = await this.getCommentURL(notification.subject.latest_comment_url);
                         if (url) info.url = url;
                     }
@@ -351,7 +355,7 @@ export default class GitHub extends Forge {
                 }
             } else {
                 /* Fallback URL if request failed, probably repo is private */
-                if (notification.subject.type === 'PullRequest') {
+                if (notification.subject.type === 'PullRequest' || notification.subject.type === 'Pull') {
                     info.url = `${notification.repository.html_url}/pulls`;
                 } else if (notification.subject.type === 'Issue') {
                     info.url = `${notification.repository.html_url}/issues`;
