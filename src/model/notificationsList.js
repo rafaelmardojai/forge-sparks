@@ -25,6 +25,9 @@ export default class NotificationsList extends GObject.Object {
 
         /* Private list to store notifications */
         this._notifications = [];
+
+        /* Map to store notifications by id */
+        this._byId = new Map();
     }
 
     /**
@@ -62,55 +65,62 @@ export default class NotificationsList extends GObject.Object {
     clear() {
         const removed = this._notifications.length;
 
-        while (this._notifications.length) {
-            this._notifications.pop();
-        }
+        this._byId.clear();
+        this._notifications.splice(0, removed);
 
         this.items_changed(0, removed, 0);
     }
 
     /**
-     * Append a new notification to the model
+     * Append a notification to the list
      *
      * @param {Notification} notification The notification to append
      */
     append(notification) {
         this._notifications.push(notification);
+        this._byId.set(notification.id, notification);
+
         this.items_changed(this._notifications.length - 1, 0, 1);
     }
 
     /**
-     * Get a notifications by its ID
+     * Remove a notification from the list
      *
-     * @param {string} id The id of the notification to get
-     * @returns {Notification}
+     * @param {number} position The position of the notification to remove
      */
-    getByID(id) {
-        for (const notification of this._notifications) {
-            if (notification.id == id) {
-                return notification;
-            }
-        }
-        return null;
+    remove(position) {
+        const notification = this._notifications[position];
+
+        this._byId.delete(notification.id);
+        this._notifications.splice(position, 1);
+
+        this.items_changed(position, 1, 0);
     }
 
     /**
-     * Remove a notifications by its ID
+     * Remove a notification from the list by its ID
      *
-     * @param {string} id The id of the notification to remove
+     * @param {string} id The ID of the notification to remove
      */
     removeByID(id) {
-        let removeIndex = -1;
-        for (const [i, notification] of this._notifications.entries()) {
-            if (notification.id == id) {
-                removeIndex = i;
-                break;
-            }
-        }
+        const notification = this._byId.get(id);
+        if (!notification) return;
 
-        if (removeIndex != -1) {
-            this._notifications.splice(removeIndex, 1);
-            this.items_changed(removeIndex, 1, 0);
-        }
+        const index = this._notifications.indexOf(notification);
+
+        this._notifications.splice(index, 1);
+        this._byId.delete(id);
+
+        this.items_changed(index, 1, 0);
+    }
+
+    /**
+     * Get a notification by its ID
+     *
+     * @param {string} id The ID of the notification to get
+     * @returns {Notification} The notification with the given ID
+     */
+    getById(id) {
+        return this._byId.get(id);
     }
 }

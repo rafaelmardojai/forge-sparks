@@ -15,7 +15,7 @@ import {
 import { FORGES, extractID } from './forges/index.js';
 
 import AccountsManager from './model/accountsManager.js';
-import NotificationsList from './model/notificationsList.js';
+import NotificationsModel from './model/notificationsModel.js';
 
 import AccountDialog from './widgets/accountDialog.js';
 import NotificationRow from './widgets/notificationRow.js';
@@ -94,10 +94,7 @@ export default class Window extends Adw.ApplicationWindow {
         });
 
         /* Setup notifications model */
-        this.model = new NotificationsList();
-        this.notified = settings
-            .get_value('notified')
-            .deepUnpack(); /* Notifications that have been notified {id: timestamp} */
+        this.model = new NotificationsModel();
         this.model.connect('items-changed', (_pos, _rmv, _add) => {
             if (this.model.get_n_items() > 0) {
                 this._notificationsStack.set_visible_child_name('list');
@@ -107,23 +104,12 @@ export default class Window extends Adw.ApplicationWindow {
             this._markAsRead.visible = this.model.get_n_items() > 0;
         });
 
-        /* Sort the model by timestamp */
-        const expression = new Gtk.PropertyExpression(
-            this.model.get_item_type(),
-            null,
-            'timestamp',
-        );
-        this.sortedModel = new Gtk.SortListModel({
-            model: this.model,
-            sorter: new Gtk.NumericSorter({
-                expression: expression,
-                sort_order: Gtk.SortType.DESCENDING,
-            }),
-        });
+        /* Notifications that have been notified {id: timestamp} */
+        this.notified = settings.get_value('notified').deepUnpack();
 
         /* Bind sorted model to notifications list box */
         this._notificationsList.bind_model(
-            this.sortedModel,
+            this.model,
             this._createNotificationRow.bind(this),
         );
 
@@ -186,7 +172,6 @@ export default class Window extends Adw.ApplicationWindow {
             return;
         }
 
-        let newNotifications = []; /* List to store new notifications */
         /* Loop accounts model */
         for (var i = 0; i < accounts.get_n_items(); i++) {
             /** @type {import('./model/account.js').default} */
@@ -214,6 +199,11 @@ export default class Window extends Adw.ApplicationWindow {
                         account.userId = userId; // Update user ID on account
                         this.forges[account.id].userId = userId; // Update user ID on existing forge instance
                     }
+
+                    this.model.addModel(
+                        account.id,
+                        this.forges[account.id].notifications,
+                    );
                 } catch (error) {
                     /* TODO: Notify the user that this failed */
                     console.error(error);
@@ -222,9 +212,7 @@ export default class Window extends Adw.ApplicationWindow {
 
             /* Get notifications from forge */
             try {
-                const notifications =
-                    await this.forges[account.id].getNotifications(this);
-                newNotifications.push(...notifications);
+                await this.forges[account.id].getNotifications(this);
 
                 /* Reset failed state */
                 if (this.authFailed == account.id) {
@@ -290,10 +278,9 @@ export default class Window extends Adw.ApplicationWindow {
             }
         }
 
-        /* Show new notifications */
-        if (!(this.networkError && newNotifications.length === 0))
-            this.showNotifications(newNotifications);
-        else this._mainStack.set_visible_child_name('notifications');
+        /* Show notifications */
+        this._mainStack.set_visible_child_name('notifications');
+        if (!this.networkError) this.sendNotifications();
 
         if (!this.reFetch) {
             /* Add timeout to run this function again */
@@ -334,25 +321,15 @@ export default class Window extends Adw.ApplicationWindow {
     }
 
     /**
-     * Show notifications to the user
-     *
-     * Updates notification model and sends desktop notifications
-     *
-     * @param {Array<Notification>} notifications New notifications
+     * Send desktop notifications for all notifications
      */
-    showNotifications(notifications) {
+    sendNotifications() {
         const app = this.get_application();
-
-        this.model.clear(); /* Clear list */
-
-        /* Loop new notifications and populate the model */
-        for (const notification of notifications) {
-            this.model.append(notification);
-        }
+        const notified = {};
 
         /* Loop sorted notifications model, so we can show them on order */
-        for (var i = 0; i < this.sortedModel.get_n_items(); i++) {
-            const notification = this.sortedModel.get_item(i);
+        for (var i = 0; i < this.model.get_n_items(); i++) {
+            const notification = this.model.get_item(i);
 
             /* Only send notifications if the window is hidden or not focused */
             if (!this.visible || !this.is_active) {
@@ -370,26 +347,17 @@ export default class Window extends Adw.ApplicationWindow {
             }
 
             /* Add notification id and timestamp to notified dict */
-            this.notified[notification.id] = notification.updatedAt;
+            notified[notification.id] = notification.updatedAt;
         }
 
         if (!this.fetchError) {
-            /* Sanitize notified ids before saving */
-            Object.keys(this.notified).forEach((id) => {
-                if (!this.model.getByID(id)) {
-                    delete this.notified[id];
-                }
-            });
+            this.notified = notified;
+            /* Save notified ids so if the app restarts we don't notify again */
+            settings.set_value(
+                'notified',
+                new GLib.Variant('a{ss}', this.notified),
+            );
         }
-
-        /* Save notified ids so if the app restarts we don't notify again */
-        settings.set_value(
-            'notified',
-            new GLib.Variant('a{ss}', this.notified),
-        );
-
-        /* Stop loading view, and show notifications view */
-        this._mainStack.set_visible_child_name('notifications');
     }
 
     /**

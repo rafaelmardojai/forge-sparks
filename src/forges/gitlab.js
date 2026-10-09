@@ -79,32 +79,30 @@ export default class GitLab extends Forge {
             console.log(`${url} response resulted in ${message.get_status()}`);
 
             if (message.get_status() == '200') {
-                /* Show notifications */
-                let notifications = [];
+                this.notifications.clear();
 
                 for (const item of contents) {
                     try {
-                        const notification = new Notification({
-                            id: super.formatID(item.id),
-                            type: item.target_type,
-                            unread: item.state === 'pending',
-                            updatedAt: item.updated_at,
-                            state: item.target.state,
-                            title: item.target.title,
-                            repository:
-                                'project' in item
-                                    ? item.project.path_with_namespace
-                                    : item.author.name,
-                            url: item.target_url,
-                            account_name: this.accountName,
-                        });
-                        notifications.push(notification);
+                        this.notifications.append(
+                            new Notification({
+                                id: super.formatID(item.id),
+                                type: item.target_type,
+                                unread: item.state === 'pending',
+                                updatedAt: item.updated_at,
+                                state: item.target.state,
+                                title: item.target.title,
+                                repository:
+                                    'project' in item
+                                        ? item.project.path_with_namespace
+                                        : item.author.name,
+                                url: item.target_url,
+                                account_name: this.accountName,
+                            }),
+                        );
                     } catch (e) {
                         console.error(e);
                     }
                 }
-
-                return notifications;
             } else if (message.get_status() == '401') {
                 /* Auth failed, revoked or expired token */
                 throw 'FailedForgeAuth';

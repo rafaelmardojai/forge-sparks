@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: MIT
 
+import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import Soup from 'gi://Soup';
+
+import Notification from '../model/notification.js';
+import NotificationsList from '../model/notificationsList.js';
 
 /* Git Forge base class. */
 export default class Forge {
@@ -74,6 +78,11 @@ export default class Forge {
          */
         this.accountName = accountName;
 
+        /**
+         * Model to store notifications.
+         */
+        this.notifications = new NotificationsList();
+
         this.modifiedSince = '';
         this.encoder = new TextEncoder();
         this.decoder = new TextDecoder('utf-8');
@@ -106,11 +115,11 @@ export default class Forge {
     /**
      * Get notifications
      *
-     * Get all unread notifications for the logged in user
+     * Update the notifications model with the latest notifications.
      *
      * @throws {FailedForgeAuth} The access token is not valid (401 status)
      * @throws Will throw an error if some part of the process fails
-     * @returns {Promise<Array<Notification>>} The notifications
+     * @returns {Promise} The notifications
      */
     async getNotifications() {}
 

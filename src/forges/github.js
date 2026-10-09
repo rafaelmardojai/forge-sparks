@@ -107,35 +107,16 @@ export default class GitHub extends Forge {
             /* this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince; */
 
             if (message.get_status() == '200') {
-                /* Show notifications */
-                let notifications = [];
+                /* Get notifications from response */
+                const notifications =
+                    await this._compileNotifications(contents);
 
-                for (const item of contents) {
-                    try {
-                        const info = await this._getSubjectInfo(item);
-                        const notification = new Notification({
-                            id: super.formatID(item.id),
-                            type: item.subject.type,
-                            unread: item.unread,
-                            updatedAt:
-                                'updated_at' in info
-                                    ? info.updated_at
-                                    : item.updated_at,
-                            title: item.subject.title,
-                            repository: item.repository.full_name,
-                            url: info.url,
-                            account_name: this.accountName,
-                        });
-                        if (info.state) {
-                            notification.state = info.state;
-                        }
-                        notifications.push(notification);
-                    } catch (e) {
-                        console.error(e);
-                    }
+                this.notifications.clear(); /* Clear list */
+
+                /* Loop new notifications and populate the model */
+                for (const notification of notifications) {
+                    this.notifications.append(new Notification(notification));
                 }
-
-                return notifications;
             } else if (message.get_status() == '401') {
                 /* Auth failed, revoked or expired token */
                 throw 'FailedForgeAuth';
@@ -185,6 +166,58 @@ export default class GitHub extends Forge {
         } catch (e) {
             throw e;
         }
+    }
+
+    /**
+     * Compile notifications.
+     *
+     * This should happen in parallel so that information retrieval
+     * doesn't take a lot of time.
+     *
+     * @param {Array} items
+     * @returns {Promise<Array>}
+     */
+    _compileNotifications(items) {
+        const notifications = [];
+        let count = items.length;
+
+        return new Promise((resolve, reject) => {
+            if (!items.length) {
+                resolve(notifications);
+            }
+
+            for (const item of items) {
+                try {
+                    this._getSubjectInfo(item).then((info) => {
+                        const notification = {
+                            id: super.formatID(item.id),
+                            type: item.subject.type,
+                            unread: item.unread,
+                            updatedAt:
+                                'updated_at' in info
+                                    ? info.updated_at
+                                    : item.updated_at,
+                            title: item.subject.title,
+                            repository: item.repository.full_name,
+                            url: info.url,
+                            account_name: this.accountName,
+                        };
+                        if (info.state) {
+                            notification['state'] = info.state;
+                        }
+                        notifications.push(notification);
+
+                        count--;
+                        if (count === 0) {
+                            resolve(notifications);
+                        }
+                    });
+                } catch (e) {
+                    count--;
+                    console.error(e);
+                }
+            }
+        });
     }
 
     /**
