@@ -43,6 +43,20 @@ conf.set('libdir', libdir)
 conf.set('datadir', datadir)
 conf.set('bindir', bindir)
 
+# Install node dependencies
+cachedir = get_option('cachedir')
+if cachedir == ''
+  cachedir = meson.project_build_root() / 'npm-cache'
+endif
+
+npm = find_program('npm')
+npm_ci = custom_target(
+  command: [npm, 'ci', '--cache', cachedir],
+  console: true,
+  depend_files: files('package-lock.json'),
+  output: 'npm-ci',
+)
+
 subdir('data')
 subdir('src')
 subdir('po')

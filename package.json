@@ -1,6 +1,6 @@
 {
     "name": "forge-sparks",
-    "dependencies": {
+    "devDependencies": {
         "@girs/adw-1": "^5.5.0",
         "@girs/gjs": "^5.5.0",
         "@girs/gtk-4.0": "^5.5.0",
@@ -8,10 +8,8 @@
         "@girs/soup-3.0": "^5.5.0",
         "@girs/xdp-1.0": "^5.5.0",
         "@girs/xdpgtk4-1.0": "^5.5.0",
-        "typescript": "^7.0.2"
-    },
-    "devDependencies": {
         "@gitbeaker/core": "^43.8.0",
-        "@octokit/types": "^18.0.0"
+        "@octokit/types": "^18.0.0",
+        "typescript": "^7.0.2"
     }
 }

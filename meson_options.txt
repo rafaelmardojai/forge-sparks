@@ -1,9 +1,8 @@
 option(
   'profile',
   type: 'combo',
-  choices: [
-    'default',
-    'development'
-  ],
-  value: 'default'
+  choices: ['default', 'development'],
+  value: 'default',
 )
+
+option('cachedir', type: 'string')

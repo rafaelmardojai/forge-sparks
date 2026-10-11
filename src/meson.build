@@ -48,6 +48,7 @@ typescript = custom_target(
   build_always_stale: true,
   command: [tsc, '--project', tsconfig, '--outDir', tsc_out],
   output: ['tsc-output'],
+  depends: [npm_ci],
 )
 
 src_res = gnome.compile_resources(
