@@ -2,8 +2,25 @@
 
 import GObject from 'gi://GObject';
 
-/* Object representing an account */
+interface ConstructorProps extends Partial<GObject.Object.ConstructorProps> {
+    id: string;
+    forge?: string;
+    url?: string;
+    username?: string;
+    userId?: number;
+}
+
+/**
+ * Object representing an account
+ */
 export default class Account extends GObject.Object {
+    declare private _id: string;
+    declare private _forge: string | null;
+    declare private _url: string | null;
+    declare private _username: string | null;
+    declare private _userId: number | null;
+    declare private _authFailed: boolean;
+
     static {
         GObject.registerClass(
             {
@@ -13,37 +30,13 @@ export default class Account extends GObject.Object {
                         'display_name',
                         null,
                         null,
-                        GObject.ParamFlags.READWRITE,
+                        GObject.ParamFlags.READABLE,
                         null,
                     ),
-                    id: GObject.ParamSpec.string(
-                        'id',
-                        null,
-                        null,
-                        GObject.ParamFlags.READWRITE,
-                        null,
-                    ),
-                    forge: GObject.ParamSpec.string(
-                        'forge',
-                        null,
-                        null,
-                        GObject.ParamFlags.READWRITE,
-                        null,
-                    ),
-                    url: GObject.ParamSpec.string(
-                        'url',
-                        null,
-                        null,
-                        GObject.ParamFlags.READWRITE,
-                        null,
-                    ),
-                    username: GObject.ParamSpec.string(
-                        'username',
-                        null,
-                        null,
-                        GObject.ParamFlags.READWRITE,
-                        null,
-                    ),
+                    id: GObject.ParamSpec.string('id', null, null, GObject.ParamFlags.READWRITE, null),
+                    forge: GObject.ParamSpec.string('forge', null, null, GObject.ParamFlags.READWRITE, null),
+                    url: GObject.ParamSpec.string('url', null, null, GObject.ParamFlags.READWRITE, null),
+                    username: GObject.ParamSpec.string('username', null, null, GObject.ParamFlags.READWRITE, null),
                     'user-id': GObject.ParamSpec.int64(
                         'user_id',
                         null,
@@ -67,11 +60,13 @@ export default class Account extends GObject.Object {
     }
 
     /* Create an Account */
-    constructor(constructProperties = {}) {
-        super(constructProperties);
+    constructor({ id, ...params }: ConstructorProps) {
+        super(params);
 
-        this.connect('notify::url', this._updateDisplayName.bind(this));
-        this.connect('notify::username', this._updateDisplayName.bind(this));
+        this._id = id;
+
+        this.connect('notify::url', this.updateDisplayName.bind(this));
+        this.connect('notify::username', this.updateDisplayName.bind(this));
     }
 
     /**
@@ -88,22 +83,18 @@ export default class Account extends GObject.Object {
     /**
      * Notify displayName changed
      */
-    _updateDisplayName(_obj, _pspec) {
+    private updateDisplayName(_obj: this, _param: GObject.ParamSpec) {
         this.notify('display-name');
     }
 
     /**
      * Account ID from app settings
-     *
-     * @type {string}
      */
-    get id() {
-        if (this._id === undefined) this._id = null;
-
+    get id(): string {
         return this._id;
     }
 
-    set id(value) {
+    set id(value: string) {
         if (this._id === value) return;
 
         this._id = value;
@@ -112,16 +103,12 @@ export default class Account extends GObject.Object {
 
     /**
      * Account forge name
-     *
-     * @type {string}
      */
-    get forge() {
-        if (this._forge === undefined) this._forge = null;
-
+    get forge(): string | null {
         return this._forge;
     }
 
-    set forge(value) {
+    set forge(value: string) {
         if (this._forge === value) return;
 
         this._forge = value;
@@ -130,16 +117,12 @@ export default class Account extends GObject.Object {
 
     /**
      * Account server URL
-     *
-     * @type {string}
      */
-    get url() {
-        if (this._url === undefined) this._url = null;
-
+    get url(): string | null {
         return this._url;
     }
 
-    set url(value) {
+    set url(value: string) {
         if (this._url === value) return;
 
         this._url = value;
@@ -148,16 +131,12 @@ export default class Account extends GObject.Object {
 
     /**
      * Account username
-     *
-     * @type {string}
      */
-    get username() {
-        if (this._username === undefined) this._username = null;
-
+    get username(): string | null {
         return this._username;
     }
 
-    set username(value) {
+    set username(value: string) {
         if (this._username === value) return;
 
         this._username = value;
@@ -166,16 +145,12 @@ export default class Account extends GObject.Object {
 
     /**
      * Account user ID
-     *
-     * @type {number}
      */
-    get userId() {
-        if (this._userId === undefined) this._userId = null;
-
+    get userId(): number | null {
         return this._userId;
     }
 
-    set userId(value) {
+    set userId(value: number) {
         if (this._userId === value) return;
 
         this._userId = value;
@@ -184,14 +159,12 @@ export default class Account extends GObject.Object {
 
     /**
      * If the account auth failed
-     *
-     * @type {boolean}
      */
-    get authFailed() {
-        return this._authFailed || false;
+    get authFailed(): boolean {
+        return this._authFailed;
     }
 
-    set authFailed(value) {
+    set authFailed(value: boolean) {
         this._authFailed = value;
         this.notify('auth-failed');
     }

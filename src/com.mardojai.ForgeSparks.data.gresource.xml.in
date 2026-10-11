@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gresources>
+  <gresource prefix="/com/mardojai/ForgeSparks@profile@">
+    <file preprocess="xml-stripblanks">window.ui</file>
+    <file preprocess="xml-stripblanks">widgets/accountDialog.ui</file>
+    <file preprocess="xml-stripblanks">widgets/accountsDialog.ui</file>
+    <file preprocess="xml-stripblanks">widgets/notificationRow.ui</file>
+    <file preprocess="xml-stripblanks">widgets/preferences.ui</file>
+
+    <file>style.css</file>
+    <file>gtk/help-overlay.ui</file>
+
+    <file preprocess="xml-stripblanks">assets/alldone.svg</file>
+
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/commit-symbolic.svg">icons/commit-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/discussion-symbolic.svg">icons/discussion-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/issue-done-symbolic.svg">icons/issue-done-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/issue-symbolic.svg">icons/issue-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/merge-denied-symbolic.svg">icons/merge-denied-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/merge-draft-symbolic.svg">icons/merge-draft-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/merge-merged-symbolic.svg">icons/merge-merged-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/merge-symbolic.svg">icons/merge-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="icons/scalable/status/tag-symbolic.svg">icons/tag-symbolic.svg</file>
+  </gresource>
+</gresources>

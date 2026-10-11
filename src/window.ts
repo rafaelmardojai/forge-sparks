@@ -6,23 +6,15 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
-import {
-    settings,
-    requestBackground,
-    setBackgroundStatus,
-    relativeDate,
-} from './util.js';
+import { settings, requestBackground, setBackgroundStatus, relativeDate, getResourceUri } from './util.js';
 import { FORGES, extractID } from './forges/index.js';
-
+import Forge from './forges/forge.js';
 import AccountsManager from './model/accountsManager.js';
 import NotificationsModel from './model/notificationsModel.js';
-
 import AccountDialog from './widgets/accountDialog.js';
 import NotificationRow from './widgets/notificationRow.js';
-
-import AllDoneIllustration from './assets/alldone.svg';
-import Template from './window.blp' with { type: 'uri' };
-import HelpOverlayTemplate from './gtk/help-overlay.blp' with { type: 'resource' };
+import type Account from './model/account.js';
+import type Notification from './model/notification.js';
 
 const Format = imports.format;
 
@@ -31,10 +23,56 @@ const accounts = new AccountsManager();
 
 /* Main application window */
 export default class Window extends Adw.ApplicationWindow {
+    declare private _mainStack: Gtk.Stack;
+    declare private _headerbar: Adw.HeaderBar;
+    declare private _emptyPicture: Gtk.Picture;
+    declare private _accountBanner: Adw.Banner;
+    declare private _setupPage: Adw.StatusPage;
+    declare private _notificationsStack: Gtk.Stack;
+    declare private _notificationsList: Gtk.ListBox;
+    declare private _markAsRead: Gtk.Button;
+    declare private _markAsReadIcon: Gtk.Stack;
+
+    /**
+     * Store accounts forge instances.
+     */
+    private forges: Map<string, Forge> = new Map();
+
+    /**
+     * Interval of the notifications requests, in seconds.
+     */
+    private interval: number = 60;
+
+    /**
+     * Model for the notifications list.
+     */
+    private model: NotificationsModel;
+
+    /**
+     * Notifications that have been notified to the user.
+     */
+    private notified: Record<string, string>;
+
+    /** Store the fetching state */
+    private fetching: boolean = false;
+    private reFetch: boolean = false;
+
+    /** Store app fail states */
+    private authFailed: string | null = null;
+    private authErrorNotified: boolean = false;
+    private fetchError: boolean = false;
+    private networkError: boolean = false;
+
+    /** Store the source of the notifications subscription timeout */
+    private subscribeSource: number | null = null;
+
+    /** Store the handler of the notifications retry signal */
+    private retryHandler: number | null = null;
+
     static {
         GObject.registerClass(
             {
-                Template,
+                Template: getResourceUri('window.ui'),
                 InternalChildren: [
                     'mainStack',
                     'headerbar',
@@ -54,36 +92,13 @@ export default class Window extends Adw.ApplicationWindow {
     /**
      * Crete a Window
      */
-    constructor(constructProperties = {}) {
-        super(constructProperties);
-
-        /**
-         * Store accounts forge instances
-         * @type {Object.<string, import('./forges/forge.js').default>}
-         */
-        this.forges = {};
-        /* Interval of the notifications requests, in seconds */
-        this.interval = 60;
-        /* Fetching state */
-        this.fetching = false;
-        this.reFetch = false;
-        /* Store app fail states */
-        this.authFailed = null;
-        this.authErrorNotified = false;
-        this.fetchError = false;
-        this.networkError = false;
-
-        /* Set help overlay */
-        const help_overlay =
-            Gtk.Builder.new_from_resource(HelpOverlayTemplate).get_object(
-                'help_overlay',
-            );
-        this.set_help_overlay(help_overlay);
+    constructor(params?: Partial<Adw.ApplicationWindow.ConstructorProps>) {
+        super(params);
 
         /* Set app initial state */
         this._mainStack.set_visible_child_name('loading');
         this._setupPage.icon_name = pkg.name;
-        this._emptyPicture.set_resource(AllDoneIllustration);
+        this._emptyPicture.set_resource(getResourceUri('assets/alldone.svg'));
 
         /* Listen to accounts model changes */
         accounts.connect('items-changed', () => {
@@ -104,21 +119,18 @@ export default class Window extends Adw.ApplicationWindow {
             this._markAsRead.visible = this.model.get_n_items() > 0;
         });
 
-        /* Notifications that have been notified {id: timestamp} */
-        this.notified = settings.get_value('notified').deepUnpack();
+        /* Saved notifications from previous session */
+        this.notified = settings.get_value('notified').deepUnpack<Record<string, string>>();
 
         /* Bind sorted model to notifications list box */
-        this._notificationsList.bind_model(
-            this.model,
-            this._createNotificationRow.bind(this),
-        );
+        this._notificationsList.bind_model(this.model, this.createNotificationRow.bind(this));
 
         /* Add devel class */
         if (pkg.name.endsWith('Devel')) this.add_css_class('devel');
 
         /* First run, background request */
         if (!settings.get_boolean('first-run')) {
-            this._firstRun();
+            this.firstRun();
         } else {
             /* Subscribe to notifications */
             this.subscribe();
@@ -128,7 +140,7 @@ export default class Window extends Adw.ApplicationWindow {
     /**
      * Make first app run setup
      */
-    async _firstRun() {
+    private async firstRun() {
         /* Ask for background permission to the portal */
         const result = await requestBackground(this, false);
         /* Save result as the hide-on-close setting value.
@@ -145,28 +157,29 @@ export default class Window extends Adw.ApplicationWindow {
      * Run notifications getter task.
      *
      * This is a recursive function with a timeout set by $this.interval.
-     * The timeout event source ID is stored in $this._subscribeSource.
+     * The timeout event source ID is stored in $this.subscribeSource.
      */
-    async subscribe() {
+    public async subscribe() {
         this.fetching = true;
         this.fetchError = false;
         this.networkError = false;
+
         const app = this.get_application();
 
-        if (this._retryHandler != undefined) {
-            accounts.disconnect(this._retryHandler);
+        if (this.retryHandler != null) {
+            accounts.disconnect(this.retryHandler);
         }
 
         /* Resolve token error */
-        if (!accounts.getAccounts().includes(this.authFailed)) {
-            this._resolveTokenError();
+        if (this.authFailed && !accounts.getAccounts().includes(this.authFailed)) {
+            this.resolveTokenError();
         }
 
         /* If not accounts found, show setup view and return */
         if (!accounts.get_n_items()) {
             this._mainStack.set_visible_child_name('setup');
             /* Re-call this function if the account model changes in the future */
-            this._retryHandler = accounts.connect('items-changed', () => {
+            this.retryHandler = accounts.connect('items-changed', () => {
                 this.subscribe();
             });
             return;
@@ -174,36 +187,29 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Loop accounts model */
         for (var i = 0; i < accounts.get_n_items(); i++) {
-            /** @type {import('./model/account.js').default} */
-            const account = accounts.get_item(i);
+            const account = accounts.get_item(i) as Account;
 
             /* Init a corresponding forge instance for the account if isn't yet */
-            if (
-                !(account.id in this.forges) ||
-                this.forges[account.id] == undefined
-            ) {
+            if (!(account.id in this.forges) || this.forges.get(account.id) === undefined) {
                 try {
                     const token = await accounts.getAccountToken(account.id);
-                    this.forges[account.id] = new FORGES[account.forge](
-                        account.url,
+                    const instance = new FORGES[account.forge as string](
+                        account.url as string,
                         token,
                         account.id,
                         account.userId,
                         account.displayName,
                     );
 
+                    this.forges.set(account.id, instance);
+                    this.model.addModel(account.id, instance);
+
                     /* Fetch user ID for older accounts (Forge Sparks =< 0.2) */
                     if (account.userId === 0) {
-                        const [userId, _username] =
-                            await this.forges[account.id].getUser();
+                        const [userId, _username] = await instance.getUser();
                         account.userId = userId; // Update user ID on account
-                        this.forges[account.id].userId = userId; // Update user ID on existing forge instance
+                        instance.userId = userId; // Update user ID on existing forge instance
                     }
-
-                    this.model.addModel(
-                        account.id,
-                        this.forges[account.id].notifications,
-                    );
                 } catch (error) {
                     /* TODO: Notify the user that this failed */
                     console.error(error);
@@ -212,28 +218,19 @@ export default class Window extends Adw.ApplicationWindow {
 
             /* Get notifications from forge */
             try {
-                await this.forges[account.id].getNotifications(this);
+                await this.forges.get(account.id)?.getNotifications();
 
                 /* Reset failed state */
                 if (this.authFailed == account.id) {
-                    this._resolveTokenError(account);
+                    this.resolveTokenError(account);
                 }
             } catch (error) {
                 this.fetchError = true;
                 if (error instanceof GLib.Error) {
                     if (
-                        error.matches(
-                            Gio.IOErrorEnum,
-                            Gio.ResolverError.NETWORK_UNREACHABLE,
-                        ) ||
-                        error.matches(
-                            Gio.IOErrorEnum,
-                            Gio.IOErrorEnum.TIMED_OUT,
-                        ) ||
-                        error.matches(
-                            Gio.ResolverError,
-                            Gio.ResolverError.NOT_FOUND,
-                        )
+                        error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NETWORK_UNREACHABLE) ||
+                        error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.TIMED_OUT) ||
+                        error.matches(Gio.ResolverError, Gio.ResolverError.NOT_FOUND)
                     ) {
                         this.networkError = true;
                     }
@@ -244,16 +241,11 @@ export default class Window extends Adw.ApplicationWindow {
                     account.authFailed = true;
 
                     /* Remove account from instances list */
-                    delete this.forges[account.id];
+                    this.forges.delete(account.id);
 
                     /* Display error */
-                    const title = Format.vprintf(
-                        _('Account %s authentication failed!'),
-                        [account.displayName],
-                    );
-                    const description = _(
-                        'The token may have been revoked or expired.',
-                    );
+                    const title = Format.vprintf(_('Account %s authentication failed!'), [account.displayName]);
+                    const description = _('The token may have been revoked or expired.');
 
                     /* Show error banner */
                     this._accountBanner.title = title + '\n' + description;
@@ -266,10 +258,7 @@ export default class Window extends Adw.ApplicationWindow {
                         notification.set_body(description);
                         notification.set_default_action('app.activate');
                         notification.add_button(_('Accounts'), 'app.accounts');
-                        app.send_notification(
-                            'forge-sparks-error-auth',
-                            notification,
-                        );
+                        app?.send_notification('forge-sparks-error-auth', notification);
                         this.authErrorNotified = true;
                     }
                 } else {
@@ -284,14 +273,10 @@ export default class Window extends Adw.ApplicationWindow {
 
         if (!this.reFetch) {
             /* Add timeout to run this function again */
-            this._subscribeSource = GLib.timeout_add_seconds(
-                GLib.PRIORITY_DEFAULT,
-                this.interval,
-                () => {
-                    this.subscribe();
-                    return GLib.SOURCE_REMOVE;
-                },
-            );
+            this.subscribeSource = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, this.interval, () => {
+                this.subscribe();
+                return GLib.SOURCE_REMOVE;
+            });
         } else {
             this.reFetch = false;
             this.subscribe();
@@ -303,12 +288,12 @@ export default class Window extends Adw.ApplicationWindow {
     /**
      * Force notification retrieve
      */
-    reload() {
+    public reload() {
         if (!this.fetching) {
             /* Remove current timeout */
-            if (this._subscribeSource != undefined) {
-                GLib.Source.remove(this._subscribeSource);
-                this._subscribeSource = undefined;
+            if (this.subscribeSource != null) {
+                GLib.Source.remove(this.subscribeSource);
+                this.subscribeSource = null;
             }
 
             this.subscribe();
@@ -323,26 +308,20 @@ export default class Window extends Adw.ApplicationWindow {
     /**
      * Send desktop notifications for all notifications
      */
-    sendNotifications() {
+    private sendNotifications() {
         const app = this.get_application();
-        const notified = {};
+        const notified: typeof this.notified = {};
 
         /* Loop sorted notifications model, so we can show them on order */
         for (var i = 0; i < this.model.get_n_items(); i++) {
-            const notification = this.model.get_item(i);
+            const notification = this.model.get_item(i) as Notification;
 
             /* Only send notifications if the window is hidden or not focused */
             if (!this.visible || !this.is_active) {
                 /* If notification hasn't been notified before or has changed
                    since last time, send desktop notification */
-                if (
-                    (!notification.id) in this.notified ||
-                    this.notified[notification.id] != notification.updatedAt
-                ) {
-                    app.send_notification(
-                        `fs-${notification.id}`,
-                        notification.notification,
-                    );
+                if (!(notification.id in this.notified) || this.notified[notification.id] != notification.updatedAt) {
+                    app?.send_notification(`fs-${notification.id}`, notification.notification);
                 }
             }
 
@@ -353,10 +332,7 @@ export default class Window extends Adw.ApplicationWindow {
         if (!this.fetchError) {
             this.notified = notified;
             /* Save notified ids so if the app restarts we don't notify again */
-            settings.set_value(
-                'notified',
-                new GLib.Variant('a{ss}', this.notified),
-            );
+            settings.set_value('notified', new GLib.Variant('a{ss}', this.notified));
         }
     }
 
@@ -364,17 +340,15 @@ export default class Window extends Adw.ApplicationWindow {
      * Resolve a notification
      *
      * Mark it as read and withdraw it from desktop inbox
-     *
-     * @param {string} id  Notification ID
      */
-    async resolveNotification(id) {
+    public async resolveNotification(id: string) {
         const app = this.get_application();
         /* Withdraw desktop notification */
-        app.withdraw_notification(`fs-${id}`);
+        app?.withdraw_notification(`fs-${id}`);
 
         /* Mark as read */
         const [account, notification] = extractID(id);
-        const success = await this.forges[account].markAsRead(notification);
+        const success = await this.forges.get(account)?.markAsRead(notification);
         if (success) {
             /* Remove it from list model */
             this.model.removeByID(id);
@@ -393,7 +367,7 @@ export default class Window extends Adw.ApplicationWindow {
         /* Mark as read all notifications on all accounts */
         for (const id in this.forges) {
             try {
-                await this.forges[id].markAsRead();
+                await this.forges.get(id)?.markAsRead();
             } catch (error) {
                 /* TODO: Notify the user that this failed */
                 console.error(error);
@@ -410,18 +384,14 @@ export default class Window extends Adw.ApplicationWindow {
 
     /**
      * Create a widget from a notification object
-     *
-     * @param {Notification} notification The notification object
-     * @returns {Gtk.Widget} The widget representing a notification
      */
-    _createNotificationRow(notification) {
+    private createNotificationRow(notification: Notification): Gtk.Widget {
         /* Create widget from notification values */
         const row = new NotificationRow({
             title: notification.title,
             repo: notification.repository,
             date: relativeDate(notification.dateTime),
-            icon_name: notification.iconName,
-            activatable: true,
+            iconName: notification.iconName,
             state: notification.state,
         });
 
@@ -434,11 +404,9 @@ export default class Window extends Adw.ApplicationWindow {
         row.connect('activated', (row) => {
             /* Set progress state on widget */
             row.progress = true;
-            row.sensitive = false;
 
-            const action =
-                this.get_application().lookup_action('open-notification');
-            action.activate(
+            const action = this.get_application()?.lookup_action('open-notification');
+            action?.activate(
                 GLib.Variant.new_array(new GLib.VariantType('s'), [
                     GLib.Variant.new_string(notification.id),
                     GLib.Variant.new_string(notification.url),
@@ -452,7 +420,7 @@ export default class Window extends Adw.ApplicationWindow {
     /**
      * Callback for when the windows is hidden
      */
-    _onWindowHide() {
+    public onWindowHide() {
         if (!this.visible) {
             /* Set app background status */
             setBackgroundStatus();
@@ -462,23 +430,20 @@ export default class Window extends Adw.ApplicationWindow {
     /**
      * Open a dialog to add an account
      */
-    _onNewAccount() {
-        const dialog = new AccountDialog(null);
+    protected onNewAccount() {
+        const dialog = new AccountDialog();
         dialog.present(this);
     }
 
     /**
      * Resolve token error
-     *
-     * @param {import('./model/account.js').default | null} account Account to resolve
      */
-    _resolveTokenError(account = null) {
+    private resolveTokenError(account: Account | null = null) {
         this.authFailed = null;
         this.authErrorNotified = false;
         if (account != null) account.authFailed = false;
 
         this._accountBanner.revealed = false;
-        const app = this.get_application();
-        app.withdraw_notification('forge-sparks-error-auth');
+        this.get_application()?.withdraw_notification('forge-sparks-error-auth');
     }
 }

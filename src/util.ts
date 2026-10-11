@@ -2,12 +2,15 @@
 
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
+import Gtk from 'gi://Gtk';
 import Soup from 'gi://Soup';
 import Xdp from 'gi://Xdp';
 import XdpGtk4 from 'gi://XdpGtk4';
 import { gettext as _, ngettext } from 'gettext';
 
 const Format = imports.format;
+
+export const resourcePath = '/' + pkg.name.replaceAll('.', '/');
 
 /**
  * App Settings instance
@@ -31,13 +34,16 @@ export const portal = new Xdp.Portal();
 /**
  * Request background portal
  *
- * @param {Gtk.Window} window The window making the request
- * @param {boolean} autostart If autostart should be requested as well
- * @param {boolean} hidden If autostart should de done hidden. Depends on
+ * @param window The window making the request
+ * @param autostart If autostart should be requested as well
+ * @param  hidden If autostart should de done hidden. Depends on
  * autostart being true. Adds the --hidden flag to the app command.
- * @returns {Promise<boolean>} If request was successful
  */
-export function requestBackground(window, autostart = false, hidden = false) {
+export function requestBackground(
+    window: Gtk.Window,
+    autostart: boolean = false,
+    hidden: boolean = false,
+): Promise<boolean> {
     /* Try getting parent from window */
     let parent = null;
     try {
@@ -53,20 +59,16 @@ export function requestBackground(window, autostart = false, hidden = false) {
 
         portal.request_background(
             parent,
-            autostart
-                ? _('Allow running Forge Sparks on background.')
-                : _('Allow running Forge Sparks on startup.'),
+            autostart ? _('Allow running Forge Sparks on background.') : _('Allow running Forge Sparks on startup.'),
             command,
-            autostart
-                ? Xdp.BackgroundFlags.AUTOSTART
-                : Xdp.BackgroundFlags.NONE,
+            autostart ? Xdp.BackgroundFlags.AUTOSTART : Xdp.BackgroundFlags.NONE,
             null,
             (_portal, result) => {
                 try {
                     const success = portal.request_background_finish(result);
                     resolve(success);
                 } catch (e) {
-                    if (e.code !== Gio.IOErrorEnum.CANCELLED) {
+                    if ((e as GLib.Error).code !== Gio.IOErrorEnum.CANCELLED) {
                         console.error(e);
                     }
                     resolve(false);
@@ -78,32 +80,25 @@ export function requestBackground(window, autostart = false, hidden = false) {
 
 /**
  * Set background status message
- *
- * @param {string} message
  */
-export function setBackgroundStatus(
-    message = _('Monitoring new notifications'),
-) {
+export function setBackgroundStatus(message: string = _('Monitoring new notifications')) {
     if (Xdp.Portal.running_under_sandbox()) {
         portal.set_background_status(message, null, (portal, result) => {
-            portal.set_background_status_finish(result);
+            portal?.set_background_status_finish(result);
         });
     }
 }
 
 /**
  * Get relative date string from GLib.DateTime
- *
- * @param {GLib.DateTime} date
- * @returns {string}
  */
-export function relativeDate(date) {
+export function relativeDate(date: GLib.DateTime): string {
     const now = GLib.DateTime.new_now(date.get_timezone());
     const difference = now.difference(date);
 
     if (difference > 0) {
         /* microseconds to minutes */
-        const minutes = Math.round(difference / 6e7);
+        const minutes = Math.round((difference as number) / 6e7);
 
         if (minutes < 1) {
             return _('now');
@@ -146,4 +141,11 @@ export function relativeDate(date) {
 
     console.error('Date is in the future!');
     return _('now');
+}
+
+/**
+ * Get the resource URI for a given path.
+ */
+export function getResourceUri(path: string): string {
+    return Format.vprintf('resource://%s/%s', [resourcePath, path]);
 }

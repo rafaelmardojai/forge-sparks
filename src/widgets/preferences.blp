@@ -12,7 +12,7 @@ template $Gjs_PreferencesDialog : Adw.PreferencesDialog {
         show-enable-switch: true;
         expanded: true;
 
-        notify::enable-expansion => $_onBackgroundChanged();
+        notify::enable-expansion => $onBackgroundChanged();
 
         Adw.ActionRow {
           title: _("Run on Startup");
@@ -21,7 +21,7 @@ template $Gjs_PreferencesDialog : Adw.PreferencesDialog {
           Switch startup {
             valign: center;
 
-            notify::active => $_onStartupChanged();
+            notify::active => $onStartupChanged();
           }
         }
 
@@ -33,7 +33,7 @@ template $Gjs_PreferencesDialog : Adw.PreferencesDialog {
           Switch hidden {
             valign: center;
 
-            notify::active => $_onStartupHiddenChanged();
+            notify::active => $onStartupHiddenChanged();
           }
         }
       }

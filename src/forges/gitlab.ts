@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MIT
 
 import GLib from 'gi://GLib';
+import Soup from 'gi://Soup';
 import { gettext as _ } from 'gettext';
+import type { SimpleUserSchema, TodoSchema } from '@gitbeaker/core';
 
 import Forge from './forge.js';
 import Notification from '../model/notification.js';
-import { session } from './../util.js';
+import { session } from '../util.js';
 
 export default class GitLab extends Forge {
-    static name = 'gitlab';
+    static identifier = 'gitlab';
 
     static prettyName = 'GitLab';
 
@@ -36,24 +38,20 @@ export default class GitLab extends Forge {
         return 'Bearer ' + this.token;
     }
 
-    async getUser() {
+    async getUser(): Promise<[number, string]> {
         try {
             const url = this.buildURI('user');
             const message = super.createMessage('GET', url);
-            const bytes = await session.send_and_read_async(
-                message,
-                GLib.PRIORITY_DEFAULT,
-                null,
-            );
-            const contents = super.readContents(bytes);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents<SimpleUserSchema>(bytes);
 
             console.log(`${url} response resulted in ${message.get_status()}`);
 
-            if (message.get_status() == '401') {
+            if (message.get_status() == Soup.Status.UNAUTHORIZED) {
                 throw 'FailedForgeAuth';
-            } else if (message.get_status() == '403') {
+            } else if (message.get_status() == Soup.Status.FORBIDDEN) {
                 throw 'FailedTokenScopes';
-            } else if (message.get_status() != '200') {
+            } else if (message.get_status() != Soup.Status.OK) {
                 throw 'Unexpected';
             } else if (!('username' in contents) || !('id' in contents)) {
                 throw 'Unexpected';
@@ -69,44 +67,37 @@ export default class GitLab extends Forge {
         try {
             const url = this.buildURI('todos');
             const message = super.createMessage('GET', url);
-            const bytes = await session.send_and_read_async(
-                message,
-                GLib.PRIORITY_DEFAULT,
-                null,
-            );
-            const contents = super.readContents(bytes);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents<TodoSchema[]>(bytes);
 
             console.log(`${url} response resulted in ${message.get_status()}`);
 
-            if (message.get_status() == '200') {
+            if (message.get_status() == Soup.Status.OK) {
                 this.notifications.clear();
 
                 for (const item of contents) {
                     try {
                         this.notifications.append(
                             new Notification({
-                                id: super.formatID(item.id),
+                                id: super.formatID(String(item.id)),
                                 type: item.target_type,
                                 unread: item.state === 'pending',
                                 updatedAt: item.updated_at,
-                                state: item.target.state,
-                                title: item.target.title,
-                                repository:
-                                    'project' in item
-                                        ? item.project.path_with_namespace
-                                        : item.author.name,
+                                state: item.target.state as string,
+                                title: item.target.title as string,
+                                repository: item.project?.path_with_namespace ?? item.author.name,
                                 url: item.target_url,
-                                account_name: this.accountName,
+                                accountName: this.accountName,
                             }),
                         );
                     } catch (e) {
                         console.error(e);
                     }
                 }
-            } else if (message.get_status() == '401') {
+            } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
                 /* Auth failed, revoked or expired token */
                 throw 'FailedForgeAuth';
-            } else if (message.get_status() == '403') {
+            } else if (message.get_status() == Soup.Status.FORBIDDEN) {
                 /* Unauthorized, token scopes */
                 throw 'FailedTokenScopes';
             } else {
@@ -117,30 +108,22 @@ export default class GitLab extends Forge {
         }
     }
 
-    async markAsRead(id = null) {
+    async markAsRead(id: string | null = null) {
         try {
             if (id != null) {
                 const url = this.buildURI(`todos/${id}/mark_as_done`);
                 const message = super.createMessage('POST', url);
-                await session.send_and_read_async(
-                    message,
-                    GLib.PRIORITY_DEFAULT,
-                    null,
-                );
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
 
                 /* If OK */
-                return message.get_status() == '200';
+                return message.get_status() == Soup.Status.OK;
             } else {
                 const url = this.buildURI('todos/mark_as_done');
                 const message = super.createMessage('POST', url);
-                await session.send_and_read_async(
-                    message,
-                    GLib.PRIORITY_DEFAULT,
-                    null,
-                );
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
 
                 /* If No Content */
-                return message.get_status() == '204';
+                return message.get_status() == Soup.Status.NO_CONTENT;
             }
         } catch (e) {
             throw e;
@@ -153,11 +136,10 @@ export default class GitLab extends Forge {
      * This is a simplified version of Forge.buildURI with passed instance url
      * set as host and api v4 prepended to path
      *
-     * @param {string} path The URI path
-     * @param {Object.<string, string>} query The URI query
-     * @returns {string} The resulting URI
+     * @param path The URI path
+     * @param  query The URI query
      */
-    buildURI(path, query = {}) {
+    buildURI(path: string, query: Record<string, any> = {}): string {
         return Forge.buildURI(this.url, '/api/v4/' + path, query);
     }
 }

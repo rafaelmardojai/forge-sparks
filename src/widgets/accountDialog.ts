@@ -1,22 +1,43 @@
 import Adw from 'gi://Adw';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
-import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
+import { getResourceUri } from '../util.js';
 import { FORGES } from '../forges/index.js';
 import AccountsManager from '../model/accountsManager.js';
+import Account from '../model/account.js';
+import Forge from '../forges/forge.js';
 
-import Template from './accountDialog.blp' with { type: 'uri' };
+interface ConstructorProps extends Partial<Adw.Dialog.ConstructorProps> {
+    account?: Account | null;
+}
 
 const accounts = new AccountsManager();
 
 export default class AccountDialog extends Adw.Dialog {
+    declare private _forge: Adw.ComboRow;
+    declare private _instance: Adw.EntryRow;
+    declare private _accessToken: Adw.PasswordEntryRow;
+    declare private _accessTokenHelp: Adw.ButtonContent;
+    declare private _removeAccount: Gtk.Button;
+    declare private _saveBtn: Gtk.Button;
+    declare private _toasts: Adw.ToastOverlay;
+    declare private _page: Adw.PreferencesPage;
+    declare private _titleWidget: Adw.WindowTitle;
+
+    declare private _editing: boolean;
+
+    private forges_ls: (typeof Forge)[];
+    private account: Account | null;
+    private accountToken: string | null = null;
+    private userChangedInstance: boolean = false;
+
     static {
         GObject.registerClass(
             {
-                Template,
+                Template: getResourceUri('widgets/accountDialog.ui'),
                 InternalChildren: [
                     'forge',
                     'instance',
@@ -29,13 +50,7 @@ export default class AccountDialog extends Adw.Dialog {
                     'titleWidget',
                 ],
                 Properties: {
-                    editing: GObject.ParamSpec.boolean(
-                        'editing',
-                        null,
-                        null,
-                        GObject.ParamFlags.READWRITE,
-                        null,
-                    ),
+                    editing: GObject.ParamSpec.boolean('editing', null, null, GObject.ParamFlags.READABLE, false),
                 },
             },
             this,
@@ -45,28 +60,25 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Crete an AccountDialog
      */
-    constructor(account = null, constructProperties = {}) {
-        super(constructProperties);
+    constructor({ account = null, ...props }: ConstructorProps = {}) {
+        super(props);
 
-        this._forges_ls = Object.values(FORGES);
-        this._account = null;
-        this._editing = false;
-        this._userChangedInstance = false;
+        this.forges_ls = Object.values(FORGES);
+        this.account = account;
 
-        this.connect('notify::editing', this._onEditing.bind(this));
+        this.connect('notify::editing', this.onEditing.bind(this));
 
         /* Setup edited account */
-        if (account != null) {
-            this._account = account;
+        if (this.account != null) {
             this._editing = true;
             this.notify('editing');
 
-            this._loadSavedAccount();
+            this.loadSavedAccount();
         }
 
         /* Populate forges list (Create account view) */
         const forgesList = new Gtk.StringList();
-        for (const forge of this._forges_ls) {
+        for (const forge of this.forges_ls) {
             forgesList.append(forge.prettyName);
         }
         this._forge.model = forgesList;
@@ -74,135 +86,123 @@ export default class AccountDialog extends Adw.Dialog {
 
     /**
      * If the form is editing an existing account
-     *
-     * @type {boolean}
      */
-    get editing() {
+    get editing(): boolean {
         return this._editing;
     }
 
     /**
      * Change labels to the editing context
      */
-    _onEditing() {
+    private onEditing() {
         if (this.editing) {
             this.title = _('Edit Account');
             this._saveBtn.label = _('Save');
 
-            if (this._account != null)
-                this._titleWidget.subtitle = this._account.displayName;
+            if (this.account != null) this._titleWidget.subtitle = this.account.displayName;
         }
     }
 
     /**
      * Load the account saved values
      */
-    async _loadSavedAccount() {
+    private async loadSavedAccount() {
+        if (!this.account) return;
+
         /* Load saved instance URL */
-        if (this._allowInstances()) {
+        if (this.allowInstances()) {
             this._instance.visible = true;
-            this._instance.text = this._account.url;
+            this._instance.text = this.account.url ?? '';
         }
 
         /* Load saved token */
-        const token = await accounts.getAccountToken(this._account.id);
+        const token = await accounts.getAccountToken(this.account.id);
         this._accessToken.text = token;
 
         /* Token help text */
-        this._accessTokenHelp.label = FORGES[this._account.forge].tokenText;
+        this._accessTokenHelp.label = FORGES[this.account.forge as string].tokenText;
 
         /* Save current account token */
-        this._account.token = token;
+        this.accountToken = token;
 
-        this._onEntryChanged();
+        this.onEntryChanged();
     }
 
     /**
      * Get selected forge name from the new account view
-     *
-     * @returns {string} The forge name
      */
-    _getSelectedForge() {
-        return this._forges_ls[this._forge.selected].name;
+    private getSelectedForge(): string {
+        return this.forges_ls[this._forge.selected].identifier;
     }
 
     /**
      * Get if selected forge in new account view allows instances
-     *
-     * @returns {boolean} If it allows instances
      */
-    _allowInstances() {
+    private allowInstances(): boolean {
         if (this.editing) {
-            return FORGES[this._account.forge].allowInstances;
+            return FORGES[this.account?.forge as string].allowInstances;
         }
-        return this._forges_ls[this._forge.selected].allowInstances;
+        return this.forges_ls[this._forge.selected].allowInstances;
     }
 
     /**
      * Get instance url set in the new account view.
      * Or forge default url if it doesn't allow instances
-     *
-     * @returns {string} If it allows instances
      */
-    _getInstanceURL() {
-        if (!this._allowInstances()) {
-            return this._forges_ls[this._forge.selected].defaultURL;
+    private getInstanceURL(): string {
+        if (!this.allowInstances()) {
+            return this.forges_ls[this._forge.selected].defaultURL;
         }
 
-        const url = this._validateUrl(this._instance.text);
-        const host = this._getUriHost(url);
+        const url = this.validateUrl(this._instance.text);
+        const host = this.getUriHost(url);
         return host;
     }
 
     /**
      * Get host from GLib.Uri with the www removed
-     *
-     * @param {GLib.Uri} uri URL to get the host
-     * @returns {string} The URI host
      */
-    _getUriHost(uri) {
+    private getUriHost(uri: GLib.Uri): string {
         let host = uri.get_host();
-        if (host.startsWith('www.')) {
+        if (host?.startsWith('www.')) {
             host = host.slice(4);
         }
-        return host;
+        return host as string;
     }
 
     /**
      * Callback for when the selected forge changes in the add new account view
      */
-    _onForgeChanged() {
+    protected onForgeChanged() {
         /* Enable or disable instance URL entry */
-        this._instance.visible = this._allowInstances();
+        this._instance.visible = this.allowInstances();
         /* Token help text */
-        this._accessTokenHelp.label =
-            this._forges_ls[this._forge.selected].tokenText;
+        this._accessTokenHelp.label = this.forges_ls[this._forge.selected].tokenText;
 
         /* Entries may be different so validate again */
-        this._onEntryChanged();
+        this.onEntryChanged();
 
         /* Load default instance url */
-        if (!this._userChangedInstance && this._account == null) {
-            this._instance.text =
-                this._forges_ls[this._forge.selected].defaultURL;
+        if (!this.userChangedInstance && this.account == null) {
+            this._instance.text = this.forges_ls[this._forge.selected].defaultURL;
         }
     }
 
     /**
      * Validate and get GLib.Uri from url string
      *
-     * @param {string} url URL to validate
+     * @param url URL to validate
      * @trows Trows an error if GLib failed parsing the url
-     * @returns {GLib.Uri} Parser URI
+     * @returns Parsed URI
      */
-    _validateUrl(url) {
+    private validateUrl(url: string): GLib.Uri {
         /* Force https */
         if (!/^https?:\/\//i.test(url)) {
             url = 'https://' + url;
         }
 
         try {
-            const parse = GLib.Uri.parse(url, GLib.UriFlags.RELAXED);
+            const parse = GLib.Uri.parse(url, GLib.UriFlags.PARSE_RELAXED);
             return parse;
         } catch (error) {
             throw error;
@@ -215,11 +215,9 @@ export default class AccountDialog extends Adw.Dialog {
      * Updates the _userChangedInstance value so we don't override the user input
      * when them change the selected forge.
      */
-    _onInstanceChanged() {
-        this._userChangedInstance =
-            !this.editing &&
-            this._instance.text !=
-                this._forges_ls[this._forge.selected].defaultURL;
+    protected onInstanceChanged() {
+        this.userChangedInstance =
+            !this.editing && this._instance.text != this.forges_ls[this._forge.selected].defaultURL;
     }
 
     /**
@@ -228,23 +226,22 @@ export default class AccountDialog extends Adw.Dialog {
      *
      * Updates save button sensitivity after validating the values.
      */
-    _onEntryChanged() {
+    private onEntryChanged() {
         let valid = false;
 
-        if (this.editing && this._account != null) {
-            const instances = FORGES[this._account.forge].allowInstances;
-            const urlChanged = this._account.url != this._instance.text;
-            const tokenChanged = this._account.token != this._accessToken.text;
+        if (this.editing && this.account != null) {
+            const instances = FORGES[this.account.forge as string].allowInstances;
+            const urlChanged = this.account.url != this._instance.text;
+            const tokenChanged = this.accountToken != this._accessToken.text;
             const urlNotEmpty = this._instance.text != '';
             const tokenNotEmpty = this._accessToken.text != '';
 
             if (instances) {
                 try {
-                    this._validateUrl(this._instance.text);
+                    this.validateUrl(this._instance.text);
                     this._instance.remove_css_class('error');
                     valid =
-                        (urlNotEmpty && tokenNotEmpty && urlChanged) ||
-                        (urlNotEmpty && tokenNotEmpty && tokenChanged);
+                        (urlNotEmpty && tokenNotEmpty && urlChanged) || (urlNotEmpty && tokenNotEmpty && tokenChanged);
                 } catch (error) {
                     this._instance.add_css_class('error');
                     this._toasts.add_toast(
@@ -257,13 +254,11 @@ export default class AccountDialog extends Adw.Dialog {
                 valid = tokenNotEmpty && tokenChanged;
             }
         } else {
-            if (this._allowInstances()) {
+            if (this.allowInstances()) {
                 try {
-                    this._validateUrl(this._instance.text);
+                    this.validateUrl(this._instance.text);
                     this._instance.remove_css_class('error');
-                    valid =
-                        this._accessToken.text != '' &&
-                        this._instance.text != '';
+                    valid = this._accessToken.text != '' && this._instance.text != '';
                 } catch (error) {
                     this._instance.add_css_class('error');
                     this._toasts.add_toast(
@@ -282,10 +277,8 @@ export default class AccountDialog extends Adw.Dialog {
 
     /**
      * Get error user visible text
-     *
-     * @returns {string} The error text
      */
-    _errorText(error) {
+    private errorText(error: string): string {
         switch (error) {
             case 'FailedForgeAuth':
                 return _('Couldn’t authenticate the account');
@@ -299,18 +292,18 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Callback when the user clicks the cancel button.
      */
-    _onCancel() {
+    protected onCancel() {
         this.close();
     }
 
     /**
      * Callback when the user clicks the save button.
      */
-    _onSave() {
+    protected onSave() {
         if (this.editing) {
-            this._updateAccount();
+            this.updateAccount();
         } else {
-            this._addAccount();
+            this.addAccount();
         }
     }
 
@@ -318,46 +311,35 @@ export default class AccountDialog extends Adw.Dialog {
      * Callback when the user adds an account.
      * Save account in settings.
      */
-    async _addAccount() {
+    private async addAccount() {
         try {
             /* Make the whole form insensitive */
             this._page.sensitive = false;
 
             /* Get form values */
             const token = this._accessToken.text;
-            const url = this._getInstanceURL();
-            const forgeName = this._getSelectedForge();
+            const url = this.getInstanceURL();
+            const forgeName = this.getSelectedForge();
 
-            /**
-             * Instantiate the class for the forge
-             * @type {import('../forges/forge.js').default}
-             */
+            /* Instantiate the class for the forge */
             const forge = new FORGES[forgeName](url, token);
             /* Try authenticating the user with access token */
             const [userId, username] = await forge.getUser();
 
             if (username != undefined) {
                 /* Save account to settings */
-                await accounts.saveAccount(
-                    forgeName,
-                    url,
-                    userId,
-                    username,
-                    token,
-                );
+                await accounts.saveAccount(forgeName, url, userId, username, token);
             }
 
             this.close();
 
             /* Reload notifications */
-            Adw.Application.get_default()
-                .lookup_action('reload')
-                .activate(null);
+            Adw.Application.get_default()?.lookup_action('reload')?.activate(null);
         } catch (error) {
             console.log(error);
             this._toasts.add_toast(
                 new Adw.Toast({
-                    title: this._errorText(error),
+                    title: this.errorText(error as any),
                 }),
             );
         } finally {
@@ -369,48 +351,40 @@ export default class AccountDialog extends Adw.Dialog {
      * Callback when the user saves an account new preferences.
      * Update account in settings.
      */
-    async _updateAccount() {
-        if (!this.editing) return;
+    private async updateAccount() {
+        if (!this.editing || !this.account) return;
 
         /* Make the whole form insensitive */
         this._page.sensitive = false;
 
         /* Get and validate from values */
-        const forgeClass = FORGES[this._account.forge];
+        const forgeClass = FORGES[this.account.forge as string];
         let newToken = this._accessToken.text;
         let newUrl = this._instance.text;
         if (!forgeClass.allowInstances) {
             newUrl = forgeClass.defaultURL;
         } else {
-            newUrl = this._validateUrl(newUrl);
-            newUrl = this._getUriHost(newUrl);
+            const newUri = this.validateUrl(newUrl);
+            newUrl = this.getUriHost(newUri);
         }
 
         /* Continue if some value has actually changed */
-        if (newToken != this._account.token || newUrl != this._account.url) {
+        if (newToken != this.accountToken || newUrl != this.account.url) {
             try {
                 const forge = new forgeClass(newUrl, newToken);
                 const [userId, username] = await forge.getUser();
 
-                await accounts.updateAccount(
-                    this._account.id,
-                    newUrl,
-                    userId,
-                    username,
-                    newToken,
-                );
+                await accounts.updateAccount(this.account.id, newUrl, userId, username, newToken);
 
                 this.close();
 
                 /* Reload notifications */
-                Adw.Application.get_default()
-                    .lookup_action('reload')
-                    .activate(null);
+                Adw.Application.get_default()?.lookup_action('reload')?.activate(null);
             } catch (error) {
                 console.log(error);
                 this._toasts.add_toast(
                     new Adw.Toast({
-                        title: this._errorText(error),
+                        title: this.errorText(error as any),
                     }),
                 );
             }
@@ -422,23 +396,21 @@ export default class AccountDialog extends Adw.Dialog {
     /**
      * Callback when the user removes an account
      */
-    async _onRemoveAccount() {
-        if (!this.editing) return;
+    protected async onRemoveAccount() {
+        if (!this.editing || !this.account) return;
 
         const errorToast = new Adw.Toast({
             title: _('Unexpected error removing the account'),
         });
         try {
-            const success = await accounts.removeAccount(this._account.id);
+            const success = await accounts.removeAccount(this.account.id);
             if (!success) {
                 this._toasts.add_toast(errorToast);
             } else {
                 this.close();
 
                 /* Reload notifications */
-                Adw.Application.get_default()
-                    .lookup_action('reload')
-                    .activate(null);
+                Adw.Application.get_default()?.lookup_action('reload')?.activate(null);
             }
         } catch (error) {
             this._toasts.add_toast(errorToast);

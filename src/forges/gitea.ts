@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
 
 import GLib from 'gi://GLib';
+import Soup from 'gi://Soup';
 import { gettext as _ } from 'gettext';
 
 import Forge from './forge.js';
 import GitHub from './github.js';
-import { session } from './../util.js';
+import { session } from '../util.js';
 
 /**
  * Gitea implementation
@@ -14,7 +15,7 @@ import { session } from './../util.js';
  * GitHub class and tweak some methods.
  */
 export default class Gitea extends GitHub {
-    static name = 'gitea';
+    static identifier = 'gitea';
 
     static prettyName = 'Gitea';
 
@@ -38,7 +39,7 @@ export default class Gitea extends GitHub {
         return tokenText;
     }
 
-    async markAsRead(id = null) {
+    async markAsRead(id: string | null = null) {
         /**
          * Gitea differs from GitHub's markAsRead, params are url queries
          */
@@ -46,14 +47,10 @@ export default class Gitea extends GitHub {
             if (id != null) {
                 const url = this.buildURI(`/notifications/threads/${id}`);
                 const message = super.createMessage('PATCH', url);
-                await session.send_and_read_async(
-                    message,
-                    GLib.PRIORITY_DEFAULT,
-                    null,
-                );
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
 
                 /* If Reset-Content */
-                return message.get_status() == '205';
+                return message.get_status() == Soup.Status.RESET_CONTENT;
             } else {
                 const now = GLib.DateTime.new_now_utc();
                 const url = this.buildURI('notifications', {
@@ -61,14 +58,10 @@ export default class Gitea extends GitHub {
                     all: true,
                 });
                 const message = super.createMessage('PUT', url);
-                await session.send_and_read_async(
-                    message,
-                    GLib.PRIORITY_DEFAULT,
-                    null,
-                );
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
 
                 /* If Reset-Content */
-                return message.get_status() == '205';
+                return message.get_status() == Soup.Status.RESET_CONTENT;
             }
         } catch (e) {
             throw e;
@@ -81,11 +74,10 @@ export default class Gitea extends GitHub {
      * This is a simplified version of Forge.buildURI with passed instance url
      * set as host and api v1 prepended to path
      *
-     * @param {string} path The URI path
-     * @param {Object.<string, string>} query The URI query
-     * @returns {string} The resulting URI
+     * @param path The URI path
+     * @param query The URI query
      */
-    buildURI(path, query = {}) {
+    buildURI(path: string, query: Record<string, any> = {}): string {
         return Forge.buildURI(this.url, '/api/v1/' + path, query);
     }
 }

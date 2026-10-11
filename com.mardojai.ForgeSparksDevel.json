@@ -3,6 +3,10 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "master",
     "sdk": "org.gnome.Sdk",
+    "sdk-extensions": ["org.freedesktop.Sdk.Extension.node26", "org.freedesktop.Sdk.Extension.typescript"],
+    "build-options": {
+        "append-path": "/usr/lib/sdk/node26/bin:/usr/lib/sdk/typescript/bin"
+    },
     "command": "forge-sparks",
     "finish-args": [
         "--share=ipc",
@@ -28,11 +32,7 @@
         {
             "name": "libportal",
             "buildsystem": "meson",
-            "config-opts": [
-                "-Ddocs=false",
-                "-Dvapi=false",
-                "-Dbackend-gtk4=enabled"
-            ],
+            "config-opts": ["-Ddocs=false", "-Dvapi=false", "-Dbackend-gtk4=enabled"],
             "sources": [
                 {
                     "type": "archive",
@@ -50,7 +50,8 @@
             "sources": [
                 {
                     "type": "dir",
-                    "path": "."
+                    "path": ".",
+                    "skip": ["node_modules"]
                 }
             ]
         }

@@ -3,5 +3,11 @@
 }
 
 .closed {
-    color: @purple_3;
+    color: var(--purple-3);
+}
+
+@media (prefers-color-scheme: dark) {
+    .closed {
+        color: var(--purple-1);
+    }
 }

@@ -1,18 +1,43 @@
 // SPDX-License-Identifier: MIT
 
 import GLib from 'gi://GLib';
+import Soup from 'gi://Soup';
 import { gettext as _ } from 'gettext';
+import type { Endpoints } from '@octokit/types';
 
 import Forge from './forge.js';
 import Notification from '../model/notification.js';
-import { session } from './../util.js';
+import { session } from '../util.js';
 
 const Format = imports.format;
 
-const GITHUB_API = 'api.github.com';
+type UserResponse = Endpoints['GET /user']['response']['data'];
+type NotificationsResponse = Endpoints['GET /notifications']['response']['data'];
+type IssueResponse = Endpoints['GET /repos/{owner}/{repo}/issues/{issue_number}']['response']['data'];
+type PullRequestResponse = Endpoints['GET /repos/{owner}/{repo}/pulls/{pull_number}']['response']['data'];
+type SubjectResponse = IssueResponse | PullRequestResponse;
+type CommentsResponse = Endpoints['GET /repos/{owner}/{repo}/issues/comments/{comment_id}']['response']['data'];
+
+interface SubjectInfo {
+    url: string;
+    state?: string;
+    updated_at?: string;
+}
+
+interface NotificationDetails {
+    id: string;
+    type: string;
+    unread: boolean;
+    updatedAt: string;
+    title: string;
+    repository: string;
+    url: string;
+    accountName: string;
+    state?: string;
+}
 
 export default class GitHub extends Forge {
-    static name = 'github';
+    static identifier = 'github';
 
     static prettyName = 'GitHub';
 
@@ -48,24 +73,20 @@ export default class GitHub extends Forge {
         return tokenText;
     }
 
-    async getUser() {
+    async getUser(): Promise<[number, string]> {
         try {
             const url = this.buildURI('user');
             const message = super.createMessage('GET', url);
-            const bytes = await session.send_and_read_async(
-                message,
-                GLib.PRIORITY_DEFAULT,
-                null,
-            );
-            const contents = super.readContents(bytes);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents<UserResponse>(bytes);
 
             console.log(`${url} response resulted in ${message.get_status()}`);
 
-            if (message.get_status() == '401') {
+            if (message.get_status() == Soup.Status.UNAUTHORIZED) {
                 throw 'FailedForgeAuth';
-            } else if (message.get_status() == '403') {
+            } else if (message.get_status() == Soup.Status.FORBIDDEN) {
                 throw 'FailedTokenScopes';
-            } else if (message.get_status() != '200') {
+            } else if (message.get_status() != Soup.Status.OK) {
                 throw 'Unexpected';
             } else if (!('login' in contents) || !('id' in contents)) {
                 throw 'Unexpected';
@@ -74,17 +95,13 @@ export default class GitHub extends Forge {
             /* Test notifications capabilities */
             const urlNotify = this.buildURI('notifications');
             const messageNotify = super.createMessage('GET', urlNotify);
-            await session.send_and_read_async(
-                messageNotify,
-                GLib.PRIORITY_DEFAULT,
-                null,
-            );
-            if (messageNotify.get_status() == '403') {
+            await session.send_and_read_async(messageNotify, GLib.PRIORITY_DEFAULT, null);
+            if (messageNotify.get_status() == Soup.Status.FORBIDDEN) {
                 /* Unauthorized, token scopes */
                 throw 'FailedTokenScopes';
             }
 
-            return [contents.id, contents.login];
+            return [contents.id as number, contents.login];
         } catch (error) {
             throw error;
         }
@@ -96,20 +113,15 @@ export default class GitHub extends Forge {
             const message = super.createMessage('GET', url);
             /* headers={'If-Modified-Since': this.modifiedSince} */
 
-            const bytes = await session.send_and_read_async(
-                message,
-                GLib.PRIORITY_DEFAULT,
-                null,
-            );
-            const contents = super.readContents(bytes);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents<NotificationsResponse>(bytes);
 
             console.log(`${url} response resulted in ${message.get_status()}`);
             /* this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince; */
 
-            if (message.get_status() == '200') {
+            if (message.get_status() == Soup.Status.OK) {
                 /* Get notifications from response */
-                const notifications =
-                    await this._compileNotifications(contents);
+                const notifications = await this.compileNotifications(contents);
 
                 this.notifications.clear(); /* Clear list */
 
@@ -117,10 +129,10 @@ export default class GitHub extends Forge {
                 for (const notification of notifications) {
                     this.notifications.append(new Notification(notification));
                 }
-            } else if (message.get_status() == '401') {
+            } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
                 /* Auth failed, revoked or expired token */
                 throw 'FailedForgeAuth';
-            } else if (message.get_status() == '403') {
+            } else if (message.get_status() == Soup.Status.FORBIDDEN) {
                 /* Unauthorized, token scopes */
                 throw 'FailedTokenScopes';
             } else {
@@ -131,19 +143,15 @@ export default class GitHub extends Forge {
         }
     }
 
-    async markAsRead(id = null) {
+    async markAsRead(id: string | null = null) {
         try {
             if (id != null) {
                 const url = this.buildURI(`/notifications/threads/${id}`);
                 const message = super.createMessage('PATCH', url);
-                await session.send_and_read_async(
-                    message,
-                    GLib.PRIORITY_DEFAULT,
-                    null,
-                );
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
 
                 /* If Reset-Content */
-                return message.get_status() == '205';
+                return message.get_status() == Soup.Status.RESET_CONTENT;
             } else {
                 const now = GLib.DateTime.new_now_utc();
                 const url = this.buildURI('notifications');
@@ -151,16 +159,11 @@ export default class GitHub extends Forge {
                     last_read_at: now.format_iso8601(),
                     read: true,
                 });
-                await session.send_and_read_async(
-                    message,
-                    GLib.PRIORITY_DEFAULT,
-                    null,
-                );
+                await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
 
                 /* If Accepted or Reset-Content */
                 return (
-                    message.get_status() == '202' ||
-                    message.get_status() == '205'
+                    message.get_status() == Soup.Status.ACCEPTED || message.get_status() == Soup.Status.RESET_CONTENT
                 );
             }
         } catch (e) {
@@ -173,12 +176,9 @@ export default class GitHub extends Forge {
      *
      * This should happen in parallel so that information retrieval
      * doesn't take a lot of time.
-     *
-     * @param {Array} items
-     * @returns {Promise<Array>}
      */
-    _compileNotifications(items) {
-        const notifications = [];
+    private compileNotifications(items: NotificationsResponse): Promise<NotificationDetails[]> {
+        const notifications: NotificationDetails[] = [];
         let count = items.length;
 
         return new Promise((resolve, reject) => {
@@ -188,22 +188,19 @@ export default class GitHub extends Forge {
 
             for (const item of items) {
                 try {
-                    this._getSubjectInfo(item).then((info) => {
-                        const notification = {
+                    this.getSubjectInfo(item).then((info) => {
+                        const notification: NotificationDetails = {
                             id: super.formatID(item.id),
                             type: item.subject.type,
                             unread: item.unread,
-                            updatedAt:
-                                'updated_at' in info
-                                    ? info.updated_at
-                                    : item.updated_at,
+                            updatedAt: info.updated_at ?? item.updated_at,
                             title: item.subject.title,
                             repository: item.repository.full_name,
                             url: info.url,
-                            account_name: this.accountName,
+                            accountName: this.accountName,
                         };
                         if (info.state) {
-                            notification['state'] = info.state;
+                            notification.state = info.state;
                         }
                         notifications.push(notification);
 
@@ -223,15 +220,15 @@ export default class GitHub extends Forge {
     /**
      * Get extra info from the notification subject
      *
-     * @param {Object} notification The notification object from the response JSON
+     * @param notification The notification object from the response JSON
      * @throws Throws an error if failed making the request or reading the data
-     * @returns {Promise<Object.<string, string>>} The object with the info
      */
-    async _getSubjectInfo(notification) {
+    private async getSubjectInfo(notification: NotificationsResponse[number]): Promise<SubjectInfo> {
         /* Here we'll store the info */
-        const info = {
+        const info: SubjectInfo = {
             url: notification.repository.html_url,
-            state: '',
+            state: undefined,
+            updated_at: undefined,
         };
 
         /* Early return for subjects that doesn't have the data that we want */
@@ -263,18 +260,11 @@ export default class GitHub extends Forge {
 
         /* Request the notification subject info from API  */
         try {
-            const message = super.createMessage(
-                'GET',
-                notification.subject.url,
-            );
-            const bytes = await session.send_and_read_async(
-                message,
-                GLib.PRIORITY_DEFAULT,
-                null,
-            );
-            const contents = super.readContents(bytes);
+            const message = super.createMessage('GET', notification.subject.url);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents<SubjectResponse>(bytes);
 
-            if (message.get_status() == '200') {
+            if (message.get_status() == Soup.Status.OK) {
                 info.state = contents.state;
                 /* info.updated_at = contents.updated_at */
                 info.url = contents.html_url;
@@ -284,33 +274,23 @@ export default class GitHub extends Forge {
                     if (contents.draft) {
                         info.state = 'draft';
                     }
-                    if (
-                        contents.state == 'closed' &&
-                        contents.merged_at == null
-                    ) {
+                    if (contents.state == 'closed' && (contents as PullRequestResponse).merged_at == null) {
                         info.state = 'denied';
                     }
                 }
 
                 /* Get comment url */
                 if (notification.reason != 'subscribed') {
-                    if (
-                        notification.subject.type === 'Issue' ||
-                        notification.subject.type === 'PullRequest'
-                    ) {
-                        const url = await this._getCommentURL(
-                            notification.subject.latest_comment_url,
-                        );
+                    if (notification.subject.type === 'Issue' || notification.subject.type === 'PullRequest') {
+                        const url = await this.getCommentURL(notification.subject.latest_comment_url);
                         if (url) info.url = url;
                     }
                 }
 
                 /* Add notification referrer to url */
                 /* Only if forge is GitHub */
-                if (this.constructor.name === 'github') {
-                    const referrer = this._getNotificationReferrerID(
-                        notification.id,
-                    );
+                if ((this.constructor as typeof Forge).identifier === 'github') {
+                    const referrer = this.getNotificationReferrerID(notification.id);
                     const n = info.url.lastIndexOf('#'); // Get hash position
 
                     if (n < 0) {
@@ -339,23 +319,19 @@ export default class GitHub extends Forge {
     /**
      * Get latest comment url from Issue
      *
-     * @param {string} url The url of the API to request the comments url
+     * e.g. https://github.com/user/repo/issues/1#issuecomment-1529954726
+     *
+     * @param url The url of the API to request the comments url
      * e.g https://api.github.com/repos/user/repo/issues/comments/1529954726
      * @throws Throws an error if failed making the request or reading the data
-     * @returns {Promise<string|void>} The HTML comment url.
-     * e.g. https://github.com/user/repo/issues/1#issuecomment-1529954726
      */
-    async _getCommentURL(url) {
-        if (!url || url === null) return;
+    private async getCommentURL(url: string): Promise<string | null> {
+        if (!url || url === null) return null;
 
         try {
             const message = super.createMessage('GET', url);
-            const bytes = await session.send_and_read_async(
-                message,
-                GLib.PRIORITY_DEFAULT,
-                null,
-            );
-            const contents = super.readContents(bytes);
+            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+            const contents = super.readContents<CommentsResponse>(bytes);
 
             return contents.html_url;
         } catch (e) {
@@ -371,28 +347,20 @@ export default class GitHub extends Forge {
      * Based on Daniel Lamando snippet
      * https://github.com/sindresorhus/notifier-for-github/issues/268
      *
-     * @param {string} id Notification ID
-     * @param {number} version Version of the referrer ID
-     * @returns {string} The base64 encoded referrer ID.
+     * @param id GitHub's Notification ID
+     * @param version Version of the referrer ID
      */
-    _getNotificationReferrerID(id, version = 1) {
+    private getNotificationReferrerID(id: string, version: number = 1): string {
         switch (version) {
             case 2:
                 /**
                  * This one doesn't seem to work.
                  * The leading bytes are probably dynamic or have changed.
                  */
-                return (
-                    'NT_' +
-                    GLib.base64_encode(
-                        `\x93\x00\xCD\x9E\xB4\xB0${id}:${this.userId}`,
-                    ).replace(/=+$/, '')
-                );
+                return 'NT_' + GLib.base64_encode(`\x93\x00\xCD\x9E\xB4\xB0${id}:${this.userId}`).replace(/=+$/, '');
             default:
                 /* Old but still works */
-                return GLib.base64_encode(
-                    `018:NotificationThread${id}:${this.userId}`,
-                );
+                return GLib.base64_encode(`018:NotificationThread${id}:${this.userId}`);
         }
     }
 
@@ -401,11 +369,10 @@ export default class GitHub extends Forge {
      *
      * This is a simplified version of Forge.buildURI with Github API url set as host
      *
-     * @param {string} path The URI path
-     * @param {Object.<string, string>} query The URI query
-     * @returns {string} The resulting URI
+     * @param path The URI path
+     * @param query The URI query
      */
-    buildURI(path, query = {}) {
+    buildURI(path: string, query: Record<string, any> = {}): string {
         return Forge.buildURI(`api.${this.url}`, path, query);
     }
 }

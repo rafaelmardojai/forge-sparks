@@ -30,6 +30,19 @@ pkgdatadir = datadir / application_id
 gnome = import('gnome')
 i18n = import('i18n')
 
+tsc = find_program('tsc', required: true)
+tsconfig = files('tsconfig.json')
+
+conf = configuration_data()
+conf.set('GJS', find_program('gjs').full_path())
+conf.set('version', version)
+conf.set('profile', profile)
+conf.set('app_id', application_id)
+conf.set('prefix', prefix)
+conf.set('libdir', libdir)
+conf.set('datadir', datadir)
+conf.set('bindir', bindir)
+
 subdir('data')
 subdir('src')
 subdir('po')

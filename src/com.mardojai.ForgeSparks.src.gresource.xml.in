@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gresources>
+  <gresource prefix="/com/mardojai/ForgeSparks@profile@/js">
+    <file>application.js</file>
+    <file>application.js.map</file>
+    <file>main.js</file>
+    <file>main.js.map</file>
+    <file>util.js</file>
+    <file>util.js.map</file>
+    <file>window.js</file>
+    <file>window.js.map</file>
+    <file>window.ui</file>
+    <file>forges/forge.js</file>
+    <file>forges/forge.js.map</file>
+    <file>forges/forgejo.js</file>
+    <file>forges/forgejo.js.map</file>
+    <file>forges/gitea.js</file>
+    <file>forges/gitea.js.map</file>
+    <file>forges/github.js</file>
+    <file>forges/github.js.map</file>
+    <file>forges/gitlab.js</file>
+    <file>forges/gitlab.js.map</file>
+    <file>forges/index.js</file>
+    <file>forges/index.js.map</file>
+    <file>model/account.js</file>
+    <file>model/account.js.map</file>
+    <file>model/accountsManager.js</file>
+    <file>model/accountsManager.js.map</file>
+    <file>model/notification.js</file>
+    <file>model/notification.js.map</file>
+    <file>model/notificationsList.js</file>
+    <file>model/notificationsList.js.map</file>
+    <file>model/notificationsModel.js</file>
+    <file>model/notificationsModel.js.map</file>
+    <file>widgets/accountDialog.js</file>
+    <file>widgets/accountDialog.js.map</file>
+    <file>widgets/accountsDialog.js</file>
+    <file>widgets/accountsDialog.js.map</file>
+    <file>widgets/notificationRow.js</file>
+    <file>widgets/notificationRow.js.map</file>
+    <file>widgets/preferences.js</file>
+    <file>widgets/preferences.js.map</file>
+  </gresource>
+</gresources>

@@ -2,8 +2,9 @@ using Gtk 4.0;
 using Adw 1;
 
 template $Gjs_NotificationRow : ListBoxRow {
+    sensitive: bind template.progress inverted;
     tooltip-text: bind template.title;
-    notify::parent => $_onParent();
+    notify::parent => $onParent();
 
     Box {
         orientation: horizontal;

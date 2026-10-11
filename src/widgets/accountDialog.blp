@@ -20,7 +20,7 @@ template $Gjs_AccountDialog : Adw.Dialog {
       Button cancelBtn {
         label: _("Cancel");
 
-        clicked => $_onCancel();
+        clicked => $onCancel();
       }
 
       [end]
@@ -28,7 +28,7 @@ template $Gjs_AccountDialog : Adw.Dialog {
         label: _("Add");
         sensitive: false;
 
-        clicked => $_onSave();
+        clicked => $onSave();
 
         styles ["suggested-action"]
       }
@@ -46,21 +46,21 @@ template $Gjs_AccountDialog : Adw.Dialog {
             title: _("Forge");
             visible: bind template.editing inverted;
 
-            notify::selected => $_onForgeChanged();
+            notify::selected => $onForgeChanged();
           }
 
           Adw.EntryRow instance {
             title: _("Instance URL");
             visible: false;
 
-            notify::text => $_onEntryChanged();
-            notify::text => $_onInstanceChanged();
+            notify::text => $onEntryChanged();
+            notify::text => $onInstanceChanged();
           }
 
           Adw.PasswordEntryRow accessToken {
             title: _("Access Token");
 
-            notify::text => $_onEntryChanged();
+            notify::text => $onEntryChanged();
           }
 
           Label accessTokenHelp {
@@ -83,7 +83,7 @@ template $Gjs_AccountDialog : Adw.Dialog {
               "pill"
             ]
 
-            clicked => $_onRemoveAccount();
+            clicked => $onRemoveAccount();
           }
         }
       }

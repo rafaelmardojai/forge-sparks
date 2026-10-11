@@ -39,7 +39,7 @@ template $Gjs_Window : Adw.ApplicationWindow {
   height-request: 200;
   title: _("Forge Sparks");
 
-  notify::visible => $_onWindowHide();
+  notify::visible => $onWindowHide();
 
   Stack mainStack {
 
@@ -72,7 +72,7 @@ template $Gjs_Window : Adw.ApplicationWindow {
             label: _("Add Account…");
             halign: center;
 
-            clicked => $_onNewAccount();
+            clicked => $onNewAccount();
 
             styles [
               "suggested-action",

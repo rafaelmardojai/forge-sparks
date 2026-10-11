@@ -5,15 +5,18 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
-import { settings, requestBackground } from '../util.js';
-
-import Template from './preferences.blp' with { type: 'uri' };
+import { settings, requestBackground, getResourceUri } from '../util.js';
+import type Application from '../application.js';
 
 export default class PreferencesDialog extends Adw.PreferencesDialog {
+    declare private _background: Adw.ExpanderRow;
+    declare private _startup: Gtk.Switch;
+    declare private _hidden: Gtk.Switch;
+
     static {
         GObject.registerClass(
             {
-                Template,
+                Template: getResourceUri('widgets/preferences.ui'),
                 InternalChildren: ['background', 'startup', 'hidden'],
             },
             this,
@@ -23,12 +26,11 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
     /**
      * Crete a PreferencesDialog
      */
-    constructor(constructProperties = {}) {
-        super(constructProperties);
+    constructor(props?: Partial<Adw.PreferencesDialog.ConstructorProps>) {
+        super(props);
 
         /* Load saved settings */
-        this._background.enable_expansion =
-            settings.get_boolean('hide-on-close');
+        this._background.enable_expansion = settings.get_boolean('hide-on-close');
         this._startup.active = settings.get_boolean('autostart');
         this._hidden.active = settings.get_boolean('autostart-hidden');
     }
@@ -37,34 +39,27 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
      * Callback for when the keep running on background pref (hide-on-close) is
      * toggled (this._background::notify::enable-expansion)
      */
-    async _onBackgroundChanged() {
+    protected async onBackgroundChanged() {
         /* If saved pref have not changed, return */
-        if (
-            this._background.enable_expansion ==
-            settings.get_boolean('hide-on-close')
-        )
-            return;
+        if (this._background.enable_expansion == settings.get_boolean('hide-on-close')) return;
 
         /* Check if autostart should also be requested */
-        const autostart =
-            settings.get_boolean('autostart') &&
-            this._background.enable_expansion;
+        const autostart = settings.get_boolean('autostart') && this._background.enable_expansion;
         /* Check if hidden should also be requested */
         const hidden = autostart && settings.get_boolean('autostart-hidden');
         /* Request background permission and possibly autostart to the portal */
-        const success = await requestBackground(this, autostart, hidden);
+        const success = await requestBackground(this.root as Gtk.Window, autostart, hidden);
         /* New boolean value depends on success and user choice */
         const newValue = this._background.enable_expansion && success;
 
         /* Update the saved the preference */
         settings.set_boolean('hide-on-close', newValue);
         /* Update the app window hide_on_close prop with the new value */
-        const app = Gtk.Application.get_default();
-        app.window.hide_on_close = newValue;
+        const app = Gtk.Application.get_default() as Application;
+        if (app?.window) app.window.hide_on_close = newValue;
 
         /* If new value differs from user choice, force user choice to result */
-        if (this._background.enable_expansion != newValue)
-            this._background.enable_expansion = newValue;
+        if (this._background.enable_expansion != newValue) this._background.enable_expansion = newValue;
 
         /* If success was false, show a toast */
         if (!success)
@@ -79,18 +74,14 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
      * Callback for when the run on startup pref (autostart) is toggled
      * (this._startup::notify::active)
      */
-    async _onStartupChanged() {
+    protected async onStartupChanged() {
         /* If saved pref have not changed, return */
         if (this._startup.active == settings.get_boolean('autostart')) return;
 
         /* Check if hidden should also be requested */
         const hidden = settings.get_boolean('autostart-hidden');
         /* Request background permission and autostart new value to the portal */
-        const success = await requestBackground(
-            this,
-            this._startup.active,
-            hidden,
-        );
+        const success = await requestBackground(this.root as Gtk.Window, this._startup.active, hidden);
         /* New boolean value depends on success and user choice */
         const newValue = this._startup.active && success;
 
@@ -115,19 +106,14 @@ export default class PreferencesDialog extends Adw.PreferencesDialog {
      * Callback for when the start hidden pref (hidden) is toggled
      * (this._hidden::notify::active)
      */
-    async _onStartupHiddenChanged() {
+    protected async onStartupHiddenChanged() {
         /* If saved pref have not changed, return */
-        if (this._hidden.active == settings.get_boolean('autostart-hidden'))
-            return;
+        if (this._hidden.active == settings.get_boolean('autostart-hidden')) return;
 
         /* Get autostart state */
         const autostart = settings.get_boolean('autostart');
         /* Request background permission and autostart new value to the portal */
-        const success = await requestBackground(
-            this,
-            autostart,
-            this._hidden.active,
-        );
+        const success = await requestBackground(this.root as Gtk.Window, autostart, this._hidden.active);
         /* New boolean value depends on success and user choice */
         const newValue = this._hidden.active && success;
 

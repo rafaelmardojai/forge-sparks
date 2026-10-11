@@ -2,22 +2,24 @@
 
 import Adw from 'gi://Adw';
 import GObject from 'gi://GObject';
-import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
+import { getResourceUri } from '../util.js';
 import AccountsManager from '../model/accountsManager.js';
 import AccountDialog from './accountDialog.js';
-
-import Template from './accountsDialog.blp' with { type: 'uri' };
+import Account from '../model/account.js';
 
 const accounts = new AccountsManager();
 
 export default class AccountsDialog extends Adw.Dialog {
+    declare private _accountsList: Gtk.ListBox;
+    declare private _accountsStack: Gtk.Stack;
+
     static {
         GObject.registerClass(
             {
-                Template,
+                Template: getResourceUri('widgets/accountsDialog.ui'),
                 InternalChildren: ['accountsList', 'accountsStack'],
             },
             this,
@@ -27,14 +29,11 @@ export default class AccountsDialog extends Adw.Dialog {
     /**
      * Crete a PreferencesDialog
      */
-    constructor(constructProperties = {}) {
-        super(constructProperties);
+    constructor(props?: Partial<Adw.Dialog.ConstructorProps>) {
+        super(props);
 
         /* Bind accounts list */
-        this._accountsList.bind_model(
-            accounts,
-            this._createAccountRow.bind(this),
-        );
+        this._accountsList.bind_model(accounts, this.createAccountRow.bind(this));
 
         /* Check accounts items */
         if (accounts.get_n_items() > 0) {
@@ -49,18 +48,15 @@ export default class AccountsDialog extends Adw.Dialog {
         });
     }
 
-    _onOpenAddAccount() {
-        const dialog = new AccountDialog(null);
+    protected onOpenAddAccount() {
+        const dialog = new AccountDialog();
         dialog.present(this);
     }
 
     /**
      * Create a widget for each saved account
-     *
-     * @param {Account} account The account object
-     * @returns {Gtk.Widget} The widget representing the account
      */
-    _createAccountRow(account) {
+    private createAccountRow(account: Account): Gtk.Widget {
         const row = new Adw.ActionRow({
             title: account.displayName,
             activatable: true,
@@ -81,21 +77,11 @@ export default class AccountsDialog extends Adw.Dialog {
             }),
         );
 
-        account.bind_property(
-            'display-name',
-            row,
-            'title',
-            GObject.BindingFlags.SYNC_CREATE,
-        );
-        account.bind_property(
-            'auth-failed',
-            authError,
-            'visible',
-            GObject.BindingFlags.SYNC_CREATE,
-        );
+        account.bind_property('display-name', row, 'title', GObject.BindingFlags.SYNC_CREATE);
+        account.bind_property('auth-failed', authError, 'visible', GObject.BindingFlags.SYNC_CREATE);
 
         row.connect('activated', () => {
-            const dialog = new AccountDialog(account);
+            const dialog = new AccountDialog({ account });
             dialog.present(this);
         });
 

@@ -1,22 +1,23 @@
 // SPDX-License-Identifier: MIT
 
 import Adw from 'gi://Adw';
-import Gdk from 'gi://Gdk';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import { gettext as _ } from 'gettext';
 
-import { settings } from './util.js';
+import { resourcePath, settings } from './util.js';
 import Window from './window.js';
 import PreferencesDialog from './widgets/preferences.js';
 import AccountsDialog from './widgets/accountsDialog.js';
 
-import './style.css';
-import './style-dark.css';
-
 export default class Application extends Adw.Application {
+    public window: Window | null = null;
+    private hidden: boolean = false;
+    private preferencesDialog: PreferencesDialog | null = null;
+    private accountsDialog: AccountsDialog | null = null;
+
     static {
         GObject.registerClass(this);
     }
@@ -25,10 +26,7 @@ export default class Application extends Adw.Application {
      * Crete a Application
      */
     constructor() {
-        super({ application_id: pkg.name });
-
-        /* If the window should start hidden */
-        this.hidden = false;
+        super({ application_id: pkg.name, resourceBasePath: resourcePath });
 
         /* Command line options */
         this.add_main_option(
@@ -50,83 +48,17 @@ export default class Application extends Adw.Application {
         );
 
         /* Setup application actions */
-        this._initAppActions();
+        this.initAppActions();
     }
 
-    _initAppActions() {
-        let activateAction = new Gio.SimpleAction({ name: 'activate' });
-        activateAction.connect('activate', () => {
-            this.activate();
-        });
-        this.add_action(activateAction);
-
-        let aboutAction = new Gio.SimpleAction({ name: 'about' });
-        aboutAction.connect('activate', this._showAbout.bind(this));
-        this.add_action(aboutAction);
-
-        let prefsAction = new Gio.SimpleAction({ name: 'preferences' });
-        prefsAction.connect('activate', this._showPrefs.bind(this));
-        this.add_action(prefsAction);
-
-        let accountsAction = new Gio.SimpleAction({ name: 'accounts' });
-        accountsAction.connect('activate', this._showAccounts.bind(this));
-        this.add_action(accountsAction);
-
-        let quitAction = new Gio.SimpleAction({ name: 'quit' });
-        quitAction.connect('activate', () => {
-            this.quit();
-        });
-        this.add_action(quitAction);
-
-        let closeAction = new Gio.SimpleAction({ name: 'close' });
-        closeAction.connect('activate', () => {
-            this.get_active_window().close();
-        });
-        this.add_action(closeAction);
-
-        let notificationAction = new Gio.SimpleAction({
-            name: 'open-notification',
-            parameter_type: new GLib.VariantType('as'),
-        });
-        notificationAction.connect(
-            'activate',
-            this._openNotification.bind(this),
-        );
-        this.add_action(notificationAction);
-
-        let markReadAction = new Gio.SimpleAction({
-            name: 'mark-read',
-            parameter_type: new GLib.VariantType('s'),
-        });
-        markReadAction.connect('activate', this._markAsRead.bind(this));
-        this.add_action(markReadAction);
-
-        let reloadAction = new Gio.SimpleAction({ name: 'reload' });
-        reloadAction.connect('activate', () => {
-            this.get_active_window().reload();
-        });
-        this.add_action(reloadAction);
-
-        /* Set keyboard shortcuts for actions */
-        this.set_accels_for_action('app.quit', ['<Primary>q']);
-        this.set_accels_for_action('app.close', ['<Primary>w']);
-        this.set_accels_for_action('app.preferences', ['<Primary>comma']);
-        this.set_accels_for_action('app.accounts', ['<Primary><Shift>a']);
-        this.set_accels_for_action('app.reload', ['<Primary>r']);
-        this.set_accels_for_action('win.open-primary-menu', ['F10']);
-        this.set_accels_for_action('win.show-help-overlay', [
-            '<Primary>question',
-        ]);
-    }
-
-    vfunc_handle_local_options(options) {
+    vfunc_handle_local_options(options: GLib.VariantDict): number {
         if (options.contains('version')) {
             print(pkg.version);
             return 0;
         }
 
         /* Hidden window on start */
-        if (options.contains('hidden') && this.window === undefined) {
+        if (options.contains('hidden') && this.window === null) {
             this.hidden = true;
         }
 
@@ -148,39 +80,100 @@ export default class Application extends Adw.Application {
         /* Start window hidden or not */
         if (this.hidden) {
             this.window.visible = false;
-            this.window._onWindowHide();
+            (this.window as Window).onWindowHide();
             this.hidden = false;
         } else {
             this.window.present();
         }
     }
 
-    _showPrefs() {
-        if (this.preferencesDialog != undefined) return;
+    private initAppActions() {
+        let activateAction = new Gio.SimpleAction({ name: 'activate' });
+        activateAction.connect('activate', () => {
+            this.activate();
+        });
+        this.add_action(activateAction);
+
+        let aboutAction = new Gio.SimpleAction({ name: 'about' });
+        aboutAction.connect('activate', this.showAbout.bind(this));
+        this.add_action(aboutAction);
+
+        let prefsAction = new Gio.SimpleAction({ name: 'preferences' });
+        prefsAction.connect('activate', this.showPrefs.bind(this));
+        this.add_action(prefsAction);
+
+        let accountsAction = new Gio.SimpleAction({ name: 'accounts' });
+        accountsAction.connect('activate', this.showAccounts.bind(this));
+        this.add_action(accountsAction);
+
+        let quitAction = new Gio.SimpleAction({ name: 'quit' });
+        quitAction.connect('activate', () => {
+            this.quit();
+        });
+        this.add_action(quitAction);
+
+        let closeAction = new Gio.SimpleAction({ name: 'close' });
+        closeAction.connect('activate', () => {
+            this.get_active_window()?.close();
+        });
+        this.add_action(closeAction);
+
+        let notificationAction = new Gio.SimpleAction({
+            name: 'open-notification',
+            parameter_type: new GLib.VariantType('as'),
+        });
+        notificationAction.connect('activate', this.openNotification.bind(this));
+        this.add_action(notificationAction);
+
+        let markReadAction = new Gio.SimpleAction({
+            name: 'mark-read',
+            parameter_type: new GLib.VariantType('s'),
+        });
+        markReadAction.connect('activate', this.markAsRead.bind(this));
+        this.add_action(markReadAction);
+
+        let reloadAction = new Gio.SimpleAction({ name: 'reload' });
+        reloadAction.connect('activate', () => {
+            (this.get_active_window() as Window | null)?.reload();
+        });
+        this.add_action(reloadAction);
+
+        /* Set keyboard shortcuts for actions */
+        this.set_accels_for_action('app.quit', ['<Primary>q']);
+        this.set_accels_for_action('app.close', ['<Primary>w']);
+        this.set_accels_for_action('app.preferences', ['<Primary>comma']);
+        this.set_accels_for_action('app.accounts', ['<Primary><Shift>a']);
+        this.set_accels_for_action('app.reload', ['<Primary>r']);
+        this.set_accels_for_action('win.open-primary-menu', ['F10']);
+        this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
+    }
+
+    private showPrefs() {
+        if (this.preferencesDialog) return;
 
         this.preferencesDialog = new PreferencesDialog();
         this.preferencesDialog.present(this.window);
         this.preferencesDialog.connect('closed', () => {
-            this.preferencesDialog = undefined;
+            this.preferencesDialog = null;
         });
     }
 
-    _showAccounts() {
-        if (this.accountsDialog != undefined) return;
+    private showAccounts() {
+        if (this.accountsDialog) return;
 
         this.accountsDialog = new AccountsDialog();
         this.accountsDialog.present(this.window);
         this.accountsDialog.connect('closed', () => {
-            this.accountsDialog = undefined;
+            this.accountsDialog = null;
         });
     }
 
-    _showAbout() {
+    private showAbout() {
         const about = new Adw.AboutDialog({
             developers: ['Rafael Mardojai CM'],
             /* Translators: Replace "translator-credits" with your names, one name per line */
             translator_credits: _('translator-credits'),
-            application_name: GLib.get_application_name(),
+            application_name: GLib.get_application_name() as string,
             comments: _('Get Git forges notifications'),
             application_icon: pkg.name,
             version: pkg.version,
@@ -191,26 +184,28 @@ export default class Application extends Adw.Application {
         about.present(this.window);
     }
 
-    _openNotification(_action, params) {
-        const paramsArray = params.get_strv();
+    private openNotification(_source: Gio.SimpleAction, params: GLib.Variant<any> | null) {
+        const paramsArray = params?.get_strv();
+        if (!paramsArray) return;
+
         const id = paramsArray[0];
         const url = paramsArray[1];
         const launcher = new Gtk.UriLauncher({ uri: url });
 
         let window = this.window;
-        if (this.window.hide_on_close) window = null;
+        if (this.window?.hide_on_close) window = null;
 
         launcher.launch(window, null, (_obj, result) => {
             const success = launcher.launch_finish(result);
 
             if (success) {
-                this.window.resolveNotification(id);
+                this.window?.resolveNotification(id);
             }
         });
     }
 
-    _markAsRead(_action, param) {
-        const [id, _length] = param.get_string();
-        this.window.resolveNotification(id);
+    private markAsRead(_source: Gio.SimpleAction, params: GLib.Variant<any> | null) {
+        const [id, _length] = params?.get_string() as [string, number];
+        this.window?.resolveNotification(id);
     }
 }

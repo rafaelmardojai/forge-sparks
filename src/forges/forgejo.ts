@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 
-import GLib from 'gi://GLib';
 import { gettext as _ } from 'gettext';
 
-import Forge from './forge.js';
 import Gitea from './gitea.js';
 
 /**
@@ -15,7 +13,7 @@ import Gitea from './gitea.js';
  * We keep them separate just in case things change in the future.
  */
 export default class Forgejo extends Gitea {
-    static name = 'forgejo';
+    static identifier = 'forgejo';
 
     static prettyName = 'Forgejo';
 
