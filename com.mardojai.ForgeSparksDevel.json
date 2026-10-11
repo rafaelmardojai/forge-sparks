@@ -52,6 +52,12 @@
                     "type": "dir",
                     "path": ".",
                     "skip": ["node_modules"]
+                },
+                {
+                    "type": "git",
+                    "dest": "node_modules/@girs",
+                    "url": "https://github.com/gjsify/types.git",
+                    "commit": "a7061d1b1267405066e9f5aefa58187aa0c0e262"
                 }
             ]
         }
