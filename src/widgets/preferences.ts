@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-
 import Adw from 'gi://Adw';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
+
 import { gettext as _ } from 'gettext';
 
-import { settings, requestBackground, getResourceUri } from '../util.js';
 import type Application from '../application.js';
+import { settings, requestBackground, getResourceUri } from '../util.js';
 
 export default class PreferencesDialog extends Adw.PreferencesDialog {
     declare private _background: Adw.ExpanderRow;

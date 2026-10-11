@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-
 import GLib from 'gi://GLib';
 import Soup from 'gi://Soup';
+
 import { gettext as _ } from 'gettext';
 
+import { session } from '../util.js';
 import Forge from './forge.js';
 import GitHub from './github.js';
-import { session } from '../util.js';
 
 /**
  * Gitea implementation

@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-
 import GObject from 'gi://GObject';
 
 interface ConstructorProps extends Partial<GObject.Object.ConstructorProps> {

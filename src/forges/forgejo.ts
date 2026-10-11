@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-
 import { gettext as _ } from 'gettext';
 
 import Gitea from './gitea.js';

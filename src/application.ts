@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: MIT
-
 import Adw from 'gi://Adw';
-import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
+
 import { gettext as _ } from 'gettext';
 
 import { resourcePath, settings } from './util.js';
-import Window from './window.js';
-import PreferencesDialog from './widgets/preferences.js';
 import AccountsDialog from './widgets/accountsDialog.js';
+import PreferencesDialog from './widgets/preferences.js';
+import Window from './window.js';
 
 export default class Application extends Adw.Application {
     public window: Window | null = null;

@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-
 import GLib from 'gi://GLib';
 import Soup from 'gi://Soup';
 

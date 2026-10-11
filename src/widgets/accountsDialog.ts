@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-
 import Adw from 'gi://Adw';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
+
 import { gettext as _ } from 'gettext';
 
-import { getResourceUri } from '../util.js';
-import AccountsManager from '../model/accountsManager.js';
-import AccountDialog from './accountDialog.js';
 import Account from '../model/account.js';
+import AccountsManager from '../model/accountsManager.js';
+import { getResourceUri } from '../util.js';
+import AccountDialog from './accountDialog.js';
 
 const accounts = new AccountsManager();
 

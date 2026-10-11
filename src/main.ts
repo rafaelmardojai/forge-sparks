@@ -1,12 +1,10 @@
 // SPDX-License-Identifier: MIT
-
 import 'gi://Adw?version=1';
-import 'gi://Gdk?version=4.0';
-import 'gi://GObject?version=2.0';
-import 'gi://Gtk?version=4.0';
-
-import Gio from 'gi://Gio?version=2.0';
 import GLib from 'gi://GLib?version=2.0';
+import 'gi://GObject?version=2.0';
+import 'gi://Gdk?version=4.0';
+import Gio from 'gi://Gio?version=2.0';
+import 'gi://Gtk?version=4.0';
 import Secret from 'gi://Secret?version=1';
 import Soup from 'gi://Soup?version=3.0';
 

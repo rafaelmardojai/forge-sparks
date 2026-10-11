@@ -1,20 +1,19 @@
 // SPDX-License-Identifier: MIT
-
 import Adw from 'gi://Adw';
-import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 
-import { settings, requestBackground, setBackgroundStatus, relativeDate, getResourceUri } from './util.js';
-import { FORGES, extractID } from './forges/index.js';
 import Forge from './forges/forge.js';
+import { FORGES, extractID } from './forges/index.js';
+import type Account from './model/account.js';
 import AccountsManager from './model/accountsManager.js';
+import type Notification from './model/notification.js';
 import NotificationsModel from './model/notificationsModel.js';
+import { settings, requestBackground, setBackgroundStatus, relativeDate, getResourceUri } from './util.js';
 import AccountDialog from './widgets/accountDialog.js';
 import NotificationRow from './widgets/notificationRow.js';
-import type Account from './model/account.js';
-import type Notification from './model/notification.js';
 
 const Format = imports.format;
 

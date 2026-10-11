@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-
 import Forge from './forge.js';
 import Forgejo from './forgejo.js';
 import Gitea from './gitea.js';

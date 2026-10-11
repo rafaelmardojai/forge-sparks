@@ -2,6 +2,9 @@
     "printWidth": 120,
     "tabWidth": 4,
     "singleQuote": true,
+    "importOrder": ["^gi://(.*)$", "<THIRD_PARTY_MODULES>", "^[./]"],
+    "importOrderSeparation": true,
+    "plugins": ["@trivago/prettier-plugin-sort-imports"],
     "overrides": [
         {
             "files": "**/*.xml",

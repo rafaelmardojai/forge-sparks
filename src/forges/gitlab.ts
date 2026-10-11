@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-
 import GLib from 'gi://GLib';
 import Soup from 'gi://Soup';
-import { gettext as _ } from 'gettext';
-import type { SimpleUserSchema, TodoSchema } from '@gitbeaker/core';
 
-import Forge from './forge.js';
+import type { SimpleUserSchema, TodoSchema } from '@gitbeaker/core';
+import { gettext as _ } from 'gettext';
+
 import Notification from '../model/notification.js';
 import { session } from '../util.js';
+import Forge from './forge.js';
 
 export default class GitLab extends Forge {
     static identifier = 'gitlab';

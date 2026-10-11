@@ -2,13 +2,14 @@ import Adw from 'gi://Adw';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
+
 import { gettext as _ } from 'gettext';
 
-import { getResourceUri } from '../util.js';
-import { FORGES } from '../forges/index.js';
-import AccountsManager from '../model/accountsManager.js';
-import Account from '../model/account.js';
 import Forge from '../forges/forge.js';
+import { FORGES } from '../forges/index.js';
+import Account from '../model/account.js';
+import AccountsManager from '../model/accountsManager.js';
+import { getResourceUri } from '../util.js';
 
 interface ConstructorProps extends Partial<Adw.Dialog.ConstructorProps> {
     account?: Account | null;

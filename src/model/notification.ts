@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-
-import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
+
 import { gettext as _ } from 'gettext';
 
 const DEFAULT_ICON = 'preferences-system-details-symbolic';

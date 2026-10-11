@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
-
-import Gio from 'gi://Gio';
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 
 import Notification from './notification.js';
 

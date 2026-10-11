@@ -1,12 +1,10 @@
 // SPDX-License-Identifier: MIT
-
-import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 import Secret from 'gi://Secret';
 
 import { settings } from '../util.js';
-
 import Account from './account.js';
 
 interface Signals extends GObject.Object.SignalSignatures, Gio.ListModel.SignalSignatures {}

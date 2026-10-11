@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-
-import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 import Soup from 'gi://Soup';
 import Xdp from 'gi://Xdp';
 import XdpGtk4 from 'gi://XdpGtk4';
+
 import { gettext as _, ngettext } from 'gettext';
 
 const Format = imports.format;

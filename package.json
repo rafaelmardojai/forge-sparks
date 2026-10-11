@@ -10,6 +10,8 @@
         "@girs/xdpgtk4-1.0": "^5.5.0",
         "@gitbeaker/core": "^43.8.0",
         "@octokit/types": "^18.0.0",
+        "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+        "prettier": "^3.9.10",
         "typescript": "^7.0.2"
     }
 }

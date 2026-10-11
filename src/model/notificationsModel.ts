@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: MIT
-
-import Gio from 'gi://Gio';
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 
+import type Forge from '../forges/forge.js';
+import { extractID } from '../forges/index.js';
 import Notification from './notification.js';
 import NotificationsList from './notificationsList.js';
-import { extractID } from '../forges/index.js';
-import type Forge from '../forges/forge.js';
 
 interface Signals extends GObject.Object.SignalSignatures, Gio.ListModel.SignalSignatures {}
 
