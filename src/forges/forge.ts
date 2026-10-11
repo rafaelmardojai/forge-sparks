@@ -225,7 +225,7 @@ export default abstract class Forge {
      * @param path The URI path
      * @param query The URI query
      */
-    static buildURI(host: string, path: string, query: Record<string, any> = {}): string {
+    static buildURI<Q extends object = Record<string, any>>(host: string, path: string, query: Q = {} as Q): string {
         /* Prepend slash to the path if not present */
         if (!path.startsWith('/')) {
             path = '/' + path;
@@ -233,7 +233,7 @@ export default abstract class Forge {
 
         /* Generate query string from the query dictionary */
         let queryString: string | null = Object.keys(query)
-            .map((key) => key + '=' + query[key])
+            .map((key) => (query[key as keyof Q] ? key + '=' + query[key as keyof Q] : ''))
             .join('&')
             .replace(' ', '+');
         if (!queryString) {

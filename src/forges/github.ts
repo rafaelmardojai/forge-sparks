@@ -12,6 +12,7 @@ import Forge from './forge.js';
 const Format = imports.format;
 
 type UserResponse = Endpoints['GET /user']['response']['data'];
+type NotificationsParams = Endpoints['GET /notifications']['parameters'];
 type NotificationsResponse = Endpoints['GET /notifications']['response']['data'];
 type IssueResponse = Endpoints['GET /repos/{owner}/{repo}/issues/{issue_number}']['response']['data'];
 type PullRequestResponse = Endpoints['GET /repos/{owner}/{repo}/pulls/{pull_number}']['response']['data'];
@@ -80,8 +81,6 @@ export default class GitHub extends Forge {
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
             const contents = super.readContents<UserResponse>(bytes);
 
-            console.log(`${url} response resulted in ${message.get_status()}`);
-
             if (message.get_status() == Soup.Status.UNAUTHORIZED) {
                 throw 'FailedForgeAuth';
             } else if (message.get_status() == Soup.Status.FORBIDDEN) {
@@ -109,34 +108,13 @@ export default class GitHub extends Forge {
 
     async getNotifications() {
         try {
-            const url = this.buildURI('notifications');
-            const message = super.createMessage('GET', url);
-            /* headers={'If-Modified-Since': this.modifiedSince} */
+            const notifications = await this.fetchNotifications();
 
-            const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            const contents = super.readContents<NotificationsResponse>(bytes);
+            this.notifications.clear(); /* Clear list */
 
-            console.log(`${url} response resulted in ${message.get_status()}`);
-            /* this.modifiedSince = headers.get_one('Last-Modified') ?? this.modifiedSince; */
-
-            if (message.get_status() == Soup.Status.OK) {
-                /* Get notifications from response */
-                const notifications = await this.compileNotifications(contents);
-
-                this.notifications.clear(); /* Clear list */
-
-                /* Loop new notifications and populate the model */
-                for (const notification of notifications) {
-                    this.notifications.append(new Notification(notification));
-                }
-            } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
-                /* Auth failed, revoked or expired token */
-                throw 'FailedForgeAuth';
-            } else if (message.get_status() == Soup.Status.FORBIDDEN) {
-                /* Unauthorized, token scopes */
-                throw 'FailedTokenScopes';
-            } else {
-                throw 'Unexpected';
+            /* Loop new notifications and populate the model */
+            for (const notification of notifications) {
+                this.notifications.append(new Notification(notification));
             }
         } catch (e) {
             throw e;
@@ -169,6 +147,67 @@ export default class GitHub extends Forge {
         } catch (e) {
             throw e;
         }
+    }
+
+    /**
+     * Fetch notifications from GitHub API.
+     *
+     * Recursively fetches all pages of notifications.
+     *
+     * @param page The page number to fetch.
+     * @param perPage The number of notifications per page.
+     * @param totalPages The total number of pages to fetch.
+     */
+    private async fetchNotifications(
+        page: number = 1,
+        perPage?: number,
+        totalPages?: number,
+    ): Promise<NotificationDetails[]> {
+        const url = this.buildURI<NotificationsParams>('notifications', { per_page: perPage, page });
+        const message = super.createMessage('GET', url);
+        const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
+        const contents = super.readContents<NotificationsResponse>(bytes);
+
+        if (message.get_status() == Soup.Status.OK) {
+            if (!totalPages) totalPages = this.findTotalPages(message.get_response_headers());
+
+            const notifications = await this.compileNotifications(contents);
+
+            if (page < totalPages) {
+                const next = await this.fetchNotifications(page + 1, perPage, totalPages);
+                notifications.push(...next);
+            }
+
+            return notifications;
+        } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
+            /* Auth failed, revoked or expired token */
+            throw 'FailedForgeAuth';
+        } else if (message.get_status() == Soup.Status.FORBIDDEN) {
+            /* Unauthorized, token scopes */
+            throw 'FailedTokenScopes';
+        } else {
+            throw 'Unexpected';
+        }
+    }
+
+    /**
+     * Find the total number of pages from the Link header.
+     */
+    private findTotalPages(headers: Soup.MessageHeaders): number {
+        const linkHdr = headers.get_one('Link');
+
+        if (!linkHdr) return 1;
+
+        const links = linkHdr.split(',');
+        const lastLink = links.find((link) => link.includes('rel="last"'));
+
+        if (!lastLink) return 1;
+
+        const match = lastLink.match(/page=(\d+)/);
+
+        if (!match) return 1;
+
+        return parseInt(match[1]);
     }
 
     /**
@@ -372,7 +411,7 @@ export default class GitHub extends Forge {
      * @param path The URI path
      * @param query The URI query
      */
-    buildURI(path: string, query: Record<string, any> = {}): string {
-        return Forge.buildURI(`api.${this.url}`, path, query);
+    buildURI<Q extends object>(path: string, query: Q = {} as Q): string {
+        return Forge.buildURI<Q>(`api.${this.url}`, path, query);
     }
 }
