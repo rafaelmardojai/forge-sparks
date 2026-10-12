@@ -74,7 +74,6 @@ export default class GitLab extends Forge {
 
             if (message.get_status() == Soup.Status.OK) {
                 const notifications: Notification[] = [];
-                this.notifications.clear();
 
                 for (const item of contents) {
                     try {
@@ -91,11 +90,12 @@ export default class GitLab extends Forge {
                                 accountName: this.accountName,
                             }),
                         );
-                        this.notifications.append(...notifications);
                     } catch (e) {
                         console.error(e);
                     }
                 }
+
+                this.notifications.splice(0, this.notifications.get_n_items(), ...notifications);
             } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
                 /* Auth failed, revoked or expired token */
                 throw 'FailedForgeAuth';
