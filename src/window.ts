@@ -189,7 +189,7 @@ export default class Window extends Adw.ApplicationWindow {
             const account = accounts.get_item(i) as Account;
 
             /* Init a corresponding forge instance for the account if isn't yet */
-            if (!(account.id in this.forges) || this.forges.get(account.id) === undefined) {
+            if (!this.forges.has(account.id)) {
                 try {
                     const token = await accounts.getAccountToken(account.id);
                     const instance = new FORGES[account.forge as string](
