@@ -73,7 +73,7 @@ export default class NotificationRow extends Gtk.ListBoxRow {
         switch (this.state) {
             case 'open':
             case 'opened':
-                this._icon.add_css_class('accent');
+                this._icon.add_css_class('success');
                 break;
             case 'closed':
                 this._icon.add_css_class('closed');

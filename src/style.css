@@ -3,11 +3,5 @@
 }
 
 .closed {
-    color: var(--purple-3);
-}
-
-@media (prefers-color-scheme: dark) {
-    .closed {
-        color: var(--purple-1);
-    }
+    color: oklab(from var(--accent-slate) var(--standalone-color-oklab));
 }
