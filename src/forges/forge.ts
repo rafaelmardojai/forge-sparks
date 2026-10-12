@@ -71,11 +71,6 @@ export default abstract class Forge {
     notifications: NotificationsList;
 
     /**
-     * Last modified date of the notifications list.
-     */
-    modifiedSince: string;
-
-    /**
      * Text encoder.
      */
     encoder: TextEncoder;
@@ -108,7 +103,6 @@ export default abstract class Forge {
         this.accountName = accountName;
         this.notifications = new NotificationsList();
 
-        this.modifiedSince = '';
         this.encoder = new TextEncoder();
         this.decoder = new TextDecoder('utf-8');
     }
@@ -166,11 +160,11 @@ export default abstract class Forge {
      * @param data Request body data
      * @param headers HTTP headers for the message
      */
-    createMessage<T extends object>(
+    createMessage<T extends object, H extends Record<string, string>>(
         method: string,
         url: string,
         data: T | null = null,
-        headers: Record<string, string> = {},
+        headers: H = {} as H,
     ): Soup.Message {
         const message = Soup.Message.new(method, url);
 

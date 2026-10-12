@@ -73,11 +73,12 @@ export default class GitLab extends Forge {
             console.log(`${url} response resulted in ${message.get_status()}`);
 
             if (message.get_status() == Soup.Status.OK) {
+                const notifications: Notification[] = [];
                 this.notifications.clear();
 
                 for (const item of contents) {
                     try {
-                        this.notifications.append(
+                        notifications.push(
                             new Notification({
                                 id: super.formatID(String(item.id)),
                                 type: item.target_type,
@@ -90,6 +91,7 @@ export default class GitLab extends Forge {
                                 accountName: this.accountName,
                             }),
                         );
+                        this.notifications.append(...notifications);
                     } catch (e) {
                         console.error(e);
                     }

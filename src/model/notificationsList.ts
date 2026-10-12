@@ -82,11 +82,15 @@ export default class NotificationsList extends GObject.Object implements Gio.Lis
     /**
      * Append a notification to the list
      */
-    append(notification: Notification) {
-        this.notifications.push(notification);
-        this.byId.set(notification.id, notification);
+    append(...notifications: Notification[]) {
+        if (!notifications.length) return;
 
-        this.items_changed(this.notifications.length - 1, 0, 1);
+        this.notifications.splice(this.notifications.length - 1, 0, ...notifications);
+        for (const notification of notifications) {
+            this.byId.set(notification.id, notification);
+        }
+
+        this.items_changed(this.notifications.length - notifications.length, 0, notifications.length);
     }
 
     /**
@@ -101,6 +105,27 @@ export default class NotificationsList extends GObject.Object implements Gio.Lis
         this.notifications.splice(position, 1);
 
         this.items_changed(position, 1, 0);
+    }
+
+    /**
+     * Splice the notification list
+     *
+     * @param position The position to start at
+     * @param removals The number of notifications to remove
+     * @param additions The notifications to add
+     */
+    splice(position: number, removals: number, ...additions: Notification[]) {
+        const removed = this.notifications.splice(position, removals);
+        for (const notification of removed) {
+            this.byId.delete(notification.id);
+        }
+
+        this.notifications.splice(position, 0, ...additions);
+        for (const notification of additions) {
+            this.byId.set(notification.id, notification);
+        }
+
+        this.items_changed(position, removed.length, additions.length);
     }
 
     /**

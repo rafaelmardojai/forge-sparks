@@ -25,18 +25,6 @@ interface SubjectInfo {
     updated_at?: string;
 }
 
-interface NotificationDetails {
-    id: string;
-    type: string;
-    unread: boolean;
-    updatedAt: string;
-    title: string;
-    repository: string;
-    url: string;
-    accountName: string;
-    state?: string;
-}
-
 export default class GitHub extends Forge {
     static identifier = 'github';
 
@@ -74,6 +62,16 @@ export default class GitHub extends Forge {
         return tokenText;
     }
 
+    /**
+     * Number of items to fetch per page.
+     */
+    protected perPage: number = 50;
+
+    /**
+     * ETags for each page.
+     */
+    protected eTags: string[] = [];
+
     async getUser(): Promise<[number, string]> {
         try {
             const url = this.buildURI('user');
@@ -108,13 +106,15 @@ export default class GitHub extends Forge {
 
     async getNotifications() {
         try {
-            const notifications = await this.fetchNotifications();
+            const pages = await this.fetchNotifications();
 
-            this.notifications.clear(); /* Clear list */
+            for (let i = 0; i < pages.length; i++) {
+                const page = pages[i];
+                if (page.length === 0) {
+                    continue; // Page Not Modified
+                }
 
-            /* Loop new notifications and populate the model */
-            for (const notification of notifications) {
-                this.notifications.append(new Notification(notification));
+                this.notifications.splice(i * this.perPage, this.perPage, ...page);
             }
         } catch (e) {
             throw e;
@@ -152,33 +152,46 @@ export default class GitHub extends Forge {
     /**
      * Fetch notifications from GitHub API.
      *
-     * Recursively fetches all pages of notifications.
-     *
-     * @param page The page number to fetch.
-     * @param perPage The number of notifications per page.
-     * @param totalPages The total number of pages to fetch.
+     * @returns Multidimensional array of notifications per pages
      */
-    private async fetchNotifications(
-        page: number = 1,
-        perPage?: number,
-        totalPages?: number,
-    ): Promise<NotificationDetails[]> {
+    private async fetchNotifications(): Promise<Notification[][]> {
+        const notifications = [];
+
+        const [firstPage, totalPages] = await this.fetchPage(1, this.perPage);
+        notifications.push(firstPage);
+
+        for (let i = 2; i <= totalPages; i++) {
+            const [page] = await this.fetchPage(i, this.perPage);
+            notifications.push(page);
+        }
+
+        return notifications;
+    }
+
+    /**
+     * Fetch a page of notifications from the API
+     *
+     * @param page Page number to fetch
+     * @param perPage Number of notifications per page
+     */
+    private async fetchPage(page: number, perPage: number): Promise<[Notification[], number]> {
+        const eTag = this.eTags[page - 1] ?? '';
         const url = this.buildURI<NotificationsParams>('notifications', { per_page: perPage, page });
-        const message = super.createMessage('GET', url);
+        const message = super.createMessage('GET', url, null, {
+            'If-None-Match': eTag,
+        });
         const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
         const contents = super.readContents<NotificationsResponse>(bytes);
 
+        const totalPages = this.findTotalPages(message.get_response_headers());
+
         if (message.get_status() == Soup.Status.OK) {
-            if (!totalPages) totalPages = this.findTotalPages(message.get_response_headers());
+            const etag = message.get_response_headers().get_one('ETag');
+            this.eTags[page - 1] = etag ?? '';
 
-            const notifications = await this.compileNotifications(contents);
-
-            if (page < totalPages) {
-                const next = await this.fetchNotifications(page + 1, perPage, totalPages);
-                notifications.push(...next);
-            }
-
-            return notifications;
+            return [await this.compileNotifications(contents), totalPages];
+        } else if (message.get_status() == Soup.Status.NOT_MODIFIED) {
+            return [[], totalPages];
         } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
             /* Auth failed, revoked or expired token */
             throw 'FailedForgeAuth';
@@ -216,8 +229,8 @@ export default class GitHub extends Forge {
      * This should happen in parallel so that information retrieval
      * doesn't take a lot of time.
      */
-    private compileNotifications(items: NotificationsResponse): Promise<NotificationDetails[]> {
-        const notifications: NotificationDetails[] = [];
+    private compileNotifications(items: NotificationsResponse): Promise<Notification[]> {
+        const notifications: Notification[] = [];
         let count = items.length;
 
         return new Promise((resolve, reject) => {
@@ -228,7 +241,7 @@ export default class GitHub extends Forge {
             for (const item of items) {
                 try {
                     this.getSubjectInfo(item).then((info) => {
-                        const notification: NotificationDetails = {
+                        const notification = new Notification({
                             id: super.formatID(item.id),
                             type: item.subject.type,
                             unread: item.unread,
@@ -237,10 +250,8 @@ export default class GitHub extends Forge {
                             repository: item.repository.full_name,
                             url: info.url,
                             accountName: this.accountName,
-                        };
-                        if (info.state) {
-                            notification.state = info.state;
-                        }
+                            state: info.state,
+                        });
                         notifications.push(notification);
 
                         count--;
