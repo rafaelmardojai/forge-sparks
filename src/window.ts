@@ -109,13 +109,44 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Setup notifications model */
         this.model = new NotificationsModel();
-        this.model.connect('items-changed', (_pos, _rmv, _add) => {
-            if (this.model.get_n_items() > 0) {
+        this.model.connect('items-changed', (model, position, _removed, added) => {
+            // Update the UI based on the number of items in the model
+            if (model.get_n_items() > 0) {
                 this._notificationsStack.set_visible_child_name('list');
             } else {
                 this._notificationsStack.set_visible_child_name('empty');
             }
-            this._markAsRead.visible = this.model.get_n_items() > 0;
+            this._markAsRead.visible = model.get_n_items() > 0;
+
+            // Notify the user about new notifications
+            if (added > 0) {
+                const app = this.get_application();
+                const notified: typeof this.notified = {};
+
+                for (let i = position; i < position + added; i++) {
+                    const item = model.get_item(position + i);
+
+                    if (!item) continue;
+
+                    // Only send notifications if the window is hidden or not focused
+                    if (!this.visible || !this.is_active) {
+                        /* If notification hasn't been notified before or has changed
+                           since last time, send desktop notification */
+                        if (!(item.id in this.notified) || this.notified[item.id] != item.updatedAt) {
+                            app?.send_notification(`fs-${item.id}`, item.notification);
+                        }
+                    }
+
+                    // Add notification id and timestamp to notified dict
+                    notified[item.id] = item.updatedAt;
+                }
+
+                if (!this.fetchError) {
+                    this.notified = notified;
+                    // Save notified ids so if the app restarts we don't notify again
+                    settings.set_value('notified', new GLib.Variant('a{ss}', this.notified));
+                }
+            }
         });
 
         /* Saved notifications from previous session */
@@ -268,7 +299,6 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* Show notifications */
         this._mainStack.set_visible_child_name('notifications');
-        if (!this.networkError) this.sendNotifications();
 
         if (!this.reFetch) {
             /* Add timeout to run this function again */
@@ -302,37 +332,6 @@ export default class Window extends Adw.ApplicationWindow {
 
         /* This might be after a user interaction, show the spinner */
         this._mainStack.set_visible_child_name('loading');
-    }
-
-    /**
-     * Send desktop notifications for all notifications
-     */
-    private sendNotifications() {
-        const app = this.get_application();
-        const notified: typeof this.notified = {};
-
-        /* Loop sorted notifications model, so we can show them on order */
-        for (var i = 0; i < this.model.get_n_items(); i++) {
-            const notification = this.model.get_item(i) as Notification;
-
-            /* Only send notifications if the window is hidden or not focused */
-            if (!this.visible || !this.is_active) {
-                /* If notification hasn't been notified before or has changed
-                   since last time, send desktop notification */
-                if (!(notification.id in this.notified) || this.notified[notification.id] != notification.updatedAt) {
-                    app?.send_notification(`fs-${notification.id}`, notification.notification);
-                }
-            }
-
-            /* Add notification id and timestamp to notified dict */
-            notified[notification.id] = notification.updatedAt;
-        }
-
-        if (!this.fetchError) {
-            this.notified = notified;
-            /* Save notified ids so if the app restarts we don't notify again */
-            settings.set_value('notified', new GLib.Variant('a{ss}', this.notified));
-        }
     }
 
     /**
