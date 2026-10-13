@@ -1,0 +1,38 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ShortcutsDialog shortcuts_dialog {
+  Adw.ShortcutsSection {
+    title: C_("shortcut window", "General");
+
+    Adw.ShortcutsItem {
+      action-name: "win.open-primary-menu";
+      title: C_("shortcut window", "Open Menu");
+    }
+
+    Adw.ShortcutsItem {
+      action-name: "app.reload";
+      title: C_("shortcut window", "Reload Notifications");
+    }
+
+    Adw.ShortcutsItem {
+      action-name: "app.preferences";
+      title: C_("shortcut window", "Preferences");
+    }
+
+    Adw.ShortcutsItem {
+      action-name: "app.accounts";
+      title: C_("shortcut window", "Accounts");
+    }
+
+    Adw.ShortcutsItem {
+      action-name: "app.shortcuts";
+      title: C_("shortcut window", "Keyboard Shortcuts");
+    }
+
+    Adw.ShortcutsItem {
+      action-name: "app.quit";
+      title: C_("shortcut window", "Quit");
+    }
+  }
+}

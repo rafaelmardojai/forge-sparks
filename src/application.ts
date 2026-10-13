@@ -145,7 +145,6 @@ export default class Application extends Adw.Application {
         this.set_accels_for_action('app.accounts', ['<Primary><Shift>a']);
         this.set_accels_for_action('app.reload', ['<Primary>r']);
         this.set_accels_for_action('win.open-primary-menu', ['F10']);
-        this.set_accels_for_action('win.show-help-overlay', ['<Primary>question']);
     }
 
     private showPrefs() {

@@ -9,7 +9,6 @@
     <file>util.js.map</file>
     <file>window.js</file>
     <file>window.js.map</file>
-    <file>window.ui</file>
     <file>forges/forge.js</file>
     <file>forges/forge.js.map</file>
     <file>forges/forgejo.js</file>

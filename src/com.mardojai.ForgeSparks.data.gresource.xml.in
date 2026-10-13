@@ -2,13 +2,13 @@
 <gresources>
   <gresource prefix="/com/mardojai/ForgeSparks@profile@">
     <file preprocess="xml-stripblanks">window.ui</file>
+    <file preprocess="xml-stripblanks">shortcuts-dialog.ui</file>
     <file preprocess="xml-stripblanks">widgets/accountDialog.ui</file>
     <file preprocess="xml-stripblanks">widgets/accountsDialog.ui</file>
     <file preprocess="xml-stripblanks">widgets/notificationRow.ui</file>
     <file preprocess="xml-stripblanks">widgets/preferences.ui</file>
 
     <file>style.css</file>
-    <file>gtk/help-overlay.ui</file>
 
     <file preprocess="xml-stripblanks">assets/alldone.svg</file>
 
