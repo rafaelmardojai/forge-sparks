@@ -13,7 +13,7 @@ interface ConstructorProps extends Partial<GObject.Object.ConstructorProps> {
     type: string;
     unread: boolean;
     updatedAt: string;
-    state?: string;
+    state?: string | null;
     title: string;
     repository: string;
     url: string;

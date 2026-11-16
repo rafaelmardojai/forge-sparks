@@ -72,6 +72,11 @@ export default class GitHub extends Forge {
      */
     protected eTags: string[] = [];
 
+    /**
+     * Notifications on each page, reused for pages not modified.
+     */
+    protected pages: Notification[][] = [];
+
     async getUser(): Promise<[number, string]> {
         try {
             const url = this.buildURI('user');
@@ -108,13 +113,23 @@ export default class GitHub extends Forge {
         try {
             const pages = await this.fetchNotifications();
 
+            let changed = pages.length !== this.pages.length;
             for (let i = 0; i < pages.length; i++) {
-                const page = pages[i];
-                if (page.length === 0) {
-                    continue; // Page Not Modified
+                const [page, eTag] = pages[i];
+                /* Saved only once every page is fetched, so a failed poll fetches them again */
+                this.eTags[i] = eTag;
+                if (page !== null) {
+                    this.pages[i] = page;
+                    changed = true;
                 }
+            }
+            this.eTags.length = pages.length;
+            this.pages.length = pages.length;
 
-                this.notifications.splice(i * this.perPage, this.perPage, ...page);
+            /* Rebuild the whole list when a page changed or the app removed rows, so it matches the server */
+            const notifications = this.pages.flat();
+            if (changed || this.notifications.get_n_items() !== notifications.length) {
+                this.notifications.splice(0, this.notifications.get_n_items(), ...notifications);
             }
         } catch (e) {
             throw e;
@@ -152,20 +167,23 @@ export default class GitHub extends Forge {
     /**
      * Fetch notifications from GitHub API.
      *
-     * @returns Multidimensional array of notifications per pages
+     * @returns Notifications per page, null for pages not modified, and the page's ETag
      */
-    private async fetchNotifications(): Promise<Notification[][]> {
-        const notifications = [];
+    private async fetchNotifications(): Promise<[Notification[] | null, string][]> {
+        const notifications: [Notification[] | null, string][] = [];
 
-        const [firstPage, totalPages] = await this.fetchPage(1, this.perPage);
-        notifications.push(firstPage);
-
-        for (let i = 2; i <= totalPages; i++) {
-            const [page] = await this.fetchPage(i, this.perPage);
-            notifications.push(page);
+        /* A 304 response has no Link header, so keep the page count until a page changes */
+        let totalPages = Math.max(this.eTags.length, 1);
+        for (let i = 1; i <= totalPages; i++) {
+            const [page, eTag, lastPage] = await this.fetchPage(i, this.perPage);
+            notifications.push([page, eTag]);
+            if (page !== null) {
+                totalPages = lastPage;
+            }
         }
 
-        return notifications;
+        /* A page past the end links to the actual last page */
+        return notifications.slice(0, totalPages);
     }
 
     /**
@@ -173,8 +191,9 @@ export default class GitHub extends Forge {
      *
      * @param page Page number to fetch
      * @param perPage Number of notifications per page
+     * @returns The notifications, null if not modified, the page's ETag and the total number of pages
      */
-    private async fetchPage(page: number, perPage: number): Promise<[Notification[], number]> {
+    private async fetchPage(page: number, perPage: number): Promise<[Notification[] | null, string, number]> {
         const eTag = this.eTags[page - 1] ?? '';
         const url = this.buildURI<NotificationsParams>('notifications', { per_page: perPage, page });
         const message = super.createMessage('GET', url, null, {
@@ -183,15 +202,14 @@ export default class GitHub extends Forge {
         const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
         const contents = super.readContents<NotificationsResponse>(bytes);
 
-        const totalPages = this.findTotalPages(message.get_response_headers());
+        const totalPages = this.findTotalPages(message.get_response_headers(), page);
 
         if (message.get_status() == Soup.Status.OK) {
-            const etag = message.get_response_headers().get_one('ETag');
-            this.eTags[page - 1] = etag ?? '';
+            const newETag = message.get_response_headers().get_one('ETag') ?? '';
 
-            return [await this.compileNotifications(contents), totalPages];
+            return [await this.compileNotifications(contents), newETag, totalPages];
         } else if (message.get_status() == Soup.Status.NOT_MODIFIED) {
-            return [[], totalPages];
+            return [null, eTag, totalPages];
         } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
             /* Auth failed, revoked or expired token */
             throw 'FailedForgeAuth';
@@ -204,21 +222,23 @@ export default class GitHub extends Forge {
     }
 
     /**
-     * Find the total number of pages from the Link header.
+     * Find the total number of pages from a page's Link header.
+     *
+     * The last page has no "last" link.
      */
-    private findTotalPages(headers: Soup.MessageHeaders): number {
+    private findTotalPages(headers: Soup.MessageHeaders, page: number): number {
         const linkHdr = headers.get_one('Link');
 
-        if (!linkHdr) return 1;
+        if (!linkHdr) return page;
 
         const links = linkHdr.split(',');
         const lastLink = links.find((link) => link.includes('rel="last"'));
 
-        if (!lastLink) return 1;
+        if (!lastLink) return page;
 
-        const match = lastLink.match(/page=(\d+)/);
+        const match = lastLink.match(/[?&]page=(\d+)/);
 
-        if (!match) return 1;
+        if (!match) return page;
 
         return parseInt(match[1]);
     }
@@ -230,48 +250,31 @@ export default class GitHub extends Forge {
      * doesn't take a lot of time.
      */
     private compileNotifications(items: NotificationsResponse): Promise<Notification[]> {
-        const notifications: Notification[] = [];
-        let count = items.length;
+        return Promise.all(
+            items.map(async (item) => {
+                const info = await this.getSubjectInfo(item);
 
-        return new Promise((resolve, reject) => {
-            if (!items.length) {
-                resolve(notifications);
-            }
-
-            for (const item of items) {
-                try {
-                    this.getSubjectInfo(item).then((info) => {
-                        const notification = new Notification({
-                            id: super.formatID(item.id),
-                            type: item.subject.type,
-                            unread: item.unread,
-                            updatedAt: info.updated_at ?? item.updated_at,
-                            title: item.subject.title,
-                            repository: item.repository.full_name,
-                            url: info.url,
-                            accountName: this.accountName,
-                            state: info.state,
-                        });
-                        notifications.push(notification);
-
-                        count--;
-                        if (count === 0) {
-                            resolve(notifications);
-                        }
-                    });
-                } catch (e) {
-                    count--;
-                    console.error(e);
-                }
-            }
-        });
+                return new Notification({
+                    id: super.formatID(item.id),
+                    type: item.subject.type,
+                    unread: item.unread,
+                    updatedAt: info.updated_at ?? item.updated_at,
+                    title: item.subject.title,
+                    repository: item.repository.full_name,
+                    url: info.url,
+                    accountName: this.accountName,
+                    state: info.state ?? null,
+                });
+            }),
+        );
     }
 
     /**
      * Get extra info from the notification subject
      *
+     * Falls back to a repository URL if the subject can't be fetched.
+     *
      * @param notification The notification object from the response JSON
-     * @throws Throws an error if failed making the request or reading the data
      */
     private async getSubjectInfo(notification: NotificationsResponse[number]): Promise<SubjectInfo> {
         /* Here we'll store the info */
@@ -312,9 +315,9 @@ export default class GitHub extends Forge {
         try {
             const message = super.createMessage('GET', notification.subject.url);
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            const contents = super.readContents<SubjectResponse>(bytes);
 
             if (message.get_status() == Soup.Status.OK) {
+                const contents = super.readContents<SubjectResponse>(bytes);
                 info.state = contents.state;
                 /* info.updated_at = contents.updated_at */
                 info.url = contents.html_url;
@@ -353,21 +356,24 @@ export default class GitHub extends Forge {
                         info.url = `${info.url.substring(0, n)}?notification_referrer_id=${referrer}${info.url.substring(n)}`;
                     }
                 }
-            } else {
-                /* Fallback URL if request failed, probably repo is private */
-                if (notification.subject.type === 'PullRequest' || notification.subject.type === 'Pull') {
-                    info.url = `${notification.repository.html_url}/pulls`;
-                } else if (notification.subject.type === 'Issue') {
-                    info.url = `${notification.repository.html_url}/issues`;
-                } else {
-                    info.url = notification.repository.url;
-                }
-            }
 
-            return info;
+                return info;
+            }
         } catch (e) {
-            throw e;
+            /* Network error or unreadable response */
+            console.error(e);
         }
+
+        /* Fallback URL if request failed, probably repo is private */
+        if (notification.subject.type === 'PullRequest' || notification.subject.type === 'Pull') {
+            info.url = `${notification.repository.html_url}/pulls`;
+        } else if (notification.subject.type === 'Issue') {
+            info.url = `${notification.repository.html_url}/issues`;
+        } else {
+            info.url = notification.repository.url;
+        }
+
+        return info;
     }
 
     /**
