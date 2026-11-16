@@ -72,6 +72,11 @@ export default class GitHub extends Forge {
      */
     protected eTags: string[] = [];
 
+    /**
+     * Notifications on each page, reused for pages not modified.
+     */
+    protected pages: Notification[][] = [];
+
     async getUser(): Promise<[number, string]> {
         try {
             const url = this.buildURI('user');
@@ -108,15 +113,23 @@ export default class GitHub extends Forge {
         try {
             const pages = await this.fetchNotifications();
 
+            let changed = pages.length !== this.pages.length;
             for (let i = 0; i < pages.length; i++) {
                 const [page, eTag] = pages[i];
                 /* Saved only once every page is fetched, so a failed poll fetches them again */
                 this.eTags[i] = eTag;
-                if (page === null) {
-                    continue; // Page Not Modified
+                if (page !== null) {
+                    this.pages[i] = page;
+                    changed = true;
                 }
+            }
+            this.eTags.length = pages.length;
+            this.pages.length = pages.length;
 
-                this.notifications.splice(i * this.perPage, this.perPage, ...page);
+            /* Rebuild the whole list when a page changed or the app removed rows, so it matches the server */
+            const notifications = this.pages.flat();
+            if (changed || this.notifications.get_n_items() !== notifications.length) {
+                this.notifications.splice(0, this.notifications.get_n_items(), ...notifications);
             }
         } catch (e) {
             throw e;
@@ -159,15 +172,18 @@ export default class GitHub extends Forge {
     private async fetchNotifications(): Promise<[Notification[] | null, string][]> {
         const notifications: [Notification[] | null, string][] = [];
 
-        const [firstPage, eTag, totalPages] = await this.fetchPage(1, this.perPage);
-        notifications.push([firstPage, eTag]);
-
-        for (let i = 2; i <= totalPages; i++) {
-            const [page, eTag] = await this.fetchPage(i, this.perPage);
+        /* A 304 response has no Link header, so keep the page count until a page changes */
+        let totalPages = Math.max(this.eTags.length, 1);
+        for (let i = 1; i <= totalPages; i++) {
+            const [page, eTag, lastPage] = await this.fetchPage(i, this.perPage);
             notifications.push([page, eTag]);
+            if (page !== null) {
+                totalPages = lastPage;
+            }
         }
 
-        return notifications;
+        /* A page past the end links to the actual last page */
+        return notifications.slice(0, totalPages);
     }
 
     /**
@@ -186,7 +202,7 @@ export default class GitHub extends Forge {
         const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
         const contents = super.readContents<NotificationsResponse>(bytes);
 
-        const totalPages = this.findTotalPages(message.get_response_headers());
+        const totalPages = this.findTotalPages(message.get_response_headers(), page);
 
         if (message.get_status() == Soup.Status.OK) {
             const newETag = message.get_response_headers().get_one('ETag') ?? '';
@@ -206,21 +222,23 @@ export default class GitHub extends Forge {
     }
 
     /**
-     * Find the total number of pages from the Link header.
+     * Find the total number of pages from a page's Link header.
+     *
+     * The last page has no "last" link.
      */
-    private findTotalPages(headers: Soup.MessageHeaders): number {
+    private findTotalPages(headers: Soup.MessageHeaders, page: number): number {
         const linkHdr = headers.get_one('Link');
 
-        if (!linkHdr) return 1;
+        if (!linkHdr) return page;
 
         const links = linkHdr.split(',');
         const lastLink = links.find((link) => link.includes('rel="last"'));
 
-        if (!lastLink) return 1;
+        if (!lastLink) return page;
 
         const match = lastLink.match(/[?&]page=(\d+)/);
 
-        if (!match) return 1;
+        if (!match) return page;
 
         return parseInt(match[1]);
     }
