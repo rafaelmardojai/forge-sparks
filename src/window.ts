@@ -374,16 +374,16 @@ export default class Window extends Adw.ApplicationWindow {
         this._markAsReadIcon.set_visible_child_name('spinner');
 
         /* Mark as read all notifications on all accounts */
-        for (const id in this.forges) {
+        for (const forge of this.forges.values()) {
             try {
-                await this.forges.get(id)?.markAsRead();
+                if (await forge.markAsRead()) {
+                    forge.notifications.clear();
+                }
             } catch (error) {
                 /* TODO: Notify the user that this failed */
                 console.error(error);
             }
         }
-
-        this.model.clear(); /* Clear list model */
 
         /* Revert ongoing progress status */
         this._markAsRead.sensitive = true;

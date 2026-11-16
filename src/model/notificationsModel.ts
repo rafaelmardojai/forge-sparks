@@ -136,11 +136,4 @@ export default class NotificationsModel extends GObject.Object implements Gio.Li
 
         model?.removeByID(id);
     }
-
-    /**
-     * Clear all notifications
-     */
-    clear() {
-        this.models.forEach((model) => model.clear());
-    }
 }
