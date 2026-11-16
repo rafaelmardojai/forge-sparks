@@ -110,7 +110,7 @@ export default class GitHub extends Forge {
 
             for (let i = 0; i < pages.length; i++) {
                 const page = pages[i];
-                if (page.length === 0) {
+                if (page === null) {
                     continue; // Page Not Modified
                 }
 
@@ -152,9 +152,9 @@ export default class GitHub extends Forge {
     /**
      * Fetch notifications from GitHub API.
      *
-     * @returns Multidimensional array of notifications per pages
+     * @returns Notifications per page, null for pages not modified
      */
-    private async fetchNotifications(): Promise<Notification[][]> {
+    private async fetchNotifications(): Promise<(Notification[] | null)[]> {
         const notifications = [];
 
         const [firstPage, totalPages] = await this.fetchPage(1, this.perPage);
@@ -174,7 +174,7 @@ export default class GitHub extends Forge {
      * @param page Page number to fetch
      * @param perPage Number of notifications per page
      */
-    private async fetchPage(page: number, perPage: number): Promise<[Notification[], number]> {
+    private async fetchPage(page: number, perPage: number): Promise<[Notification[] | null, number]> {
         const eTag = this.eTags[page - 1] ?? '';
         const url = this.buildURI<NotificationsParams>('notifications', { per_page: perPage, page });
         const message = super.createMessage('GET', url, null, {
@@ -191,7 +191,7 @@ export default class GitHub extends Forge {
 
             return [await this.compileNotifications(contents), totalPages];
         } else if (message.get_status() == Soup.Status.NOT_MODIFIED) {
-            return [[], totalPages];
+            return [null, totalPages];
         } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
             /* Auth failed, revoked or expired token */
             throw 'FailedForgeAuth';
