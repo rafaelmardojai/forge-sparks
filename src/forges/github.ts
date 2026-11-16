@@ -216,7 +216,7 @@ export default class GitHub extends Forge {
 
         if (!lastLink) return 1;
 
-        const match = lastLink.match(/page=(\d+)/);
+        const match = lastLink.match(/[?&]page=(\d+)/);
 
         if (!match) return 1;
 
