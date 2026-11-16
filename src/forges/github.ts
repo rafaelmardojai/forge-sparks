@@ -250,7 +250,7 @@ export default class GitHub extends Forge {
                             repository: item.repository.full_name,
                             url: info.url,
                             accountName: this.accountName,
-                            state: info.state,
+                            state: info.state ?? null,
                         });
                         notifications.push(notification);
 
