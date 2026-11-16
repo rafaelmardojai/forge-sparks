@@ -59,7 +59,6 @@ export default class Window extends Adw.ApplicationWindow {
     /** Store app fail states */
     private authFailed: string | null = null;
     private authErrorNotified: boolean = false;
-    private fetchError: boolean = false;
     private networkError: boolean = false;
 
     /** Store the source of the notifications subscription timeout */
@@ -121,10 +120,9 @@ export default class Window extends Adw.ApplicationWindow {
             // Notify the user about new notifications
             if (added > 0) {
                 const app = this.get_application();
-                const notified: typeof this.notified = {};
 
                 for (let i = position; i < position + added; i++) {
-                    const item = model.get_item(position + i);
+                    const item = model.get_item(i);
 
                     if (!item) continue;
 
@@ -138,13 +136,7 @@ export default class Window extends Adw.ApplicationWindow {
                     }
 
                     // Add notification id and timestamp to notified dict
-                    notified[item.id] = item.updatedAt;
-                }
-
-                if (!this.fetchError) {
-                    this.notified = notified;
-                    // Save notified ids so if the app restarts we don't notify again
-                    settings.set_value('notified', new GLib.Variant('a{ss}', this.notified));
+                    this.notified[item.id] = item.updatedAt;
                 }
             }
         });
@@ -191,7 +183,6 @@ export default class Window extends Adw.ApplicationWindow {
      */
     public async subscribe() {
         this.fetching = true;
-        this.fetchError = false;
         this.networkError = false;
 
         const app = this.get_application();
@@ -214,6 +205,9 @@ export default class Window extends Adw.ApplicationWindow {
             });
             return;
         }
+
+        /* Accounts whose notifications were fetched in this poll */
+        const fetched = new Set<string>();
 
         /* Loop accounts model */
         for (var i = 0; i < accounts.get_n_items(); i++) {
@@ -248,14 +242,17 @@ export default class Window extends Adw.ApplicationWindow {
 
             /* Get notifications from forge */
             try {
-                await this.forges.get(account.id)?.getNotifications();
+                const forge = this.forges.get(account.id);
+                if (forge) {
+                    await forge.getNotifications();
+                    fetched.add(account.id);
+                }
 
                 /* Reset failed state */
                 if (this.authFailed == account.id) {
                     this.resolveTokenError(account);
                 }
             } catch (error) {
-                this.fetchError = true;
                 if (error instanceof GLib.Error) {
                     if (
                         error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NETWORK_UNREACHABLE) ||
@@ -295,6 +292,20 @@ export default class Window extends Adw.ApplicationWindow {
                     console.error(error);
                 }
             }
+        }
+
+        /* Forget notifications that a fetched account no longer lists */
+        for (const id of Object.keys(this.notified)) {
+            const [account] = extractID(id);
+            if (fetched.has(account) && !this.model.getByID(id)) {
+                delete this.notified[id];
+            }
+        }
+
+        /* Save notified ids so if the app restarts we don't notify again */
+        const notified = new GLib.Variant('a{ss}', this.notified);
+        if (!notified.equal(settings.get_value('notified'))) {
+            settings.set_value('notified', notified);
         }
 
         /* Show notifications */
@@ -363,16 +374,16 @@ export default class Window extends Adw.ApplicationWindow {
         this._markAsReadIcon.set_visible_child_name('spinner');
 
         /* Mark as read all notifications on all accounts */
-        for (const id in this.forges) {
+        for (const forge of this.forges.values()) {
             try {
-                await this.forges.get(id)?.markAsRead();
+                if (await forge.markAsRead()) {
+                    forge.notifications.clear();
+                }
             } catch (error) {
                 /* TODO: Notify the user that this failed */
                 console.error(error);
             }
         }
-
-        this.model.clear(); /* Clear list model */
 
         /* Revert ongoing progress status */
         this._markAsRead.sensitive = true;
