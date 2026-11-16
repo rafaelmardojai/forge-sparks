@@ -109,7 +109,9 @@ export default class GitHub extends Forge {
             const pages = await this.fetchNotifications();
 
             for (let i = 0; i < pages.length; i++) {
-                const page = pages[i];
+                const [page, eTag] = pages[i];
+                /* Saved only once every page is fetched, so a failed poll fetches them again */
+                this.eTags[i] = eTag;
                 if (page === null) {
                     continue; // Page Not Modified
                 }
@@ -152,17 +154,17 @@ export default class GitHub extends Forge {
     /**
      * Fetch notifications from GitHub API.
      *
-     * @returns Notifications per page, null for pages not modified
+     * @returns Notifications per page, null for pages not modified, and the page's ETag
      */
-    private async fetchNotifications(): Promise<(Notification[] | null)[]> {
-        const notifications = [];
+    private async fetchNotifications(): Promise<[Notification[] | null, string][]> {
+        const notifications: [Notification[] | null, string][] = [];
 
-        const [firstPage, totalPages] = await this.fetchPage(1, this.perPage);
-        notifications.push(firstPage);
+        const [firstPage, eTag, totalPages] = await this.fetchPage(1, this.perPage);
+        notifications.push([firstPage, eTag]);
 
         for (let i = 2; i <= totalPages; i++) {
-            const [page] = await this.fetchPage(i, this.perPage);
-            notifications.push(page);
+            const [page, eTag] = await this.fetchPage(i, this.perPage);
+            notifications.push([page, eTag]);
         }
 
         return notifications;
@@ -173,8 +175,9 @@ export default class GitHub extends Forge {
      *
      * @param page Page number to fetch
      * @param perPage Number of notifications per page
+     * @returns The notifications, null if not modified, the page's ETag and the total number of pages
      */
-    private async fetchPage(page: number, perPage: number): Promise<[Notification[] | null, number]> {
+    private async fetchPage(page: number, perPage: number): Promise<[Notification[] | null, string, number]> {
         const eTag = this.eTags[page - 1] ?? '';
         const url = this.buildURI<NotificationsParams>('notifications', { per_page: perPage, page });
         const message = super.createMessage('GET', url, null, {
@@ -186,12 +189,11 @@ export default class GitHub extends Forge {
         const totalPages = this.findTotalPages(message.get_response_headers());
 
         if (message.get_status() == Soup.Status.OK) {
-            const etag = message.get_response_headers().get_one('ETag');
-            this.eTags[page - 1] = etag ?? '';
+            const newETag = message.get_response_headers().get_one('ETag') ?? '';
 
-            return [await this.compileNotifications(contents), totalPages];
+            return [await this.compileNotifications(contents), newETag, totalPages];
         } else if (message.get_status() == Soup.Status.NOT_MODIFIED) {
-            return [null, totalPages];
+            return [null, eTag, totalPages];
         } else if (message.get_status() == Soup.Status.UNAUTHORIZED) {
             /* Auth failed, revoked or expired token */
             throw 'FailedForgeAuth';
