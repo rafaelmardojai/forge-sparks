@@ -230,48 +230,31 @@ export default class GitHub extends Forge {
      * doesn't take a lot of time.
      */
     private compileNotifications(items: NotificationsResponse): Promise<Notification[]> {
-        const notifications: Notification[] = [];
-        let count = items.length;
+        return Promise.all(
+            items.map(async (item) => {
+                const info = await this.getSubjectInfo(item);
 
-        return new Promise((resolve, reject) => {
-            if (!items.length) {
-                resolve(notifications);
-            }
-
-            for (const item of items) {
-                try {
-                    this.getSubjectInfo(item).then((info) => {
-                        const notification = new Notification({
-                            id: super.formatID(item.id),
-                            type: item.subject.type,
-                            unread: item.unread,
-                            updatedAt: info.updated_at ?? item.updated_at,
-                            title: item.subject.title,
-                            repository: item.repository.full_name,
-                            url: info.url,
-                            accountName: this.accountName,
-                            state: info.state ?? null,
-                        });
-                        notifications.push(notification);
-
-                        count--;
-                        if (count === 0) {
-                            resolve(notifications);
-                        }
-                    });
-                } catch (e) {
-                    count--;
-                    console.error(e);
-                }
-            }
-        });
+                return new Notification({
+                    id: super.formatID(item.id),
+                    type: item.subject.type,
+                    unread: item.unread,
+                    updatedAt: info.updated_at ?? item.updated_at,
+                    title: item.subject.title,
+                    repository: item.repository.full_name,
+                    url: info.url,
+                    accountName: this.accountName,
+                    state: info.state ?? null,
+                });
+            }),
+        );
     }
 
     /**
      * Get extra info from the notification subject
      *
+     * Falls back to a repository URL if the subject can't be fetched.
+     *
      * @param notification The notification object from the response JSON
-     * @throws Throws an error if failed making the request or reading the data
      */
     private async getSubjectInfo(notification: NotificationsResponse[number]): Promise<SubjectInfo> {
         /* Here we'll store the info */
@@ -312,9 +295,9 @@ export default class GitHub extends Forge {
         try {
             const message = super.createMessage('GET', notification.subject.url);
             const bytes = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null);
-            const contents = super.readContents<SubjectResponse>(bytes);
 
             if (message.get_status() == Soup.Status.OK) {
+                const contents = super.readContents<SubjectResponse>(bytes);
                 info.state = contents.state;
                 /* info.updated_at = contents.updated_at */
                 info.url = contents.html_url;
@@ -353,21 +336,24 @@ export default class GitHub extends Forge {
                         info.url = `${info.url.substring(0, n)}?notification_referrer_id=${referrer}${info.url.substring(n)}`;
                     }
                 }
-            } else {
-                /* Fallback URL if request failed, probably repo is private */
-                if (notification.subject.type === 'PullRequest' || notification.subject.type === 'Pull') {
-                    info.url = `${notification.repository.html_url}/pulls`;
-                } else if (notification.subject.type === 'Issue') {
-                    info.url = `${notification.repository.html_url}/issues`;
-                } else {
-                    info.url = notification.repository.url;
-                }
-            }
 
-            return info;
+                return info;
+            }
         } catch (e) {
-            throw e;
+            /* Network error or unreadable response */
+            console.error(e);
         }
+
+        /* Fallback URL if request failed, probably repo is private */
+        if (notification.subject.type === 'PullRequest' || notification.subject.type === 'Pull') {
+            info.url = `${notification.repository.html_url}/pulls`;
+        } else if (notification.subject.type === 'Issue') {
+            info.url = `${notification.repository.html_url}/issues`;
+        } else {
+            info.url = notification.repository.url;
+        }
+
+        return info;
     }
 
     /**
